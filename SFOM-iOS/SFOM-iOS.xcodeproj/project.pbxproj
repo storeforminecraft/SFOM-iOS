@@ -8,21 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		A5CFA6FD2927322C004C1F2B /* SFOM_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFA6FC2927322C004C1F2B /* SFOM_iOSApp.swift */; };
-		A5CFA6FF2927322C004C1F2B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFA6FE2927322C004C1F2B /* ContentView.swift */; };
 		A5CFA7012927322E004C1F2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CFA7002927322E004C1F2B /* Assets.xcassets */; };
 		A5CFA7042927322E004C1F2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CFA7032927322E004C1F2B /* Preview Assets.xcassets */; };
-		A5CFA7062927322E004C1F2B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFA7052927322E004C1F2B /* Persistence.swift */; };
-		A5CFA7092927322E004C1F2B /* SFOM_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A5CFA7072927322E004C1F2B /* SFOM_iOS.xcdatamodeld */; };
+		A5CFA7092927322E004C1F2B /* CoreDataStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A5CFA7072927322E004C1F2B /* CoreDataStorage.xcdatamodeld */; };
+		A5CFA71A29273626004C1F2B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFA71929273626004C1F2B /* MainView.swift */; };
+		A5CFA72329273AF9004C1F2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CFA72229273AF9004C1F2B /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A5CFA6F92927322C004C1F2B /* SFOM-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SFOM-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CFA6FC2927322C004C1F2B /* SFOM_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOM_iOSApp.swift; sourceTree = "<group>"; };
-		A5CFA6FE2927322C004C1F2B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A5CFA7002927322E004C1F2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5CFA7032927322E004C1F2B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		A5CFA7052927322E004C1F2B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		A5CFA7082927322E004C1F2B /* SFOM_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SFOM_iOS.xcdatamodel; sourceTree = "<group>"; };
+		A5CFA71929273626004C1F2B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A5CFA72229273AF9004C1F2B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +55,12 @@
 		A5CFA6FB2927322C004C1F2B /* SFOM-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				A5CFA6FC2927322C004C1F2B /* SFOM_iOSApp.swift */,
-				A5CFA6FE2927322C004C1F2B /* ContentView.swift */,
-				A5CFA7002927322E004C1F2B /* Assets.xcassets */,
-				A5CFA7052927322E004C1F2B /* Persistence.swift */,
-				A5CFA7072927322E004C1F2B /* SFOM_iOS.xcdatamodeld */,
+				A5CFA7162927356A004C1F2B /* App */,
+				A5CFA7132927351F004C1F2B /* Presentation */,
+				A5CFA717292735F3004C1F2B /* Domain */,
+				A5CFA71829273600004C1F2B /* Data */,
+				A5CFA71D2927375A004C1F2B /* Resources */,
+				A5CFA71C29273744004C1F2B /* Utils */,
 				A5CFA7022927322E004C1F2B /* Preview Content */,
 			);
 			path = "SFOM-iOS";
@@ -71,6 +72,93 @@
 				A5CFA7032927322E004C1F2B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A5CFA70F29273460004C1F2B /* PersistentStorage */ = {
+			isa = PBXGroup;
+			children = (
+				A5CFA710292734A5004C1F2B /* CoreDataStorage */,
+			);
+			path = PersistentStorage;
+			sourceTree = "<group>";
+		};
+		A5CFA710292734A5004C1F2B /* CoreDataStorage */ = {
+			isa = PBXGroup;
+			children = (
+				A5CFA7072927322E004C1F2B /* CoreDataStorage.xcdatamodeld */,
+			);
+			path = CoreDataStorage;
+			sourceTree = "<group>";
+		};
+		A5CFA7132927351F004C1F2B /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				A5CFA71929273626004C1F2B /* MainView.swift */,
+				A5CFA71429273548004C1F2B /* HomeScene */,
+				A5CFA7152927354F004C1F2B /* SearchScene */,
+				A5CFA71B29273658004C1F2B /* SettingsScene */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		A5CFA71429273548004C1F2B /* HomeScene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HomeScene;
+			sourceTree = "<group>";
+		};
+		A5CFA7152927354F004C1F2B /* SearchScene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SearchScene;
+			sourceTree = "<group>";
+		};
+		A5CFA7162927356A004C1F2B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A5CFA6FC2927322C004C1F2B /* SFOM_iOSApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A5CFA717292735F3004C1F2B /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		A5CFA71829273600004C1F2B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A5CFA70F29273460004C1F2B /* PersistentStorage */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A5CFA71B29273658004C1F2B /* SettingsScene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SettingsScene;
+			sourceTree = "<group>";
+		};
+		A5CFA71C29273744004C1F2B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A5CFA71D2927375A004C1F2B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A5CFA7002927322E004C1F2B /* Assets.xcassets */,
+				A5CFA72229273AF9004C1F2B /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5CFA72329273AF9004C1F2B /* LaunchScreen.storyboard in Resources */,
 				A5CFA7042927322E004C1F2B /* Preview Assets.xcassets in Resources */,
 				A5CFA7012927322E004C1F2B /* Assets.xcassets in Resources */,
 			);
@@ -143,9 +232,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5CFA7092927322E004C1F2B /* SFOM_iOS.xcdatamodeld in Sources */,
-				A5CFA7062927322E004C1F2B /* Persistence.swift in Sources */,
-				A5CFA6FF2927322C004C1F2B /* ContentView.swift in Sources */,
+				A5CFA7092927322E004C1F2B /* CoreDataStorage.xcdatamodeld in Sources */,
+				A5CFA71A29273626004C1F2B /* MainView.swift in Sources */,
 				A5CFA6FD2927322C004C1F2B /* SFOM_iOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,11 +366,13 @@
 				DEVELOPMENT_TEAM = B2XR5545F7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,11 +397,13 @@
 				DEVELOPMENT_TEAM = B2XR5545F7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -349,13 +441,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		A5CFA7072927322E004C1F2B /* SFOM_iOS.xcdatamodeld */ = {
+		A5CFA7072927322E004C1F2B /* CoreDataStorage.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				A5CFA7082927322E004C1F2B /* SFOM_iOS.xcdatamodel */,
 			);
 			currentVersion = A5CFA7082927322E004C1F2B /* SFOM_iOS.xcdatamodel */;
-			path = SFOM_iOS.xcdatamodeld;
+			path = CoreDataStorage.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
