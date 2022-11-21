@@ -8,11 +8,43 @@
 import SwiftUI
 
 struct MainView: View {
+    @State private var selectedIndex: Int = 0
+
     var body: some View {
         NavigationView {
             TabView {
-                
+                HomeView()
+                    .tag(0)
+                SearchView()
+                    .tag(1)
+                MenuView()
+                    .tag(2)
             }
+                .overlay(alignment: .bottom) {
+                tabBar
+            }
+
+        }
+    }
+
+    var tabBar: some View {
+        HStack {
+            Button {
+                
+            } label: {
+                Assets.tabBar.home.image
+            }
+            Button {
+                
+            } label: {
+                Assets.tabBar.search.image
+            }
+            Button {
+                
+            } label: {
+                Assets.tabBar.menu.image
+            }
+
         }
     }
 }
