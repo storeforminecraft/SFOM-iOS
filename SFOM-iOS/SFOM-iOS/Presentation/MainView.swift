@@ -12,7 +12,7 @@ struct MainView: View {
 
     var body: some View {
         NavigationView {
-            TabView {
+            TabView(selection: $selectedIndex) {
                 HomeView()
                     .tag(0)
                 SearchView()
@@ -29,23 +29,19 @@ struct MainView: View {
 
     var tabBar: some View {
         HStack {
-            Button {
-                
-            } label: {
-                Assets.tabBar.home.image
+            Group {
+                SFOMTabButton(kind: .home, tag: 0, selectedIndex: $selectedIndex)
+                SFOMTabButton(kind: .search, tag: 1, selectedIndex: $selectedIndex)
+                SFOMTabButton(kind: .menu, tag: 2, selectedIndex: $selectedIndex)
             }
-            Button {
-                
-            } label: {
-                Assets.tabBar.search.image
-            }
-            Button {
-                
-            } label: {
-                Assets.tabBar.menu.image
-            }
-
+                .frame(width: 40, height: 40)
         }
+            .padding(.vertical,10)
+            .padding(.horizontal, 20)
+            .background(Color(.white))
+            .cornerRadius(22)
+            .shadow(radius: 2)
+            .padding(.bottom, 20)
     }
 }
 

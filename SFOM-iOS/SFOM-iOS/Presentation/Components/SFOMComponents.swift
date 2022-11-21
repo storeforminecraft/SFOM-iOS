@@ -9,20 +9,30 @@ import SwiftUI
 import Combine
 
 public struct SFOMTabButton: View {
+    @Binding var selectedIndex: Int
+    private let tag: Int
     private let kind: Assets.tabBar
-    private let action: () -> Void
-    private var selected: Bool = false
 
-    init(kind: Assets.tabBar, action: @escaping () -> Void) {
+    init(kind: Assets.tabBar,tag: Int, selectedIndex: Binding<Int>) {
+        self._selectedIndex = selectedIndex
+        self.tag = tag
         self.kind = kind
-        self.action = action
     }
 
     public var body: some View {
         Button {
-            action()
+            selectedIndex = tag
         } label: {
-            kind.image
+            ZStack {
+                Group {
+                    kind.image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    if self.selectedIndex == self.tag {
+                        Color.accentColor.blendMode(.sourceAtop)
+                    }
+                }
+            }.drawingGroup(opaque: false)
         }
     }
 }
