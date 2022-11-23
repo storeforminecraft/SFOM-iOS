@@ -17,7 +17,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sfom_symbol_default" translatesAutoresizingMaskIntoConstraints="NO" id="4bS-px-JJp">
-                                <rect key="frame" x="159" y="385.66666666666669" width="75" height="81"/>
+                                <rect key="frame" x="159" y="386" width="75" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="Wf9-Tq-E6c"/>
+                                    <constraint firstAttribute="width" secondItem="4bS-px-JJp" secondAttribute="height" multiplier="75:80" id="ezF-Al-zbj"/>
+                                </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_bottom" translatesAutoresizingMaskIntoConstraints="NO" id="aC9-6h-EzT">
                                 <rect key="frame" x="171.66666666666666" y="767" width="50" height="21"/>
