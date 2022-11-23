@@ -8,8 +8,7 @@
 import SwiftUI
 
 extension Color  {
-    static let accentColor: Color = Color("AccentColor")
-    static let accentDeepColor: Color = Color("AccentDeepColor")
+    static let accentDeepColor: Color = Color("accentDeepColor")
     static let borderColor: Color = Color("BorderColor")
     static let textColor: Color = Color("PastelColor")
 }
