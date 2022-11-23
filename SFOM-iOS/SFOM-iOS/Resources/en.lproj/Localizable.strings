@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  SFOM-iOS
+
+  Created by 이전희 on 2022/11/23.
+  
+*/
+
+"APP" = "SFOM";
+
+"HomeTitle" = "SFOM";
+"SignIn" = "Sign In";

@@ -54,5 +54,19 @@ struct Assets {
             Image("ic_tabbar_\(self.rawValue)")
         }
     }
+    
+    public enum moreMenu: String {
+        case downloads
+        case preference
+        case notice
+        case signout
+        case notificationActive
+        case push
+        
+        var image: Image {
+            Image("ic_moremenu_\(self.rawValue)")
+        }
+        
+    }
 
 }
