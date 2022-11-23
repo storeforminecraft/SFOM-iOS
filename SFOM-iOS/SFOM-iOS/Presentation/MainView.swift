@@ -34,13 +34,12 @@ struct MainView: View {
                 SFOMTabButton(kind: .search, tag: 1, selectedIndex: $selectedIndex)
                 SFOMTabButton(kind: .menu, tag: 2, selectedIndex: $selectedIndex)
             }
-                .frame(width: 40, height: 40)
+                .frame(width: 28, height: 28)
+                .padding(20)
         }
-            .padding(.vertical,10)
-            .padding(.horizontal, 20)
             .background(Color(.white))
-            .cornerRadius(22)
-            .shadow(radius: 2)
+            .cornerRadius(24)
+            .shadow(color: .init(white: 0, opacity: 0.12),radius: 8,x:0,y:2)
             .padding(.bottom, 20)
     }
 }
