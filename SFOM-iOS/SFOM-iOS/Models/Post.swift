@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Post: Codable {
+struct Post: Decodable {
     var documentId: String
     var authorUid: String
     var basedLanguage: String
     var boardId: String
-    var bodies: [String: Any]
+    var bodies: [String: PostBody]
     var bodyType: String
     var coverImage: String
     var createdTimestamp: Date?
@@ -21,6 +21,18 @@ struct Post: Codable {
     var state: String
     var tags: [String]
     var title: String
-    var translatedBodies: [String: Any]
+    var translatedBodies: [String: PostBody]
     var translatedTitles: [String: String]
 }
+
+struct PostBody: Decodable {
+    var format: String
+    var version: String
+    var body: [PostBodyContent]
+}
+
+struct PostBodyContent: Decodable {
+    var type: String
+    var data: String
+}
+
