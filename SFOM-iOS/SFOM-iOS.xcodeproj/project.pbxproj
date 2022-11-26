@@ -20,6 +20,7 @@
 		A5A78342293063DE008B9A62 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5A78341293063DE008B9A62 /* FirebaseFirestoreSwift */; };
 		A5A78344293063DE008B9A62 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A5A78343293063DE008B9A62 /* FirebaseStorage */; };
 		A5A783472930640E008B9A62 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A783462930640E008B9A62 /* FirebaseService.swift */; };
+		A5A783492930679C008B9A62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5A783482930679C008B9A62 /* GoogleService-Info.plist */; };
 		A5CFA6FD2927322C004C1F2B /* SFOM_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFA6FC2927322C004C1F2B /* SFOM_iOSApp.swift */; };
 		A5CFA7012927322E004C1F2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CFA7002927322E004C1F2B /* Assets.xcassets */; };
 		A5CFA7042927322E004C1F2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CFA7032927322E004C1F2B /* Preview Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		A5971553292E7CE90081E71A /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		A5971556292E7D310081E71A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A5A783462930640E008B9A62 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		A5A783482930679C008B9A62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5CFA6F92927322C004C1F2B /* SFOM-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SFOM-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CFA6FC2927322C004C1F2B /* SFOM_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOM_iOSApp.swift; sourceTree = "<group>"; };
 		A5CFA7002927322E004C1F2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		A5CFA71D2927375A004C1F2B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A5A783482930679C008B9A62 /* GoogleService-Info.plist */,
 				A5CFA72829274846004C1F2B /* Assets.swift */,
 				A5CFA7002927322E004C1F2B /* Assets.xcassets */,
 				A5CFA72229273AF9004C1F2B /* LaunchScreen.storyboard */,
@@ -302,6 +305,7 @@
 			files = (
 				A5CFA72329273AF9004C1F2B /* LaunchScreen.storyboard in Resources */,
 				A5D4EEC3292E6C210005812C /* Localizable.strings in Resources */,
+				A5A783492930679C008B9A62 /* GoogleService-Info.plist in Resources */,
 				A5CFA7042927322E004C1F2B /* Preview Assets.xcassets in Resources */,
 				A5CFA7012927322E004C1F2B /* Assets.xcassets in Resources */,
 			);
