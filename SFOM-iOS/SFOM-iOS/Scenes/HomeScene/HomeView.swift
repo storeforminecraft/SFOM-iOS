@@ -9,9 +9,31 @@ import SwiftUI
 
 fileprivate final class HomeViewModel: ObservableObject {
 
+    init() {
+        test()
+    }
+
+    func test() { FirebaseService.shared.firestore.collection("posts")
+            .whereField("state", isEqualTo: "published")
+            .getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            }
+            for document in querySnapshot!.documents {
+                do {
+                    let data = try document.data(as: Post.self)
+                    print(data.id, data.title)
+                } catch let error {
+                    print(error)
+                }
+            }
+        }
+    }
 }
 
 struct HomeView: View {
+    @ObservedObject private var homeViewModel = HomeViewModel()
+
     var body: some View {
         VStack {
             homeNavigationBar
