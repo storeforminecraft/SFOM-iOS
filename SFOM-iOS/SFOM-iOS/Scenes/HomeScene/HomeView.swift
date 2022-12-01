@@ -8,24 +8,21 @@
 import SwiftUI
 
 fileprivate final class HomeViewModel: ObservableObject {
+    @EnvironmentObject var sharedData: SharedData
+    @Published var posts: [Post] = []
 
     init() {
-        test()
+        fetchPosts()
     }
 
-    func test() { FirebaseService.shared.firestore.collection("posts")
+    func fetchPosts() {
+        FirebaseManager.shared.firestore.collection("posts")
             .whereField("state", isEqualTo: "published")
-            .getDocuments { querySnapshot, error in
-            if let error = error {
-                print(error)
-            }
-            for document in querySnapshot!.documents {
-                do {
-                    let data = try document.data(as: Post.self)
-                    print(data.id, data.title)
-                } catch let error {
-                    print(error)
-                }
+            .getDocuments { [weak self] querySnapshot, error in
+            if let error = error { print(error) }
+            guard let querySnapshot = querySnapshot else { return }
+            self?.posts = querySnapshot.documents.compactMap { document in
+                return try? document.data(as: Post.self)
             }
         }
     }
@@ -38,65 +35,91 @@ struct HomeView: View {
         VStack {
             homeNavigationBar
             ScrollView {
-
+                postsView
             }
+
         }
     }
 
-    var homeNavigationBar: some View {
+    private var homeNavigationBar: some View {
         HStack {
             Text(LocalizedString.homeTitle)
                 .font(.SFOMTitleFont)
             Spacer()
-            NavigationLink {
-                // FIXME: - Push View
-            } label: {
-                ZStack (alignment: .topTrailing) {
-                    Assets.moreMenu.push.image
+            // NavigationLink {
+            //     // FIXME: - Push View
+            // } label: {
+            //     ZStack (alignment: .topTrailing) {
+            //         Assets.moreMenu.push.image
+            //             .resizable()
+            //             .frame(width: 24, height: 24)
+            //             .padding(.horizontal, 2)
+            //             .padding(.vertical, 4)
+            //         // FIXME: - if push
+            //         Circle()
+            //             .foregroundColor(.red)
+            //             .frame(width: 12, height: 12)
+            //             .overlay(Circle().stroke(.white, lineWidth: 4))
+            //     }
+            // }
+
+            if let user = homeViewModel.sharedData.user {
+                NavigationLink {
+                    ProfileView(uid: user.uid)
+                } label: {
+                    Assets.Default.profile.image
                         .resizable()
-                        .frame(width: 24, height: 24)
-                        .padding(.horizontal, 2)
-                        .padding(.vertical, 4)
-                    // FIXME: - if push
-                    Circle()
-                        .foregroundColor(.red)
-                        .frame(width: 12, height: 12)
-                        .overlay(Circle().stroke(.white, lineWidth: 4))
+                        .frame(width: 42, height: 42)
+                        .cornerRadius(26)
                 }
-            }
+            } else {
+                NavigationLink {
+                    AuthView()
+                } label: {
+                    Text(LocalizedString.signIn)
+                        .font(.SFOMSmallFont)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                        .foregroundColor(.white)
+                        .background(Color.accentColor)
+                        .cornerRadius(16)
+                        .frame(height: 24)
 
-            // FIXME: - if SignIn
-            Assets.default.profile.image
-                .resizable()
-                .frame(width: 42, height: 42)
-                .cornerRadius(26)
-
-
-            NavigationLink {
-                // FIXME: - if SignIn
-            } label: {
-                Text(LocalizedString.signIn)
-                    .font(.SFOMSmallFont)
-                    .padding(.vertical, 5)
-                    .padding(.horizontal, 10)
-                    .foregroundColor(.white)
-                    .background(Color.accentColor)
-                    .cornerRadius(16)
-                    .frame(height: 24)
-
+                }
             }
         }
             .padding(.horizontal, 22)
+    }
+
+    private var postsView: some View {
+        VStack {
+            ForEach(homeViewModel.posts, id: \.id) { post in
+                SFOMPostView(post: post) {
+                    VStack { }
+                }
+            }
+        }
+            .padding()
+            .padding(.bottom, 100)
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
+        let noAuth: SharedData = SharedData()
+
+        var auth: SharedData {
+            let sharedData = SharedData()
+            sharedData.user = User(uid: "uid", nickname: "", profileImage: "")
+            return sharedData
+        }
+
+        return Group {
             HomeView()
                 .environment(\.locale, .init(identifier: "ko"))
             HomeView()
                 .environment(\.locale, .init(identifier: "en"))
         }
+            .environmentObject(auth)
     }
 }

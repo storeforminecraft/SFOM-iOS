@@ -9,10 +9,15 @@ import SwiftUI
 
 @main
 struct SFOM_iOSApp: App {
+    var sharedData: SharedData = {
+        
+        return SharedData()
+    }()
 
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(sharedData)
         }
     }
 }

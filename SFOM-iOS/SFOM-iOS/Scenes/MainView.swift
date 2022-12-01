@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject var sharedData: SharedData
     @State private var selectedIndex: Int = 0
 
     var body: some View {
@@ -39,7 +40,7 @@ struct MainView: View {
         }
             .background(Color(.white))
             .cornerRadius(24)
-            .shadow(color: .init(white: 0, opacity: 0.12),radius: 8,x:0,y:2)
+            .shadow(color: .init(white: 0, opacity: 0.12), radius: 8, x: 0, y: 2)
             .padding(.bottom, 20)
     }
 }
@@ -47,5 +48,6 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environmentObject(SharedData())
     }
 }
