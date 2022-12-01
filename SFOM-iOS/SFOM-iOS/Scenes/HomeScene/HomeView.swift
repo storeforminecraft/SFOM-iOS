@@ -8,7 +8,6 @@
 import SwiftUI
 
 fileprivate final class HomeViewModel: ObservableObject {
-    @EnvironmentObject var sharedData: SharedData
     @Published var posts: [Post] = []
 
     init() {
@@ -29,10 +28,11 @@ fileprivate final class HomeViewModel: ObservableObject {
 }
 
 struct HomeView: View {
+    @EnvironmentObject var sharedData: SharedData
     @ObservedObject private var homeViewModel = HomeViewModel()
 
     var body: some View {
-        VStack {
+        VStack (alignment: .leading) {
             homeNavigationBar
             ScrollView {
                 postsView
@@ -42,7 +42,7 @@ struct HomeView: View {
     }
 
     private var homeNavigationBar: some View {
-        HStack {
+        HStack(alignment: .center) {
             Text(LocalizedString.homeTitle)
                 .font(.SFOMTitleFont)
             Spacer()
@@ -63,7 +63,7 @@ struct HomeView: View {
             //     }
             // }
 
-            if let user = homeViewModel.sharedData.user {
+            if let user = sharedData.user {
                 NavigationLink {
                     ProfileView(uid: user.uid)
                 } label: {
@@ -88,7 +88,7 @@ struct HomeView: View {
                 }
             }
         }
-            .padding(.horizontal, 22)
+            .padding()
     }
 
     private var postsView: some View {
@@ -100,7 +100,6 @@ struct HomeView: View {
             }
         }
             .padding()
-            .padding(.bottom, 100)
     }
 }
 
