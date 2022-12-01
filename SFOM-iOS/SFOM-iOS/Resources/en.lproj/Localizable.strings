@@ -6,7 +6,75 @@
   
 */
 
+"location"= "en";
+
 "APP" = "SFOM";
 
 "HomeTitle" = "SFOM";
 "SignIn" = "Sign In";
+
+"Back" = "Back";
+
+"Map" = "Map";
+"Skin" = "Skin";
+"Script" = "Script";
+"Seed" = "Seed";
+"Texturepack" = "Texturepack";
+"Mod" = "Mod";
+"Addon" = "Addon";
+"Downloads" = "Downloads";
+
+"AuthTitle" = "우주 최고의";
+"AuthMainTitle" = "MCPE 콘텐츠 스토어.";
+"AuthSubTitle" = "The best MCPE add-on store in the Universe.";
+
+"SignUpTitle" = "계정을 만들고";
+"SignUpMainTitle" = "즐거움을 더하세요";
+"SignUpSubTitle" = "STORE for MCPE의 계정을 지금 만드실 수 있습니다.";
+
+"SignInTitle" = "다시 만나서 반가워요!";
+"SignInMainTitle" = "로그인 해주세요.";
+"SignInSubTitle" = "STORE for MCPE의 계정으로 로그인 해주세요.";
+
+"Policy1" = "계속하시면 STORE for MCPE의 [서비스 이용약관](https://docs.storeforminecraft.com/en/terms/EULA)과 [개인정보 처리 방침](https://docs.storeforminecraft.com/en/terms/PrivacyPolicy)에 동의하는 것으로 간주 됩니다.";
+"Policy2" = "버튼을 누름으로서 본인이 만 14세 이상임을 확인하며, [개인정보 수집 및 이용 동의서](https://docs.storeforminecraft.com/en/terms/Personal_Information_Collection_and_Use_Agreement)와 [개인정보 국외 이전 동의서](https://docs.storeforminecraft.com/en/terms/Personal_Information_Transfer_Agreement)에 동의합니다.";
+
+"AuthSignInButtonTitle" = "지금 시작하기";
+"AuthSignUpButtonTitle" = "이미 계정이 있습니다.";
+
+"Email" = "이메일 주소";
+"Password" = "비밀번호";
+"PasswordConfrim" = "비밀번호 확인";
+"UserName" = "사용자 이름";
+
+"SignInButonTitle" = "로그인 하기";
+"SignUpButtonTitle" = "계정 만들기";
+"ResetEmailButtonTitle" = "비밀번호를 잃어버리셨나요?";
+
+"SelectCategory" = "select category";
+
+"All" = "all";
+
+"Building" = "building";
+"Content" = "content";
+"Escape" = "escape";
+"Land" = "land";
+"Pvp" = "pvp";
+"Adventure" = "adventure";
+
+"Boys" = "boys";
+"Girls" = "girls";
+"Characters" = "characters";
+"Games" = "games";
+"Animal" = "animal";
+
+"Mountain" = "mountain";
+"Cave" = "cave";
+"Island" = "island";
+"Plain" = "plain";
+
+"16x16" = "16x16";
+"32x32" = "32x32";
+"64x64" = "64x64";
+"128x128" = "128x128";
+"Shaders" = "shaders";

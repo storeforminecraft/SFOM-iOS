@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct Assets {
-    public enum `default`: String {
+    public enum Symbol: String {
+        case `default`
+        case white
+        
+        var image: Image { Image("sfom_symbol_\(self.rawValue)") }
+    }
+    
+    public enum `Default`: String {
         case profile
         case profileBackground
         case gradientBackground
@@ -16,7 +23,7 @@ struct Assets {
         var image: Image { Image("defaultImage_\(self.rawValue)") }
     }
 
-    public enum menu: String {
+    public enum Menu: String {
         case addon
         case downloads
         case map
@@ -44,7 +51,7 @@ struct Assets {
         }
     }
 
-    public enum tabBar: String {
+    public enum TabBar: String {
         case home
         case menu
         case search
@@ -55,7 +62,7 @@ struct Assets {
         }
     }
     
-    public enum moreMenu: String {
+    public enum MoreMenu: String {
         case downloads
         case preference
         case notice
@@ -67,6 +74,12 @@ struct Assets {
             Image("ic_moremenu_\(self.rawValue)")
         }
         
+    }
+    
+    public enum SystemIcon: String {
+        case back = "arrow.backward.circle"
+
+        var image: Image { Image(systemName: self.rawValue) }
     }
 
 }
