@@ -21,15 +21,15 @@ struct AuthView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            SFOMHeader(title: LocalizedString.AuthView.AuthTitle,
-                       mainTitle: LocalizedString.AuthView.AuthMainTitle,
-                       subTitle: LocalizedString.AuthView.AuthSubTitle)
+            SFOMHeader(title: LocalizedString.AuthView.authTitle,
+                       mainTitle: LocalizedString.AuthView.authMainTitle,
+                       subTitle: LocalizedString.AuthView.authSubTitle)
 
             Button {
                 dismiss()
             } label: {
                 HStack {
-                    Assets.SystemIcon.back.image
+                    Assets.SystemIcon.backCircle.image
                     Text(LocalizedString.back)
                 }
                     .font(.SFOMSmallFont)
@@ -39,15 +39,16 @@ struct AuthView: View {
             Spacer()
 
             VStack (alignment: .center) {
-                SFOMNavigationLink(LocalizedString.AuthView.AuthSignUpButtonTitle, accent: false) {
+                
+                SFOMNavigationLink(LocalizedString.AuthView.authSignInButtonTitle) {
+                    SignInView()
+                }
+                
+                SFOMNavigationLink(LocalizedString.AuthView.authSignUpButtonTitle, accent: false) {
                     SignUpView()
                 }
 
-                SFOMNavigationLink(LocalizedString.AuthView.AuthSignInButtonTitle) {
-                    SignInView()
-                }
-
-                SFOMMarkdownText(LocalizedString.Policy.Policy1)
+                SFOMMarkdownText(LocalizedString.Policy.policy1)
                     .font(.caption)
                     .foregroundColor(Color(.lightGray))
                     .multilineTextAlignment(.center)
