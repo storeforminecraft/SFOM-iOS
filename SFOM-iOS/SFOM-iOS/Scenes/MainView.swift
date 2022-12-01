@@ -14,26 +14,38 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             TabView(selection: $selectedIndex) {
-                HomeView()
-                    .tag(0)
-                SearchView()
-                    .tag(1)
-                MenuView()
-                    .tag(2)
+                Group {
+                    HomeView()
+                        .tag(0)
+                    SearchView()
+                        .tag(1)
+                    MenuView()
+                        .tag(2)
+                }
+                    .navigationBarTitle("")
+                    .navigationBarHidden(true)
+                    .navigationBarBackButtonHidden(true)
             }
                 .overlay(alignment: .bottom) {
                 tabBar
             }
 
         }
+
     }
 
     var tabBar: some View {
         HStack {
             Group {
-                SFOMTabButton(kind: .home, tag: 0, selectedIndex: $selectedIndex)
-                SFOMTabButton(kind: .search, tag: 1, selectedIndex: $selectedIndex)
-                SFOMTabButton(kind: .menu, tag: 2, selectedIndex: $selectedIndex)
+                SFOMTabButton(kind: .home,
+                              tag: 0,
+                              selectedIndex: $selectedIndex)
+                SFOMTabButton(kind: .search,
+                              tag: 1,
+                              selectedIndex: $selectedIndex)
+                SFOMTabButton(kind: .menu,
+                              tag: 2,
+                              selectedIndex: $selectedIndex)
             }
                 .frame(width: 28, height: 28)
                 .padding(20)
