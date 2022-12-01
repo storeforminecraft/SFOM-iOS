@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Kingfisher
-import Combine
 
 public struct SFOMTabButton: View {
     @Binding var selectedIndex: Int
@@ -254,5 +253,48 @@ public struct SFOMTextField: View {
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(.lightGray), lineWidth: 1))
         }
+    }
+}
+
+public struct SFOMSearchBar: View {
+    private let cornerRadius: CGFloat = 24
+
+    private var placeholder: String
+    @Binding private var text: String
+    @Binding private var state: Bool
+    private var submitAction: () -> Void
+
+    init(placeholder: String, text: Binding<String>, state: Binding<Bool>, submitAction: @escaping () -> Void) {
+        self.placeholder = placeholder
+        self._text = text
+        self._state = state
+        self.submitAction = submitAction
+    }
+
+    public var body: some View {
+        HStack (alignment: .center) {
+            if state {
+                Button {
+                    state = false
+                } label: {
+                    Assets.SystemIcon.back.image
+                        .font(.SFOMMediumFont)
+                        .padding(.leading)
+                }
+            }
+            TextField(placeholder, text: $text)
+                .autocapitalization(.none)
+                .padding()
+                .onSubmit {
+                if text != "" {
+                    state = true
+                    submitAction()
+                }
+            }
+        }
+            .background(Color.searchBarColor)
+            .cornerRadius(cornerRadius)
+            .overlay(RoundedRectangle(cornerRadius: cornerRadius).stroke(.black, lineWidth: 1))
+            .foregroundColor(.black)
     }
 }
