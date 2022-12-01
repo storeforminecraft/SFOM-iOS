@@ -61,7 +61,7 @@ public struct LocalizedString {
     public struct Auth {
         static let Email = "Email".localized
         static let Password = "Password".localized
-        static let PasswordConfrim = "PasswordConfrim".localized
+        static let PasswordConfirm = "PasswordConfrim".localized
         static let UserName = "UserName".localized
     }
 
