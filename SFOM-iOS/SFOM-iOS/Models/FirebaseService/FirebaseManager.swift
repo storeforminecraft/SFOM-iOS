@@ -1,5 +1,5 @@
 //
-//  FirebaseService.swift
+//  FirebaseManager.swift
 //  SFOM-iOS
 //
 //  Created by 이전희 on 2022/11/25.
@@ -11,8 +11,8 @@ import FirebaseStorage
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-final class FirebaseService {
-    static let shared = FirebaseService()
+final class FirebaseManager {
+    static let shared = FirebaseManager()
     let auth: Auth
     let firestore: Firestore
     var ref: DatabaseReference
