@@ -11,10 +11,10 @@ struct Assets {
     public enum Symbol: String {
         case `default`
         case white
-        
+
         var image: Image { Image("sfom_symbol_\(self.rawValue)") }
     }
-    
+
     public enum `Default`: String {
         case profile
         case profileBackground
@@ -61,7 +61,7 @@ struct Assets {
             Image("ic_tabbar_\(self.rawValue)")
         }
     }
-    
+
     public enum MoreMenu: String {
         case downloads
         case preference
@@ -69,15 +69,16 @@ struct Assets {
         case signout
         case notificationActive
         case push
-        
+
         var image: Image {
             Image("ic_moremenu_\(self.rawValue)")
         }
-        
+
     }
-    
+
     public enum SystemIcon: String {
-        case back = "arrow.backward.circle"
+        case backCircle = "arrow.backward.circle"
+        case back = "chevron.backward"
 
         var image: Image { Image(systemName: self.rawValue) }
     }

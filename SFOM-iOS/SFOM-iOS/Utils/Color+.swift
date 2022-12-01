@@ -11,6 +11,7 @@ extension Color  {
     static let accentDeepColor: Color = Color("accentDeepColor")
     static let borderColor: Color = Color("BorderColor")
     static let textColor: Color = Color("PastelColor")
+    static let searchBarColor: Color = Color("SearchBarColor")
 }
 
 
