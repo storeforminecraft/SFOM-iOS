@@ -50,6 +50,9 @@
 "PasswordConfrim" = "Retype password";
 "UserName" = "Username";
 
+"SearchTitle" = "Search";
+"SearchPlaceholder" = "Search for content";
+
 "SelectCategory" = "select category";
 
 "All" = "all";

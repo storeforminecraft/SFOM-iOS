@@ -50,6 +50,9 @@
 "PasswordConfrim" = "비밀번호 확인";
 "UserName" = "사용자 이름";
 
+"SearchTitle" = "검색";
+"SearchPlaceholder" = "콘텐츠를 검색하세요";
+
 "SelectCategory" = "select category";
 
 "All" = "all";
@@ -76,5 +79,5 @@
 "32x32" = "32x32";
 "64x64" = "64x64";
 "128x128" = "128x128";
-"Shaders" = "shaders";
+"Shaders" = "쉐이더";
 

@@ -8,6 +8,7 @@
 import Foundation
 
 public struct LocalizedString {
+    private init() { }
     static let location: String = "location".localized
     static let app: String = "APP".localized
     static let homeTitle: String = "HomeTitle".localized
@@ -16,82 +17,95 @@ public struct LocalizedString {
     static let back = "Back".localized
 
     public struct menu {
+        private init() { }
         static let map = "Map".localized
         static let skin = "Skin".localized
-        static let Script = "Script".localized
-        static let Seed = "Seed".localized
-        static let Texturepack = "Texturepack".localized
-        static let Mod = "Mod".localized
-        static let Addon = "Addon".localized
-        static let Downloads = "Downloads".localized
+        static let script = "Script".localized
+        static let seed = "Seed".localized
+        static let texturepack = "Texturepack".localized
+        static let mod = "Mod".localized
+        static let addon = "Addon".localized
+        static let downloads = "Downloads".localized
     }
 
     public struct AuthView {
-        static let AuthTitle = "AuthTitle".localized
-        static let AuthMainTitle = "AuthMainTitle".localized
-        static let AuthSubTitle = "AuthSubTitle".localized
+        private init() { }
+        static let authTitle = "AuthTitle".localized
+        static let authMainTitle = "AuthMainTitle".localized
+        static let authSubTitle = "AuthSubTitle".localized
 
-        static let AuthSignInButtonTitle = "AuthSignInButtonTitle".localized
-        static let AuthSignUpButtonTitle = "AuthSignUpButtonTitle".localized
+        static let authSignInButtonTitle = "AuthSignInButtonTitle".localized
+        static let authSignUpButtonTitle = "AuthSignUpButtonTitle".localized
     }
 
     public struct SignUpView {
-        static let SignUpTitle = "SignUpTitle".localized
-        static let SignUpMainTitle = "SignUpMainTitle".localized
-        static let SignUpSubTitle = "SignUpSubTitle".localized
+        private init() { }
+        static let signUpTitle = "SignUpTitle".localized
+        static let signUpMainTitle = "SignUpMainTitle".localized
+        static let signUpSubTitle = "SignUpSubTitle".localized
 
-        static let SignUpButtonTitle = "SignUpButtonTitle".localized
+        static let signUpButtonTitle = "SignUpButtonTitle".localized
     }
 
     public struct SignInView {
-        static let SignInTitle = "SignInTitle".localized
-        static let SignInMainTitle = "SignInMainTitle".localized
-        static let SignInSubTitle = "SignInSubTitle".localized
+        private init() { }
+        static let signInTitle = "SignInTitle".localized
+        static let signInMainTitle = "SignInMainTitle".localized
+        static let signInSubTitle = "SignInSubTitle".localized
 
-        static let SignInButonTitle = "SignInButonTitle".localized
+        static let signInButonTitle = "SignInButonTitle".localized
 
-        static let ResetEmailButtonTitle = "ResetEmailButtonTitle".localized
+        static let resetEmailButtonTitle = "ResetEmailButtonTitle".localized
     }
 
     public struct Policy {
-        static let Policy1 = "Policy1".localized
-        static let Policy2 = "Policy2".localized
+        private init() { }
+        static let policy1 = "Policy1".localized
+        static let policy2 = "Policy2".localized
     }
 
     public struct Auth {
-        static let Email = "Email".localized
-        static let Password = "Password".localized
-        static let PasswordConfirm = "PasswordConfrim".localized
-        static let UserName = "UserName".localized
+        private init() { }
+        static let email = "Email".localized
+        static let password = "Password".localized
+        static let passwordConfirm = "PasswordConfrim".localized
+        static let userName = "UserName".localized
+    }
+
+    public struct SearchView {
+        private init() { }
+        static let searchTitle = "SearchTitle".localized
+        static let searchPlaceholder = "SearchPlaceholder".localized
     }
 
     public struct Category {
-        static let SelectCategory = "SelectCategory".localized
+        private init() { }
+        static let selectCategory = "SelectCategory".localized
 
-        static let All = "All".localized
+        static let all = "All".localized
 
-        static let Building = "Building".localized
-        static let Content = "Content".localized
-        static let Escape = "Escape".localized
-        static let Land = "Land".localized
-        static let Pvp = "Pvp".localized
-        static let Adventure = "Adventure".localized
+        static let building = "Building".localized
+        static let content = "Content".localized
+        static let escape = "Escape".localized
+        static let land = "Land".localized
+        static let pvp = "Pvp".localized
+        static let adventure = "Adventure".localized
 
-        static let Boys = "Boys".localized
-        static let Girls = "Girls".localized
-        static let Characters = "Characters".localized
-        static let Games = "Games".localized
-        static let Animal = "Animal".localized
+        static let boys = "Boys".localized
+        static let girls = "Girls".localized
+        static let characters = "Characters".localized
+        static let games = "Games".localized
+        static let animal = "Animal".localized
 
-        static let Mountain = "Mountain".localized
-        static let Cave = "Cave".localized
-        static let Island = "Island".localized
-        static let Plain = "Plain".localized
+        static let mountain = "Mountain".localized
+        static let cave = "Cave".localized
+        static let island = "Island".localized
+        static let plain = "Plain".localized
 
         static let kind16x16 = "16x16".localized
         static let kind32x32 = "32x32".localized
         static let kind64x64 = "64x64".localized
         static let kind128x128 = "128x128".localized
-        static let Shaders = "Shaders".localized
+        static let shaders = "Shaders".localized
     }
 }
