@@ -8,8 +8,6 @@
 import SwiftUI
 
 final class SignInViewModel: ObservableObject {
-    @EnvironmentObject var sharedData: SharedData
-
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var isPresentPasswordReset: Bool = false
@@ -18,15 +16,16 @@ final class SignInViewModel: ObservableObject {
 
 
     func loginUser() {
-        SFOMSecure.SaltPassword(email: self.email, password: self.password) { saltPassword in
+        SFOMSecure.SaltPassword(email: self.email,
+                                password: self.password) { saltPassword in
             FirebaseManager.shared.auth.signIn(withEmail: self.email, password: saltPassword) { authDataResult, error in
                 if let error = error {
                     self.toastMessage = error.localizedDescription
                     self.isPresentToast = true
                     return
                 }
-                
-                FirebaseManager.shared.ref.child("users")
+
+                #warning("shared Data")
             }
         }
     }
@@ -40,13 +39,15 @@ struct SignInView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            SFOMHeader(title: LocalizedString.SignInView.SignInTitle, mainTitle: LocalizedString.SignInView.SignInMainTitle, subTitle: LocalizedString.SignInView.SignInSubTitle)
+            SFOMHeader(title: LocalizedString.SignInView.signInTitle,
+                       mainTitle: LocalizedString.SignInView.signInMainTitle,
+                       subTitle: LocalizedString.SignInView.signInSubTitle)
 
             Button {
                 dismiss()
             } label: {
                 HStack {
-                    Assets.SystemIcon.back.image
+                    Assets.SystemIcon.backCircle.image
                     Text(LocalizedString.back)
                 }
                     .font(.SFOMSmallFont)
@@ -56,20 +57,23 @@ struct SignInView: View {
             Spacer()
 
             VStack (alignment: .center) {
-                SFOMTextField(content: LocalizedString.Auth.Email, text: $signInViewModel.email)
-                SFOMTextField(content: LocalizedString.Auth.Password, text: $signInViewModel.password, secure: true)
+                SFOMTextField(content: LocalizedString.Auth.email,
+                              text: $signInViewModel.email)
+                SFOMTextField(content: LocalizedString.Auth.password,
+                              text: $signInViewModel.password,
+                              secure: true)
             }
             Spacer()
 
             VStack (alignment: .center, spacing: 20) {
-                SFOMButton(LocalizedString.SignInView.SignInButonTitle) {
+                SFOMButton(LocalizedString.SignInView.signInButonTitle) {
                     signInViewModel.loginUser()
                 }
 
                 Button {
                     signInViewModel.isPresentPasswordReset = true
                 } label: {
-                    Text(LocalizedString.SignInView.ResetEmailButtonTitle)
+                    Text(LocalizedString.SignInView.resetEmailButtonTitle)
                         .foregroundColor(Color(.lightGray))
                 }
             }
