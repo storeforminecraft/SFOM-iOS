@@ -35,7 +35,7 @@ struct HomeView: View {
         VStack (alignment: .leading) {
             homeNavigationBar
             ScrollView {
-                postsView
+                postItemsView
             }
 
         }
@@ -91,11 +91,11 @@ struct HomeView: View {
             .padding()
     }
 
-    private var postsView: some View {
+    private var postItemsView: some View {
         VStack {
             ForEach(homeViewModel.posts, id: \.id) { post in
-                SFOMPostView(post: post) {
-                    VStack { }
+                SFOMPostItemView(post: post) {
+                    PostView(post: post)
                 }
             }
         }

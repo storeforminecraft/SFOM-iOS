@@ -25,15 +25,9 @@ struct AuthView: View {
                        mainTitle: LocalizedString.AuthView.authMainTitle,
                        subTitle: LocalizedString.AuthView.authSubTitle)
 
-            Button {
+            
+            SFOMBackButton {
                 dismiss()
-            } label: {
-                HStack {
-                    Assets.SystemIcon.backCircle.image
-                    Text(LocalizedString.back)
-                }
-                    .font(.SFOMSmallFont)
-                    .padding(.vertical, 5)
             }
 
             Spacer()

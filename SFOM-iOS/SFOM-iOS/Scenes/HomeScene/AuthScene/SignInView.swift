@@ -43,15 +43,8 @@ struct SignInView: View {
                        mainTitle: LocalizedString.SignInView.signInMainTitle,
                        subTitle: LocalizedString.SignInView.signInSubTitle)
 
-            Button {
+            SFOMBackButton {
                 dismiss()
-            } label: {
-                HStack {
-                    Assets.SystemIcon.backCircle.image
-                    Text(LocalizedString.back)
-                }
-                    .font(.SFOMSmallFont)
-                    .padding(.vertical, 5)
             }
 
             Spacer()

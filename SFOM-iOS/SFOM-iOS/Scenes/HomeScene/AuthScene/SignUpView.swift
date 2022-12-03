@@ -12,8 +12,6 @@ final class SignUpViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var passwordConfirm: String = ""
     @Published var userName: String = ""
-
-
 }
 
 struct SignUpView: View {
@@ -28,13 +26,8 @@ struct SignUpView: View {
                        mainTitle: LocalizedString.SignUpView.signUpMainTitle,
                        subTitle: LocalizedString.SignUpView.signUpSubTitle)
 
-            Button {
+            SFOMBackButton {
                 dismiss()
-            } label: {
-                HStack {
-                    Assets.SystemIcon.backCircle.image
-                    Text(LocalizedString.back)
-                }.padding(.vertical)
             }
 
             Spacer()
