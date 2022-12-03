@@ -67,3 +67,39 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
         }
     }
 }
+
+public struct SFOMSearchItemView<Destination>: View where Destination: View {
+    var resource: Resource
+    var destination: () -> Destination
+
+    init(resource: Resource, destination: @escaping () -> Destination) {
+        self.resource = resource
+        self.destination = destination
+    }
+
+    public var body: some View {
+        NavigationLink {
+            destination()
+        } label: {
+            VStack (alignment: .leading) {
+                Group {
+                    if let thumbnail = resource.thumb, thumbnail != "" {
+                        KFImage(URL(string: thumbnail))
+                            .resizable()
+                    } else {
+                        Assets.Default.profileBackground.image
+                            .resizable()
+                    }
+                }
+                    .scaledToFit()
+                    .cornerRadius(16)
+
+                Text(resource.name)
+                    .lineLimit(2)
+                    .font(.SFOMSmallFont)
+                    .foregroundColor(.borderColor)
+                Text("\(resource.likeCount) hits")
+            }
+        }
+    }
+}

@@ -28,4 +28,10 @@ struct Resource: Codable {
     let translatedNames: [String: String]
     let translationSource: String
     let version: Int
+
+    var thumb: String? {
+        if category.lowercased() == "skin" { return "" }
+        guard let firstImage = self.images.first, firstImage != "" else { return nil }
+        return "https://image.storeforminecraft.dev/" + firstImage
+    }
 }

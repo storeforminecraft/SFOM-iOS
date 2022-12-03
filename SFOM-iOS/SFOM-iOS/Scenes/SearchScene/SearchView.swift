@@ -68,18 +68,22 @@ struct SearchView: View {
 
     var body: some View {
         VStack (alignment: .leading) {
-            if !searchViewModel.isSearching {
-                Text(LocalizedString.SearchView.searchTitle)
-                    .font(.SFOMTitleFont)
-            }
+            VStack (alignment: .leading) {
+                if !searchViewModel.isSearching {
+                    Text(LocalizedString.SearchView.searchTitle)
+                        .font(.SFOMTitleFont)
+                }
 
-            SFOMSearchBar(placeholder: LocalizedString.SearchView.searchPlaceholder,
-                          text: $searchViewModel.searchText,
-                          state: $searchViewModel.isSearching)
+
+                SFOMSearchBar(placeholder: LocalizedString.SearchView.searchPlaceholder,
+                              text: $searchViewModel.searchText,
+                              state: $searchViewModel.isSearching)
+            }
+                .padding()
             searchContents
+                .padding(.horizontal, 5)
             HStack { Spacer() }
         }
-            .padding()
             .ignoresSafeArea(edges: .bottom)
     }
 
@@ -89,17 +93,13 @@ struct SearchView: View {
                 ForEach(searchViewModel.searchData,
                         id: \.id) { data in
                     VStack {
-                        HStack { Spacer() }
-                        VStack {
-                            if let thumbImage = data.images.first {
-                                KFImage(URL(string:))
-                            }
+                        SFOMSearchItemView(resource: data) {
+                            ContentView(resource: data)
                         }
-
-                    }.background(.blue)
+                        HStack { Spacer() }
+                    }
                 }
             }
-                .background(.orange)
                 .padding(.bottom, 10)
         }
     }
