@@ -16,22 +16,22 @@ final class FirebaseService {
     static let shared = FirebaseService()
     let auth: Auth
     let firestore: Firestore
-    var ref: DatabaseReference
+    var reference: DatabaseReference
 
     private init() {
         FirebaseApp.configure()
         auth = Auth.auth()
         firestore = Firestore.firestore()
 
-        let db = Database.database()
-        db.isPersistenceEnabled = true
-        ref = db.reference(fromURL: "https://storeforminecraft.firebaseio.com")
-        ref.keepSynced(true)
+        let database = Database.database()
+        database.isPersistenceEnabled = true
+        reference = database.reference(fromURL: "https://storeforminecraft.firebaseio.com")
+        reference.keepSynced(true)
     }
 }
 
 private extension FirebaseService {
-    
+    func getRefence(endPoint: EndPoint){}
 }
 
 extension FirebaseService: NetworkService {
@@ -42,20 +42,24 @@ extension FirebaseService: NetworkService {
     func signOut() {
 
     }
-
-    func creat() {
-
+    
+    func withdrawal() {
+        
     }
-
-    func read() {
-
+    
+    func create<T>(endPoint: EndPoint, dto: T) where T : DTO {
+        
     }
-
-    func update() {
-
+    
+    func read<T>(endPoint: EndPoint, dto: T) where T : DTO {
+        
     }
-
-    func delete() {
-
+    
+    func update<T>(endPoint: EndPoint, dto: T) where T : DTO {
+        
+    }
+    
+    func delete<T>(endPoint: EndPoint, dto: T) where T : DTO {
+        
     }
 }
