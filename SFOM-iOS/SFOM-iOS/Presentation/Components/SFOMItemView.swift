@@ -70,10 +70,16 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
 
 public struct SFOMSearchItemView<Destination>: View where Destination: View {
     var resource: Resource
+    var width: CGFloat
     var destination: () -> Destination
 
-    init(resource: Resource, destination: @escaping () -> Destination) {
+    var imageHeight: CGFloat {
+        return width * 0.6
+    }
+
+    init(resource: Resource, width: CGFloat, destination: @escaping () -> Destination) {
         self.resource = resource
+        self.width = width
         self.destination = destination
     }
 
@@ -82,23 +88,37 @@ public struct SFOMSearchItemView<Destination>: View where Destination: View {
             destination()
         } label: {
             VStack (alignment: .leading) {
-                Group {
-                    if let thumbnail = resource.thumb, thumbnail != "" {
-                        KFImage(URL(string: thumbnail))
-                            .resizable()
-                    } else {
-                        Assets.Default.profileBackground.image
-                            .resizable()
-                    }
-                }
-                    .scaledToFit()
+                SFOMImage(defaultImage: Assets.Default.profileBackground.image,
+                          category: resource.category,
+                          urlStr: resource.thumbnail,
+                          search: true)
+                    .frame(width: width, height: imageHeight)
+                    .scaledToFill()
                     .cornerRadius(16)
 
-                Text(resource.name)
-                    .lineLimit(2)
-                    .font(.SFOMSmallFont)
-                    .foregroundColor(.borderColor)
-                Text("\(resource.likeCount) hits")
+                VStack(alignment: .leading) {
+                    Text(resource.name)
+                        .lineLimit(2)
+                        .font(.SFOMSmallFont)
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(.black)
+                        .frame(height: 45)
+
+                    HStack(spacing: 10) {
+                        Group {
+                            HStack (spacing: 2) {
+                                Image(systemName: "hand.thumbsup.fill")
+                                    .foregroundColor(Color.accentColor)
+                                Text("\(resource.likeCount)")
+                            }
+                            Text("\(resource.downloadCount) hits")
+                        }
+                            .font(.SFOMExtraSmallFont)
+                            .foregroundColor(.gray)
+                            .frame(height: 20)
+                    }
+                }
+                    .padding(.horizontal)
             }
         }
     }

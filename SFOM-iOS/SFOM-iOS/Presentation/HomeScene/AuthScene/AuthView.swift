@@ -8,14 +8,6 @@
 import SwiftUI
 
 struct AuthView: View {
-    @EnvironmentObject var sharedData: SharedData {
-        didSet {
-            if sharedData.user != nil {
-                dismiss()
-            }
-        }
-    }
-
     @GestureState private var dragOffset = CGSize.zero
     @Environment(\.dismiss) var dismiss
 
@@ -39,7 +31,8 @@ struct AuthView: View {
                 }
                 
                 SFOMNavigationLink(LocalizedString.AuthView.authSignUpButtonTitle, accent: false) {
-                    SignUpView()
+                    // SignUpView()
+                    HomeSceneDIConatiner.shared.makeSignUpView()
                 }
 
                 SFOMMarkdownText(LocalizedString.Policy.policy1)

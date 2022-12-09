@@ -38,7 +38,6 @@ struct SearchData: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-
         self.authorUid = try container.decode(String.self, forKey: .authorUid)
         self.category = try container.decode(String.self, forKey: .category)
         self.createdTimestamp = try container.decode(Date.self, forKey: .createdTimestamp)

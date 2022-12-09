@@ -42,16 +42,21 @@ final class SearchViewModel: ObservableObject {
                                 "pagenation": pagenation],
                    encoding: URLEncoding.queryString)
             .responseDecodable(of: [SearchData].self) { response in
-            if let reponseData = response.value {
-                reponseData
+            if let responseData = response.value {
+                responseData
                     .publisher
                     .flatMap { searchData in
-                    FirebaseManager.shared.firestore.collection("resources")
+                    return FirebaseManager.shared.firestore.collection("resources")
                         .document(searchData.id)
                         .publisher(type: Resource.self)
-                }.compactMap { $0 }
+                }
+                    .compactMap { $0 }
+                    .collect()
                     .sink { data in
-                    self.searchData.append(data)
+                    self.pagenation += 1
+                    self.searchData += data.sorted { r1, r2 in
+                        r1.modifiedTimestamp > r2.modifiedTimestamp
+                    }
                 }.store(in: &self.cancelBag)
             }
         }
@@ -61,10 +66,20 @@ final class SearchViewModel: ObservableObject {
 struct SearchView: View {
     @ObservedObject private var searchViewModel = SearchViewModel()
 
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    let screenWidth: CGFloat = UIScreen.main.bounds.width
+    let GridItemCount = 2
+    let spacing: CGFloat = 10
+    var cellWidth: CGFloat {
+        let totalCellWidth = Int(screenWidth) - 10 - (Int(spacing) * (GridItemCount - 1))
+        return CGFloat(totalCellWidth / GridItemCount)
+    }
+    var columns: [GridItem] {
+        return (0..<GridItemCount).compactMap { _ in
+            GridItem(.fixed(cellWidth))
+        }
+    }
+
+    @State private var scrollViewHeight: CGFloat = .zero
 
     var body: some View {
         VStack (alignment: .leading) {
@@ -74,14 +89,13 @@ struct SearchView: View {
                         .font(.SFOMTitleFont)
                 }
 
-
                 SFOMSearchBar(placeholder: LocalizedString.SearchView.searchPlaceholder,
                               text: $searchViewModel.searchText,
                               state: $searchViewModel.isSearching)
+
             }
                 .padding()
             searchContents
-                .padding(.horizontal, 5)
             HStack { Spacer() }
         }
             .ignoresSafeArea(edges: .bottom)
@@ -89,19 +103,40 @@ struct SearchView: View {
 
     var searchContents: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 10) {
+            LazyVGrid(columns: columns, spacing: spacing) {
                 ForEach(searchViewModel.searchData,
                         id: \.id) { data in
                     VStack {
-                        SFOMSearchItemView(resource: data) {
+                        SFOMSearchItemView(resource: data,
+                                           width: cellWidth) {
                             ContentView(resource: data)
                         }
                         HStack { Spacer() }
                     }
                 }
             }
+                .padding(.horizontal, 5)
                 .padding(.bottom, 10)
+            GeometryReader { proxy in
+                let offset = proxy.frame(in: .named("scroll")).minY
+                Color.clear
+                    .preference(key: ScrollViewOffsetPreferenceKey.self, value: offset)
+            }
         }
+            .background(GeometryReader { proxy in
+            Color.clear.onAppear { scrollViewHeight = proxy.size.height }
+        })
+            .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { value in
+
+        }
+    }
+}
+
+struct ScrollViewOffsetPreferenceKey: PreferenceKey {
+    typealias Value = CGFloat
+    static var defaultValue = CGFloat.zero
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value += nextValue()
     }
 }
 

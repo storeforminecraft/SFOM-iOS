@@ -13,4 +13,5 @@ extension Font {
     static let SFOMTitleFont: Font = .system(size: 28, weight: .bold)
     static let SFOMMediumFont: Font = .system(size: 24)
     static let SFOMSmallFont: Font = .system(size: 18)
+    static let SFOMExtraSmallFont: Font = .system(size: 14)
 }

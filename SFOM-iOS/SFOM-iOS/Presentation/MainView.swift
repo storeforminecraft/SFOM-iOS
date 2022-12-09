@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var sharedData: SharedData
     @State private var selectedIndex: Int = 0
 
     var body: some View {
@@ -60,6 +59,5 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-            .environmentObject(SharedData())
     }
 }
