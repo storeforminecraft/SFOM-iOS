@@ -12,25 +12,27 @@ final class HomeSceneDIConatiner {
     private init() { }
 }
 
+// MARK: - ViewBuilder
 extension HomeSceneDIConatiner {
     
     @ViewBuilder
     func makeHomeView() -> some View {
-        return HomeView()
+        HomeView()
     }
     
     @ViewBuilder
     func makeAuthView() -> some View {
-        return AuthView()
+        AuthView()
     }
     
     @ViewBuilder
     func makeSignInView() -> some View {
-        return SignInView()
+        SignInView()
     }
     
     @ViewBuilder
     func makeSignUpView() -> some View {
-        return SignUpView()
+        SignUpView()
     }
+    
 }

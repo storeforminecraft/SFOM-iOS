@@ -8,5 +8,5 @@
 import Combine
 
 protocol PostUseCase {
-    // func fetchPost() -> Just<[Post]>
+    
 }

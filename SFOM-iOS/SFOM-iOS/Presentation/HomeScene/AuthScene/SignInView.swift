@@ -18,7 +18,7 @@ final class SignInViewModel: ObservableObject {
     func loginUser() {
         SFOMSecure.SaltPassword(email: self.email,
                                 password: self.password) { saltPassword in
-            FirebaseManager.shared.auth.signIn(withEmail: self.email, password: saltPassword) { authDataResult, error in
+            FirebaseService.shared.auth.signIn(withEmail: self.email, password: saltPassword) { authDataResult, error in
                 if let error = error {
                     self.toastMessage = error.localizedDescription
                     self.isPresentToast = true
@@ -30,6 +30,7 @@ final class SignInViewModel: ObservableObject {
         }
     }
 }
+
 
 struct SignInView: View {
     @GestureState private var dragOffset = CGSize.zero

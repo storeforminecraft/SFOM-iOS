@@ -46,7 +46,7 @@ final class SearchViewModel: ObservableObject {
                 responseData
                     .publisher
                     .flatMap { searchData in
-                    return FirebaseManager.shared.firestore.collection("resources")
+                    return FirebaseService.shared.firestore.collection("resources")
                         .document(searchData.id)
                         .publisher(type: Resource.self)
                 }

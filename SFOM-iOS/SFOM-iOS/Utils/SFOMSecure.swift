@@ -15,7 +15,7 @@ struct SFOMSecure {
 
         let child = SHA256.hash(data: data).compactMap { String(format: "%02x", $0) }.joined()
 
-        FirebaseManager.shared.ref.child("salts").child(child).getData { error, dataSnapshot in
+        FirebaseService.shared.ref.child("salts").child(child).getData { error, dataSnapshot in
             if let error = error {
                 print(error)
                 return
