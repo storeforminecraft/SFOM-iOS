@@ -33,8 +33,11 @@
 		A5502F0D29438B6200A4D18A /* DownloadListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F0C29438B6200A4D18A /* DownloadListStorage.swift */; };
 		A5502F1129438C6500A4D18A /* CoreDataDownloadListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F1029438C6500A4D18A /* CoreDataDownloadListStorage.swift */; };
 		A5502F132943909B00A4D18A /* typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F122943909B00A4D18A /* typealias.swift */; };
-		A5502F152943919F00A4D18A /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F142943919F00A4D18A /* EndPoints.swift */; };
-		A5502F172943942200A4D18A /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F162943942200A4D18A /* DataTransferService.swift */; };
+		A5502F152943919F00A4D18A /* SFOMEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F142943919F00A4D18A /* SFOMEndPoint.swift */; };
+		A5502F1B29439B5D00A4D18A /* DocumentReference+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F1A29439B5D00A4D18A /* DocumentReference+Publisher.swift */; };
+		A5502F1E2943A73E00A4D18A /* APIEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F1D2943A73E00A4D18A /* APIEndPoints.swift */; };
+		A5502F212943A75500A4D18A /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F202943A75500A4D18A /* DTO.swift */; };
+		A5502F232943B4A600A4D18A /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F222943B4A600A4D18A /* EndPoint.swift */; };
 		A5602D7729390DB70042496A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5602D7629390DB70042496A /* ContentView.swift */; };
 		A5602D7929390DD40042496A /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5602D7829390DD40042496A /* PostView.swift */; };
 		A56386CA29432AC800A8CEEA /* PostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56386C929432AC800A8CEEA /* PostUseCase.swift */; };
@@ -99,8 +102,11 @@
 		A5502F0C29438B6200A4D18A /* DownloadListStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListStorage.swift; sourceTree = "<group>"; };
 		A5502F1029438C6500A4D18A /* CoreDataDownloadListStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDownloadListStorage.swift; sourceTree = "<group>"; };
 		A5502F122943909B00A4D18A /* typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = typealias.swift; sourceTree = "<group>"; };
-		A5502F142943919F00A4D18A /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
-		A5502F162943942200A4D18A /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
+		A5502F142943919F00A4D18A /* SFOMEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMEndPoint.swift; sourceTree = "<group>"; };
+		A5502F1A29439B5D00A4D18A /* DocumentReference+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentReference+Publisher.swift"; sourceTree = "<group>"; };
+		A5502F1D2943A73E00A4D18A /* APIEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndPoints.swift; sourceTree = "<group>"; };
+		A5502F202943A75500A4D18A /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
+		A5502F222943B4A600A4D18A /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		A5602D7629390DB70042496A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A5602D7829390DD40042496A /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		A56386C929432AC800A8CEEA /* PostUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUseCase.swift; sourceTree = "<group>"; };
@@ -209,10 +215,10 @@
 		A5502EFE2943867300A4D18A /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				A5502F162943942200A4D18A /* DataTransferService.swift */,
+				A5502F222943B4A600A4D18A /* EndPoint.swift */,
+				A5502F142943919F00A4D18A /* SFOMEndPoint.swift */,
 				A5502F062943883300A4D18A /* NetworkService.swift */,
 				A5502EFF2943868200A4D18A /* FirebaseService */,
-				A5502F142943919F00A4D18A /* EndPoints.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -221,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				A5A783462930640E008B9A62 /* FirebaseService.swift */,
+				A5502F1A29439B5D00A4D18A /* DocumentReference+Publisher.swift */,
 			);
 			path = FirebaseService;
 			sourceTree = "<group>";
@@ -275,6 +282,23 @@
 			path = CoreDataDownloadListStorage;
 			sourceTree = "<group>";
 		};
+		A5502F1C2943A73100A4D18A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A5502F1D2943A73E00A4D18A /* APIEndPoints.swift */,
+				A5502F1F2943A74400A4D18A /* DataMapping */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		A5502F1F2943A74400A4D18A /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				A5502F202943A75500A4D18A /* DTO.swift */,
+			);
+			path = DataMapping;
+			sourceTree = "<group>";
+		};
 		A56386C22943273400A8CEEA /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +329,7 @@
 		A56386C42943277F00A8CEEA /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A5502F1C2943A73100A4D18A /* Network */,
 				A5502F0E29438BF400A4D18A /* DownloadListStorage */,
 				A5CFA70F29273460004C1F2B /* PersistentStorage */,
 			);
@@ -587,7 +612,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5502F152943919F00A4D18A /* EndPoints.swift in Sources */,
+				A5502F152943919F00A4D18A /* SFOMEndPoint.swift in Sources */,
 				A52019FB293C857500FAA9B4 /* SFOMImage.swift in Sources */,
 				A5CFA7092927322E004C1F2B /* CoreDataStorage.xcdatamodeld in Sources */,
 				A5A783472930640E008B9A62 /* FirebaseService.swift in Sources */,
@@ -617,19 +642,20 @@
 				A5602D7729390DB70042496A /* ContentView.swift in Sources */,
 				A5CFA71A29273626004C1F2B /* MainView.swift in Sources */,
 				A5602D7929390DD40042496A /* PostView.swift in Sources */,
+				A5502F232943B4A600A4D18A /* EndPoint.swift in Sources */,
 				A5502EFD2943861400A4D18A /* DefaultUserUseCase.swift in Sources */,
 				A50DE8FC292B32D800E1FD60 /* SFOMComponents.swift in Sources */,
 				A571C871294384EE00988822 /* SignUpViewModel.swift in Sources */,
 				A5502EF4294385B300A4D18A /* DefaultResouceUseCase.swift in Sources */,
 				A59132DC293B886C00D28CCA /* Resource.swift in Sources */,
 				A5CFA7262927428B004C1F2B /* Color+.swift in Sources */,
-				A5502F172943942200A4D18A /* DataTransferService.swift in Sources */,
 				A50DE904292B37BD00E1FD60 /* MenuView.swift in Sources */,
 				A5502F05294386E500A4D18A /* DefaultAuthUseCase.swift in Sources */,
 				A5502F03294386DA00A4D18A /* AuthUseCase.swift in Sources */,
 				A52019FD293C8B6F00FAA9B4 /* SFOMCategory.swift in Sources */,
 				A5CFA72929274846004C1F2B /* Assets.swift in Sources */,
 				A56386CA29432AC800A8CEEA /* PostUseCase.swift in Sources */,
+				A5502F1B29439B5D00A4D18A /* DocumentReference+Publisher.swift in Sources */,
 				A50DE8FE292B379100E1FD60 /* HomeView.swift in Sources */,
 				A571C86F294384DD00988822 /* SignInViewModel.swift in Sources */,
 				A5EEA026293892DF0000AAB5 /* ProfileView.swift in Sources */,
@@ -637,10 +663,12 @@
 				A5CFA72B29274881004C1F2B /* String+.swift in Sources */,
 				A5502EFB2943860A00A4D18A /* UserUseCase.swift in Sources */,
 				A5CFA6FD2927322C004C1F2B /* SFOM_iOSApp.swift in Sources */,
+				A5502F212943A75500A4D18A /* DTO.swift in Sources */,
 				A5502F1129438C6500A4D18A /* CoreDataDownloadListStorage.swift in Sources */,
 				A5502F0B29438A9C00A4D18A /* AuthRepository.swift in Sources */,
 				A56386CC29432B4900A8CEEA /* DefaultPostUseCase.swift in Sources */,
 				A5502EF6294385C500A4D18A /* CommonSceneDIContainer.swift in Sources */,
+				A5502F1E2943A73E00A4D18A /* APIEndPoints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
