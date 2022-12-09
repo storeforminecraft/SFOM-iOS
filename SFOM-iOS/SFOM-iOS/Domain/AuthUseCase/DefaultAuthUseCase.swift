@@ -8,9 +8,21 @@
 import Combine
 
 final class DefaultAuthUseCase {
-    
+
 }
 
 extension DefaultAuthUseCase: AuthUseCase {
+    func signIn() -> AnyPublisher<Bool, Error> {
+        let sequence = [true, true]
+        return Future<Bool, Error> { promise in
+            promise(.success(true))
+        }
+        .eraseToAnyPublisher()
+    }
     
+    func signOut() -> AnyPublisher<Bool, Error> {
+        Future<Bool, Error> { Promise in
+            Promise(.success(true))
+        }.eraseToAnyPublisher()
+    }
 }
