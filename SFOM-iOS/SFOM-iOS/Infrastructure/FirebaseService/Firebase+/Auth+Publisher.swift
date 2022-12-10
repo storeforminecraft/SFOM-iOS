@@ -12,7 +12,7 @@ extension Auth {
     func signInPublisher(email: String, password: String) -> AnyPublisher<AuthDataResult, Error> {
         return Future<AuthDataResult, Error>{ [weak self] promise in
             guard let self = self else {
-                promise(.failure(SFOMError.objectError))
+                promise(.failure(FirebaseCombineError.objectError))
                 return
             }
             self.signIn(withEmail: email, password: password) { authResult, error in
@@ -21,10 +21,25 @@ extension Auth {
                     return
                 }
                 guard let authResult = authResult else {
-                    promise(.failure(SFOMError.noDataError))
+                    promise(.failure(FirebaseCombineError.noDataError))
                     return 
                 }
                 promise(.success(authResult))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func signOutPublisher() -> AnyPublisher<Bool, Error> {
+        return Future<Bool, Error> { [weak self] promise in
+            guard let self = self else {
+                promise(.failure(FirebaseCombineError.objectError))
+                return
+            }
+            do {
+                try self.signOut()
+                promise(.success(true))
+            } catch {
+                promise(.failure(error))
             }
         }.eraseToAnyPublisher()
     }

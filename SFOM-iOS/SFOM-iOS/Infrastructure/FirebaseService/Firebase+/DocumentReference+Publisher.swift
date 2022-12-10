@@ -9,10 +9,10 @@ import Firebase
 import Combine
 
 extension DocumentReference {
-    func getDocumentPublisher<T: Decodable>(type: T.Type) -> AnyPublisher<T?, Never> {
-        Future<T?, Never> { [weak self] promise in
+    func getDocumentPublisher<T: Decodable>(type: T.Type) -> AnyPublisher<T?, Error> {
+        Future<T?, Error> { [weak self] promise in
             guard let self = self else {
-                promise(.success(nil))
+                promise(.failure(FirebaseCombineError.objectError))
                 return
             }
             self.getDocument(as: T.self) { data in
@@ -21,10 +21,10 @@ extension DocumentReference {
         }.eraseToAnyPublisher()
     }
 
-    var getDocumentPublisher: AnyPublisher<[String: Any]?, Never> {
-        return Future<[String: Any]?, Never> { [weak self] promise in
+    var getDocumentPublisher: AnyPublisher<[String: Any]?, Error> {
+        return Future<[String: Any]?, Error> { [weak self] promise in
             guard let self = self else {
-                promise(.success(nil))
+                promise(.failure(FirebaseCombineError.objectError))
                 return
             }
             self.getDocument { snapshotData, error in

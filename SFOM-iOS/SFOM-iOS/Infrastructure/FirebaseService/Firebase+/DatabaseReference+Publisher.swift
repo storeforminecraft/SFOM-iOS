@@ -9,16 +9,16 @@ import Combine
 import FirebaseDatabase
 
 extension DatabaseReference {
-    var getDataPublisher: AnyPublisher<DataSnapshot?, Never> {
-        return Future<DataSnapshot?, Never> { [weak self] promise in
+    var getDataPublisher: AnyPublisher<DataSnapshot?, Error> {
+        return Future<DataSnapshot?, Error> { [weak self] promise in
             guard let self = self else {
-                promise(.success(nil))
+                promise(.failure(FirebaseCombineError.objectError))
                 return
             }
             self.getData { error, dataSnapShot in
                 if let error = error {
-                    print("❎", error)
-                    promise(.success(nil))
+                    promise(.failure(error))
+                    return
                 }
                 promise(.success(dataSnapShot))
             }
