@@ -13,6 +13,7 @@ import FirebaseStorage
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+// MARK: - Configure
 final class FirebaseService {
     static let shared = FirebaseService()
     let uid = CurrentValueSubject<String?, Never>(nil)
@@ -34,6 +35,81 @@ final class FirebaseService {
     }
 }
 
+// MARK: - NetworkAuthService
+extension FirebaseService: NetworkAuthService {
+    func signIn(email: String, password: String) -> AnyPublisher<Bool, Error> {
+        return self.saltPassword(email: email, password: password)
+            .flatMap { [weak self] password -> AnyPublisher<Bool,Error> in
+                guard let self = self else { return Fail<Bool, Error>(error: FirebaseCombineError.noDataError).eraseToAnyPublisher() }
+                guard let password = password else {
+                    return Just<Bool>(false)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return self.auth.signInPublisher(email: email, password: password)
+                    .map { _ in true }
+                    .eraseToAnyPublisher()
+            }
+            .handleEvents(receiveOutput: { [weak self] _ in
+                guard let self = self else { return }
+                self.uid.send(self.auth.currentUser?.uid)
+            })
+            .eraseToAnyPublisher()
+    }
+    
+    func signOut() -> AnyPublisher<Bool, Error> {
+        return self.signOut()
+            .handleEvents(receiveOutput: { [weak self] _ in
+                guard let self = self else { return }
+                self.uid.send(self.auth.currentUser?.uid)
+            })
+            .eraseToAnyPublisher()
+    }
+    
+    func withdrawal() -> AnyPublisher<Bool, Error> {
+        return self.signOut()
+            .handleEvents(receiveOutput: { [weak self] _ in
+                guard let self = self else { return }
+                self.uid.send(self.auth.currentUser?.uid)
+            })
+            .eraseToAnyPublisher()
+    }
+}
+
+// MARK: - NetworkService
+extension FirebaseService: NetworkService {
+    func create<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T?, Error> {
+        guard let documentReference = documentReference(endPoint: endPoint) else {
+            return Fail<T?, Error>(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
+        }
+        return documentReference.setDataPulisher(data: dto)
+    }
+    
+    func read<T: DTO>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<T?, Error> {
+        guard let documentReference = documentReference(endPoint: endPoint) else {
+            return Fail<T?, Error>(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
+        }
+        return documentReference.getDocumentPublisher(type: type)
+    }
+    
+    func update<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T?, Error> {
+        guard let documentReference = documentReference(endPoint: endPoint) else {
+            return Fail<T?, Error>(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
+        }
+        return documentReference.setDataPulisher(data: dto, merge: true)
+    }
+    
+    func delete<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T?, Error> {
+        guard let documentReference = documentReference(endPoint: endPoint) else {
+            return Fail<T?, Error>(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
+        }
+        return documentReference.deletePublisher()
+            .map{ _ in dto }
+            .eraseToAnyPublisher()
+    }
+}
+
+// MARK: - Reference
 private extension FirebaseService {
     func documentReference<E: EndPoint>(endPoint: E) -> DocumentReference? {
         let collectionPath = endPoint.reference.collection.path
@@ -72,63 +148,8 @@ private extension FirebaseService {
     }
 }
 
-extension FirebaseService: NetworkService {
-    func signIn(email: String, password: String) -> AnyPublisher<Bool, Error> {
-        return self.saltPassword(email: email, password: password)
-            .flatMap { password in
-                guard let password = password else {
-                    return Just<Bool>(false)
-                        .setFailureType(to: Error.self)
-                        .eraseToAnyPublisher()
-                }
-                return self.auth.signInPublisher(email: email, password: password)
-                    .map { _ in true }
-                    .eraseToAnyPublisher()
-            }
-            .handleEvents(receiveOutput: { [weak self] _ in
-                guard let self = self else { return }
-                self.uid.send(self.auth.currentUser?.uid)
-            })
-            .eraseToAnyPublisher()
-    }
-    
-    func signOut() -> AnyPublisher<Bool, Error> {
-        return self.signOut()
-            .handleEvents(receiveOutput: { [weak self] _ in
-                guard let self = self else { return }
-                self.uid.send(self.auth.currentUser?.uid)
-            })
-            .eraseToAnyPublisher()
-    }
-    
-    func withdrawal() -> AnyPublisher<Bool, Error> {
-        return self.signOut()
-            .handleEvents(receiveOutput: { [weak self] _ in
-                guard let self = self else { return }
-                self.uid.send(self.auth.currentUser?.uid)
-            })
-            .eraseToAnyPublisher()
-    }
-    
-    func create<T>(endPoint: EndPoint, dto: T) where T: DTO {
-        guard let documentReference = documentReference(endPoint: endPoint) else { return }
-        documentReference.set
-    }
-    
-    func read<T>(endPoint: EndPoint, type: T.Type) where T: DTO {
-        guard let documentReference = documentReference(endPoint: endPoint) else { return }
-        documentReference.getDocumentPublisher(type: type)
-    }
-    
-    func update<T>(endPoint: EndPoint, dto: T) where T: DTO {
-        self.documentReference(endPoint: endPoint)
-    }
-    
-    func delete<T>(endPoint: EndPoint, dto: T) where T: DTO {
-        self.documentReference(endPoint: endPoint)
-    }
-}
 
+// MARK: - Secure
 private extension FirebaseService {
     func saltPassword(email: String, password: String) -> AnyPublisher<String?, Never> {
         guard let emailData = email.data(using: .utf8) else {
