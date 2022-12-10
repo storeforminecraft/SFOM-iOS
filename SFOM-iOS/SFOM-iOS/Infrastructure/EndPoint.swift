@@ -22,5 +22,8 @@ protocol Document {
 }
 
 protocol EndPoint {
-    var ref: (MainCollection, Document?, SubCollection?, Document?) { get }
+    var reference: (collection: MainCollection,
+              document: Document?,
+              subCollection: SubCollection?,
+              subDocument: Document?) { get }
 }

@@ -29,8 +29,11 @@ public struct SFOMEndPoint: EndPoint {
         self.subCollection = subCollection
         self.subDocument = subDocument
     }
-
-    var ref: (MainCollection, Document?, SubCollection?, Document?) {
+    
+    var reference: (collection: MainCollection,
+                    document: Document?,
+                    subCollection: SubCollection?,
+                    subDocument: Document?) {
         return (collection, document, subCollection, subDocument)
     }
 }
