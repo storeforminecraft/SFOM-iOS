@@ -13,7 +13,7 @@ protocol NetworkService {
     func signOut() -> AnyPublisher<Bool, Error>
     func withdrawal() -> AnyPublisher<Bool, Error>
     func create<T: DTO>(endPoint: EndPoint, dto: T)
-    func read<T: DTO>(endPoint: EndPoint, dto: T)
+    func read<T: DTO>(endPoint: EndPoint, type: T.Type)
     func update<T: DTO>(endPoint: EndPoint, dto: T)
     func delete<T: DTO>(endPoint: EndPoint, dto: T)
 }

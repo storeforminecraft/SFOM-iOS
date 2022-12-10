@@ -111,19 +111,21 @@ extension FirebaseService: NetworkService {
     }
     
     func create<T>(endPoint: EndPoint, dto: T) where T: DTO {
-        
+        guard let documentReference = documentReference(endPoint: endPoint) else { return }
+        documentReference.set
     }
     
-    func read<T>(endPoint: EndPoint, dto: T) where T: DTO {
-        
+    func read<T>(endPoint: EndPoint, type: T.Type) where T: DTO {
+        guard let documentReference = documentReference(endPoint: endPoint) else { return }
+        documentReference.getDocumentPublisher(type: type)
     }
     
     func update<T>(endPoint: EndPoint, dto: T) where T: DTO {
-        
+        self.documentReference(endPoint: endPoint)
     }
     
     func delete<T>(endPoint: EndPoint, dto: T) where T: DTO {
-        
+        self.documentReference(endPoint: endPoint)
     }
 }
 
