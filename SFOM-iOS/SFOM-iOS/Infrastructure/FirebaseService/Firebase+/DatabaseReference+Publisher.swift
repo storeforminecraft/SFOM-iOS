@@ -18,9 +18,9 @@ extension DatabaseReference {
             self.getData { error, dataSnapShot in
                 if let error = error {
                     promise(.failure(error))
-                    return
+                } else {
+                    promise(.success(dataSnapShot))
                 }
-                promise(.success(dataSnapShot))
             }
         }.eraseToAnyPublisher()
     }

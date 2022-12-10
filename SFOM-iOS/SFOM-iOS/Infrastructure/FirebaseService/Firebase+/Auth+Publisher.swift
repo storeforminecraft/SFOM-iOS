@@ -18,13 +18,11 @@ extension Auth {
             self.signIn(withEmail: email, password: password) { authResult, error in
                 if let error = error {
                     promise(.failure(error))
-                    return
-                }
-                guard let authResult = authResult else {
+                } else if let authResult = authResult {
+                    promise(.success(authResult))
+                } else {
                     promise(.failure(FirebaseCombineError.noDataError))
-                    return 
                 }
-                promise(.success(authResult))
             }
         }.eraseToAnyPublisher()
     }
@@ -53,9 +51,9 @@ extension Auth {
             self.currentUser?.delete(completion: { error in
                 if let error = error {
                     promise(.failure(error))
-                    return
+                } else {
+                    promise(.success(true))
                 }
-                promise(.success(true))
             })
         }.eraseToAnyPublisher()
     }
