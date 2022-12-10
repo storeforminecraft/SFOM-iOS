@@ -9,9 +9,9 @@ import Combine
 
 protocol NetworkService {
     var uid: CurrentValueSubject<String?, Never> { get }
-    func signIn(email: String, password: String)
-    func signOut()
-    func withdrawal()
+    func signIn(email: String, password: String) -> AnyPublisher<Bool, Error>
+    func signOut() -> AnyPublisher<Bool, Error>
+    func withdrawal() -> AnyPublisher<Bool, Error>
     func create<T: DTO>(endPoint: EndPoint, dto: T)
     func read<T: DTO>(endPoint: EndPoint, dto: T)
     func update<T: DTO>(endPoint: EndPoint, dto: T)
