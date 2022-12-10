@@ -16,18 +16,7 @@ final class SignInViewModel: ObservableObject {
 
 
     func loginUser() {
-        SFOMSecure.SaltPassword(email: self.email,
-                                password: self.password) { saltPassword in
-            FirebaseService.shared.auth.signIn(withEmail: self.email, password: saltPassword) { authDataResult, error in
-                if let error = error {
-                    self.toastMessage = error.localizedDescription
-                    self.isPresentToast = true
-                    return
-                }
 
-                #warning("shared Data")
-            }
-        }
     }
 }
 

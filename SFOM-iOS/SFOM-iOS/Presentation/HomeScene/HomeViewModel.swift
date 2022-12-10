@@ -5,13 +5,20 @@
 //  Created by 이전희 on 2022/12/09.
 //
 
-import Foundation
+import Combine
 
 final class HomeViewModel: ViewModel {
     @Published var posts: [Post] = []
+    private var cancellable = Set<AnyCancellable>()
     
     init() {
         fetchPosts()
+        print("----")
+        FirebaseService.shared.saltPassword(email: "x", password: "x")
+            .sink { a in
+                print(a)
+            }
+            .store(in: &cancellable)
     }
     
     func fetchPosts() {
