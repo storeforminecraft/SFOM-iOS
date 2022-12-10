@@ -28,22 +28,6 @@ extension Auth {
         }.eraseToAnyPublisher()
     }
     
-    // MARK: - Sign Out
-    func signOutPublisher() -> AnyPublisher<Bool, Error> {
-        return Future<Bool, Error> { [weak self] promise in
-            guard let self = self else {
-                promise(.failure(FirebaseCombineError.objectError))
-                return
-            }
-            do {
-                try self.signOut()
-                promise(.success(true))
-            } catch {
-                promise(.failure(error))
-            }
-        }.eraseToAnyPublisher()
-    }
-    
     // MARK: - Sign Up
     func signUpPublisher(email: String, password: String) -> AnyPublisher<AuthDataResult, Error> {
         return Future<AuthDataResult, Error> { [weak self] promise in
@@ -59,6 +43,22 @@ extension Auth {
                 } else {
                     promise(.failure(FirebaseCombineError.noDataError))
                 }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    // MARK: - Sign Out
+    func signOutPublisher() -> AnyPublisher<Bool, Error> {
+        return Future<Bool, Error> { [weak self] promise in
+            guard let self = self else {
+                promise(.failure(FirebaseCombineError.objectError))
+                return
+            }
+            do {
+                try self.signOut()
+                promise(.success(true))
+            } catch {
+                promise(.failure(error))
             }
         }.eraseToAnyPublisher()
     }

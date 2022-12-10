@@ -57,6 +57,26 @@ extension FirebaseService: NetworkAuthService {
             .eraseToAnyPublisher()
     }
     
+    func signUp(email: String, password: String) -> AnyPublisher<Bool, Error> {
+        return self.saltPassword(email: email, password: password)
+            .flatMap { [weak self] password -> AnyPublisher<Bool,Error> in
+                guard let self = self else { return Fail<Bool, Error>(error: FirebaseCombineError.noDataError).eraseToAnyPublisher() }
+                guard let password = password else {
+                    return Just<Bool>(false)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return self.auth.signUpPublisher(email: email, password: password)
+                    .map { _ in true }
+                    .eraseToAnyPublisher()
+            }
+            .handleEvents(receiveOutput: { [weak self] _ in
+                guard let self = self else { return }
+                self.uid.send(self.auth.currentUser?.uid)
+            })
+            .eraseToAnyPublisher()
+    }
+    
     func signOut() -> AnyPublisher<Bool, Error> {
         return self.signOut()
             .handleEvents(receiveOutput: { [weak self] _ in
