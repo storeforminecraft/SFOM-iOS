@@ -78,22 +78,36 @@ extension FirebaseService: NetworkService {
             .flatMap { password in
                 guard let password = password else {
                     return Just<Bool>(false)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
                 }
                 return self.auth.signInPublisher(email: email, password: password)
                     .map { _ in true }
                     .eraseToAnyPublisher()
             }
+            .handleEvents(receiveOutput: { [weak self] _ in
+                guard let self = self else { return }
+                self.uid.send(self.auth.currentUser?.uid)
+            })
             .eraseToAnyPublisher()
     }
     
     func signOut() -> AnyPublisher<Bool, Error> {
         return self.signOut()
+            .handleEvents(receiveOutput: { [weak self] _ in
+                guard let self = self else { return }
+                self.uid.send(self.auth.currentUser?.uid)
+            })
+            .eraseToAnyPublisher()
     }
     
     func withdrawal() -> AnyPublisher<Bool, Error> {
         return self.signOut()
+            .handleEvents(receiveOutput: { [weak self] _ in
+                guard let self = self else { return }
+                self.uid.send(self.auth.currentUser?.uid)
+            })
+            .eraseToAnyPublisher()
     }
     
     func create<T>(endPoint: EndPoint, dto: T) where T: DTO {
