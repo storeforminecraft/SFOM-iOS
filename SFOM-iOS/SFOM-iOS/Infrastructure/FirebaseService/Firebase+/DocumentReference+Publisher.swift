@@ -20,7 +20,7 @@ extension DocumentReference {
             }
         }.eraseToAnyPublisher()
     }
-
+    
     var getDocumentPublisher: AnyPublisher<[String: Any]?, Error> {
         return Future<[String: Any]?, Error> { [weak self] promise in
             guard let self = self else {
@@ -29,6 +29,18 @@ extension DocumentReference {
             }
             self.getDocument { snapshotData, error in
                 promise(.success(snapshotData?.data()))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func setDataPulisher<T: Encodable>(data: T) -> AnyPublisher<T?, Error> {
+        Future<T?, Error> { [weak self] promise in
+            do {
+                guard let self = self else { throw FirebaseCombineError.objectError }
+                try self.setData(from: data)
+                promise(.success(data))
+            } catch {
+                promise(.failure(error))
             }
         }.eraseToAnyPublisher()
     }
