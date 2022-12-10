@@ -9,6 +9,20 @@ import Firebase
 import Combine
 
 extension DocumentReference {
+    // MARK: - CREATE, UPDATE
+    func setDataPulisher<T: Encodable>(data: T, merge: Bool = false) -> AnyPublisher<T?, Error> {
+        Future<T?, Error> { [weak self] promise in
+            do {
+                guard let self = self else { throw FirebaseCombineError.objectError }
+                try self.setData(from: data, merge: merge)
+                promise(.success(data))
+            } catch {
+                promise(.failure(error))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    // MARK: - READ
     func getDocumentPublisher<T: Decodable>(type: T.Type) -> AnyPublisher<T?, Error> {
         Future<T?, Error> { [weak self] promise in
             guard let self = self else {
@@ -33,18 +47,7 @@ extension DocumentReference {
         }.eraseToAnyPublisher()
     }
     
-    func setDataPulisher<T: Encodable>(data: T, merge: Bool = false) -> AnyPublisher<T?, Error> {
-        Future<T?, Error> { [weak self] promise in
-            do {
-                guard let self = self else { throw FirebaseCombineError.objectError }
-                try self.setData(from: data, merge: merge)
-                promise(.success(data))
-            } catch {
-                promise(.failure(error))
-            }
-        }.eraseToAnyPublisher()
-    }
-    
+    // MARK: - DELETE
     func deletePublisher() -> AnyPublisher<Bool, Error> {
         Future<Bool, Error> { [weak self] promise in
             self?.delete{ error in

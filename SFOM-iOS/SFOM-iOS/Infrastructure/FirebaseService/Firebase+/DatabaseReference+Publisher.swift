@@ -9,6 +9,7 @@ import Combine
 import FirebaseDatabase
 
 extension DatabaseReference {
+    // MARK: - READ
     var getDataPublisher: AnyPublisher<DataSnapshot?, Error> {
         return Future<DataSnapshot?, Error> { [weak self] promise in
             guard let self = self else {
