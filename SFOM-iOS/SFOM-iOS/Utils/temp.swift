@@ -1,9 +1,10 @@
 //
-//  SFOMSecure.swift
+//  temp.swift
 //  SFOM-iOS
 //
-//  Created by 이전희 on 2022/12/01.
+//  Created by 이전희 on 2022/12/11.
 //
+
 
 import CryptoKit
 import Foundation
@@ -15,7 +16,7 @@ struct SFOMSecure {
 
         let child = SHA256.hash(data: data).compactMap { String(format: "%02x", $0) }.joined()
 
-        FirebaseService.shared.ref.child("salts").child(child).getData { error, dataSnapshot in
+        FirebaseService.shared.reference.child("salts").child(child).getData { error, dataSnapshot in
             if let error = error {
                 print(error)
                 return
