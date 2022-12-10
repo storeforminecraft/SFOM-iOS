@@ -10,6 +10,7 @@ import Foundation
 public enum FirebaseCombineError {
     case objectError
     case noDataError
+    case wrongAccessError
 }
 
 extension FirebaseCombineError: LocalizedError {
@@ -19,6 +20,8 @@ extension FirebaseCombineError: LocalizedError {
             return NSLocalizedString("not found object(self)", comment: "could not found object(self)")
         case .noDataError:
             return NSLocalizedString("not found data", comment: "could not found data")
+        case .wrongAccessError:
+            return NSLocalizedString("wrong access", comment: "wrong access")
         }
     }
 }
