@@ -89,11 +89,11 @@ extension FirebaseService: NetworkService {
     }
     
     func signOut() -> AnyPublisher<Bool, Error> {
-        
+        return self.signOut()
     }
     
     func withdrawal() -> AnyPublisher<Bool, Error> {
-        
+        return self.signOut()
     }
     
     func create<T>(endPoint: EndPoint, dto: T) where T: DTO {

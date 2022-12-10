@@ -43,4 +43,20 @@ extension Auth {
             }
         }.eraseToAnyPublisher()
     }
+    
+    func withdrawalPublisher() -> AnyPublisher<Bool,Error> {
+        return Future<Bool, Error> { [weak self] promise in
+            guard let self = self else {
+                promise(.failure(FirebaseCombineError.objectError))
+                return
+            }
+            self.currentUser?.delete(completion: { error in
+                if let error = error {
+                    promise(.failure(error))
+                    return
+                }
+                promise(.success(true))
+            })
+        }.eraseToAnyPublisher()
+    }
 }
