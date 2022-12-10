@@ -79,6 +79,7 @@
 		A5EEA026293892DF0000AAB5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEA025293892DF0000AAB5 /* ProfileView.swift */; };
 		A5EEA02A293896E40000AAB5 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEA029293896E40000AAB5 /* SignUpView.swift */; };
 		A5F4CD46294506FB00789813 /* FirebaseCombineError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F4CD45294506FB00789813 /* FirebaseCombineError.swift */; };
+		A5F4CD4829451CC300789813 /* NetworkAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F4CD4729451CC300789813 /* NetworkAuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +151,7 @@
 		A5EEA025293892DF0000AAB5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A5EEA029293896E40000AAB5 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		A5F4CD45294506FB00789813 /* FirebaseCombineError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCombineError.swift; sourceTree = "<group>"; };
+		A5F4CD4729451CC300789813 /* NetworkAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAuthService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 				A5502F222943B4A600A4D18A /* EndPoint.swift */,
 				A5502F142943919F00A4D18A /* SFOMEndPoint.swift */,
 				A5502F062943883300A4D18A /* NetworkService.swift */,
+				A5F4CD4729451CC300789813 /* NetworkAuthService.swift */,
 				A5502EFF2943868200A4D18A /* FirebaseService */,
 			);
 			path = Infrastructure;
@@ -640,6 +643,7 @@
 				A5971554292E7CE90081E71A /* SignInView.swift in Sources */,
 				A5502EF2294385A700A4D18A /* ResourceUseCase.swift in Sources */,
 				A5502EE62943853700A4D18A /* SearchViewModel.swift in Sources */,
+				A5F4CD4829451CC300789813 /* NetworkAuthService.swift in Sources */,
 				A56386D329432C4100A8CEEA /* MenuSceneDIContainer.swift in Sources */,
 				A597154D292E6DFC0081E71A /* Font+.swift in Sources */,
 				A5502F132943909B00A4D18A /* typealias.swift in Sources */,

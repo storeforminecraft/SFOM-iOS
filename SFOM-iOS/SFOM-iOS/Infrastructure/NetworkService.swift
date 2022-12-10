@@ -8,12 +8,8 @@
 import Combine
 
 protocol NetworkService {
-    var uid: CurrentValueSubject<String?, Never> { get }
-    func signIn(email: String, password: String) -> AnyPublisher<Bool, Error>
-    func signOut() -> AnyPublisher<Bool, Error>
-    func withdrawal() -> AnyPublisher<Bool, Error>
-    func create<T: DTO>(endPoint: EndPoint, dto: T)
-    func read<T: DTO>(endPoint: EndPoint, type: T.Type)
-    func update<T: DTO>(endPoint: EndPoint, dto: T)
-    func delete<T: DTO>(endPoint: EndPoint, dto: T)
+    func create<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T?, Error>
+    func read<T: DTO>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<T?, Error>
+    func update<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T?, Error>
+    func delete<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T?, Error>
 }
