@@ -11,7 +11,7 @@
 		A50DE8FE292B379100E1FD60 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE8FD292B379100E1FD60 /* HomeView.swift */; };
 		A50DE900292B379900E1FD60 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE8FF292B379900E1FD60 /* SearchView.swift */; };
 		A50DE904292B37BD00E1FD60 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE903292B37BD00E1FD60 /* MenuView.swift */; };
-		A52019FB293C857500FAA9B4 /* SFOMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52019FA293C857500FAA9B4 /* SFOMImage.swift */; };
+		A52019FB293C857500FAA9B4 /* SFOMSkinImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52019FA293C857500FAA9B4 /* SFOMSkinImage.swift */; };
 		A52019FD293C8B6F00FAA9B4 /* SFOMCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52019FC293C8B6F00FAA9B4 /* SFOMCategory.swift */; };
 		A525E7B0293B2D56006246FA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A525E7AF293B2D56006246FA /* Alamofire */; };
 		A525E7B2293B38C3006246FA /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A525E7B1293B38C3006246FA /* SearchData.swift */; };
@@ -48,6 +48,8 @@
 		A56386D329432C4100A8CEEA /* MenuSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56386D229432C4100A8CEEA /* MenuSceneDIContainer.swift */; };
 		A571C86F294384DD00988822 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A571C86E294384DD00988822 /* SignInViewModel.swift */; };
 		A571C871294384EE00988822 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A571C870294384EE00988822 /* SignUpViewModel.swift */; };
+		A57669AD294609FD00D44CD2 /* SFOMIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57669AC294609FD00D44CD2 /* SFOMIndicator.swift */; };
+		A57669AF29461BF900D44CD2 /* SFOMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57669AE29461BF900D44CD2 /* SFOMImage.swift */; };
 		A583F2FB2945009800CC4585 /* Auth+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A583F2FA2945009800CC4585 /* Auth+Publisher.swift */; };
 		A59132DC293B886C00D28CCA /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59132DB293B886C00D28CCA /* Resource.swift */; };
 		A597154D292E6DFC0081E71A /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597154C292E6DFC0081E71A /* Font+.swift */; };
@@ -60,7 +62,6 @@
 		A5A78344293063DE008B9A62 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A5A78343293063DE008B9A62 /* FirebaseStorage */; };
 		A5A783472930640E008B9A62 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A783462930640E008B9A62 /* FirebaseService.swift */; };
 		A5A783492930679C008B9A62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5A783482930679C008B9A62 /* GoogleService-Info.plist */; };
-		A5A81BA929459E2400E1A9B3 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A81BA829459E2400E1A9B3 /* test.swift */; };
 		A5CFA6FD2927322C004C1F2B /* SFOM_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFA6FC2927322C004C1F2B /* SFOM_iOSApp.swift */; };
 		A5CFA7012927322E004C1F2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CFA7002927322E004C1F2B /* Assets.xcassets */; };
 		A5CFA7042927322E004C1F2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CFA7032927322E004C1F2B /* Preview Assets.xcassets */; };
@@ -85,7 +86,7 @@
 		A50DE8FD292B379100E1FD60 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A50DE8FF292B379900E1FD60 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		A50DE903292B37BD00E1FD60 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
-		A52019FA293C857500FAA9B4 /* SFOMImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMImage.swift; sourceTree = "<group>"; };
+		A52019FA293C857500FAA9B4 /* SFOMSkinImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMSkinImage.swift; sourceTree = "<group>"; };
 		A52019FC293C8B6F00FAA9B4 /* SFOMCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMCategory.swift; sourceTree = "<group>"; };
 		A525E7B1293B38C3006246FA /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 		A525E7B5293B4F2D006246FA /* SFOMItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMItemView.swift; sourceTree = "<group>"; };
@@ -120,6 +121,8 @@
 		A56386D229432C4100A8CEEA /* MenuSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSceneDIContainer.swift; sourceTree = "<group>"; };
 		A571C86E294384DD00988822 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		A571C870294384EE00988822 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		A57669AC294609FD00D44CD2 /* SFOMIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMIndicator.swift; sourceTree = "<group>"; };
+		A57669AE29461BF900D44CD2 /* SFOMImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMImage.swift; sourceTree = "<group>"; };
 		A583F2FA2945009800CC4585 /* Auth+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Publisher.swift"; sourceTree = "<group>"; };
 		A59132DB293B886C00D28CCA /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		A597154C292E6DFC0081E71A /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
@@ -128,7 +131,6 @@
 		A5971556292E7D310081E71A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A5A783462930640E008B9A62 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		A5A783482930679C008B9A62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		A5A81BA829459E2400E1A9B3 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		A5CFA6F92927322C004C1F2B /* SFOM-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SFOM-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CFA6FC2927322C004C1F2B /* SFOM_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOM_iOSApp.swift; sourceTree = "<group>"; };
 		A5CFA7002927322E004C1F2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -476,7 +478,6 @@
 			children = (
 				A50DE8FD292B379100E1FD60 /* HomeView.swift */,
 				A5971552292E7CDB0081E71A /* AuthScene */,
-				A5A81BA829459E2400E1A9B3 /* test.swift */,
 			);
 			path = HomeScene;
 			sourceTree = "<group>";
@@ -526,7 +527,9 @@
 			children = (
 				A50DE8FB292B32D800E1FD60 /* SFOMComponents.swift */,
 				A525E7B5293B4F2D006246FA /* SFOMItemView.swift */,
-				A52019FA293C857500FAA9B4 /* SFOMImage.swift */,
+				A52019FA293C857500FAA9B4 /* SFOMSkinImage.swift */,
+				A57669AC294609FD00D44CD2 /* SFOMIndicator.swift */,
+				A57669AE29461BF900D44CD2 /* SFOMImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -638,21 +641,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5502F152943919F00A4D18A /* SFOMEndPoint.swift in Sources */,
-				A52019FB293C857500FAA9B4 /* SFOMImage.swift in Sources */,
+				A52019FB293C857500FAA9B4 /* SFOMSkinImage.swift in Sources */,
 				A5CFA7092927322E004C1F2B /* CoreDataStorage.xcdatamodeld in Sources */,
 				A5A783472930640E008B9A62 /* FirebaseService.swift in Sources */,
 				A5502EE82943854300A4D18A /* MenuViewModel.swift in Sources */,
 				A5971554292E7CE90081E71A /* SignInView.swift in Sources */,
 				A5502EF2294385A700A4D18A /* ResourceUseCase.swift in Sources */,
+				A57669AF29461BF900D44CD2 /* SFOMImage.swift in Sources */,
 				A5502EE62943853700A4D18A /* SearchViewModel.swift in Sources */,
 				A5F4CD4829451CC300789813 /* NetworkAuthService.swift in Sources */,
 				A56386D329432C4100A8CEEA /* MenuSceneDIContainer.swift in Sources */,
 				A597154D292E6DFC0081E71A /* Font+.swift in Sources */,
 				A5502F132943909B00A4D18A /* typealias.swift in Sources */,
 				A5502F072943883300A4D18A /* NetworkService.swift in Sources */,
-				A5A81BA929459E2400E1A9B3 /* test.swift in Sources */,
 				A5502EEE2943858300A4D18A /* DefaultSearchUseCase.swift in Sources */,
 				A597154F292E6F220081E71A /* Localized.swift in Sources */,
+				A57669AD294609FD00D44CD2 /* SFOMIndicator.swift in Sources */,
 				A50DE900292B379900E1FD60 /* SearchView.swift in Sources */,
 				A525E7B6293B4F2D006246FA /* SFOMItemView.swift in Sources */,
 				A56386D129432C1E00A8CEEA /* SearchSceneDIContainer.swift in Sources */,

@@ -88,7 +88,7 @@ public struct SFOMSearchItemView<Destination>: View where Destination: View {
             destination()
         } label: {
             VStack (alignment: .leading) {
-                SFOMImage(defaultImage: Assets.Default.profileBackground.image,
+                SFOMSkinImage(defaultImage: Assets.Default.profileBackground.image,
                           category: resource.category,
                           urlStr: resource.thumbnail,
                           search: true)
