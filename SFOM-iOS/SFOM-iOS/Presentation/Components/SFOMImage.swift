@@ -54,16 +54,17 @@ struct SFOMImage: View {
     }
 
     var body: some View {
-        if category == .skin {
-            sfomImageViewModel.image ?? defaultImage
-                .resizable()
-        } else if let url = url {
-            KFImage(url)
-                .resizable()
-        } else {
-            defaultImage
-                .resizable()
-        }
+        VStack {}
+        // if category == .skin {
+        //     sfomImageViewModel.image ?? defaultImage
+        //         .resizable()
+        // } else if let url = url {
+        //     KFImage(url)
+        //         .resizable()
+        // } else {
+        //     defaultImage
+        //         .resizable()
+        // }
     }
 }
 

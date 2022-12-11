@@ -9,11 +9,11 @@ import Foundation
 
 extension String {
     var localized: String {
-        NSLocalizedString(self, comment: "")
+        return NSLocalizedString(self, comment: "")
     }
     
     var lastWord: String? {
-        self.components(separatedBy: [" "]).last
+        return self.components(separatedBy: [" "]).last
     }
     
     public subscript(r: Int, l: Int = Int.max) -> String {

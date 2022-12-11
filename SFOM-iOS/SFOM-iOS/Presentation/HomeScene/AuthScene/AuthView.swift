@@ -13,9 +13,9 @@ struct AuthView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            SFOMHeader(title: LocalizedString.AuthView.authTitle,
-                       mainTitle: LocalizedString.AuthView.authMainTitle,
-                       subTitle: LocalizedString.AuthView.authSubTitle)
+            SFOMHeader(title: Localized.AuthView.authTitle,
+                       mainTitle: Localized.AuthView.authMainTitle,
+                       subTitle: Localized.AuthView.authSubTitle)
 
             
             SFOMBackButton {
@@ -26,16 +26,16 @@ struct AuthView: View {
 
             VStack (alignment: .center) {
                 
-                SFOMNavigationLink(LocalizedString.AuthView.authSignInButtonTitle) {
+                SFOMNavigationLink(Localized.AuthView.authSignInButtonTitle) {
                     SignInView()
                 }
                 
-                SFOMNavigationLink(LocalizedString.AuthView.authSignUpButtonTitle, accent: false) {
+                SFOMNavigationLink(Localized.AuthView.authSignUpButtonTitle, accent: false) {
                     // SignUpView()
                     HomeSceneDIConatiner.shared.makeSignUpView()
                 }
 
-                SFOMMarkdownText(LocalizedString.Policy.policy1)
+                SFOMMarkdownText(Localized.Policy.policy1)
                     .font(.caption)
                     .foregroundColor(Color(.lightGray))
                     .multilineTextAlignment(.center)

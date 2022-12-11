@@ -22,9 +22,9 @@ struct SignUpView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            SFOMHeader(title: LocalizedString.SignUpView.signUpTitle,
-                       mainTitle: LocalizedString.SignUpView.signUpMainTitle,
-                       subTitle: LocalizedString.SignUpView.signUpSubTitle)
+            SFOMHeader(title: Localized.SignUpView.signUpTitle,
+                       mainTitle: Localized.SignUpView.signUpMainTitle,
+                       subTitle: Localized.SignUpView.signUpSubTitle)
 
             SFOMBackButton {
                 dismiss()
@@ -33,20 +33,20 @@ struct SignUpView: View {
             Spacer()
 
             VStack (alignment: .center) {
-                SFOMTextField(content: LocalizedString.Auth.email, text: $signUpViewModel.email)
-                SFOMTextField(content: LocalizedString.Auth.password, text: $signUpViewModel.email, secure: true)
-                SFOMTextField(content: LocalizedString.Auth.passwordConfirm, text: $signUpViewModel.passwordConfirm, secure: true)
-                SFOMTextField(content: LocalizedString.Auth.userName, text: $signUpViewModel.userName)
+                SFOMTextField(content: Localized.Auth.email, text: $signUpViewModel.email)
+                SFOMTextField(content: Localized.Auth.password, text: $signUpViewModel.email, secure: true)
+                SFOMTextField(content: Localized.Auth.passwordConfirm, text: $signUpViewModel.passwordConfirm, secure: true)
+                SFOMTextField(content: Localized.Auth.userName, text: $signUpViewModel.userName)
             }
 
             Spacer()
 
             VStack (alignment: .center) {
-                SFOMButton(LocalizedString.SignUpView.signUpButtonTitle) {
+                SFOMButton(Localized.SignUpView.signUpButtonTitle) {
                     #warning("add SignUp Action")
                 }
 
-                SFOMMarkdownText(LocalizedString.Policy.policy2)
+                SFOMMarkdownText(Localized.Policy.policy2)
                     .font(.caption)
                     .foregroundColor(Color(.lightGray))
                     .multilineTextAlignment(.center)

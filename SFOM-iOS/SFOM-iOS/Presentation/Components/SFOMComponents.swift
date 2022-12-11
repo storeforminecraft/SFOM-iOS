@@ -252,7 +252,7 @@ public struct SFOMBackButton: View {
         } label: {
             HStack {
                 Assets.SystemIcon.backCircle.image
-                Text(LocalizedString.back)
+                Text(Localized.back)
             }.padding(.vertical)
         }
     }

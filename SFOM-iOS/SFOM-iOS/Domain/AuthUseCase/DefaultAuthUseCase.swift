@@ -8,7 +8,7 @@
 import Combine
 
 final class DefaultAuthUseCase {
-
+    
 }
 
 extension DefaultAuthUseCase: AuthUseCase {

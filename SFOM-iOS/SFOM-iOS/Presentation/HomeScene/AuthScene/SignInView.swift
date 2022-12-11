@@ -13,11 +13,6 @@ final class SignInViewModel: ObservableObject {
     @Published var isPresentPasswordReset: Bool = false
     @Published var isPresentToast: Bool = false
     @Published var toastMessage: String = ""
-
-
-    func loginUser() {
-
-    }
 }
 
 
@@ -29,9 +24,9 @@ struct SignInView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            SFOMHeader(title: LocalizedString.SignInView.signInTitle,
-                       mainTitle: LocalizedString.SignInView.signInMainTitle,
-                       subTitle: LocalizedString.SignInView.signInSubTitle)
+            SFOMHeader(title: Localized.SignInView.signInTitle,
+                       mainTitle: Localized.SignInView.signInMainTitle,
+                       subTitle: Localized.SignInView.signInSubTitle)
 
             SFOMBackButton {
                 dismiss()
@@ -40,23 +35,23 @@ struct SignInView: View {
             Spacer()
 
             VStack (alignment: .center) {
-                SFOMTextField(content: LocalizedString.Auth.email,
+                SFOMTextField(content: Localized.Auth.email,
                               text: $signInViewModel.email)
-                SFOMTextField(content: LocalizedString.Auth.password,
+                SFOMTextField(content: Localized.Auth.password,
                               text: $signInViewModel.password,
                               secure: true)
             }
             Spacer()
 
             VStack (alignment: .center, spacing: 20) {
-                SFOMButton(LocalizedString.SignInView.signInButonTitle) {
-                    signInViewModel.loginUser()
+                SFOMButton(Localized.SignInView.signInButonTitle) {
+                   
                 }
 
                 Button {
                     signInViewModel.isPresentPasswordReset = true
                 } label: {
-                    Text(LocalizedString.SignInView.resetEmailButtonTitle)
+                    Text(Localized.SignInView.resetEmailButtonTitle)
                         .foregroundColor(Color(.lightGray))
                 }
             }

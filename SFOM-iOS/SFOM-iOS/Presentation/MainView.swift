@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @State private var selectedIndex: Int = 0
-
+    
     var body: some View {
         NavigationView {
             TabView(selection: $selectedIndex) {
@@ -21,18 +21,18 @@ struct MainView: View {
                     MenuView()
                         .tag(2)
                 }
-                    .navigationBarTitle("")
-                    .navigationBarHidden(true)
-                    .navigationBarBackButtonHidden(true)
+                .navigationBarTitle("")
+                .navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
             }
-                .overlay(alignment: .bottom) {
+            .overlay(alignment: .bottom) {
                 tabBar
             }
-
+            
         }
-
+        
     }
-
+    
     var tabBar: some View {
         HStack {
             Group {
@@ -46,18 +46,31 @@ struct MainView: View {
                               tag: 2,
                               selectedIndex: $selectedIndex)
             }
-                .frame(width: 28, height: 28)
-                .padding(20)
+            .frame(width: 28, height: 28)
+            .padding(20)
         }
-            .background(Color(.white))
-            .cornerRadius(24)
-            .shadow(color: .init(white: 0, opacity: 0.12), radius: 8, x: 0, y: 2)
-            .padding(.bottom, 20)
+        .background(Color(.white))
+        .cornerRadius(24)
+        .shadow(color: .init(white: 0, opacity: 0.12), radius: 8, x: 0, y: 2)
+        .padding(.bottom, 20)
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+    }
+}
+
+struct SFOMActivityIndicator: View {
+    @Binding var state: Bool
+    
+    var body: some View {
+        HStack {
+            
+        }
+        VStack {
+            HStack{ Spacer() }
+        }
     }
 }

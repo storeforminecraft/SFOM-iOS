@@ -22,12 +22,12 @@ struct SearchData: Codable {
 
     var desc: String {
         guard let tempValue = _desc.first?.value else { return "" }
-        return _desc[LocalizedString.location] ?? tempValue
+        return _desc[Localized.location] ?? tempValue
     }
     
     var name: String {
         guard let tempValue = _name.first?.value else { return "" }
-        return _name[LocalizedString.location] ?? tempValue
+        return _name[Localized.location] ?? tempValue
     }
 
     enum CodingKeys: CodingKey {

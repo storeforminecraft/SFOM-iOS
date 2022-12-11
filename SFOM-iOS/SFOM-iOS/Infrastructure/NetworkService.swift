@@ -12,4 +12,6 @@ protocol NetworkService {
     func read<T: DTO>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<T?, Error>
     func update<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T?, Error>
     func delete<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T?, Error>
+    
+    // func readAll<T: DTO>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<T?, Error>
 }

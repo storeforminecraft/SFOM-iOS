@@ -6,10 +6,31 @@
 //
 
 import SwiftUI
+import Combine
 
+final class HomeViewModel: ViewModel {
+    @Published var posts: [Post] = []
+    private var cancellable = Set<AnyCancellable>()
+    
+    init() {
+        fetchPosts()
+    }
+    
+    func fetchPosts() {
+        FirebaseService.shared.firestore.collection("posts")
+            .whereField("state", isEqualTo: "published")
+            .getDocuments { [weak self] querySnapshot, error in
+                if let error = error { print(error) }
+                guard let querySnapshot = querySnapshot else { return }
+                self?.posts = querySnapshot.documents.compactMap { document in
+                    return try? document.data(as: Post.self)
+                }
+            }
+    }
+}
 
 struct HomeView: View {
-    @ObservedObject private var homeViewModel = HomeViewModel()
+    @ObservedObject private var viewModel = HomeViewModel()
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -23,7 +44,7 @@ struct HomeView: View {
     
     private var homeNavigationBar: some View {
         HStack(alignment: .center) {
-            Text(LocalizedString.homeTitle)
+            Text(Localized.homeTitle)
                 .font(.SFOMTitleFont)
             Spacer()
             // NavigationLink {
@@ -54,7 +75,7 @@ struct HomeView: View {
             NavigationLink {
                 AuthView()
             } label: {
-                Text(LocalizedString.signIn)
+                Text(Localized.signIn)
                     .font(.SFOMSmallFont)
                     .padding(.vertical, 5)
                     .padding(.horizontal, 10)
@@ -71,7 +92,7 @@ struct HomeView: View {
     
     private var postItemsView: some View {
         VStack {
-            ForEach(homeViewModel.posts, id: \.id) { post in
+            ForEach(viewModel.posts, id: \.id) { post in
                 SFOMPostItemView(post: post) {
                     PostView(post: post)
                 }

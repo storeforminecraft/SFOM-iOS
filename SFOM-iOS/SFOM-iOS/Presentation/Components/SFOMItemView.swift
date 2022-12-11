@@ -51,7 +51,7 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
                         Text("\(post.boardId)")
                             .font(.system(size: 14))
                     }
-                    let location = LocalizedString.location
+                    let location = Localized.location
                     if location == "ko" {
                         Text(post.title)
                             .font(.system(size: 20, weight: .bold))

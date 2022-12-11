@@ -39,8 +39,8 @@
 "SignInButonTitle" = "로그인 하기";
 "ResetEmailButtonTitle" = "비밀번호를 잃어버리셨나요?";
 
-"Policy1" = "계속하시면 STORE for MCPE의 [서비스 이용약관](https://docs.storeforminecraft.com/en/terms/EULA)과 [개인정보 처리 방침](https://docs.storeforminecraft.com/en/terms/PrivacyPolicy)에 동의하는 것으로 간주 됩니다.";
-"Policy2" = "버튼을 누름으로서 본인이 만 14세 이상임을 확인하며, [개인정보 수집 및 이용 동의서](https://docs.storeforminecraft.com/en/terms/Personal_Information_Collection_and_Use_Agreement)와 [개인정보 국외 이전 동의서](https://docs.storeforminecraft.com/en/terms/Personal_Information_Transfer_Agreement)에 동의합니다.";
+"Policy1" = "계속하시면 STORE for MCPE의 [서비스 이용약관](https://docs.storeforminecraft.com/ko/terms/EULA)과 [개인정보 처리 방침](https://docs.storeforminecraft.com/ko/terms/PrivacyPolicy)에 동의하는 것으로 간주 됩니다.";
+"Policy2" = "버튼을 누름으로서 본인이 만 14세 이상임을 확인하며, [개인정보 수집 및 이용 동의서](https://docs.storeforminecraft.com/ko/terms/Personal_Information_Collection_and_Use_Agreement)와 [개인정보 국외 이전 동의서](https://docs.storeforminecraft.com/ko/terms/Personal_Information_Transfer_Agreement)에 동의합니다.";
 
 "AuthSignInButtonTitle" = "지금 시작하기";
 "AuthSignUpButtonTitle" = "이미 계정이 있습니다.";
