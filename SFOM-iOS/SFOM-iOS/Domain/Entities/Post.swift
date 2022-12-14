@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Post: Decodable {
+struct Post {
     var id: String
     var authorUid: String
     var basedLanguage: String
@@ -22,23 +22,6 @@ struct Post: Decodable {
     var title: String
     var translatedBodies: [String: PostBody]
     var translatedTitles: [String: String]
-
-    enum CodingKeys: CodingKey {
-        case id
-        case authorUid
-        case basedLanguage
-        case boardId
-        case body
-        case bodyType
-        case coverImage
-        case createdTimestamp
-        case modifiedTimestamp
-        case state
-        case tags
-        case title
-        case translatedBodies
-        case translatedTitles
-    }
     
     init(id: String, authorUid: String, basedLanguage: String, boardId: String, body: PostBody? = nil, bodyType: String, coverImage: String? = nil, createdTimestamp: Date? = nil, modifiedTimestamp: Date? = nil, state: String, tags: [String]? = nil, title: String, translatedBodies: [String : PostBody], translatedTitles: [String : String]) {
         self.id = id
@@ -56,39 +39,9 @@ struct Post: Decodable {
         self.translatedBodies = translatedBodies
         self.translatedTitles = translatedTitles
     }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(String.self, forKey: .id)
-        self.authorUid = try container.decode(String.self, forKey: .authorUid)
-        self.basedLanguage = try container.decode(String.self, forKey: .basedLanguage)
-        self.boardId = try container.decode(String.self, forKey: .boardId)
-    
-        let bodyString = try container.decode(String.self, forKey: .body)
-        self.body = try? JSONDecoder().decode(PostBody.self, from: bodyString.data(using: .utf8)!)
-    
-        self.bodyType = try container.decode(String.self, forKey: .bodyType)
-    
-        if let coverImage = try container.decodeIfPresent(String.self, forKey: .coverImage) {
-            self.coverImage = "https://image.storeforminecraft.dev/" + coverImage
-        }
-    
-        self.createdTimestamp = try container.decodeIfPresent(Date.self, forKey: .createdTimestamp)
-        self.modifiedTimestamp = try container.decodeIfPresent(Date.self, forKey: .modifiedTimestamp)
-        self.state = try container.decode(String.self, forKey: .state)
-        self.tags = try container.decodeIfPresent([String].self, forKey: .tags)
-        self.title = try container.decode(String.self, forKey: .title)
-        let translatedBodies = try container.decode([String: String].self, forKey: .translatedBodies)
-    
-        self.translatedBodies = translatedBodies.reduce(into: [String: PostBody]()) { partialResult, dict in
-            partialResult[dict.key] = try? JSONDecoder().decode(PostBody.self, from: dict.value.data(using: .utf8)!)
-        }
-    
-        self.translatedTitles = try container.decode([String: String].self, forKey: .translatedTitles)
-    }
 }
 
-struct PostBody: Decodable {
+struct PostBody {
     var format: String
     var version: Int
     var body: [PostBodyContent]
@@ -100,19 +53,13 @@ struct PostBody: Decodable {
     }
 }
 
-struct PostBodyContent: Decodable {
+struct PostBodyContent {
     var type: String
     var data: String
     
-    enum CodingKeys: CodingKey {
-        case type
-        case data
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type = try container.decode(String.self, forKey: .type)
-        self.data = try container.decode(String.self, forKey: .data)
+    init(type: String, data: String) {
+        self.type = type
+        self.data = data
     }
 }
 
