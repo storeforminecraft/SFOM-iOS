@@ -50,6 +50,7 @@
 		A571C871294384EE00988822 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A571C870294384EE00988822 /* SignUpViewModel.swift */; };
 		A57669AD294609FD00D44CD2 /* SFOMIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57669AC294609FD00D44CD2 /* SFOMIndicator.swift */; };
 		A57669AF29461BF900D44CD2 /* SFOMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57669AE29461BF900D44CD2 /* SFOMImage.swift */; };
+		A5807CEB294A20D800E2EB07 /* HTTPPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5807CEA294A20D800E2EB07 /* HTTPPService.swift */; };
 		A583F2FB2945009800CC4585 /* Auth+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A583F2FA2945009800CC4585 /* Auth+Publisher.swift */; };
 		A59132DC293B886C00D28CCA /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59132DB293B886C00D28CCA /* Resource.swift */; };
 		A597154D292E6DFC0081E71A /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597154C292E6DFC0081E71A /* Font+.swift */; };
@@ -71,6 +72,9 @@
 		A5CFA7262927428B004C1F2B /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFA7252927428B004C1F2B /* Color+.swift */; };
 		A5CFA72929274846004C1F2B /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFA72829274846004C1F2B /* Assets.swift */; };
 		A5CFA72B29274881004C1F2B /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFA72A29274881004C1F2B /* String+.swift */; };
+		A5D285CF294635DB001F9343 /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D285CE294635DB001F9343 /* PostRepository.swift */; };
+		A5D285D12946367D001F9343 /* PostDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D285D02946367D001F9343 /* PostDTO+Mapping.swift */; };
+		A5D285D3294637F8001F9343 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D285D2294637F8001F9343 /* DefaultPostRepository.swift */; };
 		A5D4EEC3292E6C210005812C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D4EEC5292E6C210005812C /* Localizable.strings */; };
 		A5EEA01E29388CBC0000AAB5 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEA01D29388CBC0000AAB5 /* AuthView.swift */; };
 		A5EEA02129388F240000AAB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEA02029388F240000AAB5 /* User.swift */; };
@@ -123,6 +127,7 @@
 		A571C870294384EE00988822 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		A57669AC294609FD00D44CD2 /* SFOMIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMIndicator.swift; sourceTree = "<group>"; };
 		A57669AE29461BF900D44CD2 /* SFOMImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMImage.swift; sourceTree = "<group>"; };
+		A5807CEA294A20D800E2EB07 /* HTTPPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPPService.swift; sourceTree = "<group>"; };
 		A583F2FA2945009800CC4585 /* Auth+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Publisher.swift"; sourceTree = "<group>"; };
 		A59132DB293B886C00D28CCA /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		A597154C292E6DFC0081E71A /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
@@ -141,6 +146,9 @@
 		A5CFA7252927428B004C1F2B /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		A5CFA72829274846004C1F2B /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		A5CFA72A29274881004C1F2B /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		A5D285CE294635DB001F9343 /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
+		A5D285D02946367D001F9343 /* PostDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostDTO+Mapping.swift"; sourceTree = "<group>"; };
+		A5D285D2294637F8001F9343 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
 		A5D4EEC4292E6C210005812C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5D4EEC6292E6C240005812C /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5EEA01D29388CBC0000AAB5 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -169,6 +177,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A520E6E029482F3E00CACB55 /* HTTPService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HTTPService;
+			sourceTree = "<group>";
+		};
 		A5502EE92943855800A4D18A /* SearchUseCase */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,11 +238,10 @@
 		A5502EFE2943867300A4D18A /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				A5502F222943B4A600A4D18A /* EndPoint.swift */,
-				A5502F142943919F00A4D18A /* SFOMEndPoint.swift */,
-				A5502F062943883300A4D18A /* NetworkService.swift */,
-				A5F4CD4729451CC300789813 /* NetworkAuthService.swift */,
+				A5807CED294A20F800E2EB07 /* Protocols */,
+				A5807CEC294A20E500E2EB07 /* EndPonits */,
 				A5502EFF2943868200A4D18A /* FirebaseService */,
+				A520E6E029482F3E00CACB55 /* HTTPService */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -270,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				A5502F0A29438A9C00A4D18A /* AuthRepository.swift */,
+				A5D285CE294635DB001F9343 /* PostRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -304,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				A5502F202943A75500A4D18A /* DTO.swift */,
+				A5D285D02946367D001F9343 /* PostDTO+Mapping.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -350,6 +366,7 @@
 		A56386C42943277F00A8CEEA /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A5D285CD294635C2001F9343 /* Repositories */,
 				A5502F1C2943A73100A4D18A /* Network */,
 				A5502F0E29438BF400A4D18A /* DownloadListStorage */,
 				A5CFA70F29273460004C1F2B /* PersistentStorage */,
@@ -394,6 +411,25 @@
 				A5502EF5294385C500A4D18A /* CommonSceneDIContainer.swift */,
 			);
 			path = DIContainer;
+			sourceTree = "<group>";
+		};
+		A5807CEC294A20E500E2EB07 /* EndPonits */ = {
+			isa = PBXGroup;
+			children = (
+				A5502F222943B4A600A4D18A /* EndPoint.swift */,
+				A5502F142943919F00A4D18A /* SFOMEndPoint.swift */,
+			);
+			path = EndPonits;
+			sourceTree = "<group>";
+		};
+		A5807CED294A20F800E2EB07 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A5807CEA294A20D800E2EB07 /* HTTPPService.swift */,
+				A5502F062943883300A4D18A /* NetworkService.swift */,
+				A5F4CD4729451CC300789813 /* NetworkAuthService.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		A5971552292E7CDB0081E71A /* AuthScene */ = {
@@ -544,6 +580,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		A5D285CD294635C2001F9343 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				A5D285D2294637F8001F9343 /* DefaultPostRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		A5EEA024293892C40000AAB5 /* CommonView */ = {
 			isa = PBXGroup;
 			children = (
@@ -659,6 +703,7 @@
 				A57669AD294609FD00D44CD2 /* SFOMIndicator.swift in Sources */,
 				A50DE900292B379900E1FD60 /* SearchView.swift in Sources */,
 				A525E7B6293B4F2D006246FA /* SFOMItemView.swift in Sources */,
+				A5D285CF294635DB001F9343 /* PostRepository.swift in Sources */,
 				A56386D129432C1E00A8CEEA /* SearchSceneDIContainer.swift in Sources */,
 				A5EEA01E29388CBC0000AAB5 /* AuthView.swift in Sources */,
 				A525E7B2293B38C3006246FA /* SearchData.swift in Sources */,
@@ -671,6 +716,8 @@
 				A5971557292E7D310081E71A /* Post.swift in Sources */,
 				A5602D7729390DB70042496A /* ContentView.swift in Sources */,
 				A5CFA71A29273626004C1F2B /* MainView.swift in Sources */,
+				A5D285D12946367D001F9343 /* PostDTO+Mapping.swift in Sources */,
+				A5D285D3294637F8001F9343 /* DefaultPostRepository.swift in Sources */,
 				A5602D7929390DD40042496A /* PostView.swift in Sources */,
 				A5502F232943B4A600A4D18A /* EndPoint.swift in Sources */,
 				A5502EFD2943861400A4D18A /* DefaultUserUseCase.swift in Sources */,
@@ -690,6 +737,7 @@
 				A5502F1B29439B5D00A4D18A /* DocumentReference+Publisher.swift in Sources */,
 				A50DE8FE292B379100E1FD60 /* HomeView.swift in Sources */,
 				A571C86F294384DD00988822 /* SignInViewModel.swift in Sources */,
+				A5807CEB294A20D800E2EB07 /* HTTPPService.swift in Sources */,
 				A5EEA026293892DF0000AAB5 /* ProfileView.swift in Sources */,
 				A56386CF29432BED00A8CEEA /* HomeSceneDIContainer.swift in Sources */,
 				A5CFA72B29274881004C1F2B /* String+.swift in Sources */,
