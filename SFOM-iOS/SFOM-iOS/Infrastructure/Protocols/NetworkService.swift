@@ -14,4 +14,5 @@ protocol NetworkService {
     func delete<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error>
     
     func readAll<T: DTO>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<[T], Error>
+    func readAllWithFilter<T: DTO>(endPoint: EndPoint, type: T.Type, filters: [FirebaseFilter]) -> AnyPublisher<[T], Error>
 }

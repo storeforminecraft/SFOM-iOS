@@ -135,11 +135,12 @@ extension FirebaseService: NetworkService {
         return collectionReference.getDocumentsPublisher(type: type)
     }
     
-    func readAllWithFilter<T: DTO>(endPoint: EndPoint, type: T.Type, filter: [FirebaseFilter]) -> AnyPublisher<[T], Error> {
+    func readAllWithFilter<T: DTO>(endPoint: EndPoint, type: T.Type, filters: [FirebaseFilter]) -> AnyPublisher<[T], Error> {
         guard let collectionReference = collectionReference(endPoint: endPoint) else {
             return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
-        return collectionReference.getDocumentsPublisher(type: type)
+        
+        return collectionReference.filter(filters).getQueryDocumentsPublisher(type: type)
     }
 }
 

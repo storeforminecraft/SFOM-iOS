@@ -66,6 +66,7 @@
 		A5CD4571294ADDE2009F47C1 /* HTTPEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD4570294ADDE1009F47C1 /* HTTPEndPoint.swift */; };
 		A5CD4573294AE01E009F47C1 /* FirebaseFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD4572294AE01E009F47C1 /* FirebaseFilter.swift */; };
 		A5CD4578294AE1CD009F47C1 /* CollectionReference+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD4577294AE1CD009F47C1 /* CollectionReference+.swift */; };
+		A5CD457A294AE3E4009F47C1 /* Query+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD4579294AE3E4009F47C1 /* Query+Publisher.swift */; };
 		A5CFA6FD2927322C004C1F2B /* SFOM_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFA6FC2927322C004C1F2B /* SFOM_iOSApp.swift */; };
 		A5CFA7012927322E004C1F2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CFA7002927322E004C1F2B /* Assets.xcassets */; };
 		A5CFA7042927322E004C1F2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CFA7032927322E004C1F2B /* Preview Assets.xcassets */; };
@@ -142,6 +143,7 @@
 		A5CD4570294ADDE1009F47C1 /* HTTPEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPEndPoint.swift; sourceTree = "<group>"; };
 		A5CD4572294AE01E009F47C1 /* FirebaseFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFilter.swift; sourceTree = "<group>"; };
 		A5CD4577294AE1CD009F47C1 /* CollectionReference+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionReference+.swift"; sourceTree = "<group>"; };
+		A5CD4579294AE3E4009F47C1 /* Query+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+Publisher.swift"; sourceTree = "<group>"; };
 		A5CFA6F92927322C004C1F2B /* SFOM-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SFOM-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CFA6FC2927322C004C1F2B /* SFOM_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOM_iOSApp.swift; sourceTree = "<group>"; };
 		A5CFA7002927322E004C1F2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				A583F2FA2945009800CC4585 /* Auth+Publisher.swift */,
+				A5CD4579294AE3E4009F47C1 /* Query+Publisher.swift */,
 				A5F4CD492945235700789813 /* CollectionReference+Publisher.swift */,
 				A5502F1A29439B5D00A4D18A /* DocumentReference+Publisher.swift */,
 				A5502F272943CCDD00A4D18A /* DatabaseReference+Publisher.swift */,
@@ -727,6 +730,7 @@
 				A5502EEE2943858300A4D18A /* DefaultSearchUseCase.swift in Sources */,
 				A597154F292E6F220081E71A /* Localized.swift in Sources */,
 				A57669AD294609FD00D44CD2 /* SFOMIndicator.swift in Sources */,
+				A5CD457A294AE3E4009F47C1 /* Query+Publisher.swift in Sources */,
 				A50DE900292B379900E1FD60 /* SearchView.swift in Sources */,
 				A525E7B6293B4F2D006246FA /* SFOMItemView.swift in Sources */,
 				A5D285CF294635DB001F9343 /* PostRepository.swift in Sources */,
