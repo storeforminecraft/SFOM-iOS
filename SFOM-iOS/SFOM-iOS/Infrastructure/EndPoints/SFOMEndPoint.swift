@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SFOMEndPoint: EndPoint {
+public struct SFOMEndPoint: FIREndPoint {
     var collection: MainCollection
     var document: Document?
     var subCollection: SubCollection?

@@ -1,5 +1,5 @@
 //
-//  EndPoint.swift
+//  FIREndPoint.swift
 //  SFOM-iOS
 //
 //  Created by 이전희 on 2022/12/10.
@@ -21,7 +21,7 @@ protocol Document {
     var path: String { get }
 }
 
-protocol EndPoint {
+protocol FIREndPoint {
     var reference: (collection: MainCollection,
               document: Document?,
               subCollection: SubCollection?,

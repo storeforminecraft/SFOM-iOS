@@ -16,10 +16,6 @@ final class HomeViewModel: ViewModel {
     
     init() {
         postUseCase.fetchPost()
-            .handleEvents(receiveOutput: { posts in
-                print(posts)
-                print("✅", posts.count)
-            })
             .assign(to: \.posts, on: self)
             .store(in: &cancellable)
     }

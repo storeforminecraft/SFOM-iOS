@@ -8,11 +8,11 @@
 import Combine
 
 protocol NetworkService {
-    func create<T: Encodable>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error>
-    func read<T: Decodable>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<T, Error>
-    func update<T: Encodable>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error>
-    func delete<T: Encodable>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error>
+    func create<T: Encodable>(endPoint: FIREndPoint, dto: T) -> AnyPublisher<T, Error>
+    func read<T: Decodable>(endPoint: FIREndPoint, type: T.Type) -> AnyPublisher<T, Error>
+    func update<T: Encodable>(endPoint: FIREndPoint, dto: T) -> AnyPublisher<T, Error>
+    func delete<T: Encodable>(endPoint: FIREndPoint, dto: T) -> AnyPublisher<T, Error>
     
-    func readAll<T: Decodable>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<[T], Error>
-    // func readAllWithFilter<T: Decodable>(endPoint: EndPoint, type: T.Type, filters: [FirebaseFilter]) -> AnyPublisher<[T], Error>
+    func readAll<T: Decodable>(endPoint: FIREndPoint, type: T.Type) -> AnyPublisher<[T], Error>
+    func readAllWithFilter<T: Decodable>(endPoint: FIREndPoint, type: T.Type, whereFields: [WhereField]) -> AnyPublisher<[T], Error>
 }

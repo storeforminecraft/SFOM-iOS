@@ -98,28 +98,28 @@ extension FirebaseService: NetworkAuthService {
 
 // MARK: - NetworkService
 extension FirebaseService: NetworkService {
-    func create<T: Encodable>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error> {
+    func create<T: Encodable>(endPoint: FIREndPoint, dto: T) -> AnyPublisher<T, Error> {
         guard let documentReference = documentReference(endPoint: endPoint) else {
             return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
         return documentReference.setDataPulisher(data: dto)
     }
     
-    func read<T: Decodable>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<T, Error> {
+    func read<T: Decodable>(endPoint: FIREndPoint, type: T.Type) -> AnyPublisher<T, Error> {
         guard let documentReference = documentReference(endPoint: endPoint) else {
             return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
         return documentReference.getDocumentPublisher(type: type)
     }
     
-    func update<T: Encodable>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error> {
+    func update<T: Encodable>(endPoint: FIREndPoint, dto: T) -> AnyPublisher<T, Error> {
         guard let documentReference = documentReference(endPoint: endPoint) else {
             return Fail<T, Error>(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
         return documentReference.setDataPulisher(data: dto, merge: true)
     }
     
-    func delete<T: Encodable>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error> {
+    func delete<T: Encodable>(endPoint: FIREndPoint, dto: T) -> AnyPublisher<T, Error> {
         guard let documentReference = documentReference(endPoint: endPoint) else {
             return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
@@ -128,25 +128,25 @@ extension FirebaseService: NetworkService {
             .eraseToAnyPublisher()
     }
     
-    func readAll<T: Decodable>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<[T], Error> {
+    func readAll<T: Decodable>(endPoint: FIREndPoint, type: T.Type) -> AnyPublisher<[T], Error> {
         guard let collectionReference = collectionReference(endPoint: endPoint) else {
             return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
         return collectionReference.getDocumentsPublisher(type: type)
     }
     
-    // func readAllWithFilter<T: Decodable>(endPoint: EndPoint, type: T.Type, filters: [FirebaseFilter]) -> AnyPublisher<[T], Error> {
-    //     guard let collectionReference = collectionReference(endPoint: endPoint) else {
-    //         return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
-    //     }
-    //     
-    //     return collectionReference.firebaseFilter(filters).getQueryDocumentsPublisher(type: type)
-    // }
+    func readAllWithFilter<T: Decodable>(endPoint: FIREndPoint, type: T.Type, whereFields: [WhereField]) -> AnyPublisher<[T], Error> {
+        guard let collectionReference = collectionReference(endPoint: endPoint) else {
+            return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
+        }
+        
+        return collectionReference.filter(whereFields).getQueryDocumentsPublisher(type: type)
+    }
 }
 
 // MARK: - Reference
 private extension FirebaseService {
-    func documentReference<E: EndPoint>(endPoint: E) -> DocumentReference? {
+    func documentReference<E: FIREndPoint>(endPoint: E) -> DocumentReference? {
         let collectionPath = endPoint.reference.collection.path
         guard let documet = endPoint.reference.document,
               let documnetPath = (documet.isCurrentUser ? uid.value : documet.path) else { return nil }
@@ -166,7 +166,7 @@ private extension FirebaseService {
             .document(subDocumnetPath)
     }
     
-    func collectionReference<E: EndPoint>(endPoint: E) -> CollectionReference? {
+    func collectionReference<E: FIREndPoint>(endPoint: E) -> CollectionReference? {
         let collectionPath = endPoint.reference.collection.path
         guard let documet = endPoint.reference.document,
               let documnetPath = (documet.isCurrentUser ? uid.value : documet.path) else { return

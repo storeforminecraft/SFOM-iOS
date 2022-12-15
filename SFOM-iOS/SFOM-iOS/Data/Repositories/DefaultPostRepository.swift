@@ -20,9 +20,8 @@ extension DefaultPostRepository: PostRepository {
         guard let endPoint = SFOMEndPoint(collection: SFOMEndPoint.SFOMCollection.posts, document: nil) else {
             return Just<[Post]>([]).eraseToAnyPublisher()
         }
-        let filters:[FirebaseFilter] = [.isEqualTo("state", value: "published")]
-        // return networkService.readAllWithFilter(endPoint: endPoint, type: PostDTO.self, filters: filters)
-        return networkService.readAll(endPoint: endPoint, type: PostDTO.self)
+        let whereFields: [WhereField] = [.isEqualTo("state", value: "published")]
+        return networkService.readAllWithFilter(endPoint: endPoint, type: PostDTO.self, whereFields: whereFields)
             .map { $0.compactMap { dto in dto.toDomain() } }
             .catch { error in
                 print(error)

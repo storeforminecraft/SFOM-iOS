@@ -7,12 +7,12 @@
 
 import Foundation
 
-final class SFOMAPIEndPoints {
-    static let shared = SFOMAPIEndPoints()
+final class APIEndPoints {
+    static let shared = APIEndPoints()
     private init() { }
 }
 
-private extension SFOMAPIEndPoints {
+private extension APIEndPoints {
     func checkDocument(doc: String?, docIsUser: Bool?) -> Document? {
         if let doc = doc { return SFOMEndPoint.SFOMDocument.another(doc) }
         if let docIsUser = docIsUser, docIsUser { return SFOMEndPoint.SFOMDocument.currentUser }
@@ -20,7 +20,7 @@ private extension SFOMAPIEndPoints {
     }
 }
 
-extension SFOMAPIEndPoints {
+extension APIEndPoints {
     // MARK: - Collection
     func posts(doc: String?, docIsUser: Bool?) -> SFOMEndPoint? {
         let collection = SFOMEndPoint.SFOMCollection.posts
