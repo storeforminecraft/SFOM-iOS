@@ -16,7 +16,7 @@ final class DefaultPostUseCase {
 }
 
 extension DefaultPostUseCase: PostUseCase {
-    func fetchPost() -> AnyPublisher<Post, Never> {
+    func fetchPost() -> AnyPublisher<[Post], Never> {
         postRepository.fetchPost()
     }
 }

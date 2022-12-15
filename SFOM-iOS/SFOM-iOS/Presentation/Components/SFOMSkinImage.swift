@@ -9,30 +9,24 @@ import Foundation
 import UIKit
 import SwiftUI
 import Combine
-import Kingfisher
-import Alamofire
-
-
-
-
 
 final class SFOMSkinImageViewModel: ObservableObject {
     @Published var image: Image?
     var cancelBag = Set<AnyCancellable>()
 
     func getSkinImage(url: URL, search: Bool) {
-        AF.request(url, method: .get)
-            .publishData()
-            .compactMap { $0.value }
-            .flatMap { value in
-            if search {
-                return self.getUIImageToSearchImage(uiImage: UIImage(data: value))
-            } else {
-                return self.getUIImageToSkinImage(uiImage: UIImage(data: value))
-            }
-        }.sink { image in
-            self.image = image
-        }.store(in: &cancelBag)
+        // AF.request(url, method: .get)
+        //     .publishData()
+        //     .compactMap { $0.value }
+        //     .flatMap { value in
+        //     if search {
+        //         return self.getUIImageToSearchImage(uiImage: UIImage(data: value))
+        //     } else {
+        //         return self.getUIImageToSkinImage(uiImage: UIImage(data: value))
+        //     }
+        // }.sink { image in
+        //     self.image = image
+        // }.store(in: &cancelBag)
     }
 }
 

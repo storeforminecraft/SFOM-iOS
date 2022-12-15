@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PostDTO: Codable {
+struct PostDTO: Decodable {
     var id: String
     var authorUid: String
     var basedLanguage: String
@@ -101,7 +101,7 @@ struct PostDTO: Codable {
     }
 }
 
-struct PostBodyDTO: DTO {
+struct PostBodyDTO: Decodable {
     var format: String
     var version: Int
     var body: [PostBodyContentDTO]
@@ -113,7 +113,7 @@ struct PostBodyDTO: DTO {
     }
 }
 
-struct PostBodyContentDTO: DTO {
+struct PostBodyContentDTO: Decodable {
     var type: String
     var data: String
     

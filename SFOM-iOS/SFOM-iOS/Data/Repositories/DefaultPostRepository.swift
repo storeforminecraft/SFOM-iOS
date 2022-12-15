@@ -15,14 +15,18 @@ final class DefaultPostRepository {
     }
 }
 
-// extension DefaultPostRepository: PostRepository {
-//     func fetchPost() -> AnyPublisher<Post, Never> {
-//         guard let endPoint = SFOMEndPoint(collection: SFOMEndPoint.SFOMCollection.posts,
-//                                           document: nil) else { Just<>}
-//         networkService.read(endPoint: endPoint,
-//                             type: PostDTO.self)
-//         .replaceError(with: nil)
-//         .compactMap { $0.toDomain() }
-//         .eraseToAnyPublisher()
-//     }
-// }
+extension DefaultPostRepository: PostRepository {
+    func fetchPost() -> AnyPublisher<[Post], Never> {
+        guard let endPoint = SFOMEndPoint(collection: SFOMEndPoint.SFOMCollection.posts, document: nil) else {
+            return Just<[Post]>([]).eraseToAnyPublisher()
+        }
+        let filters:[FirebaseFilter] = [.isEqualTo("state", value: "published")]
+        // return networkService.readAllWithFilter(endPoint: endPoint, type: PostDTO.self, filters: filters)
+        return networkService.readAll(endPoint: endPoint, type: PostDTO.self)
+            .map { $0.compactMap { dto in dto.toDomain() } }
+            .catch { error in
+                print(error)
+                return Just<[Post]>([]).eraseToAnyPublisher() }
+            .eraseToAnyPublisher()
+    }
+}

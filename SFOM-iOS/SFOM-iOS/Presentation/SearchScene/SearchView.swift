@@ -7,8 +7,6 @@
 
 import SwiftUI
 import Combine
-import Alamofire
-import Kingfisher
 
 final class SearchViewModel: ObservableObject {
     @Published var searchText: String = ""

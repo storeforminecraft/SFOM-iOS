@@ -26,14 +26,13 @@ struct AuthView: View {
 
             VStack (alignment: .center) {
                 
-                SFOMNavigationLink(Localized.AuthView.authSignInButtonTitle) {
-                    SignInView()
-                }
+                // SFOMNavigationLink(Localized.AuthView.authSignInButtonTitle) {
+                //     SignInView()
+                // }
                 
-                SFOMNavigationLink(Localized.AuthView.authSignUpButtonTitle, accent: false) {
-                    // SignUpView()
-                    HomeSceneDIConatiner.shared.makeSignUpView()
-                }
+                // SFOMNavigationLink(Localized.AuthView.authSignUpButtonTitle, accent: false) {
+                //     // SignUpView()
+                // }
 
                 SFOMMarkdownText(Localized.Policy.policy1)
                     .font(.caption)

@@ -98,28 +98,28 @@ extension FirebaseService: NetworkAuthService {
 
 // MARK: - NetworkService
 extension FirebaseService: NetworkService {
-    func create<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error> {
+    func create<T: Encodable>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error> {
         guard let documentReference = documentReference(endPoint: endPoint) else {
             return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
         return documentReference.setDataPulisher(data: dto)
     }
     
-    func read<T: DTO>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<T, Error> {
+    func read<T: Decodable>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<T, Error> {
         guard let documentReference = documentReference(endPoint: endPoint) else {
             return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
         return documentReference.getDocumentPublisher(type: type)
     }
     
-    func update<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error> {
+    func update<T: Encodable>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error> {
         guard let documentReference = documentReference(endPoint: endPoint) else {
             return Fail<T, Error>(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
         return documentReference.setDataPulisher(data: dto, merge: true)
     }
     
-    func delete<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error> {
+    func delete<T: Encodable>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error> {
         guard let documentReference = documentReference(endPoint: endPoint) else {
             return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
@@ -128,20 +128,20 @@ extension FirebaseService: NetworkService {
             .eraseToAnyPublisher()
     }
     
-    func readAll<T: DTO>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<[T], Error> {
+    func readAll<T: Decodable>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<[T], Error> {
         guard let collectionReference = collectionReference(endPoint: endPoint) else {
             return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
         return collectionReference.getDocumentsPublisher(type: type)
     }
     
-    func readAllWithFilter<T: DTO>(endPoint: EndPoint, type: T.Type, filters: [FirebaseFilter]) -> AnyPublisher<[T], Error> {
-        guard let collectionReference = collectionReference(endPoint: endPoint) else {
-            return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
-        }
-        
-        return collectionReference.filter(filters).getQueryDocumentsPublisher(type: type)
-    }
+    // func readAllWithFilter<T: Decodable>(endPoint: EndPoint, type: T.Type, filters: [FirebaseFilter]) -> AnyPublisher<[T], Error> {
+    //     guard let collectionReference = collectionReference(endPoint: endPoint) else {
+    //         return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
+    //     }
+    //     
+    //     return collectionReference.firebaseFilter(filters).getQueryDocumentsPublisher(type: type)
+    // }
 }
 
 // MARK: - Reference
@@ -169,11 +169,12 @@ private extension FirebaseService {
     func collectionReference<E: EndPoint>(endPoint: E) -> CollectionReference? {
         let collectionPath = endPoint.reference.collection.path
         guard let documet = endPoint.reference.document,
-              let documnetPath = (documet.isCurrentUser ? uid.value : documet.path) else { return nil }
+              let documnetPath = (documet.isCurrentUser ? uid.value : documet.path) else { return
+            firestore.collection(collectionPath)
+        }
         
         guard let subCollectionPath = endPoint.reference.subCollection?.path else {
-            return firestore
-                .collection(collectionPath)
+            return firestore.collection(collectionPath)
         }
         
         return firestore

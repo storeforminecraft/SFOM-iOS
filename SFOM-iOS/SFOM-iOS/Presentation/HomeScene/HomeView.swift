@@ -9,13 +9,19 @@ import SwiftUI
 import Combine
 
 final class HomeViewModel: ViewModel {
-    // private let postUseCase: PostUseCase = DefaultPostUseCase()
+    private let postUseCase: PostUseCase = DefaultPostUseCase(postRepository: DefaultPostRepository(networkService: FirebaseService.shared))
     
     @Published var posts: [Post] = []
     private var cancellable = Set<AnyCancellable>()
     
     init() {
-        
+        postUseCase.fetchPost()
+            .handleEvents(receiveOutput: { posts in
+                print(posts)
+                print("✅", posts.count)
+            })
+            .assign(to: \.posts, on: self)
+            .store(in: &cancellable)
     }
 }
 
@@ -86,6 +92,7 @@ struct HomeView: View {
                 SFOMPostItemView(post: post) {
                     PostView(post: post)
                 }
+                .background(.gray)
             }
         }
         .padding()

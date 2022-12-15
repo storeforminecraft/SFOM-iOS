@@ -13,7 +13,6 @@ final class DefaultAuthUseCase {
 
 extension DefaultAuthUseCase: AuthUseCase {
     func signIn() -> AnyPublisher<Bool, Error> {
-        let sequence = [true, true]
         return Future<Bool, Error> { promise in
             promise(.success(true))
         }

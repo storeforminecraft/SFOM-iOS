@@ -5,7 +5,6 @@
 //  Created by 이전희 on 2022/12/03.
 //
 
-import Kingfisher
 import SwiftUI
 
 public struct SFOMPostItemView<Destination>: View where Destination: View {
@@ -23,13 +22,14 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
         } label: {
             ZStack(alignment: .topLeading) {
                 if let coverImage = post.coverImage, coverImage != "" {
-                    KFImage(URL(string: coverImage))
-                        .resizable()
-                        .scaledToFill()
-                        .cornerRadius(14)
-                        .overlay(RoundedRectangle(cornerRadius: 14)
-                        .foregroundColor(.black)
-                        .opacity(0.3))
+                    // KFImage(URL(string: coverImage))
+                    //     .resizable()
+                    //     .scaledToFill()
+                    //     .cornerRadius(14)
+                    //     .overlay(RoundedRectangle(cornerRadius: 14)
+                    //     .foregroundColor(.black)
+                    //     .opacity(0.3))
+                    VStack{}
                 } else {
                     Assets.Default.profileBackground.image
                         .resizable()
