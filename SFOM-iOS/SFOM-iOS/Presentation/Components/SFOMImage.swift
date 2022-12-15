@@ -41,8 +41,20 @@ struct SFOMImage: View {
     
     var body: some View {
         if let uiImage = sfomImageViewModel.image {
-            Image(uiImage: uiImage)
+            ZStack{
+                Image(uiImage: uiImage)
+                    .resizable()
+            }
         } else if let defaultImage = defaultImage {
+            ZStack{
+                defaultImage
+                    .resizable()
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .scaleEffect(3)
+                    .tint(.accentColor)
+            }
+        } else {
             defaultImage
         }
     }
@@ -50,6 +62,7 @@ struct SFOMImage: View {
 
 struct SFOMImage_Previews: PreviewProvider {
     static var previews: some View {
-        SFOMImage(urlString: "https://avatars.githubusercontent.com/u/48307153?v=4")
+        SFOMImage(urlString: "ht",
+                  defaultImage: Assets.Default.profileBackground.image)
     }
 }

@@ -99,7 +99,7 @@ struct Resource: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(authorUid, forKey: .authorUid)
         try container.encode(basedLanguage, forKey: .basedLanguage)
-        try container.encode(self.category.rawValue, forKey: .category)
+        try container.encode(category.rawValue, forKey: .category)
         try container.encode(chidCommentsCount, forKey: .chidCommentsCount)
         try container.encode(createdTimestamp, forKey: .createdTimestamp)
         try container.encode(desc, forKey: .desc)
@@ -118,5 +118,4 @@ struct Resource: Codable {
         try container.encode(translationSource, forKey: .translationSource)
         try container.encode(version, forKey: .version)
     }
-
 }

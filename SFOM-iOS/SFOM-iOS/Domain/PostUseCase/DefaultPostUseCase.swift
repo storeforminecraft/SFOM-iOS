@@ -8,9 +8,15 @@
 import Combine
 
 final class DefaultPostUseCase {
+    private let postRepository: PostRepository
     
+    init(postRepository: PostRepository) {
+        self.postRepository = postRepository
+    }
 }
 
 extension DefaultPostUseCase: PostUseCase {
-
+    func fetchPost() -> AnyPublisher<Post, Never> {
+        postRepository.fetchPost()
+    }
 }

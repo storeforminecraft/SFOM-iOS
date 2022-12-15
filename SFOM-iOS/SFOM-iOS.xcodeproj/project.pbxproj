@@ -63,6 +63,9 @@
 		A5A78344293063DE008B9A62 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A5A78343293063DE008B9A62 /* FirebaseStorage */; };
 		A5A783472930640E008B9A62 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A783462930640E008B9A62 /* FirebaseService.swift */; };
 		A5A783492930679C008B9A62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5A783482930679C008B9A62 /* GoogleService-Info.plist */; };
+		A5CD4571294ADDE2009F47C1 /* HTTPEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD4570294ADDE1009F47C1 /* HTTPEndPoint.swift */; };
+		A5CD4573294AE01E009F47C1 /* FirebaseFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD4572294AE01E009F47C1 /* FirebaseFilter.swift */; };
+		A5CD4578294AE1CD009F47C1 /* CollectionReference+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD4577294AE1CD009F47C1 /* CollectionReference+.swift */; };
 		A5CFA6FD2927322C004C1F2B /* SFOM_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFA6FC2927322C004C1F2B /* SFOM_iOSApp.swift */; };
 		A5CFA7012927322E004C1F2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CFA7002927322E004C1F2B /* Assets.xcassets */; };
 		A5CFA7042927322E004C1F2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CFA7032927322E004C1F2B /* Preview Assets.xcassets */; };
@@ -136,6 +139,9 @@
 		A5971556292E7D310081E71A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A5A783462930640E008B9A62 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		A5A783482930679C008B9A62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A5CD4570294ADDE1009F47C1 /* HTTPEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPEndPoint.swift; sourceTree = "<group>"; };
+		A5CD4572294AE01E009F47C1 /* FirebaseFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFilter.swift; sourceTree = "<group>"; };
+		A5CD4577294AE1CD009F47C1 /* CollectionReference+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionReference+.swift"; sourceTree = "<group>"; };
 		A5CFA6F92927322C004C1F2B /* SFOM-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SFOM-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CFA6FC2927322C004C1F2B /* SFOM_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOM_iOSApp.swift; sourceTree = "<group>"; };
 		A5CFA7002927322E004C1F2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -250,7 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				A5A783462930640E008B9A62 /* FirebaseService.swift */,
-				A5502F262943CCBD00A4D18A /* Firebase+ */,
+				A5502F262943CCBD00A4D18A /* FirebaseCombine */,
+				A5CD4574294AE021009F47C1 /* Utils */,
 			);
 			path = FirebaseService;
 			sourceTree = "<group>";
@@ -324,16 +331,16 @@
 			path = DataMapping;
 			sourceTree = "<group>";
 		};
-		A5502F262943CCBD00A4D18A /* Firebase+ */ = {
+		A5502F262943CCBD00A4D18A /* FirebaseCombine */ = {
 			isa = PBXGroup;
 			children = (
 				A583F2FA2945009800CC4585 /* Auth+Publisher.swift */,
 				A5F4CD492945235700789813 /* CollectionReference+Publisher.swift */,
 				A5502F1A29439B5D00A4D18A /* DocumentReference+Publisher.swift */,
 				A5502F272943CCDD00A4D18A /* DatabaseReference+Publisher.swift */,
-				A5F4CD45294506FB00789813 /* FirebaseCombineError.swift */,
+				A5807CF0294A270300E2EB07 /* Error */,
 			);
-			path = "Firebase+";
+			path = FirebaseCombine;
 			sourceTree = "<group>";
 		};
 		A56386C22943273400A8CEEA /* Presentation */ = {
@@ -418,6 +425,7 @@
 			children = (
 				A5502F222943B4A600A4D18A /* EndPoint.swift */,
 				A5502F142943919F00A4D18A /* SFOMEndPoint.swift */,
+				A5CD4570294ADDE1009F47C1 /* HTTPEndPoint.swift */,
 			);
 			path = EndPonits;
 			sourceTree = "<group>";
@@ -430,6 +438,14 @@
 				A5F4CD4729451CC300789813 /* NetworkAuthService.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A5807CF0294A270300E2EB07 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				A5F4CD45294506FB00789813 /* FirebaseCombineError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		A5971552292E7CDB0081E71A /* AuthScene */ = {
@@ -452,6 +468,15 @@
 				A597154C292E6DFC0081E71A /* Font+.swift */,
 			);
 			path = extensions;
+			sourceTree = "<group>";
+		};
+		A5CD4574294AE021009F47C1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A5CD4572294AE01E009F47C1 /* FirebaseFilter.swift */,
+				A5CD4577294AE1CD009F47C1 /* CollectionReference+.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		A5CFA6F02927322C004C1F2B = {
@@ -686,6 +711,7 @@
 			files = (
 				A5502F152943919F00A4D18A /* SFOMEndPoint.swift in Sources */,
 				A52019FB293C857500FAA9B4 /* SFOMSkinImage.swift in Sources */,
+				A5CD4571294ADDE2009F47C1 /* HTTPEndPoint.swift in Sources */,
 				A5CFA7092927322E004C1F2B /* CoreDataStorage.xcdatamodeld in Sources */,
 				A5A783472930640E008B9A62 /* FirebaseService.swift in Sources */,
 				A5502EE82943854300A4D18A /* MenuViewModel.swift in Sources */,
@@ -713,6 +739,7 @@
 				A5502EEC2943857100A4D18A /* SearchUseCase.swift in Sources */,
 				A5502F0D29438B6200A4D18A /* DownloadListStorage.swift in Sources */,
 				A5F4CD46294506FB00789813 /* FirebaseCombineError.swift in Sources */,
+				A5CD4573294AE01E009F47C1 /* FirebaseFilter.swift in Sources */,
 				A5971557292E7D310081E71A /* Post.swift in Sources */,
 				A5602D7729390DB70042496A /* ContentView.swift in Sources */,
 				A5CFA71A29273626004C1F2B /* MainView.swift in Sources */,
@@ -725,6 +752,7 @@
 				A50DE8FC292B32D800E1FD60 /* SFOMComponents.swift in Sources */,
 				A571C871294384EE00988822 /* SignUpViewModel.swift in Sources */,
 				A5502EF4294385B300A4D18A /* DefaultResouceUseCase.swift in Sources */,
+				A5CD4578294AE1CD009F47C1 /* CollectionReference+.swift in Sources */,
 				A59132DC293B886C00D28CCA /* Resource.swift in Sources */,
 				A5CFA7262927428B004C1F2B /* Color+.swift in Sources */,
 				A50DE904292B37BD00E1FD60 /* MenuView.swift in Sources */,

@@ -10,8 +10,8 @@ import FirebaseDatabase
 
 extension DatabaseReference {
     // MARK: - READ
-    var getDataPublisher: AnyPublisher<DataSnapshot?, Error> {
-        return Future<DataSnapshot?, Error> { [weak self] promise in
+    var getDataPublisher: AnyPublisher<DataSnapshot, Error> {
+        return Future<DataSnapshot, Error> { [weak self] promise in
             guard let self = self else {
                 promise(.failure(FirebaseCombineError.objectError))
                 return
@@ -19,9 +19,11 @@ extension DatabaseReference {
             self.getData { error, dataSnapShot in
                 if let error = error {
                     promise(.failure(error))
-                } else {
-                    promise(.success(dataSnapShot))
                 }
+                guard let dataSnapShot = dataSnapShot else {
+                    return promise(.failure(FirebaseCombineError.noDataError))
+                }
+                promise(.success(dataSnapShot))
             }
         }.eraseToAnyPublisher()
     }

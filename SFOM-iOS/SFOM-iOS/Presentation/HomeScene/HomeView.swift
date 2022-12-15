@@ -9,28 +9,18 @@ import SwiftUI
 import Combine
 
 final class HomeViewModel: ViewModel {
+    // private let postUseCase: PostUseCase = DefaultPostUseCase()
+    
     @Published var posts: [Post] = []
     private var cancellable = Set<AnyCancellable>()
     
     init() {
-        fetchPosts()
-    }
-    
-    func fetchPosts() {
-        FirebaseService.shared.firestore.collection("posts")
-            .whereField("state", isEqualTo: "published")
-            .getDocuments { [weak self] querySnapshot, error in
-                if let error = error { print(error) }
-                guard let querySnapshot = querySnapshot else { return }
-                self?.posts = querySnapshot.documents.compactMap { document in
-                    return try? document.data(as: Post.self)
-                }
-            }
+        
     }
 }
 
 struct HomeView: View {
-    @ObservedObject private var viewModel = HomeViewModel()
+    @ObservedObject private var viewModel: HomeViewModel = HomeViewModel()
     
     var body: some View {
         VStack (alignment: .leading) {

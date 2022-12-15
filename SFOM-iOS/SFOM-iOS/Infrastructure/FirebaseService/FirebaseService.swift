@@ -98,42 +98,49 @@ extension FirebaseService: NetworkAuthService {
 
 // MARK: - NetworkService
 extension FirebaseService: NetworkService {
-    func create<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T?, Error> {
+    func create<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error> {
         guard let documentReference = documentReference(endPoint: endPoint) else {
-            return Fail<T?, Error>(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
+            return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
         return documentReference.setDataPulisher(data: dto)
     }
     
-    func read<T: DTO>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<T?, Error> {
+    func read<T: DTO>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<T, Error> {
         guard let documentReference = documentReference(endPoint: endPoint) else {
-            return Fail<T?, Error>(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
+            return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
         return documentReference.getDocumentPublisher(type: type)
     }
     
-    func update<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T?, Error> {
+    func update<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error> {
         guard let documentReference = documentReference(endPoint: endPoint) else {
-            return Fail<T?, Error>(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
+            return Fail<T, Error>(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
         return documentReference.setDataPulisher(data: dto, merge: true)
     }
     
-    func delete<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T?, Error> {
+    func delete<T: DTO>(endPoint: EndPoint, dto: T) -> AnyPublisher<T, Error> {
         guard let documentReference = documentReference(endPoint: endPoint) else {
-            return Fail<T?, Error>(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
+            return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
         return documentReference.deletePublisher()
             .map{ _ in dto }
             .eraseToAnyPublisher()
     }
     
-    // func readAll<T: DTO>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<T?, Error> {
-    //     guard let collectionReference = collectionReference(endPoint: endPoint) else {
-    //         return Fail<T?, Error>(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
-    //     }
-    //     return collection
-    // }
+    func readAll<T: DTO>(endPoint: EndPoint, type: T.Type) -> AnyPublisher<[T], Error> {
+        guard let collectionReference = collectionReference(endPoint: endPoint) else {
+            return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
+        }
+        return collectionReference.getDocumentsPublisher(type: type)
+    }
+    
+    func readAllWithFilter<T: DTO>(endPoint: EndPoint, type: T.Type, filter: [FirebaseFilter]) -> AnyPublisher<[T], Error> {
+        guard let collectionReference = collectionReference(endPoint: endPoint) else {
+            return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
+        }
+        return collectionReference.getDocumentsPublisher(type: type)
+    }
 }
 
 // MARK: - Reference
@@ -141,33 +148,33 @@ private extension FirebaseService {
     func documentReference<E: EndPoint>(endPoint: E) -> DocumentReference? {
         let collectionPath = endPoint.reference.collection.path
         guard let documet = endPoint.reference.document,
-            let documnetPath = (documet.isCurrentUser ? uid.value : documet.path) else { return nil }
-
+              let documnetPath = (documet.isCurrentUser ? uid.value : documet.path) else { return nil }
+        
         guard let subCollectionPath = endPoint.reference.subCollection?.path else {
             return firestore
                 .collection(collectionPath)
                 .document(documnetPath)
         }
         guard let subDocumet = endPoint.reference.subDocument,
-            let subDocumnetPath = (documet.isCurrentUser ? uid.value : subDocumet.path) else { return nil }
-
+              let subDocumnetPath = (documet.isCurrentUser ? uid.value : subDocumet.path) else { return nil }
+        
         return firestore
             .collection(collectionPath)
             .document(documnetPath)
             .collection(subCollectionPath)
             .document(subDocumnetPath)
     }
-
+    
     func collectionReference<E: EndPoint>(endPoint: E) -> CollectionReference? {
         let collectionPath = endPoint.reference.collection.path
         guard let documet = endPoint.reference.document,
-            let documnetPath = (documet.isCurrentUser ? uid.value : documet.path) else { return nil }
-
+              let documnetPath = (documet.isCurrentUser ? uid.value : documet.path) else { return nil }
+        
         guard let subCollectionPath = endPoint.reference.subCollection?.path else {
             return firestore
                 .collection(collectionPath)
         }
-
+        
         return firestore
             .collection(collectionPath)
             .document(documnetPath)
@@ -177,46 +184,45 @@ private extension FirebaseService {
 
 
 // MARK: - Secure
-extension FirebaseService {
-    func saltPassword(email: String, password: String) -> AnyPublisher<String?, Never> {
+private extension FirebaseService {
+    func saltPassword(email: String, password: String) -> AnyPublisher<String?, Error> {
         guard let emailData = email.data(using: .utf8) else {
-            return Just<String?>(nil)
-                .eraseToAnyPublisher()
+            return  Fail(error: FirebaseCombineError.noDataError).eraseToAnyPublisher()
         }
         let child = SHA256.hash(data: emailData).compactMap { String(format: "%02x", $0) }.joined()
-
+        
         return self.reference.child("salts")
             .child(child)
             .getDataPublisher
             .timeout(.seconds(5), scheduler: DispatchQueue.global())
-            .catch { _ in Just<DataSnapshot?>(nil).eraseToAnyPublisher() }
+            .catch { _ in Fail(error: FirebaseCombineError.noDataError).eraseToAnyPublisher() }
             .map { [weak self] dataSnapshot -> String? in
-            guard let self = self else { return nil }
-            guard let dataSnapshotValue = dataSnapshot?.value else { return nil }
-
-            var salt = ""
-            if dataSnapshot!.value! is NSNull {
-                guard let sha1Email = self.sha1Hash(data: emailData).lastWord else { return nil }
-                salt = String(sha1Email.prefix(5))
-            } else {
-                guard let salt2 = (dataSnapshotValue as? NSDictionary)?["salt"] as? String else { return nil }
-                salt = salt2
+                guard let self = self else { return nil }
+                guard let dataSnapshotValue = dataSnapshot.value else { return nil }
+                
+                var salt = ""
+                if dataSnapshot.value! is NSNull {
+                    guard let sha1Email = self.sha1Hash(data: emailData).lastWord else { return nil }
+                    salt = String(sha1Email.prefix(5))
+                } else {
+                    guard let salt2 = (dataSnapshotValue as? NSDictionary)?["salt"] as? String else { return nil }
+                    salt = salt2
+                }
+                
+                guard let firstHashingData = "MCPE STORE\(password)ver2".data(using: .utf8) else { return nil }
+                guard let firstHashing = self.sha1Hash(data: firstHashingData).lastWord else { return nil }
+                guard let secondHashingData = "\(salt)\(firstHashing)MCPE_STORE_ver2".data(using: .utf8) else { return nil }
+                guard let secondHashing = self.sha2Hash(data: secondHashingData).lastWord else { return nil }
+                return secondHashing
             }
-
-            guard let firstHashingData = "MCPE STORE\(password)ver2".data(using: .utf8) else { return nil }
-            guard let firstHashing = self.sha1Hash(data: firstHashingData).lastWord else { return nil }
-            guard let secondHashingData = "\(salt)\(firstHashing)MCPE_STORE_ver2".data(using: .utf8) else { return nil }
-            guard let secondHashing = self.sha2Hash(data: secondHashingData).lastWord else { return nil }
-            return secondHashing
-        }
             .eraseToAnyPublisher()
     }
-
-    private func sha1Hash(data: Data) -> String {
+    
+    func sha1Hash(data: Data) -> String {
         return Insecure.SHA1.hash(data: data).description
     }
-
-    private func sha2Hash(data: Data) -> String {
+    
+    func sha2Hash(data: Data) -> String {
         return SHA512.hash(data: data).description
     }
 }
