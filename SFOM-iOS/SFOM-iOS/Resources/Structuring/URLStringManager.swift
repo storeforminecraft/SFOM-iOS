@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct URLStringManager {
     private init() { }
     static func urlString(key: String) -> String?{

@@ -7,6 +7,6 @@
 
 import Combine
 
-protocol PostUseCase {
+protocol HomeUseCase {
     func fetchPost() -> AnyPublisher<[Post], Never>
 }

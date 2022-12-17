@@ -9,13 +9,13 @@ import SwiftUI
 import Combine
 
 final class HomeViewModel: ViewModel {
-    private let postUseCase: PostUseCase = DefaultPostUseCase(postRepository: DefaultPostRepository(networkService: FirebaseService.shared))
+    private let homeUseCase: HomeUseCase = DefaultHomeUseCase(postRepository: DefaultPostRepository(networkService: FirebaseService.shared))
     
     @Published var posts: [Post] = []
     private var cancellable = Set<AnyCancellable>()
     
     init() {
-        postUseCase.fetchPost()
+        homeUseCase.fetchPost()
             .assign(to: \.posts, on: self)
             .store(in: &cancellable)
     }

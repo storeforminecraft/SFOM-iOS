@@ -60,7 +60,6 @@ struct SFOMIndicator: View {
         VStack {
             if state {
                 GeometryReader { proxy in
-                    
                     RadialGradient(gradient:
                                     Gradient(colors: [configure.color, configure.lastColor]),
                                    center: .center,

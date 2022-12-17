@@ -8,10 +8,16 @@
 import SwiftUI
 
 final class SignUpViewModel: ObservableObject {
+    private let authUseCase: AuthUseCase = DefaultAuthUseCase(authRepository: DefaultAuthRepository(networkAuthService: FirebaseService.shared))
+    
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var passwordConfirm: String = ""
     @Published var userName: String = ""
+    
+    func signOut(){
+        // authUseCase.signOut() 결과 처리
+    }
 }
 
 struct SignUpView: View {

@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+final class MenuViewModel: ViewModel {
+    
+}
+
 struct MenuView: View {
     var body: some View {
         Text("MenuView")

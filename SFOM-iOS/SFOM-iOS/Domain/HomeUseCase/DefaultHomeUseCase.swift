@@ -7,7 +7,7 @@
 
 import Combine
 
-final class DefaultPostUseCase {
+final class DefaultHomeUseCase {
     private let postRepository: PostRepository
     
     init(postRepository: PostRepository) {
@@ -15,7 +15,7 @@ final class DefaultPostUseCase {
     }
 }
 
-extension DefaultPostUseCase: PostUseCase {
+extension DefaultHomeUseCase: HomeUseCase {
     func fetchPost() -> AnyPublisher<[Post], Never> {
         postRepository.fetchPost()
     }

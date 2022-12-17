@@ -15,13 +15,15 @@ import FirebaseFirestoreSwift
 
 // MARK: - Configure
 final class FirebaseService {
+    static let shared = FirebaseService()
+    
+    private let auth: Auth
+    private let firestore: Firestore
+    private let reference: DatabaseReference
+    
     private let urlKey = "firebaseDatabaseURL"
     
-    static let shared = FirebaseService()
     let uid = CurrentValueSubject<String?, Never>(nil)
-    let auth: Auth
-    let firestore: Firestore
-    var reference: DatabaseReference
     
     private init() {
         FirebaseApp.configure()
