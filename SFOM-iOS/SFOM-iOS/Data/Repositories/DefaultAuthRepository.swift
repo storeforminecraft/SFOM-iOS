@@ -16,28 +16,20 @@ final class DefaultAuthRepository {
 }
 
 extension DefaultAuthRepository: AuthRepository {
-    func signIn(email: String, password: String) -> AnyPublisher<Bool, Never> {
-        networkAuthService.signIn(email: email, password: password)
-            .replaceError(with: false)
-            .eraseToAnyPublisher()
+    func signIn(email: String, password: String) -> AnyPublisher<Bool, Error> {
+        return networkAuthService.signIn(email: email, password: password)
     }
     
-    func signUp(email: String, password: String) -> AnyPublisher<Bool, Never> {
+    func signUp(email: String, password: String) -> AnyPublisher<Bool, Error> {
         return networkAuthService.signUp(email: email, password: password)
-            .replaceError(with: false)
-            .eraseToAnyPublisher()
     }
     
-    func signOut() -> AnyPublisher<Bool, Never> {
-        networkAuthService.signOut()
-            .replaceError(with: false)
-            .eraseToAnyPublisher()
+    func signOut() -> AnyPublisher<Bool, Error> {
+        return networkAuthService.signOut()
     }
     
-    func withdrawal() -> AnyPublisher<Bool, Never>  {
-        networkAuthService.withdrawal()
-            .replaceError(with: false)
-            .eraseToAnyPublisher()
+    func withdrawal() -> AnyPublisher<Bool, Error>  {
+        return networkAuthService.withdrawal()
     }
 }
 

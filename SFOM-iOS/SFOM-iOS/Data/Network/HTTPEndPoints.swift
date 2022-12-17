@@ -13,13 +13,20 @@ final class HTTPEndPoints {
 }
 
 extension HTTPEndPoints {
-    func profile(uid: String) -> HTTPEndPoint {
-        return HTTPEndPoint(prevPath: .profile, value: uid)
+    func search(keyword: String, page: Int) -> HTTPEndPoint {
+        return HTTPEndPoint(method: .get, path: .resource, query: [.keyword: keyword,
+                                                                   .page: "\(page)"])
+    }
+    
+    func userProfile(uid: String) -> HTTPEndPoint {
+        return HTTPEndPoint(method:.get, path: .userProfile, value: uid)
     }
     
     func increaseResourcesDownloads(resourceId: String) -> HTTPEndPoint {
-        return HTTPEndPoint(prevPath: .increaseResourcesDownloads, value: resourceId)
+        return HTTPEndPoint(method:.post, path: .increaseResourcesDownloads, value: resourceId)
     }
     
-    
+    func resetPassword(email: String) -> HTTPEndPoint {
+        return HTTPEndPoint(method:.get, path: .resetPassword, value: email)
+    }
 }

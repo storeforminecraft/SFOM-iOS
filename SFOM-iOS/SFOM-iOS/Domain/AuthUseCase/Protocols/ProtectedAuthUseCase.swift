@@ -8,5 +8,5 @@
 import Combine
 
 protocol ProtectedAuthUseCase {
-    func withdrawal() -> AnyPublisher<Bool, Never>
+    func withdrawal() -> AnyPublisher<Bool, Error>
 }

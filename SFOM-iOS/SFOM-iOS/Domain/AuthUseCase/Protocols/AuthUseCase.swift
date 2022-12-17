@@ -8,7 +8,7 @@
 import Combine
 
 protocol AuthUseCase {
-    func signIn(email: String, password: String) -> AnyPublisher<Bool, Never>
-    func signUp(email: String, password: String) -> AnyPublisher<Bool, Never>
-    func signOut() -> AnyPublisher<Bool, Never>
+    func signIn(email: String, password: String) -> AnyPublisher<Bool, Error>
+    func signUp(email: String, password: String) -> AnyPublisher<Bool, Error>
+    func signOut() -> AnyPublisher<Bool, Error>
 }

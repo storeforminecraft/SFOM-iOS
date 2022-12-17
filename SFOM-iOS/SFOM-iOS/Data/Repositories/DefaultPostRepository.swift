@@ -16,14 +16,13 @@ final class DefaultPostRepository {
 }
 
 extension DefaultPostRepository: PostRepository {
-    func fetchPost() -> AnyPublisher<[Post], Never> {
-        guard let endPoint = APIEndPoints.shared.posts() else { return Just<[Post]>([]).eraseToAnyPublisher() }
+    func fetchPost() -> AnyPublisher<[Post], Error> {
+        guard let endPoint = APIEndPoints.shared.posts() else {
+            return Fail(error: APIEndPointError.wrongEndPointError).eraseToAnyPublisher()
+        }
         let whereFields: [WhereField] = [.isEqualTo("state", value: "published")]
         return networkService.readAllWithFilter(endPoint: endPoint, type: PostDTO.self, whereFields: whereFields)
-            .map { $0.compactMap { dto in dto.toDomain() } }
-            .catch { error in
-                print(error)
-                return Just<[Post]>([]).eraseToAnyPublisher() }
+            .map { $0.compactMap { $0.toDomain() } }
             .eraseToAnyPublisher()
     }
 }

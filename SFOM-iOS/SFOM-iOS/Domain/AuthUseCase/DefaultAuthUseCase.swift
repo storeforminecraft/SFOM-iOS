@@ -16,21 +16,21 @@ final class DefaultAuthUseCase {
 }
 
 extension DefaultAuthUseCase: AuthUseCase {
-    func signIn(email: String, password: String) -> AnyPublisher<Bool, Never> {
+    func signIn(email: String, password: String) -> AnyPublisher<Bool, Error> {
         return authRepository.signIn(email: email, password: password)
     }
     
-    func signUp(email: String, password: String) -> AnyPublisher<Bool, Never> {
+    func signUp(email: String, password: String) -> AnyPublisher<Bool, Error> {
         return authRepository.signUp(email: email, password: password)
     }
 
-    func signOut() -> AnyPublisher<Bool, Never> {
+    func signOut() -> AnyPublisher<Bool, Error> {
         return authRepository.signOut()
     }
 }
 
 extension DefaultAuthUseCase: ProtectedAuthUseCase {
-    func withdrawal() -> AnyPublisher<Bool, Never> {
+    func withdrawal() -> AnyPublisher<Bool, Error> {
         guard let authRepository = authRepository as? ProtectedAuthRepository else { return Just(false).eraseToAnyPublisher() }
         return authRepository.withdrwal()
     }

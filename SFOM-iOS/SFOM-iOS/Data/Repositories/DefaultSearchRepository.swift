@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 final class DefaultSearchRepository {
     private let httpService: HTTPService
@@ -16,5 +17,10 @@ final class DefaultSearchRepository {
 }
 
 extension DefaultSearchRepository {
-    
+    func search(keyword: String, page: Int) -> AnyPublisher<SearchData, Error>{
+        let endPoint = HTTPEndPoints.shared.search(keyword: keyword, page: page)
+        return self.httpService.dataTaskPublisher(endPoint: endPoint, type: SearchDataDTO.self)
+            .map { $0.toDomain() }
+            .eraseToAnyPublisher()
+    }
 }

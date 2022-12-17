@@ -7,6 +7,19 @@
 
 import Foundation
 
+enum APIEndPointError {
+    case wrongEndPointError
+}
+
+extension APIEndPointError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .wrongEndPointError:
+            return NSLocalizedString("wrong EndPoint Error", comment: "wrong EndPoint")
+        }
+    }
+}
+
 final class APIEndPoints {
     static let shared = APIEndPoints()
     private init() { }

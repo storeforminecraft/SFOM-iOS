@@ -63,7 +63,6 @@ public struct SFOMImage: View {
         sfomImageViewModel.setDefaultImage(image: defaultImage)
         sfomImageViewModel.setFailureImage(image: failureImage)
         self.sfomImageViewModel.fetch(urlString: urlString)
-        print("get", (urlString.hashValue % 100))
     }
     
     public var body: some View {
@@ -79,12 +78,5 @@ public struct SFOMImage: View {
                     .tint(.accentColor)
             }
         }
-    }
-}
-
-struct SFOMImage_Previews: PreviewProvider {
-    static var previews: some View {
-        SFOMImage(urlString: "ht",
-                  defaultImage: Assets.Default.profileBackground.image)
     }
 }
