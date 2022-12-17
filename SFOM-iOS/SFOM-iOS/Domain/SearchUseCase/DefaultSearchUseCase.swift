@@ -12,7 +12,7 @@ final class DefaultSearchUseCase {
 }
 
 extension DefaultSearchUseCase: SearchUseCase {
-    func search(pagination: Int) -> AnyPublisher<[SearchData], Never> {
+    func search(keyword: String, page: Int, tag: String?, sort: String?) -> AnyPublisher<[SearchData], Never> {
         return Just<[SearchData]>([]).eraseToAnyPublisher()
     }
 }

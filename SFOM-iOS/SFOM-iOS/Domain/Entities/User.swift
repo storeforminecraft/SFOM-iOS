@@ -10,11 +10,15 @@ import Foundation
 struct User {
     let uid: String
     let nickname: String
-    let profileImage: String
+    let introduction: String
+    let profileImage: String?
+    let profileBackgroundImage: String?
     
-    init(uid: String, nickname: String, profileImage: String) {
+    init(uid: String, nickname: String, introduction: String, profileImage: String?, profileBackgroundImage: String?) {
         self.uid = uid
         self.nickname = nickname
+        self.introduction = introduction
         self.profileImage = profileImage
+        self.profileBackgroundImage = profileBackgroundImage
     }
 }

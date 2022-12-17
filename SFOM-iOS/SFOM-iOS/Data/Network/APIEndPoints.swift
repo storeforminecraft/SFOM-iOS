@@ -20,6 +20,7 @@ extension APIEndPointError: LocalizedError {
     }
 }
 
+// FIXME: - 정리 필요
 final class APIEndPoints {
     static let shared = APIEndPoints()
     private init() { }

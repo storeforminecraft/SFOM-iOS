@@ -10,19 +10,26 @@ import Foundation
 struct UserDTO: Codable {
     let uid: String
     let nickname: String
-    let profileImage: String
+    let introduction: String
+    let profileImage: String?
+    let profileBackgroundImage: String?
     
-    init(uid: String, nickname: String, profileImage: String) {
+    init(uid: String, nickname: String, introduction: String, profileImage: String?, profileBackgroundImage: String?) {
         self.uid = uid
         self.nickname = nickname
+        self.introduction = introduction
         self.profileImage = profileImage
+        self.profileBackgroundImage = profileBackgroundImage
     }
 }
+
 
 extension UserDTO {
     func toDomain() -> User {
         return User(uid: uid,
                     nickname: nickname,
-                    profileImage: profileImage)
+                    introduction: introduction,
+                    profileImage: profileImage,
+                    profileBackgroundImage: profileBackgroundImage)
     }
 }

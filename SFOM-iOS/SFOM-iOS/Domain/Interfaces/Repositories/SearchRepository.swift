@@ -5,8 +5,8 @@
 //  Created by 이전희 on 2022/12/18.
 //
 
-import Foundation
+import Combine
 
 protocol SearchRepository {
-    
+    func search(keyword: String, page: Int, tag: String?, sort: String?)->AnyPublisher<[SearchData],Error>
 }

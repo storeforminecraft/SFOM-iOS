@@ -17,10 +17,10 @@ final class DefaultSearchRepository {
 }
 
 extension DefaultSearchRepository {
-    func search(keyword: String, page: Int) -> AnyPublisher<SearchData, Error>{
-        let endPoint = HTTPEndPoints.shared.search(keyword: keyword, page: page)
-        return self.httpService.dataTaskPublisher(endPoint: endPoint, type: SearchDataDTO.self)
-            .map { $0.toDomain() }
+    func search(keyword: String, page: Int, tag: String?, sort: String?)->AnyPublisher<[SearchData],Error>{
+        let endPoint = HTTPEndPoints.shared.search(keyword: keyword, page: page, tag: tag, sort: sort)
+        return self.httpService.dataTaskPublisher(endPoint: endPoint, type: [SearchDataDTO].self)
+            .map { $0.map{ $0.toDomain() } }
             .eraseToAnyPublisher()
     }
 }

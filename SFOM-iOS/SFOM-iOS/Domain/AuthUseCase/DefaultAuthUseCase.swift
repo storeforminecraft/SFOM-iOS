@@ -31,7 +31,9 @@ extension DefaultAuthUseCase: AuthUseCase {
 
 extension DefaultAuthUseCase: ProtectedAuthUseCase {
     func withdrawal() -> AnyPublisher<Bool, Error> {
-        guard let authRepository = authRepository as? ProtectedAuthRepository else { return Just(false).eraseToAnyPublisher() }
+        guard let authRepository = authRepository as? ProtectedAuthRepository else {
+            return Fail(error: RepositoryError.castingError).eraseToAnyPublisher()
+        }
         return authRepository.withdrwal()
     }
 }
