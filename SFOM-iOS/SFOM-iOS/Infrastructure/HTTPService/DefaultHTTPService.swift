@@ -9,16 +9,8 @@ import Foundation
 import Combine
 
 final class DefaultHTTPService {
-    private let urlKey = "httpURL"
-    private let baseURL: String
-    
+    private let baseURL = URLStringManager.urlString(key: .httpURL)
     private let session = URLSession.shared
-    
-    init(){
-        guard let baseUrl = URLStringManager.urlString(key: self.urlKey) else { fatalError("DOSEN'T EXIST URLKEY") }
-        self.baseURL = baseUrl
-    }
-    
 }
 
 extension DefaultHTTPService {

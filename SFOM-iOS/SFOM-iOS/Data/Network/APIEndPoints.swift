@@ -22,33 +22,32 @@ private extension APIEndPoints {
 
 extension APIEndPoints {
     // MARK: - Collection
-    func posts(doc: String?, docIsUser: Bool?) -> SFOMEndPoint? {
+    func posts() -> SFOMEndPoint? {
         let collection = SFOMEndPoint.SFOMCollection.posts
-        let document = checkDocument(doc: doc, docIsUser: docIsUser)
-        return SFOMEndPoint(collection: collection, document: document)
+        return SFOMEndPoint(collection: collection, document: nil)
     }
 
-    func resources(doc: String, docIsUser: Bool?) -> SFOMEndPoint? {
+    func resources(doc: String?) -> SFOMEndPoint? {
         let collection = SFOMEndPoint.SFOMCollection.resources
-        let document = checkDocument(doc: doc, docIsUser: docIsUser)
+        let document = checkDocument(doc: doc, docIsUser: false)
         return SFOMEndPoint(collection: collection, document: document)
     }
 
-    func playlists(doc: String, docIsUser: Bool?) -> SFOMEndPoint? {
+    func playlists(doc: String?) -> SFOMEndPoint? {
         let collection = SFOMEndPoint.SFOMCollection.playlists
-        let document = checkDocument(doc: doc, docIsUser: docIsUser)
+        let document = checkDocument(doc: doc, docIsUser: false)
         return SFOMEndPoint(collection: collection, document: document)
     }
 
-    func ranksDaily(doc: String?, docIsUser: Bool?) -> SFOMEndPoint? {
+    func ranksDaily(doc: String?) -> SFOMEndPoint? {
         let collection = SFOMEndPoint.SFOMCollection.ranks_daily
-        let document = checkDocument(doc: doc, docIsUser: docIsUser)
+        let document = checkDocument(doc: doc, docIsUser: false)
         return SFOMEndPoint(collection: collection, document: document)
     }
 
-    func ranksMonthly(doc: String?, docIsUser: Bool?) -> SFOMEndPoint? {
+    func ranksMonthly(doc: String?) -> SFOMEndPoint? {
         let collection = SFOMEndPoint.SFOMCollection.ranks_monthly
-        let document = checkDocument(doc: doc, docIsUser: docIsUser)
+        let document = checkDocument(doc: doc, docIsUser: false)
         return SFOMEndPoint(collection: collection, document: document)
     }
 
@@ -58,15 +57,15 @@ extension APIEndPoints {
         return SFOMEndPoint(collection: collection, document: document)
     }
 
-    func favoritesResource(doc: String, docIsUser: Bool?) -> SFOMEndPoint? {
+    func favoritesResource(doc: String) -> SFOMEndPoint? {
         let collection = SFOMEndPoint.SFOMCollection.favorites_resource
-        let document = checkDocument(doc: doc, docIsUser: docIsUser)
+        let document = checkDocument(doc: doc, docIsUser: false)
         return SFOMEndPoint(collection: collection, document: document)
     }
 
-    func reports(doc: String?, docIsUser: Bool?) -> SFOMEndPoint? {
+    func reports(doc: String?) -> SFOMEndPoint? {
         let collection = SFOMEndPoint.SFOMCollection.reports
-        let document = checkDocument(doc: doc, docIsUser: docIsUser)
+        let document = checkDocument(doc: doc, docIsUser: false)
         return SFOMEndPoint(collection: collection, document: document)
     }
 

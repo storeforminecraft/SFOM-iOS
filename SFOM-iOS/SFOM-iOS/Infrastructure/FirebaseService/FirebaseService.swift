@@ -21,8 +21,6 @@ final class FirebaseService {
     private let firestore: Firestore
     private let reference: DatabaseReference
     
-    private let urlKey = "firebaseDatabaseURL"
-    
     let uid = CurrentValueSubject<String?, Never>(nil)
     
     private init() {
@@ -32,9 +30,8 @@ final class FirebaseService {
         
         let database = Database.database()
         database.isPersistenceEnabled = true
-        
-        guard let url = URLStringManager.urlString(key: urlKey) else { fatalError("DOSEN'T EXIST URL KEY") }
-        reference = database.reference(fromURL: url)
+        let databaseURL = URLStringManager.urlString(key: .firebaseDatabaseURL)
+        reference = database.reference(fromURL: databaseURL)
         reference.keepSynced(true)
         
         uid.send(auth.currentUser?.uid)

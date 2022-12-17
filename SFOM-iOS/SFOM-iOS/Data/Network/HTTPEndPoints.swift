@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+final class HTTPEndPoints {
+    static let shared = HTTPEndPoints()
+    private init() { }
+}
+
+private extension HTTPEndPoints {
+
+}

@@ -7,11 +7,19 @@
 
 import Foundation
 
+enum URLStringKey: String {
+    case firebaseDatabaseURL
+    case httpURL
+    case resourceURL
+    case imageURL
+}
+
 struct URLStringManager {
     private init() { }
-    static func urlString(key: String) -> String?{
-        guard let fileUrl = Bundle.main.url(forResource: "url", withExtension: "plist") else { return nil }
-        guard let urlDictionary = NSDictionary(contentsOf: fileUrl) else { return nil }
-        return urlDictionary[key] as? String
+    static func urlString(key: URLStringKey) -> String {
+        guard let fileUrl = Bundle.main.url(forResource: "url", withExtension: "plist") else { fatalError("DOSEN'T EXIST URL FILE") }
+        guard let urlDictionary = NSDictionary(contentsOf: fileUrl) else { fatalError("DOSEN'T EXIST URL KEY") }
+        guard let result = urlDictionary[key.rawValue] as? String else { fatalError("COULDN'T CONVERT TO STRING") }
+        return result
     }
 }

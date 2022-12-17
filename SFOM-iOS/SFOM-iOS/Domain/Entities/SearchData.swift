@@ -20,6 +20,16 @@ struct SearchData: Codable {
     private let _desc: [String: String]
     private let _name: [String: String]
     
+    var desc: String {
+        guard let tempValue = _desc.first?.value else { return "" }
+        return _desc[Localized.location] ?? tempValue
+    }
+    
+    var name: String {
+        guard let tempValue = _name.first?.value else { return "" }
+        return _name[Localized.location] ?? tempValue
+    }
+    
     init(authorUid: String,
          category:
          String, createdTimestamp: Date,
@@ -42,15 +52,5 @@ struct SearchData: Codable {
         self.tags = tags
         self._desc = desc
         self._name = name
-    }
-
-    var desc: String {
-        guard let tempValue = _desc.first?.value else { return "" }
-        return _desc[Localized.location] ?? tempValue
-    }
-    
-    var name: String {
-        guard let tempValue = _name.first?.value else { return "" }
-        return _name[Localized.location] ?? tempValue
     }
 }
