@@ -60,6 +60,9 @@
 		A5C3A0DD294BE80A00CC1940 /* url.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = A5C3A0DC294BE80A00CC1940 /* url.stringsdict */; };
 		A5C3A0DF294BE98B00CC1940 /* DefaultHTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3A0DE294BE98B00CC1940 /* DefaultHTTPService.swift */; };
 		A5C3A0E1294BE9C200CC1940 /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3A0E0294BE9C200CC1940 /* HTTPService.swift */; };
+		A5C3A0E4294BEDE200CC1940 /* SearchDataDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3A0E3294BEDE200CC1940 /* SearchDataDTO+Mapping.swift */; };
+		A5C3A0E6294BEFB900CC1940 /* ProtectedAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3A0E5294BEFB900CC1940 /* ProtectedAuthUseCase.swift */; };
+		A5C3A0E8294BF06C00CC1940 /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3A0E7294BF06C00CC1940 /* DefaultAuthRepository.swift */; };
 		A5CD4571294ADDE2009F47C1 /* HTTPEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD4570294ADDE1009F47C1 /* HTTPEndPoint.swift */; };
 		A5CD4573294AE01E009F47C1 /* FirebaseFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD4572294AE01E009F47C1 /* FirebaseFilter.swift */; };
 		A5CD4578294AE1CD009F47C1 /* CollectionReference+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD4577294AE1CD009F47C1 /* CollectionReference+.swift */; };
@@ -136,6 +139,9 @@
 		A5C3A0DC294BE80A00CC1940 /* url.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = url.stringsdict; sourceTree = "<group>"; };
 		A5C3A0DE294BE98B00CC1940 /* DefaultHTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHTTPService.swift; sourceTree = "<group>"; };
 		A5C3A0E0294BE9C200CC1940 /* HTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
+		A5C3A0E3294BEDE200CC1940 /* SearchDataDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchDataDTO+Mapping.swift"; sourceTree = "<group>"; };
+		A5C3A0E5294BEFB900CC1940 /* ProtectedAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectedAuthUseCase.swift; sourceTree = "<group>"; };
+		A5C3A0E7294BF06C00CC1940 /* DefaultAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthRepository.swift; sourceTree = "<group>"; };
 		A5CD4570294ADDE1009F47C1 /* HTTPEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPEndPoint.swift; sourceTree = "<group>"; };
 		A5CD4572294AE01E009F47C1 /* FirebaseFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFilter.swift; sourceTree = "<group>"; };
 		A5CD4577294AE1CD009F47C1 /* CollectionReference+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionReference+.swift"; sourceTree = "<group>"; };
@@ -241,8 +247,8 @@
 		A5502EFE2943867300A4D18A /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				A5807CED294A20F800E2EB07 /* Protocols */,
 				A5807CEC294A20E500E2EB07 /* EndPoints */,
+				A5807CED294A20F800E2EB07 /* Protocols */,
 				A5502EFF2943868200A4D18A /* FirebaseService */,
 				A520E6E029482F3E00CACB55 /* HTTPService */,
 			);
@@ -272,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				A5502F02294386DA00A4D18A /* AuthUseCase.swift */,
+				A5C3A0E5294BEFB900CC1940 /* ProtectedAuthUseCase.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -324,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				A5D285D02946367D001F9343 /* PostDTO+Mapping.swift */,
+				A5C3A0E3294BEDE200CC1940 /* SearchDataDTO+Mapping.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -348,7 +356,7 @@
 				A5CFA71429273548004C1F2B /* HomeScene */,
 				A5CFA7152927354F004C1F2B /* SearchScene */,
 				A5CFA71B29273658004C1F2B /* MenuScene */,
-				A5EEA024293892C40000AAB5 /* CommonView */,
+				A5EEA024293892C40000AAB5 /* CommonScene */,
 				A5CFA7242927424D004C1F2B /* Components */,
 			);
 			path = Presentation;
@@ -361,8 +369,8 @@
 				A5502F00294386C000A4D18A /* AuthUseCase */,
 				A5502EF7294385F100A4D18A /* UserUseCase */,
 				A5502EEF2943858F00A4D18A /* ResourceUseCase */,
-				A5502EE92943855800A4D18A /* SearchUseCase */,
 				A56386C729432AB000A8CEEA /* PostUseCase */,
+				A5502EE92943855800A4D18A /* SearchUseCase */,
 				A56386C62943289000A8CEEA /* Entities */,
 			);
 			path = Domain;
@@ -447,14 +455,23 @@
 			path = AuthScene;
 			sourceTree = "<group>";
 		};
-		A5A81BA729459AA200E1A9B3 /* extensions */ = {
+		A5A81BA729459AA200E1A9B3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				A5CFA7252927428B004C1F2B /* Color+.swift */,
 				A5CFA72A29274881004C1F2B /* String+.swift */,
 				A597154C292E6DFC0081E71A /* Font+.swift */,
 			);
-			path = extensions;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A5C3A0E2294BEACB00CC1940 /* Structuring */ = {
+			isa = PBXGroup;
+			children = (
+				A597154E292E6F220081E71A /* Localized.swift */,
+				A5CFA72829274846004C1F2B /* Assets.swift */,
+			);
+			path = Structuring;
 			sourceTree = "<group>";
 		};
 		A5CD4574294AE021009F47C1 /* Utils */ = {
@@ -560,13 +577,12 @@
 		A5CFA71D2927375A004C1F2B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A5C3A0DC294BE80A00CC1940 /* url.stringsdict */,
-				A597154E292E6F220081E71A /* Localized.swift */,
-				A5CFA72829274846004C1F2B /* Assets.swift */,
-				A5A783482930679C008B9A62 /* GoogleService-Info.plist */,
+				A5C3A0E2294BEACB00CC1940 /* Structuring */,
 				A5CFA7002927322E004C1F2B /* Assets.xcassets */,
-				A5CFA72229273AF9004C1F2B /* LaunchScreen.storyboard */,
 				A5D4EEC5292E6C210005812C /* Localizable.strings */,
+				A5C3A0DC294BE80A00CC1940 /* url.stringsdict */,
+				A5A783482930679C008B9A62 /* GoogleService-Info.plist */,
+				A5CFA72229273AF9004C1F2B /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -588,7 +604,7 @@
 			children = (
 				A5502F122943909B00A4D18A /* typealias.swift */,
 				A52019FC293C8B6F00FAA9B4 /* SFOMCategory.swift */,
-				A5A81BA729459AA200E1A9B3 /* extensions */,
+				A5A81BA729459AA200E1A9B3 /* Extensions */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -597,18 +613,19 @@
 			isa = PBXGroup;
 			children = (
 				A5D285D2294637F8001F9343 /* DefaultPostRepository.swift */,
+				A5C3A0E7294BF06C00CC1940 /* DefaultAuthRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
 		};
-		A5EEA024293892C40000AAB5 /* CommonView */ = {
+		A5EEA024293892C40000AAB5 /* CommonScene */ = {
 			isa = PBXGroup;
 			children = (
 				A5EEA025293892DF0000AAB5 /* ProfileView.swift */,
 				A5602D7629390DB70042496A /* ContentView.swift */,
 				A5602D7829390DD40042496A /* PostView.swift */,
 			);
-			path = CommonView;
+			path = CommonScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -719,6 +736,7 @@
 				A525E7B2293B38C3006246FA /* SearchData.swift in Sources */,
 				A5502F282943CCDD00A4D18A /* DatabaseReference+Publisher.swift in Sources */,
 				A5EEA02129388F240000AAB5 /* User.swift in Sources */,
+				A5C3A0E4294BEDE200CC1940 /* SearchDataDTO+Mapping.swift in Sources */,
 				A5EEA02A293896E40000AAB5 /* SignUpView.swift in Sources */,
 				A5502EEC2943857100A4D18A /* SearchUseCase.swift in Sources */,
 				A5502F0D29438B6200A4D18A /* DownloadListStorage.swift in Sources */,
@@ -736,6 +754,7 @@
 				A50DE8FC292B32D800E1FD60 /* SFOMComponents.swift in Sources */,
 				A571C871294384EE00988822 /* SignUpViewModel.swift in Sources */,
 				A5502EF4294385B300A4D18A /* DefaultResouceUseCase.swift in Sources */,
+				A5C3A0E8294BF06C00CC1940 /* DefaultAuthRepository.swift in Sources */,
 				A5CD4578294AE1CD009F47C1 /* CollectionReference+.swift in Sources */,
 				A59132DC293B886C00D28CCA /* Resource.swift in Sources */,
 				A5CFA7262927428B004C1F2B /* Color+.swift in Sources */,
@@ -758,6 +777,7 @@
 				A5C3A0DB294BE41C00CC1940 /* HTTPEndPoints.swift in Sources */,
 				A5C3A0D9294B42C700CC1940 /* Query+.swift in Sources */,
 				A5502F1129438C6500A4D18A /* CoreDataDownloadListStorage.swift in Sources */,
+				A5C3A0E6294BEFB900CC1940 /* ProtectedAuthUseCase.swift in Sources */,
 				A5502F0B29438A9C00A4D18A /* AuthRepository.swift in Sources */,
 				A56386CC29432B4900A8CEEA /* DefaultPostUseCase.swift in Sources */,
 				A5502F1E2943A73E00A4D18A /* APIEndPoints.swift in Sources */,

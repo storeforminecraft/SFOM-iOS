@@ -17,7 +17,7 @@ final class DefaultPostRepository {
 
 extension DefaultPostRepository: PostRepository {
     func fetchPost() -> AnyPublisher<[Post], Never> {
-        guard let endPoint = SFOMEndPoint(collection: SFOMEndPoint.SFOMCollection.posts, document: nil) else {
+        guard let endPoint = SFOMEndPoint(collection: SFOMEndPoint.SFOMCollection.posts, document: nil) as FIREndPoint? else {
             return Just<[Post]>([]).eraseToAnyPublisher()
         }
         let whereFields: [WhereField] = [.isEqualTo("state", value: "published")]

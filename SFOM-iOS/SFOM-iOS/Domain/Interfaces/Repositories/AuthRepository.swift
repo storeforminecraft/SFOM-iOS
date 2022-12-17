@@ -8,7 +8,8 @@
 import Combine
 
 protocol AuthRepository {
-    func signIn() -> AnyPublisher<Bool, Never>
+    func signIn(email: String, password: String) -> AnyPublisher<Bool, Never>
+    func signUp(email: String, password: String) -> AnyPublisher<Bool, Never>
     func signOut() -> AnyPublisher<Bool, Never>
 }
 

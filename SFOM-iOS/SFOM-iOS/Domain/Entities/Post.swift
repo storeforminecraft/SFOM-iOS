@@ -23,7 +23,20 @@ struct Post {
     var translatedBodies: [String: PostBody]
     var translatedTitles: [String: String]
     
-    init(id: String, authorUid: String, basedLanguage: String, boardId: String, body: PostBody? = nil, bodyType: String, coverImage: String? = nil, createdTimestamp: Date? = nil, modifiedTimestamp: Date? = nil, state: String, tags: [String]? = nil, title: String, translatedBodies: [String : PostBody], translatedTitles: [String : String]) {
+    init(id: String,
+         authorUid: String,
+         basedLanguage: String,
+         boardId: String,
+         body: PostBody?,
+         bodyType: String,
+         coverImage: String?,
+         createdTimestamp: Date?,
+         modifiedTimestamp: Date?,
+         state: String,
+         tags: [String]?,
+         title: String,
+         translatedBodies: [String : PostBody],
+         translatedTitles: [String : String]) {
         self.id = id
         self.authorUid = authorUid
         self.basedLanguage = basedLanguage
