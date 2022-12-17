@@ -8,11 +8,26 @@
 import SwiftUI
 import Combine
 
-fileprivate final class SFOMImageViewModel: ObservableObject {
-    @Published var image: UIImage? = nil
+// TODO: - 이미지 캐싱 및 view model 처리 작업
+final class SFOMImageViewModel: ObservableObject {
+    @Published private(set) var image: Image? = nil
+    @Published private(set) var progressing: Bool = false
+    
+    private var failureImage: Image? = nil
+    
     private var cancellable = Set<AnyCancellable>()
     
+    func setDefaultImage(image: Image?) {
+        self.image = image
+    }
+    
+    func setFailureImage(image: Image?) {
+        self.failureImage = image
+    }
+    
     func fetch(urlString: String){
+        self.image = nil
+        self.progressing = true
         guard let url = URL(string: urlString) else { return }
         URLSession(configuration: .default)
             .dataTaskPublisher(for: url)
@@ -20,42 +35,49 @@ fileprivate final class SFOMImageViewModel: ObservableObject {
             .catch{ error -> AnyPublisher<Data?, Never> in
                 Just<Data?>(nil).eraseToAnyPublisher()
             }
+            .receive(on: DispatchQueue.main)
             .sink(receiveValue: self.receiveResponse(data:))
             .store(in: &cancellable)
     }
     
     private func receiveResponse(data: Data?) {
-        guard let data =  data else { return }
-        self.image = UIImage(data:data)
+        self.progressing = false
+        guard let data =  data,  let uiImage = UIImage(data:data) else {
+            if let failureImage = self.failureImage {
+                self.image = failureImage
+            }
+            return
+        }
+        self.image = Image(uiImage: uiImage)
     }
 }
 
-struct SFOMImage: View {
+public struct SFOMImage: View {
     @ObservedObject private var sfomImageViewModel = SFOMImageViewModel()
-    private var defaultImage: Image?
     
-    init(urlString: String, defaultImage: Image? = nil, failureImage: Image? = nil){
-        self.defaultImage = defaultImage
-        self.sfomImageViewModel.fetch(urlString: urlString)
+    init(defaultImage: Image){
+        sfomImageViewModel.setDefaultImage(image: defaultImage)
     }
     
-    var body: some View {
-        if let uiImage = sfomImageViewModel.image {
-            ZStack{
-                Image(uiImage: uiImage)
+    init(urlString: String, defaultImage: Image? = nil, failureImage: Image? = nil){
+        sfomImageViewModel.setDefaultImage(image: defaultImage)
+        sfomImageViewModel.setFailureImage(image: failureImage)
+        self.sfomImageViewModel.fetch(urlString: urlString)
+        print("get", (urlString.hashValue % 100))
+    }
+    
+    public var body: some View {
+        ZStack (alignment: .center) {
+            if let sfomImage = sfomImageViewModel.image {
+                sfomImage
                     .resizable()
             }
-        } else if let defaultImage = defaultImage {
-            ZStack{
-                defaultImage
-                    .resizable()
+            if sfomImageViewModel.progressing {
                 ProgressView()
                     .progressViewStyle(.circular)
                     .scaleEffect(3)
                     .tint(.accentColor)
             }
-        } else {
-            defaultImage
         }
     }
 }
