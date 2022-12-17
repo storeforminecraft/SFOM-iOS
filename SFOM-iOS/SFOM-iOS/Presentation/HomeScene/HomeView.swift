@@ -27,10 +27,11 @@ struct HomeView: View {
     var body: some View {
         VStack (alignment: .leading) {
             homeNavigationBar
-            ScrollView {
+            ScrollView(.horizontal, showsIndicators: false) {
                 postItemsView
             }
-            
+            .menuIndicator(.hidden)
+            Spacer()
         }
     }
     
@@ -83,14 +84,14 @@ struct HomeView: View {
     }
     
     private var postItemsView: some View {
-        VStack {
+        HStack {
             ForEach(viewModel.posts, id: \.id) { post in
                 SFOMPostItemView(post: post) {
                     PostView(post: post)
                 }
-                .background(.gray)
             }
         }
+        .frame(height: 200)
         .padding()
     }
 }

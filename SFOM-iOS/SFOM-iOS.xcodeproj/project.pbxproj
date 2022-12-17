@@ -78,6 +78,7 @@
 		A5EF977C294DAB4400CD35FF /* DefaultAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF9778294DAB4400CD35FF /* DefaultAuthUseCase.swift */; };
 		A5EF977D294DAB4400CD35FF /* ProtectedAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF977A294DAB4400CD35FF /* ProtectedAuthUseCase.swift */; };
 		A5EF977E294DAB4400CD35FF /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF977B294DAB4400CD35FF /* AuthUseCase.swift */; };
+		A5EF9780294DBBE200CD35FF /* SFOMNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF977F294DBBE200CD35FF /* SFOMNavigationLink.swift */; };
 		A5F4CD46294506FB00789813 /* FirebaseCombineError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F4CD45294506FB00789813 /* FirebaseCombineError.swift */; };
 		A5F4CD4829451CC300789813 /* NetworkAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F4CD4729451CC300789813 /* NetworkAuthService.swift */; };
 		A5F4CD4A2945235700789813 /* CollectionReference+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F4CD492945235700789813 /* CollectionReference+Publisher.swift */; };
@@ -154,6 +155,7 @@
 		A5EF9778294DAB4400CD35FF /* DefaultAuthUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAuthUseCase.swift; sourceTree = "<group>"; };
 		A5EF977A294DAB4400CD35FF /* ProtectedAuthUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtectedAuthUseCase.swift; sourceTree = "<group>"; };
 		A5EF977B294DAB4400CD35FF /* AuthUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
+		A5EF977F294DBBE200CD35FF /* SFOMNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMNavigationLink.swift; sourceTree = "<group>"; };
 		A5F4CD45294506FB00789813 /* FirebaseCombineError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCombineError.swift; sourceTree = "<group>"; };
 		A5F4CD4729451CC300789813 /* NetworkAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAuthService.swift; sourceTree = "<group>"; };
 		A5F4CD492945235700789813 /* CollectionReference+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionReference+Publisher.swift"; sourceTree = "<group>"; };
@@ -507,6 +509,7 @@
 			isa = PBXGroup;
 			children = (
 				A50DE8FB292B32D800E1FD60 /* SFOMComponents.swift */,
+				A5EF977F294DBBE200CD35FF /* SFOMNavigationLink.swift */,
 				A525E7B5293B4F2D006246FA /* SFOMItemView.swift */,
 				A52019FA293C857500FAA9B4 /* SFOMSkinImage.swift */,
 				A57669AC294609FD00D44CD2 /* SFOMIndicator.swift */,
@@ -671,6 +674,7 @@
 				A5971554292E7CE90081E71A /* SignInView.swift in Sources */,
 				A57669AF29461BF900D44CD2 /* SFOMImage.swift in Sources */,
 				A5F4CD4829451CC300789813 /* NetworkAuthService.swift in Sources */,
+				A5EF9780294DBBE200CD35FF /* SFOMNavigationLink.swift in Sources */,
 				A597154D292E6DFC0081E71A /* Font+.swift in Sources */,
 				A5502F132943909B00A4D18A /* typealias.swift in Sources */,
 				A5502F072943883300A4D18A /* NetworkService.swift in Sources */,

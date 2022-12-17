@@ -22,18 +22,16 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
         } label: {
             ZStack(alignment: .topLeading) {
                 if let coverImage = post.coverImage, coverImage != "" {
-                    // KFImage(URL(string: coverImage))
-                    //     .resizable()
-                    //     .scaledToFill()
-                    //     .cornerRadius(14)
-                    //     .overlay(RoundedRectangle(cornerRadius: 14)
-                    //     .foregroundColor(.black)
-                    //     .opacity(0.3))
-                    VStack{}
+                    SFOMImage(urlString: coverImage)
+                        .aspectRatio(1.7, contentMode: .fit)
+                        .cornerRadius(14)
+                        .overlay(RoundedRectangle(cornerRadius: 14)
+                        .foregroundColor(.black)
+                        .opacity(0.3))
                 } else {
                     Assets.Default.profileBackground.image
                         .resizable()
-                        .scaledToFill()
+                        .aspectRatio(1.7, contentMode: .fit)
                         .cornerRadius(14)
                         .overlay(RoundedRectangle(cornerRadius: 14)
                         .foregroundColor(.black)
