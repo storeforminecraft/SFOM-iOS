@@ -34,30 +34,7 @@ final class SearchViewModel: ObservableObject {
     }
 
     func search() {
-        // AF.request("https://asia-northeast3-storeforminecraft.cloudfunctions.net/v1/resources",
-        //            method: .get,
-        //            parameters: ["keyword": searchText,
-        //                         "pagenation": pagenation],
-        //            encoding: URLEncoding.queryString)
-        //     .responseDecodable(of: [SearchData].self) { response in
-        //     if let responseData = response.value {
-        //         responseData
-        //             .publisher
-        //             .flatMap { searchData in
-        //             return FirebaseService.shared.firestore.collection("resources")
-        //                 .document(searchData.id)
-        //                 .getDocumentPublisher(type: Resource.self)
-        //         }
-        //             .compactMap { $0 }
-        //             .collect()
-        //             .sink { data in
-        //             self.pagenation += 1
-        //             self.searchData += data.sorted { r1, r2 in
-        //                 r1.modifiedTimestamp > r2.modifiedTimestamp
-        //             }
-        //         }.store(in: &self.cancelBag)
-        //     }
-        // }
+
     }
 }
 

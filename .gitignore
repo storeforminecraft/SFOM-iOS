@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/xcode,firebase,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=xcode,firebase,macos
+### main ###
+url.plist
 
 ### Firebase ###
 .idea
@@ -61,4 +61,4 @@ xcuserdata/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-# End of https://www.toptal.com/developers/gitignore/api/xcode,firebase,macos
+

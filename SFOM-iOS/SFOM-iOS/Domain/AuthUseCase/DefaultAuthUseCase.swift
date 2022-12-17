@@ -8,19 +8,31 @@
 import Combine
 
 final class DefaultAuthUseCase {
-
+    private let authRepository: AuthRepository
+    
+    init(authRepository: AuthRepository) {
+        self.authRepository = authRepository
+    }
 }
 
 extension DefaultAuthUseCase: AuthUseCase {
-    func signIn() -> AnyPublisher<Bool, Error> {
-
+    func signIn(email: String, password: String) -> AnyPublisher<Bool, Never> {
+        return authRepository.signIn(email: email, password: password)
+    }
+    
+    func signUp(email: String, password: String) -> AnyPublisher<Bool, Never> {
+        return authRepository.signUp(email: email, password: password)
     }
 
-    func signUp() -> AnyPublisher<Bool, Error> {
-
-    }
-
-    func signOut() -> AnyPublisher<Bool, Error> {
-
+    func signOut() -> AnyPublisher<Bool, Never> {
+        return authRepository.signOut()
     }
 }
+
+extension DefaultAuthUseCase: ProtectedAuthUseCase {
+    func withdrawal() -> AnyPublisher<Bool, Never> {
+        guard let authRepository = authRepository as? ProtectedAuthRepository else { return Just(false).eraseToAnyPublisher() }
+        return authRepository.withdrwal()
+    }
+}
+

@@ -9,5 +9,7 @@ import Foundation
 import Combine
 
 public struct HTTPEndPoint {
-    
+    var path: String {
+        return ""
+    }
 }

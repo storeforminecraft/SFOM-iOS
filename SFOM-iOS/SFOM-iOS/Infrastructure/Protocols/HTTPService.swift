@@ -11,3 +11,8 @@ protocol HTTPService {
     func get(endPoint: HTTPEndPoint)
     func post(endPoint: HTTPEndPoint)
 }
+
+enum HTTPMethod: String {
+    case get
+    case post
+}
