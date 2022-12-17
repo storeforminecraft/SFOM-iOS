@@ -79,6 +79,7 @@
 		A5EEA02A293896E40000AAB5 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEA029293896E40000AAB5 /* SignUpView.swift */; };
 		A5EF9769294D958600CD35FF /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF9768294D958600CD35FF /* DownloadView.swift */; };
 		A5EF976B294D991C00CD35FF /* url.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5EF976A294D991C00CD35FF /* url.plist */; };
+		A5EF976D294D9B2100CD35FF /* URLStringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF976C294D9B2100CD35FF /* URLStringManager.swift */; };
 		A5F4CD46294506FB00789813 /* FirebaseCombineError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F4CD45294506FB00789813 /* FirebaseCombineError.swift */; };
 		A5F4CD4829451CC300789813 /* NetworkAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F4CD4729451CC300789813 /* NetworkAuthService.swift */; };
 		A5F4CD4A2945235700789813 /* CollectionReference+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F4CD492945235700789813 /* CollectionReference+Publisher.swift */; };
@@ -155,6 +156,8 @@
 		A5EEA029293896E40000AAB5 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		A5EF9768294D958600CD35FF /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
 		A5EF976A294D991C00CD35FF /* url.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = url.plist; sourceTree = "<group>"; };
+		A5EF976C294D9B2100CD35FF /* URLStringManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLStringManager.swift; sourceTree = "<group>"; };
+		A5EF976E294DA6D200CD35FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A5F4CD45294506FB00789813 /* FirebaseCombineError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCombineError.swift; sourceTree = "<group>"; };
 		A5F4CD4729451CC300789813 /* NetworkAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAuthService.swift; sourceTree = "<group>"; };
 		A5F4CD492945235700789813 /* CollectionReference+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionReference+Publisher.swift"; sourceTree = "<group>"; };
@@ -406,6 +409,7 @@
 			children = (
 				A597154E292E6F220081E71A /* Localized.swift */,
 				A5CFA72829274846004C1F2B /* Assets.swift */,
+				A5EF976C294D9B2100CD35FF /* URLStringManager.swift */,
 			);
 			path = Structuring;
 			sourceTree = "<group>";
@@ -439,6 +443,7 @@
 		A5CFA6FB2927322C004C1F2B /* SFOM-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				A5EF976E294DA6D200CD35FF /* Info.plist */,
 				A5CFA7162927356A004C1F2B /* App */,
 				A56386C22943273400A8CEEA /* Presentation */,
 				A56386C32943275E00A8CEEA /* Domain */,
@@ -679,6 +684,7 @@
 				A5971557292E7D310081E71A /* Post.swift in Sources */,
 				A5602D7729390DB70042496A /* ContentView.swift in Sources */,
 				A5CFA71A29273626004C1F2B /* MainView.swift in Sources */,
+				A5EF976D294D9B2100CD35FF /* URLStringManager.swift in Sources */,
 				A5D285D12946367D001F9343 /* PostDTO+Mapping.swift in Sources */,
 				A5D285D3294637F8001F9343 /* DefaultPostRepository.swift in Sources */,
 				A5602D7929390DD40042496A /* PostView.swift in Sources */,
@@ -856,8 +862,8 @@
 				DEVELOPMENT_TEAM = B2XR5545F7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SFOM-iOS/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -890,8 +896,8 @@
 				DEVELOPMENT_TEAM = B2XR5545F7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SFOM-iOS/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;

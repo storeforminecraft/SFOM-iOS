@@ -15,16 +15,16 @@ struct PostView: View {
     }
 }
 
-struct PostView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostView(post: Post(id: "aaaa",
-                            authorUid: "aaaa",
-                            basedLanguage: "aaaa",
-                            boardId: "aaaa",
-                            bodyType: "aaaa",
-                            state: "aaaa",
-                            title: "aaaa",
-                            translatedBodies: [:],
-                            translatedTitles: [:]))
-    }
-}
+// struct PostView_Previews: PreviewProvider {
+//     static var previews: some View {
+//         PostView(post: Post(id: "aaaa",
+//                             authorUid: "aaaa",
+//                             basedLanguage: "aaaa",
+//                             boardId: "aaaa",
+//                             bodyType: "aaaa",
+//                             state: "aaaa",
+//                             title: "aaaa",
+//                             translatedBodies: [:],
+//                             translatedTitles: [:]))
+//     }
+// }
