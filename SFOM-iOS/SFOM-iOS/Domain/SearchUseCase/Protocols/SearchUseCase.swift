@@ -8,5 +8,5 @@
 import Combine
 
 protocol SearchUseCase {
-    func search(keyword: String, page: Int, tag: String?, sort: String?) -> AnyPublisher<[SearchData], Never>
+    func search(keyword: String, page: Int, tag: String?, sort: String?) -> AnyPublisher<[SearchData], Error>
 }

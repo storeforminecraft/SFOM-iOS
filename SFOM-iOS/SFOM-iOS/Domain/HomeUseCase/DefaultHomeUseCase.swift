@@ -16,7 +16,7 @@ final class DefaultHomeUseCase {
 }
 
 extension DefaultHomeUseCase: HomeUseCase {
-    func fetchPost() -> AnyPublisher<[Post], Never> {
+    func fetchPost() -> AnyPublisher<[Post], Error> {
         postRepository.fetchPost()
     }
 }

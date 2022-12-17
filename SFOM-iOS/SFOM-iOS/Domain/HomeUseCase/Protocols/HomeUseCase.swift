@@ -8,5 +8,5 @@
 import Combine
 
 protocol HomeUseCase {
-    func fetchPost() -> AnyPublisher<[Post], Never>
+    func fetchPost() -> AnyPublisher<[Post], Error>
 }

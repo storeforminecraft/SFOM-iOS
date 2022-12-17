@@ -8,11 +8,15 @@
 import Combine
 
 final class DefaultSearchUseCase {
+    private let searchRepository: SearchRepository
     
+    init(searchRepository: SearchRepository) {
+        self.searchRepository = searchRepository
+    }
 }
 
 extension DefaultSearchUseCase: SearchUseCase {
-    func search(keyword: String, page: Int, tag: String?, sort: String?) -> AnyPublisher<[SearchData], Never> {
-        return Just<[SearchData]>([]).eraseToAnyPublisher()
+    func search(keyword: String, page: Int, tag: String?, sort: String?) -> AnyPublisher<[SearchData], Error> {
+        return searchRepository.search(keyword: keyword, page: page, tag: tag, sort: sort)
     }
 }
