@@ -113,6 +113,4 @@ extension APIEndPoints {
                             subCollection: subCollection,
                             subDocument: subDocument)
     }
-
-
 }

@@ -17,7 +17,7 @@ final class DefaultPostRepository {
 
 extension DefaultPostRepository: PostRepository {
     func fetchPost() -> AnyPublisher<[Post], Never> {
-        let endPoint = APIEndPoints.shared.posts()
+        guard let endPoint = APIEndPoints.shared.posts() else { return Just<[Post]>([]).eraseToAnyPublisher() }
         let whereFields: [WhereField] = [.isEqualTo("state", value: "published")]
         return networkService.readAllWithFilter(endPoint: endPoint, type: PostDTO.self, whereFields: whereFields)
             .map { $0.compactMap { dto in dto.toDomain() } }

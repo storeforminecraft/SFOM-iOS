@@ -18,9 +18,9 @@ extension DefaultHTTPService {
 }
 
 private extension DefaultHTTPService {
-    private func createURL(endPoint: HTTPEndPoint) {
-        guard let url = URL(string: baseURL + endPoint.path) else { return }
-        let request = URLRequest(url: url)
+    private func path(endPoint: HTTPEndPoint) {
+        // guard let url = URL(string: baseURL + endPoint.path) else { return }
+        // let request = URLRequest(url: url)
     }
     
     private func dataTask<D: Decodable>(for url: URL, type: D.Type) -> AnyPublisher<D, URLError> {
@@ -39,13 +39,3 @@ private extension DefaultHTTPService {
             .eraseToAnyPublisher()
     }
 }
-
-
-// AF.request(,
-//            method: .get,
-//            parameters: ["keyword": searchText,
-//                         "pagenation": pagenation],
-//            encoding: URLEncoding.queryString)
-//     .responseDecodable(of: [SearchData].self) { response i)
-//     }
-// }

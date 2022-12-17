@@ -81,6 +81,7 @@
 		A5EF9780294DBBE200CD35FF /* SFOMNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF977F294DBBE200CD35FF /* SFOMNavigationLink.swift */; };
 		A5EF9782294DD9D700CD35FF /* ResourceDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF9781294DD9D700CD35FF /* ResourceDTO+Mapping.swift */; };
 		A5EF9784294DDB4700CD35FF /* UserDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF9783294DDB4700CD35FF /* UserDTO+Mapping.swift */; };
+		A5EF9786294DE2F000CD35FF /* DefaultSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF9785294DE2F000CD35FF /* DefaultSearchRepository.swift */; };
 		A5F4CD46294506FB00789813 /* FirebaseCombineError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F4CD45294506FB00789813 /* FirebaseCombineError.swift */; };
 		A5F4CD4829451CC300789813 /* NetworkAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F4CD4729451CC300789813 /* NetworkAuthService.swift */; };
 		A5F4CD4A2945235700789813 /* CollectionReference+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F4CD492945235700789813 /* CollectionReference+Publisher.swift */; };
@@ -160,6 +161,7 @@
 		A5EF977F294DBBE200CD35FF /* SFOMNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMNavigationLink.swift; sourceTree = "<group>"; };
 		A5EF9781294DD9D700CD35FF /* ResourceDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResourceDTO+Mapping.swift"; sourceTree = "<group>"; };
 		A5EF9783294DDB4700CD35FF /* UserDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDTO+Mapping.swift"; sourceTree = "<group>"; };
+		A5EF9785294DE2F000CD35FF /* DefaultSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchRepository.swift; sourceTree = "<group>"; };
 		A5F4CD45294506FB00789813 /* FirebaseCombineError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCombineError.swift; sourceTree = "<group>"; };
 		A5F4CD4729451CC300789813 /* NetworkAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAuthService.swift; sourceTree = "<group>"; };
 		A5F4CD492945235700789813 /* CollectionReference+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionReference+Publisher.swift"; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 			children = (
 				A5D285D2294637F8001F9343 /* DefaultPostRepository.swift */,
 				A5C3A0E7294BF06C00CC1940 /* DefaultAuthRepository.swift */,
+				A5EF9785294DE2F000CD35FF /* DefaultSearchRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -723,6 +726,7 @@
 				A56386CA29432AC800A8CEEA /* HomeUseCase.swift in Sources */,
 				A5EF9769294D958600CD35FF /* DownloadView.swift in Sources */,
 				A5502F1B29439B5D00A4D18A /* DocumentReference+Publisher.swift in Sources */,
+				A5EF9786294DE2F000CD35FF /* DefaultSearchRepository.swift in Sources */,
 				A50DE8FE292B379100E1FD60 /* HomeView.swift in Sources */,
 				A5EEA026293892DF0000AAB5 /* ProfileView.swift in Sources */,
 				A5C3A0E1294BE9C200CC1940 /* HTTPService.swift in Sources */,

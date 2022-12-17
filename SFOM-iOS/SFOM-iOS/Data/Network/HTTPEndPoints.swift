@@ -12,6 +12,14 @@ final class HTTPEndPoints {
     private init() { }
 }
 
-private extension HTTPEndPoints {
-
+extension HTTPEndPoints {
+    func profile(uid: String) -> HTTPEndPoint {
+        return HTTPEndPoint(prevPath: .profile, value: uid)
+    }
+    
+    func increaseResourcesDownloads(resourceId: String) -> HTTPEndPoint {
+        return HTTPEndPoint(prevPath: .increaseResourcesDownloads, value: resourceId)
+    }
+    
+    
 }

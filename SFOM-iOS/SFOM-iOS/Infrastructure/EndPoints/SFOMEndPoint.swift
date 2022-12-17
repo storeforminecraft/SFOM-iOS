@@ -8,10 +8,10 @@
 import Foundation
 
 public struct SFOMEndPoint: FIREndPoint {
-    var collection: MainCollection
-    var document: Document?
-    var subCollection: SubCollection?
-    var subDocument: Document?
+    private var collection: MainCollection
+    private var document: Document?
+    private var subCollection: SubCollection?
+    private var subDocument: Document?
 
     init?(collection: MainCollection,
           document: Document?,
