@@ -17,11 +17,12 @@ public struct SFOMEndPoint: FIREndPoint {
           document: Document?,
           subCollection: (any SubCollection)? = nil,
           subDocument: Document? = nil) {
+        //FIXME: - 고치기
         guard let collection = collection as? SFOMEndPoint.SFOMCollection else { return nil }
         if let subCollectionParent = subCollection?.parent {
             guard document != nil else { return nil }
             guard let subCollectionParent = subCollectionParent as? SFOMEndPoint.SFOMCollection,
-                subCollectionParent != collection else { return nil }
+                subCollectionParent == collection else { return nil }
         }
 
         self.collection = collection
@@ -41,6 +42,7 @@ public struct SFOMEndPoint: FIREndPoint {
 extension SFOMEndPoint {
     enum SFOMCollection: String, MainCollection {
         case posts
+        case events_timeline
         case ranks_daily
         case ranks_monthly
         case reports
@@ -52,6 +54,12 @@ extension SFOMEndPoint {
         var path: String {
             return self.rawValue
         }
+    }
+    
+    enum Resources: String, SubCollection {
+        case comments
+        var parent: MainCollection { SFOMEndPoint.SFOMCollection.resources }
+        var path: String { self.rawValue }
     }
 
     enum Favorites: String, SubCollection {

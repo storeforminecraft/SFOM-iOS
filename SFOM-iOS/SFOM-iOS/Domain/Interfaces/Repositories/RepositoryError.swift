@@ -9,6 +9,7 @@ import Foundation
 
 enum RepositoryError {
     case castingError
+    case noAuthError
 }
 
 extension RepositoryError: LocalizedError {
@@ -16,6 +17,8 @@ extension RepositoryError: LocalizedError {
         switch self {
         case .castingError:
             return NSLocalizedString("Casting Error", comment: "counln't cast Repository")
+        case .noAuthError:
+            return NSLocalizedString("No Auth Error", comment: "Don't have permission")
         }
     }
 }

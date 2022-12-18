@@ -14,5 +14,5 @@ protocol NetworkService {
     func delete<T: Encodable>(endPoint: FIREndPoint, dto: T) -> AnyPublisher<T, Error>
     
     func readAll<T: Decodable>(endPoint: FIREndPoint, type: T.Type) -> AnyPublisher<[T], Error>
-    func readAllWithFilter<T: Decodable>(endPoint: FIREndPoint, type: T.Type, whereFields: [WhereField]) -> AnyPublisher<[T], Error>
+    func readAllWithFilter<T: Decodable>(endPoint: FIREndPoint, type: T.Type, whereFields: [WhereField], order: Order?, limit: Int?) -> AnyPublisher<[T], Error>
 }

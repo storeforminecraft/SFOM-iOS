@@ -8,7 +8,22 @@
 import Firebase
 
 extension Query {
-    func filter(_ whereField: WhereField) -> Query{
+    func order(_ order: Order) -> Query {
+        switch order {
+        case let.ascending(field):
+            return self.order(by: field, descending: false)
+        case let .descending(field):
+            return self.order(by: field, descending: true)
+        }
+    }
+    
+    func filter(_ whereFields: [WhereField]) -> Query {
+        return whereFields.reduce(self) { partialResult, whereField -> Query in
+            partialResult.filter(whereField)
+        }
+    }
+    
+    func filter(_ whereField: WhereField) -> Query {
         switch whereField {
         case let .`in`(field, values):
             return self.whereField(field, in: values)

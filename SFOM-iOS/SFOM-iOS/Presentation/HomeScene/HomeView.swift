@@ -9,15 +9,24 @@ import SwiftUI
 import Combine
 
 final class HomeViewModel: ViewModel {
-    private let homeUseCase: HomeUseCase = DefaultHomeUseCase(postRepository: DefaultPostRepository(networkService: FirebaseService.shared))
+    private let homeUseCase: HomeUseCase = DefaultHomeUseCase(postRepository: DefaultPostRepository(networkService: FirebaseService.shared),commentEventRepository: DefaultCommentEventRepository(networkService: FirebaseService.shared))
     
     @Published var posts: [Post] = []
     private var cancellable = Set<AnyCancellable>()
     
     init() {
         homeUseCase.fetchPost()
+            .replaceError(with: [])
             .assign(to: \.posts, on: self)
             .store(in: &cancellable)
+        
+        homeUseCase.fetchRecentComment()
+            .sink { _ in
+                print("x")
+            } receiveValue: { c in
+                print(c)
+            }.store(in: &cancellable)
+
     }
 }
 
@@ -27,10 +36,13 @@ struct HomeView: View {
     var body: some View {
         VStack (alignment: .leading) {
             homeNavigationBar
+            
             ScrollView(.horizontal, showsIndicators: false) {
                 postItemsView
             }
-            .menuIndicator(.hidden)
+            .onAppear{
+                UIScrollView.appearance().isPagingEnabled = true
+            }
             Spacer()
         }
     }

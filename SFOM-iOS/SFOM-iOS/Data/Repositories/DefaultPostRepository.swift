@@ -21,7 +21,11 @@ extension DefaultPostRepository: PostRepository {
             return Fail(error: APIEndPointError.wrongEndPointError).eraseToAnyPublisher()
         }
         let whereFields: [WhereField] = [.isEqualTo("state", value: "published")]
-        return networkService.readAllWithFilter(endPoint: endPoint, type: PostDTO.self, whereFields: whereFields)
+        return networkService.readAllWithFilter(endPoint: endPoint,
+                                                type: PostDTO.self,
+                                                whereFields: whereFields,
+                                                order: .descending("createdTimestamp"),
+                                                limit: nil)
             .map { $0.compactMap { $0.toDomain() } }
             .eraseToAnyPublisher()
     }

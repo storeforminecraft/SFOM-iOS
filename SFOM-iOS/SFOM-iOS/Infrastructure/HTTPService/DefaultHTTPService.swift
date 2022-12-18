@@ -76,16 +76,16 @@ private extension DefaultHTTPService {
         if let queryItem = endPoint.queryItem {
             guard var urlComponents = URLComponents(string: "\(baseURL)\(endPoint)") else { return nil }
             urlComponents.queryItems = queryItem
-            guard var url = urlComponents.url else { return nil }
+            guard let url = urlComponents.url else { return nil }
             return url
         }else {
-            guard var url = URL(string: "\(baseURL)\(endPoint)") else { return nil }
+            guard let url = URL(string: "\(baseURL)\(endPoint)") else { return nil }
             return url
         }
     }
     
     private func urlRequest(endPoint: HTTPEndPoint) -> URLRequest? {
-        guard var url = url(endPoint: endPoint) else { return nil }
+        guard let url = url(endPoint: endPoint) else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = endPoint.httpMethod
         return request

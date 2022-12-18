@@ -25,13 +25,12 @@ struct AuthView: View {
             Spacer()
 
             VStack (alignment: .center) {
-                
                 SFOMNavigationLink(Localized.AuthView.authSignInButtonTitle) {
-                    // SignInView()
+                    SignInView()
                 }
                 
                 SFOMNavigationLink(Localized.AuthView.authSignUpButtonTitle, accent: false) {
-                    // SignUpView()
+                    SignUpView()
                 }
 
                 SFOMMarkdownText(Localized.Policy.policy1)

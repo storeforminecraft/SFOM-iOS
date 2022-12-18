@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 // TODO: - 이미지 캐싱 및 view model 처리 작업
-final class SFOMImageViewModel: ObservableObject {
+fileprivate final class SFOMImageViewModel: ObservableObject {
     @Published private(set) var image: Image? = nil
     @Published private(set) var progressing: Bool = false
     
