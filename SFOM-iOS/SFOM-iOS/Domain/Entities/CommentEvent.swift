@@ -9,6 +9,6 @@ import Foundation
 
 struct CommentEvent {
     let eventPath: String
-    let eventTimeStamp: Date
+    let eventTimestamp: Date
     let eventType: String
 }

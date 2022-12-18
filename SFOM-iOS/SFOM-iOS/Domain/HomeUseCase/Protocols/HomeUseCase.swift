@@ -8,6 +8,7 @@
 import Combine
 
 protocol HomeUseCase {
+    func fetchCurrentUser() -> AnyPublisher<User, Error>
     func fetchPost() -> AnyPublisher<[Post], Error>
     func fetchRecentComment() -> AnyPublisher<[Comment], Error>
 }

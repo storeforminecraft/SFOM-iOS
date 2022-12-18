@@ -49,6 +49,7 @@
 		A5842F34294F4CFD007F3116 /* ResourceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5842F33294F4CFD007F3116 /* ResourceRepository.swift */; };
 		A5842F36294F4D09007F3116 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5842F35294F4D09007F3116 /* UserRepository.swift */; };
 		A5842F38294F503B007F3116 /* DefaultResourceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5842F37294F503B007F3116 /* DefaultResourceRepository.swift */; };
+		A5842F3A294F58F1007F3116 /* UseCaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5842F39294F58F1007F3116 /* UseCaseError.swift */; };
 		A59132DC293B886C00D28CCA /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59132DB293B886C00D28CCA /* Resource.swift */; };
 		A597154D292E6DFC0081E71A /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597154C292E6DFC0081E71A /* Font+.swift */; };
 		A597154F292E6F220081E71A /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597154E292E6F220081E71A /* Localized.swift */; };
@@ -146,6 +147,7 @@
 		A5842F33294F4CFD007F3116 /* ResourceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRepository.swift; sourceTree = "<group>"; };
 		A5842F35294F4D09007F3116 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		A5842F37294F503B007F3116 /* DefaultResourceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResourceRepository.swift; sourceTree = "<group>"; };
+		A5842F39294F58F1007F3116 /* UseCaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseError.swift; sourceTree = "<group>"; };
 		A59132DB293B886C00D28CCA /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		A597154C292E6DFC0081E71A /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		A597154E292E6F220081E71A /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				A5EF9771294DA9BF00CD35FF /* SearchUseCase */,
 				A5EF9777294DAB4400CD35FF /* AuthUseCase */,
 				A56386C62943289000A8CEEA /* Entities */,
+				A5842F39294F58F1007F3116 /* UseCaseError.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 				A5F4CD4A2945235700789813 /* CollectionReference+Publisher.swift in Sources */,
 				A52A2DA7294EF94F00D6F617 /* CommentEvent.swift in Sources */,
 				A50DE8FC292B32D800E1FD60 /* SFOMComponents.swift in Sources */,
+				A5842F3A294F58F1007F3116 /* UseCaseError.swift in Sources */,
 				A5C3A0E8294BF06C00CC1940 /* DefaultAuthRepository.swift in Sources */,
 				A59132DC293B886C00D28CCA /* Resource.swift in Sources */,
 				A5CFA7262927428B004C1F2B /* Color+.swift in Sources */,

@@ -9,7 +9,10 @@ import SwiftUI
 import Combine
 
 final class HomeViewModel: ViewModel {
-    private let homeUseCase: HomeUseCase = DefaultHomeUseCase(postRepository: DefaultPostRepository(networkService: FirebaseService.shared),commentEventRepository: DefaultCommentEventRepository(networkService: FirebaseService.shared))
+    private let homeUseCase: HomeUseCase = DefaultHomeUseCase(postRepository: DefaultPostRepository(networkService: FirebaseService.shared),
+                                                              userRepository: DefaultUserRepository(networkAuthService: FirebaseService.shared, httpService: DefaultHTTPService()),
+                                                              resourceRepository: DefaultResourceRepository(networkService: FirebaseService.shared),
+                                                              commentEventRepository: DefaultCommentEventRepository(networkService: FirebaseService.shared))
     
     @Published var posts: [Post] = []
     private var cancellable = Set<AnyCancellable>()

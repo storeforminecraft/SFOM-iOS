@@ -138,13 +138,14 @@ extension FirebaseService: NetworkService {
         return collectionReference.getDocumentsPublisher(type: type)
     }
     
-    func readAllWithFilter<T: Decodable>(endPoint: FIREndPoint, type: T.Type, whereFields: [WhereField], order: Order?, limit: Int? = nil) -> AnyPublisher<[T], Error> {
+    func readAllWithFilter<T: Decodable>(endPoint: FIREndPoint, type: T.Type, whereFields: [WhereField]?, order: Order?, limit: Int? = nil) -> AnyPublisher<[T], Error> {
         guard var collectionReference = (collectionReference(endPoint: endPoint)) as Query? else {
             return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
-        if let order = order { collectionReference = collectionReference.order(order) }
+        if let whereFields = whereFields { collectionReference = collectionReference.filter(whereFields) }
         if let limit = limit { collectionReference = collectionReference.limit(to: limit) }
-        return collectionReference.filter(whereFields).getQueryDocumentsPublisher(type: type)
+        if let order = order { collectionReference = collectionReference.order(order) }
+        return collectionReference.getQueryDocumentsPublisher(type: type)
     }
 }
 

@@ -41,7 +41,7 @@ extension APIEndPoints {
         return SFOMEndPoint(collection: collection, document: nil)
     }
     
-    func eventsTimeLine() -> SFOMEndPoint? {
+    func eventsTimeline() -> SFOMEndPoint? {
         let collection = SFOMEndPoint.SFOMCollection.events_timeline
         return SFOMEndPoint(collection: collection, document: nil)
     }

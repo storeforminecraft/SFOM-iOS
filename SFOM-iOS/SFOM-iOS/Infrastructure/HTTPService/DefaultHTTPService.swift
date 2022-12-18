@@ -13,7 +13,7 @@ final class DefaultHTTPService {
     private let session = URLSession.shared
 }
 
-extension DefaultHTTPService {
+extension DefaultHTTPService : HTTPService{
     func dataTaskPublisher(endPoint: HTTPEndPoint) -> AnyPublisher<Bool, Error> {
         guard let urlRequest = urlRequest(endPoint: endPoint) else {
             return Fail(error: HTTPServiceError.wrongURLRequestError).eraseToAnyPublisher()

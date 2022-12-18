@@ -9,14 +9,14 @@ import Foundation
 
 struct CommentEventDTO: Codable {
     let eventPath: String
-    let eventTimeStamp: Date
+    let eventTimestamp: Date
     let eventType: String
 }
 
 extension CommentEventDTO {
     func toDomain() -> CommentEvent {
         CommentEvent(eventPath: eventPath,
-                     eventTimeStamp: eventTimeStamp,
+                     eventTimestamp: eventTimestamp,
                      eventType: eventType)
     }
 }
@@ -24,7 +24,7 @@ extension CommentEventDTO {
 extension CommentEvent {
     func toDTO() -> CommentEventDTO {
         CommentEventDTO(eventPath: eventPath,
-                        eventTimeStamp: eventTimeStamp,
+                        eventTimestamp: eventTimestamp,
                         eventType: eventType)
     }
 }

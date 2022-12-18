@@ -18,15 +18,20 @@ final class DefaultCommentEventRepository {
 
 extension DefaultCommentEventRepository: CommentEventRepository {
     func fetchCommentEvent() -> AnyPublisher<[CommentEvent], Error> {
-        guard let endPoint = APIEndPoints.shared.eventsTimeLine() else {
+        guard let endPoint = APIEndPoints.shared.eventsTimeline() else {
             return Fail(error: APIEndPointError.wrongEndPointError).eraseToAnyPublisher()
         }
         return networkService.readAllWithFilter(endPoint: endPoint,
                                                 type: CommentEventDTO.self,
                                                 whereFields: [.isEqualTo("eventType", value: "created:comment")],
-                                                order: .descending("createdTimestamp"),
+                                                order: .descending("eventTimestamp"),
                                                 limit: 10)
         .map { $0.map{ $0.toDomain() } }
+        .handleEvents(receiveOutput: { events in
+            print(events)
+        }, receiveCompletion: { e in
+            print(e)
+        })
         .eraseToAnyPublisher()
     }
     

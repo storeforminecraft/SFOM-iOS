@@ -24,4 +24,17 @@ extension DefaultResourceRepository: ResourceRepository {
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }
+    
+    func fetchResourceComments(resourceId: String) -> AnyPublisher<[Comment], Error> {
+        guard let endPoint = APIEndPoints.shared.resourcesComments(doc: resourceId, subDoc: nil) else {
+            return Fail(error: APIEndPointError.wrongEndPointError).eraseToAnyPublisher()
+        }
+        return networkService.readAllWithFilter(endPoint: endPoint,
+                                                type: CommentDTO.self,
+                                                whereFields: nil,
+                                                order: .descending("createdTimestamp"),
+                                                limit: nil)
+        .map { $0.map{ $0.toDomain() } }
+        .eraseToAnyPublisher()
+    }
 }

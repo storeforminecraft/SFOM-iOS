@@ -22,7 +22,7 @@ extension Query {
                 }
                 guard let querySnapshot = querySnapshot else { return }
                 let data = querySnapshot.documents.compactMap { docunment in
-                    try? docunment.data(as: type)
+                    return try? docunment.data(as: type)
                 }
                 promise(.success(data))
             }
