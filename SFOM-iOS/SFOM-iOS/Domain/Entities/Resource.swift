@@ -31,10 +31,10 @@ struct Resource {
 
     var thumbnail: String? {
         if category == .skin {
-            return "\(URLStringManager.urlString(key: .resourceURL))\(fileHash)"
+            return "\(URLStringManager.urlString(key: .resourceURL))/\(fileHash)"
         }
         guard let image = images.first else { return nil }
-        return "\(URLStringManager.urlString(key: .imageURL))\(image)"
+        return "\(URLStringManager.urlString(key: .imageURL))/\(image)"
     }
 
     init(authorUid: String,

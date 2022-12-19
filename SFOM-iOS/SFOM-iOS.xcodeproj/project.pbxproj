@@ -42,6 +42,8 @@
 		A5602D7929390DD40042496A /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5602D7829390DD40042496A /* PostView.swift */; };
 		A56386CA29432AC800A8CEEA /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56386C929432AC800A8CEEA /* HomeUseCase.swift */; };
 		A56386CC29432B4900A8CEEA /* DefaultHomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56386CB29432B4900A8CEEA /* DefaultHomeUseCase.swift */; };
+		A571386F2950418A00731F1B /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A571386E2950418A00731F1B /* Date+.swift */; };
+		A5713871295054AE00731F1B /* PushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5713870295054AE00731F1B /* PushView.swift */; };
 		A57669AD294609FD00D44CD2 /* SFOMIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57669AC294609FD00D44CD2 /* SFOMIndicator.swift */; };
 		A57669AF29461BF900D44CD2 /* SFOMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57669AE29461BF900D44CD2 /* SFOMImage.swift */; };
 		A583F2FB2945009800CC4585 /* Auth+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A583F2FA2945009800CC4585 /* Auth+Publisher.swift */; };
@@ -50,6 +52,7 @@
 		A5842F36294F4D09007F3116 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5842F35294F4D09007F3116 /* UserRepository.swift */; };
 		A5842F38294F503B007F3116 /* DefaultResourceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5842F37294F503B007F3116 /* DefaultResourceRepository.swift */; };
 		A5842F3A294F58F1007F3116 /* UseCaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5842F39294F58F1007F3116 /* UseCaseError.swift */; };
+		A5842F3C294F6508007F3116 /* RecentComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5842F3B294F6508007F3116 /* RecentComment.swift */; };
 		A59132DC293B886C00D28CCA /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59132DB293B886C00D28CCA /* Resource.swift */; };
 		A597154D292E6DFC0081E71A /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597154C292E6DFC0081E71A /* Font+.swift */; };
 		A597154F292E6F220081E71A /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597154E292E6F220081E71A /* Localized.swift */; };
@@ -140,6 +143,8 @@
 		A5602D7829390DD40042496A /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		A56386C929432AC800A8CEEA /* HomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCase.swift; sourceTree = "<group>"; };
 		A56386CB29432B4900A8CEEA /* DefaultHomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHomeUseCase.swift; sourceTree = "<group>"; };
+		A571386E2950418A00731F1B /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		A5713870295054AE00731F1B /* PushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushView.swift; sourceTree = "<group>"; };
 		A57669AC294609FD00D44CD2 /* SFOMIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMIndicator.swift; sourceTree = "<group>"; };
 		A57669AE29461BF900D44CD2 /* SFOMImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMImage.swift; sourceTree = "<group>"; };
 		A583F2FA2945009800CC4585 /* Auth+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Publisher.swift"; sourceTree = "<group>"; };
@@ -148,6 +153,7 @@
 		A5842F35294F4D09007F3116 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		A5842F37294F503B007F3116 /* DefaultResourceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResourceRepository.swift; sourceTree = "<group>"; };
 		A5842F39294F58F1007F3116 /* UseCaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseError.swift; sourceTree = "<group>"; };
+		A5842F3B294F6508007F3116 /* RecentComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentComment.swift; sourceTree = "<group>"; };
 		A59132DB293B886C00D28CCA /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		A597154C292E6DFC0081E71A /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		A597154E292E6F220081E71A /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
@@ -376,6 +382,7 @@
 				A5EEA02029388F240000AAB5 /* User.swift */,
 				A52A2DA6294EF94F00D6F617 /* CommentEvent.swift */,
 				A52A2DAA294EFA5000D6F617 /* Comment.swift */,
+				A5842F3B294F6508007F3116 /* RecentComment.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -441,6 +448,7 @@
 				A5CFA7252927428B004C1F2B /* Color+.swift */,
 				A5CFA72A29274881004C1F2B /* String+.swift */,
 				A597154C292E6DFC0081E71A /* Font+.swift */,
+				A571386E2950418A00731F1B /* Date+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -612,6 +620,7 @@
 				A5602D7629390DB70042496A /* ContentView.swift */,
 				A5602D7829390DD40042496A /* PostView.swift */,
 				A5EF9768294D958600CD35FF /* DownloadView.swift */,
+				A5713870295054AE00731F1B /* PushView.swift */,
 			);
 			path = CommonScene;
 			sourceTree = "<group>";
@@ -756,6 +765,7 @@
 				A5CD457A294AE3E4009F47C1 /* Query+Publisher.swift in Sources */,
 				A50DE900292B379900E1FD60 /* SearchView.swift in Sources */,
 				A52A2DAD294EFABC00D6F617 /* CommentDTO+Mapping.swift in Sources */,
+				A571386F2950418A00731F1B /* Date+.swift in Sources */,
 				A525E7B6293B4F2D006246FA /* SFOMItemView.swift in Sources */,
 				A5D285CF294635DB001F9343 /* PostRepository.swift in Sources */,
 				A52A2DA5294EF91900D6F617 /* CommentEventRepository.swift in Sources */,
@@ -767,8 +777,10 @@
 				A5EEA02129388F240000AAB5 /* User.swift in Sources */,
 				A5C3A0E4294BEDE200CC1940 /* SearchDataDTO+Mapping.swift in Sources */,
 				A5EEA02A293896E40000AAB5 /* SignUpView.swift in Sources */,
+				A5842F3C294F6508007F3116 /* RecentComment.swift in Sources */,
 				A5502F0D29438B6200A4D18A /* DownloadListStorage.swift in Sources */,
 				A5F4CD46294506FB00789813 /* FirebaseCombineError.swift in Sources */,
+				A5713871295054AE00731F1B /* PushView.swift in Sources */,
 				A5CD4573294AE01E009F47C1 /* WhereField.swift in Sources */,
 				A5842F38294F503B007F3116 /* DefaultResourceRepository.swift in Sources */,
 				A5971557292E7D310081E71A /* Post.swift in Sources */,

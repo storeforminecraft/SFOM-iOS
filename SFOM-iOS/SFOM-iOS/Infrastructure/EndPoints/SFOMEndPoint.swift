@@ -17,7 +17,6 @@ public struct SFOMEndPoint: FIREndPoint {
           document: Document?,
           subCollection: (any SubCollection)? = nil,
           subDocument: Document? = nil) {
-        //FIXME: - 고치기
         guard let collection = collection as? SFOMEndPoint.SFOMCollection else { return nil }
         if let subCollectionParent = subCollection?.parent {
             guard document != nil else { return nil }

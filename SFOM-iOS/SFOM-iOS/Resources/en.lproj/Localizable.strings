@@ -80,3 +80,11 @@
 "64x64" = "64x64";
 "128x128" = "128x128";
 "Shaders" = "shaders";
+
+"Ago" = "ago";
+"Minutes" = "minutes";
+"Hours" = "hours";
+"Days" = "days";
+"AMinute" = "a minute";
+"AnHour" = "an hour";
+"ADay" = "a day";

@@ -10,11 +10,20 @@ import Foundation
 struct User {
     let uid: String
     let nickname: String
-    let introduction: String
+    let introduction: String?
     let profileImage: String?
     let profileBackgroundImage: String?
     
-    init(uid: String, nickname: String, introduction: String, profileImage: String?, profileBackgroundImage: String?) {
+    var summary: String {
+        return "\(nickname) (\(uid.prefix(6)))"
+    }
+    
+    var thumnail: String? {
+        guard let profileImage = profileImage else { return nil }
+        return "\(URLStringManager.urlString(key: .imageURL))/\(profileImage)"
+    }
+    
+    init(uid: String, nickname: String, introduction: String?, profileImage: String?, profileBackgroundImage: String?) {
         self.uid = uid
         self.nickname = nickname
         self.introduction = introduction

@@ -10,11 +10,11 @@ import Foundation
 struct UserDTO: Codable {
     let uid: String
     let nickname: String
-    let introduction: String
+    let introduction: String?
     let profileImage: String?
     let profileBackgroundImage: String?
     
-    init(uid: String, nickname: String, introduction: String, profileImage: String?, profileBackgroundImage: String?) {
+    init(uid: String, nickname: String, introduction: String?, profileImage: String?, profileBackgroundImage: String?) {
         self.uid = uid
         self.nickname = nickname
         self.introduction = introduction

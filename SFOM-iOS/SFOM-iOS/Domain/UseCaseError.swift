@@ -9,6 +9,7 @@ import Foundation
 
 enum UseCaseError {
     case noObjectError
+    case noDataError
 }
 
 extension UseCaseError: LocalizedError {
@@ -16,6 +17,8 @@ extension UseCaseError: LocalizedError {
         switch self {
         case .noObjectError:
             return NSLocalizedString("No Object Error", comment: "counln't found Object")
+        case .noDataError:
+            return NSLocalizedString("No Data Error", comment: "Couldn't found data")
         }
     }
 }

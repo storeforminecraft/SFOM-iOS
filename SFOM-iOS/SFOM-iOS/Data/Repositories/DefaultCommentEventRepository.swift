@@ -27,11 +27,6 @@ extension DefaultCommentEventRepository: CommentEventRepository {
                                                 order: .descending("eventTimestamp"),
                                                 limit: 10)
         .map { $0.map{ $0.toDomain() } }
-        .handleEvents(receiveOutput: { events in
-            print(events)
-        }, receiveCompletion: { e in
-            print(e)
-        })
         .eraseToAnyPublisher()
     }
     

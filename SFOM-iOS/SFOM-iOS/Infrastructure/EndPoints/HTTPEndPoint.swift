@@ -33,7 +33,7 @@ public struct HTTPEndPoint {
     
     var urlString: String {
         let pathList = [self.path.prevPath, self.value, self.path.nextPath]
-        return pathList.reduce("/") { partialResult, subPath in
+        return pathList.reduce("") { partialResult, subPath in
             guard let subPath = subPath else { return partialResult }
             return "\(partialResult)/\(subPath)"
         }

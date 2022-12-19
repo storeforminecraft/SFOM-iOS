@@ -14,22 +14,36 @@ final class HomeViewModel: ViewModel {
                                                               resourceRepository: DefaultResourceRepository(networkService: FirebaseService.shared),
                                                               commentEventRepository: DefaultCommentEventRepository(networkService: FirebaseService.shared))
     
+    @Published var currentUser: User? = nil
     @Published var posts: [Post] = []
+    @Published var recentComments: [RecentComment] = []
+    @Published var pushNotification: Bool = false
+    
     private var cancellable = Set<AnyCancellable>()
     
     init() {
+        bind()
+    }
+    
+    func bind(){
+        homeUseCase.fetchCurrentUser()
+            .map{ user -> User? in user }
+            .replaceError(with: nil)
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.currentUser, on: self)
+            .store(in: &cancellable)
+        
         homeUseCase.fetchPost()
             .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
             .assign(to: \.posts, on: self)
             .store(in: &cancellable)
         
         homeUseCase.fetchRecentComment()
-            .sink { _ in
-                print("x")
-            } receiveValue: { c in
-                print(c)
-            }.store(in: &cancellable)
-
+            .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.recentComments, on: self)
+            .store(in: &cancellable)
     }
 }
 
@@ -39,14 +53,15 @@ struct HomeView: View {
     var body: some View {
         VStack (alignment: .leading) {
             homeNavigationBar
+            ScrollView(.vertical, showsIndicators: false) {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    postItemsView
+                }
+                recentsCommentsView
+                    .padding()
+                Spacer()
+            }
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                postItemsView
-            }
-            .onAppear{
-                UIScrollView.appearance().isPagingEnabled = true
-            }
-            Spacer()
         }
     }
     
@@ -55,45 +70,48 @@ struct HomeView: View {
             Text(Localized.homeTitle)
                 .font(.SFOMTitleFont)
             Spacer()
-            // NavigationLink {
-            //     // FIXME: - Push View
-            // } label: {
-            //     ZStack (alignment: .topTrailing) {
-            //         Assets.moreMenu.push.image
-            //             .resizable()
-            //             .frame(width: 24, height: 24)
-            //             .padding(.horizontal, 2)
-            //             .padding(.vertical, 4)
-            //         // FIXME: - if push
-            //         Circle()
-            //             .foregroundColor(.red)
-            //             .frame(width: 12, height: 12)
-            //             .overlay(Circle().stroke(.white, lineWidth: 4))
-            //     }
-            // }
             
             NavigationLink {
-                // ProfileView(uid: user.uid)
+                PushView()
             } label: {
-                Assets.Default.profile.image
-                    .resizable()
-                    .frame(width: 42, height: 42)
-                    .cornerRadius(26)
-            }
-            NavigationLink {
-                AuthView()
-            } label: {
-                Text(Localized.signIn)
-                    .font(.SFOMSmallFont)
-                    .padding(.vertical, 5)
-                    .padding(.horizontal, 10)
-                    .foregroundColor(.white)
-                    .background(Color.accentColor)
-                    .cornerRadius(16)
-                    .frame(height: 24)
-                
+                ZStack (alignment: .topTrailing) {
+                    Assets.MoreMenu.push.image
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .padding(.horizontal, 2)
+                        .padding(.vertical, 4)
+                    if viewModel.pushNotification {
+                        Circle()
+                            .foregroundColor(.red)
+                            .frame(width: 12, height: 12)
+                            .overlay(Circle().stroke(.white, lineWidth: 4))
+                    }
+                }
             }
             
+            if let uid = viewModel.currentUser?.uid {
+                NavigationLink {
+                    ProfileView(uid: uid)
+                } label: {
+                    Assets.Default.profile.image
+                        .resizable()
+                        .frame(width: 42, height: 42)
+                        .cornerRadius(26)
+                }
+            } else {
+                NavigationLink {
+                    AuthView()
+                } label: {
+                    Text(Localized.signIn)
+                        .font(.SFOMSmallFont)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                        .foregroundColor(.white)
+                        .background(Color.accentColor)
+                        .cornerRadius(16)
+                        .frame(height: 24)
+                }
+            }
         }
         .padding()
     }
@@ -108,6 +126,16 @@ struct HomeView: View {
         }
         .frame(height: 200)
         .padding()
+    }
+    
+    private var recentsCommentsView: some View {
+        VStack {
+            ForEach(viewModel.recentComments,id: \.comment.id) { recentComment in
+                SFOMRecentCommentItemView(recentComment: recentComment) {
+                    ContentView(resource: recentComment.resource)
+                }
+            }
+        }
     }
 }
 

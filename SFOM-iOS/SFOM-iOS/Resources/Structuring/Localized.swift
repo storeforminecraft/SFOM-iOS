@@ -108,4 +108,16 @@ public struct Localized {
         static let kind128x128 = "128x128".localized
         static let shaders = "Shaders".localized
     }
+    
+    public struct Time {
+        private init() { }
+        static let ago = "Ago".localized
+        static let minutes = "Minutes".localized
+        static let hours = "Hours".localized
+        static let days = "Days".localized
+        static let aMinute = "AMinute".localized
+        static let anHour = "AnHour".localized
+        static let aDay = "ADay".localized
+
+    }
 }

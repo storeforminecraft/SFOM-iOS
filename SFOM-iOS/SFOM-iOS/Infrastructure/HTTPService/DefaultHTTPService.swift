@@ -74,7 +74,7 @@ extension DefaultHTTPService : HTTPService{
 private extension DefaultHTTPService {
     private func url(endPoint: HTTPEndPoint) -> URL? {
         if let queryItem = endPoint.queryItem {
-            guard var urlComponents = URLComponents(string: "\(baseURL)\(endPoint)") else { return nil }
+            guard var urlComponents = URLComponents(string: "\(baseURL)\(endPoint.urlString)") else { return nil }
             urlComponents.queryItems = queryItem
             guard let url = urlComponents.url else { return nil }
             return url

@@ -81,3 +81,10 @@
 "128x128" = "128x128";
 "Shaders" = "쉐이더";
 
+"Ago" = "전";
+"Minutes" = "분";
+"Hours" = "시간";
+"Days" = "일";
+"AMinute" = "1분";
+"AnHour" = "1시간";
+"ADay" = "1일";
