@@ -23,6 +23,7 @@
 "Mod" = "Mod";
 "Addon" = "Addon";
 "Downloads" = "Downloads";
+"Unknown" = "Unknown";
 
 "AuthTitle" = "The universe best";
 "AuthMainTitle" = "MCPE content store.";
@@ -88,3 +89,5 @@
 "AMinute" = "a minute";
 "AnHour" = "an hour";
 "ADay" = "a day";
+
+"LeftAComment" = " left a comment.";

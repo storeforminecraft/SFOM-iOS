@@ -47,10 +47,20 @@ final class HomeViewModel: ViewModel {
 struct HomeView: View {
     @ObservedObject private var viewModel: HomeViewModel = HomeViewModel()
     
+    let categorySequence: [SFOMCategory] = [.map,
+                                            .skin,
+                                            .script,
+                                            .seed,
+                                            .texturepack,
+                                            .mod,
+                                            .addon,
+                                            .downloads]
+    
     var body: some View {
         VStack (alignment: .leading) {
             homeNavigationBar
             ScrollView(.vertical, showsIndicators: false) {
+                categoryTabButtons
                 ScrollView(.horizontal, showsIndicators: false) {
                     postItemsView
                 }
@@ -63,8 +73,23 @@ struct HomeView: View {
     }
     
     private var categoryTabButtons: some View {
-        VStack{
-            
+        VStack (spacing: 10) {
+            ForEach((0..<(self.categorySequence.count / 4)),
+                    id: \.hashValue) { row in
+                HStack {
+                    Spacer()
+                    ForEach(0..<4) { column in
+                        SFOMCategoryTapTempView(category: categorySequence[4 * row + column]) {
+                            if categorySequence[4 * row + column] != .downloads {
+                                CategoryView(category: categorySequence[4 * row + column])
+                            } else {
+                                DownloadView()
+                            }
+                        }
+                        Spacer()
+                    }
+                }
+            }
         }
     }
     
@@ -122,12 +147,11 @@ struct HomeView: View {
     private var postItemsView: some View {
         HStack {
             ForEach(viewModel.posts, id: \.id) { post in
-                SFOMPostItemView(post: post) {
+                SFOMPostItemView(post: post, height: 200) {
                     PostView(post: post)
                 }
             }
         }
-        .frame(height: 200)
         .padding()
     }
     
@@ -149,6 +173,48 @@ struct HomeView_Previews: PreviewProvider {
                 .environment(\.locale, .init(identifier: "ko"))
             HomeView()
                 .environment(\.locale, .init(identifier: "en"))
+        }
+    }
+}
+
+public struct SFOMCategoryTapTempView<Destination>: View where Destination: View {
+    let category: SFOMCategory
+    let frame: CGFloat
+    let imagePadding: CGFloat
+    @ViewBuilder var destination:() -> Destination
+    
+    init(category: SFOMCategory,
+         frame: CGFloat = 18,
+         imagePadding: CGFloat? = nil,
+         @ViewBuilder destination: @escaping () -> Destination) {
+        self.category = category
+        self.frame = frame
+        if let imagePadding = imagePadding {
+            self.imagePadding = imagePadding
+        } else {
+            self.imagePadding = frame / 10 * 8
+        }
+        self.destination = destination
+    }
+    
+    public var body: some View {
+        NavigationLink {
+            destination()
+        } label: {
+            VStack (alignment: .center) {
+                category.assets.image
+                    .resizable()
+                    .frame(width: self.frame, height: self.frame)
+                    .aspectRatio(contentMode: .fit)
+                    .colorMultiply(category.assets.tintColor)
+                    .padding(imagePadding)
+                    .background(category.assets.backgroundColor)
+                    .cornerRadius(self.frame + imagePadding)
+                
+                Text(category.localized)
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
         }
     }
 }

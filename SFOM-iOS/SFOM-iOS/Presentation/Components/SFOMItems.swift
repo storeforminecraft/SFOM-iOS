@@ -8,11 +8,18 @@
 import SwiftUI
 
 public struct SFOMPostItemView<Destination>: View where Destination: View {
-    var post: Post
+    private let post: Post
+    private let height: CGFloat
+    private let aspectRatio: CGFloat
     @ViewBuilder var destination:() -> Destination
     
-    init(post: Post, @ViewBuilder destination: @escaping () -> Destination) {
+    init(post: Post,
+         height: CGFloat = 200,
+         aspectRatio:CGFloat = 1.7,
+         @ViewBuilder destination: @escaping () -> Destination) {
         self.post = post
+        self.height = height
+        self.aspectRatio = aspectRatio
         self.destination = destination
     }
     
@@ -23,7 +30,6 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
             ZStack(alignment: .topLeading) {
                 if let coverImage = post.coverImage, coverImage != "" {
                     SFOMImage(urlString: coverImage)
-                        .aspectRatio(1.7, contentMode: .fit)
                         .cornerRadius(14)
                         .overlay(RoundedRectangle(cornerRadius: 14)
                             .foregroundColor(.black)
@@ -31,7 +37,6 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
                 } else {
                     Assets.Default.profileBackground.image
                         .resizable()
-                        .aspectRatio(1.7, contentMode: .fit)
                         .cornerRadius(14)
                         .overlay(RoundedRectangle(cornerRadius: 14)
                             .foregroundColor(.black)
@@ -49,20 +54,20 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
                         Text("\(post.boardId)")
                             .font(.system(size: 14))
                     }
-                    let location = Localized.location
-                    if location == "ko" {
-                        Text(post.title)
-                            .font(.system(size: 20, weight: .bold))
-                    } else {
-                        Text(post.translatedTitles[location] ?? post.title)
-                            .font(.system(size: 20, weight: .bold))
-                    }
+                    Text(post.localizedTitle)
+                        .font(.system(size: 20, weight: .bold))
+                        .lineLimit(2)
+                        .multilineTextAlignment(.leading)
+                    
                 }
                 .foregroundColor(.white)
                 .padding(.vertical, 5)
                 .padding(.horizontal, 15)
             }
+            .frame(height: height)
+            .aspectRatio(aspectRatio, contentMode: .fit)
         }
+        
     }
 }
 
@@ -147,7 +152,7 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
                     .frame(width: 30, height: 30)
                     .cornerRadius(15)
                     
-                    Text(recentComment.resource.name)
+                    Text(recentComment.resource.localizedName)
                         .font(.SFOMSmallFont.bold())
                         .lineLimit(1)
                         .foregroundColor(.black)
@@ -169,7 +174,7 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
                     Group{
                         Text("\(recentComment.user.summary)")
                             .font(.SFOMExtraSmallFont.bold())
-                        Text("님이 댓글을 남기셨습니다.")
+                        Text(Localized.ETC.leftAComment)
                             .font(.SFOMExtraSmallFont)
                     }
                     .lineLimit(1)

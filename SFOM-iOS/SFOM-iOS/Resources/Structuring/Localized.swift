@@ -16,7 +16,7 @@ public struct Localized {
 
     static let back = "Back".localized
 
-    public struct menu {
+    public struct Category {
         private init() { }
         static let map = "Map".localized
         static let skin = "Skin".localized
@@ -26,6 +26,7 @@ public struct Localized {
         static let mod = "Mod".localized
         static let addon = "Addon".localized
         static let downloads = "Downloads".localized
+        static let unknown = "Unknown".localized
     }
 
     public struct AuthView {
@@ -78,7 +79,7 @@ public struct Localized {
         static let searchPlaceholder = "SearchPlaceholder".localized
     }
 
-    public struct Category {
+    public struct DetailCategory {
         private init() { }
         static let selectCategory = "SelectCategory".localized
 
@@ -118,6 +119,10 @@ public struct Localized {
         static let aMinute = "AMinute".localized
         static let anHour = "AnHour".localized
         static let aDay = "ADay".localized
-
+    }
+    
+    public struct ETC {
+        private init() { }
+        static let leftAComment = "LeftAComment".localized
     }
 }

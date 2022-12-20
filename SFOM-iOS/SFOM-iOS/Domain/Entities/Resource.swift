@@ -28,7 +28,27 @@ struct Resource {
     let translatedNames: [String: String]
     let translationSource: String
     let version: Int
-
+    
+    var localizedName: String {
+        let location = Localized.location
+        if basedLanguage == location {
+            return name
+        } else {
+            return translatedNames[location] ?? name
+        }
+    }
+    
+    var localizedDescs: String {
+        let location = Localized.location
+        if basedLanguage == location {
+            return desc
+        } else {
+            return  translatedDescs[location] ?? desc
+        }
+    }
+    
+    
+    
     var thumbnail: String? {
         if category == .skin {
             return "\(URLStringManager.urlString(key: .resourceURL))/\(fileHash)"
@@ -36,7 +56,7 @@ struct Resource {
         guard let image = images.first else { return nil }
         return "\(URLStringManager.urlString(key: .imageURL))/\(image)"
     }
-
+    
     init(authorUid: String,
          basedLanguage: String,
          category: SFOMCategory,

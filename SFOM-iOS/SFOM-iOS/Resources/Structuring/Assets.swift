@@ -23,7 +23,7 @@ struct Assets {
         var image: Image { Image("defaultImage_\(self.rawValue)") }
     }
 
-    public enum Menu: String {
+    public enum Category: String {
         case addon
         case downloads
         case map
@@ -32,6 +32,7 @@ struct Assets {
         case seed
         case skin
         case texturepack
+        case unknown
 
         var tintColor: Color {
             switch self {

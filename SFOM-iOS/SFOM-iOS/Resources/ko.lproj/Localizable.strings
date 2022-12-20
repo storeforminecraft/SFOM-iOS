@@ -23,6 +23,7 @@
 "Mod" = "모드";
 "Addon" = "애드온";
 "Downloads" = "다운로드";
+"Unknown" = "알 수 없음";
 
 "AuthTitle" = "우주 최고의";
 "AuthMainTitle" = "MCPE 콘텐츠 스토어.";
@@ -88,3 +89,5 @@
 "AMinute" = "1분";
 "AnHour" = "1시간";
 "ADay" = "1일";
+
+"LeftAComment" = "님이 댓글을 남기셨습니다.";

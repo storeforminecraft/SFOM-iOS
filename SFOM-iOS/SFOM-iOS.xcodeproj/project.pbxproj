@@ -14,7 +14,7 @@
 		A52019FB293C857500FAA9B4 /* SFOMSkinImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52019FA293C857500FAA9B4 /* SFOMSkinImage.swift */; };
 		A52019FD293C8B6F00FAA9B4 /* SFOMCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52019FC293C8B6F00FAA9B4 /* SFOMCategory.swift */; };
 		A525E7B2293B38C3006246FA /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A525E7B1293B38C3006246FA /* SearchData.swift */; };
-		A525E7B6293B4F2D006246FA /* SFOMItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A525E7B5293B4F2D006246FA /* SFOMItemView.swift */; };
+		A525E7B6293B4F2D006246FA /* SFOMItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = A525E7B5293B4F2D006246FA /* SFOMItems.swift */; };
 		A52A2D9C294EE64B00D6F617 /* CompactLPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2D9B294EE64B00D6F617 /* CompactLPView.swift */; };
 		A52A2D9F294EEA5F00D6F617 /* LPMetadataProvider+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2D9E294EEA5F00D6F617 /* LPMetadataProvider+.swift */; };
 		A52A2DA1294EEAFE00D6F617 /* CompactLPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2DA0294EEAFE00D6F617 /* CompactLPError.swift */; };
@@ -30,6 +30,7 @@
 		A53CF335294E2C310026A655 /* DefaultUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CF334294E2C310026A655 /* DefaultUserRepository.swift */; };
 		A54776DC29516DB000E14D0F /* SFOMTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776DB29516DB000E14D0F /* SFOMTexts.swift */; };
 		A54776DE29516DCD00E14D0F /* SFOMSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776DD29516DCD00E14D0F /* SFOMSearchBar.swift */; };
+		A54776E529517AF100E14D0F /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776E429517AF100E14D0F /* CategoryView.swift */; };
 		A5502F072943883300A4D18A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F062943883300A4D18A /* NetworkService.swift */; };
 		A5502F0B29438A9C00A4D18A /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F0A29438A9C00A4D18A /* AuthRepository.swift */; };
 		A5502F0D29438B6200A4D18A /* DownloadListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F0C29438B6200A4D18A /* DownloadListStorage.swift */; };
@@ -117,7 +118,7 @@
 		A52019FA293C857500FAA9B4 /* SFOMSkinImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMSkinImage.swift; sourceTree = "<group>"; };
 		A52019FC293C8B6F00FAA9B4 /* SFOMCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMCategory.swift; sourceTree = "<group>"; };
 		A525E7B1293B38C3006246FA /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
-		A525E7B5293B4F2D006246FA /* SFOMItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMItemView.swift; sourceTree = "<group>"; };
+		A525E7B5293B4F2D006246FA /* SFOMItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMItems.swift; sourceTree = "<group>"; };
 		A52A2D9B294EE64B00D6F617 /* CompactLPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLPView.swift; sourceTree = "<group>"; };
 		A52A2D9E294EEA5F00D6F617 /* LPMetadataProvider+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LPMetadataProvider+.swift"; sourceTree = "<group>"; };
 		A52A2DA0294EEAFE00D6F617 /* CompactLPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLPError.swift; sourceTree = "<group>"; };
@@ -133,6 +134,7 @@
 		A53CF334294E2C310026A655 /* DefaultUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserRepository.swift; sourceTree = "<group>"; };
 		A54776DB29516DB000E14D0F /* SFOMTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMTexts.swift; sourceTree = "<group>"; };
 		A54776DD29516DCD00E14D0F /* SFOMSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMSearchBar.swift; sourceTree = "<group>"; };
+		A54776E429517AF100E14D0F /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		A5502F062943883300A4D18A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A5502F0A29438A9C00A4D18A /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		A5502F0C29438B6200A4D18A /* DownloadListStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListStorage.swift; sourceTree = "<group>"; };
@@ -242,6 +244,30 @@
 				A52A2DA0294EEAFE00D6F617 /* CompactLPError.swift */,
 			);
 			path = CompactLPView;
+			sourceTree = "<group>";
+		};
+		A54776DF29517A0900E14D0F /* PostScene */ = {
+			isa = PBXGroup;
+			children = (
+				A5602D7829390DD40042496A /* PostView.swift */,
+			);
+			path = PostScene;
+			sourceTree = "<group>";
+		};
+		A54776E029517A9200E14D0F /* PushScene */ = {
+			isa = PBXGroup;
+			children = (
+				A5713870295054AE00731F1B /* PushView.swift */,
+			);
+			path = PushScene;
+			sourceTree = "<group>";
+		};
+		A54776E129517AC300E14D0F /* CategoryScene */ = {
+			isa = PBXGroup;
+			children = (
+				A54776E429517AF100E14D0F /* CategoryView.swift */,
+			);
+			path = CategoryScene;
 			sourceTree = "<group>";
 		};
 		A5502EFE2943867300A4D18A /* Infrastructure */ = {
@@ -537,6 +563,9 @@
 			children = (
 				A50DE8FD292B379100E1FD60 /* HomeView.swift */,
 				A5971552292E7CDB0081E71A /* AuthScene */,
+				A54776DF29517A0900E14D0F /* PostScene */,
+				A54776E029517A9200E14D0F /* PushScene */,
+				A54776E129517AC300E14D0F /* CategoryScene */,
 			);
 			path = HomeScene;
 			sourceTree = "<group>";
@@ -586,7 +615,7 @@
 				A50DE8FB292B32D800E1FD60 /* SFOMButtons.swift */,
 				A5EF977F294DBBE200CD35FF /* SFOMNavigationLinks.swift */,
 				A54776DB29516DB000E14D0F /* SFOMTexts.swift */,
-				A525E7B5293B4F2D006246FA /* SFOMItemView.swift */,
+				A525E7B5293B4F2D006246FA /* SFOMItems.swift */,
 				A54776DD29516DCD00E14D0F /* SFOMSearchBar.swift */,
 				A57669AC294609FD00D44CD2 /* SFOMIndicator.swift */,
 				A57669AE29461BF900D44CD2 /* SFOMImage.swift */,
@@ -624,9 +653,7 @@
 			children = (
 				A5EEA025293892DF0000AAB5 /* ProfileView.swift */,
 				A5602D7629390DB70042496A /* ContentView.swift */,
-				A5602D7829390DD40042496A /* PostView.swift */,
 				A5EF9768294D958600CD35FF /* DownloadView.swift */,
-				A5713870295054AE00731F1B /* PushView.swift */,
 			);
 			path = CommonScene;
 			sourceTree = "<group>";
@@ -772,7 +799,7 @@
 				A50DE900292B379900E1FD60 /* SearchView.swift in Sources */,
 				A52A2DAD294EFABC00D6F617 /* CommentDTO+Mapping.swift in Sources */,
 				A571386F2950418A00731F1B /* Date+.swift in Sources */,
-				A525E7B6293B4F2D006246FA /* SFOMItemView.swift in Sources */,
+				A525E7B6293B4F2D006246FA /* SFOMItems.swift in Sources */,
 				A5D285CF294635DB001F9343 /* PostRepository.swift in Sources */,
 				A52A2DA5294EF91900D6F617 /* CommentEventRepository.swift in Sources */,
 				A5EF9782294DD9D700CD35FF /* ResourceDTO+Mapping.swift in Sources */,
@@ -807,6 +834,7 @@
 				A5C3A0E8294BF06C00CC1940 /* DefaultAuthRepository.swift in Sources */,
 				A59132DC293B886C00D28CCA /* Resource.swift in Sources */,
 				A5CFA7262927428B004C1F2B /* Color+.swift in Sources */,
+				A54776E529517AF100E14D0F /* CategoryView.swift in Sources */,
 				A50DE904292B37BD00E1FD60 /* MenuView.swift in Sources */,
 				A52019FD293C8B6F00FAA9B4 /* SFOMCategory.swift in Sources */,
 				A52A2D9F294EEA5F00D6F617 /* LPMetadataProvider+.swift in Sources */,

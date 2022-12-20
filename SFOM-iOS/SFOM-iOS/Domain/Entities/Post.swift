@@ -8,20 +8,38 @@
 import Foundation
 
 struct Post {
-    var id: String
-    var authorUid: String
-    var basedLanguage: String
-    var boardId: String
-    var body: PostBody?
-    var bodyType: String
-    var coverImage: String?
-    var createdTimestamp: Date?
-    var modifiedTimestamp: Date?
-    var state: String
-    var tags: [String]?
-    var title: String
-    var translatedBodies: [String: PostBody]
-    var translatedTitles: [String: String]
+    let id: String
+    let authorUid: String
+    let basedLanguage: String
+    let boardId: String
+    let body: PostBody?
+    let bodyType: String
+    let coverImage: String?
+    let createdTimestamp: Date?
+    let modifiedTimestamp: Date?
+    let state: String
+    let tags: [String]?
+    let title: String
+    let translatedBodies: [String: PostBody]
+    let translatedTitles: [String: String]
+    
+    var localizedTitle: String {
+        let location = Localized.location
+        if basedLanguage == location {
+            return title
+        } else {
+            return translatedTitles[location] ?? title
+        }
+    }
+    
+    var localizedBody: PostBody {
+        let location = Localized.location
+        if basedLanguage == location, let body = body {
+            return body
+        } else {
+            return (translatedBodies[location] ?? body ) ?? PostBody(format: "", version: 0, body: [])
+        }
+    }
     
     init(id: String,
          authorUid: String,
@@ -55,9 +73,9 @@ struct Post {
 }
 
 struct PostBody {
-    var format: String
-    var version: Int
-    var body: [PostBodyContent]
+    let format: String
+    let version: Int
+    let body: [PostBodyContent]
     
     init(format: String, version: Int, body: [PostBodyContent]) {
         self.format = format
@@ -67,8 +85,8 @@ struct PostBody {
 }
 
 struct PostBodyContent {
-    var type: String
-    var data: String
+    let type: String
+    let data: String
     
     init(type: String, data: String) {
         self.type = type
