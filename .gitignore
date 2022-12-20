@@ -1,5 +1,6 @@
 ### main ###
 url.plist
+TestResource.swift
 
 ### Firebase ###
 .idea

@@ -17,8 +17,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ContentView_Previews: PreviewProvider {    
     static var previews: some View {
-        ContentView(resource: Resource(authorUid: "", basedLanguage: "", category: .map, chidCommentsCount: 0, createdTimestamp: Date(), desc: "", downloadCount: 0, fileExt: "", fileHash: "", id: "", images: [], likeCount: 0, name: "", modifiedTimestamp: Date(), state: "", tags: [], translatedDescs: [:], translatedNames: [:], translationSource: "", version: 0))
+        ContentView(resource: TestResource.resource)
     }
 }
