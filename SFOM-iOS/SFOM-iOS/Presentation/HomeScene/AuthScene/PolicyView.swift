@@ -1,30 +1,24 @@
 //
-//  SignUpView.swift
+//  PolicyView.swift
 //  SFOM-iOS
 //
-//  Created by 이전희 on 2022/12/01.
+//  Created by 이전희 on 2022/12/21.
 //
 
 import SwiftUI
 
-final class SignUpViewModel: ObservableObject {
-    private let authUseCase: AuthUseCase = DefaultAuthUseCase(authRepository: DefaultAuthRepository(networkAuthService: FirebaseService.shared))
-    
+final class PolicyViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var passwordConfirm: String = ""
     @Published var userName: String = ""
-    
-    func signOut(){
-        // authUseCase.signOut() 결과 처리
-    }
 }
 
-struct SignUpView: View {
+struct PolicyView: View {
     @GestureState private var dragOffset = CGSize.zero
     @Environment(\.dismiss) var dismiss
 
-    @ObservedObject private var viewModel: SignUpViewModel = SignUpViewModel()
+    @ObservedObject private var viewModel: PolicyViewModel = PolicyViewModel()
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -51,6 +45,11 @@ struct SignUpView: View {
                 SFOMButton(Localized.SignUpView.signUpButtonTitle) {
                     #warning("add SignUp Action")
                 }
+
+                SFOMMarkdownText(Localized.Policy.policy2)
+                    .font(.caption)
+                    .foregroundColor(Color(.lightGray))
+                    .multilineTextAlignment(.center)
             }
             HStack { Spacer() }
         }
@@ -65,9 +64,9 @@ struct SignUpView: View {
     }
 }
 
-struct SignUpView_Previews: PreviewProvider {
+struct PolicyView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView()
+        PolicyView()
     }
 }
 

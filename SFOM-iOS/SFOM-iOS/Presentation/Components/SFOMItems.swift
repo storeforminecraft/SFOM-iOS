@@ -143,8 +143,8 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
             VStack(alignment: .leading){
                 HStack{
                     Group {
-                        if let thumnail = recentComment.resource.thumbnail {
-                            SFOMImage(urlString: thumnail)
+                        if let thumbnail = recentComment.resource.thumbnail {
+                            SFOMImage(urlString: thumbnail)
                         } else {
                             Assets.Default.profileBackground.image
                         }
@@ -160,8 +160,8 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
                 
                 HStack (spacing: 0) {
                     Group {
-                        if let thumnail = recentComment.user.thumnail {
-                            SFOMImage(urlString: thumnail)
+                        if let thumbnail = recentComment.user.thumbnail {
+                            SFOMImage(urlString: thumbnail)
                         } else {
                             Assets.Default.profile.image
                                 .resizable()

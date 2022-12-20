@@ -18,7 +18,7 @@ struct User {
         return "\(nickname) (\(uid.prefix(6)))"
     }
     
-    var thumnail: String? {
+    var thumbnail: String? {
         guard let profileImage = profileImage else { return nil }
         return "\(URLStringManager.urlString(key: .imageURL))/\(profileImage)"
     }

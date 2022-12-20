@@ -8,7 +8,7 @@
 import SwiftUI
 
 final class SignInViewModel: ObservableObject {
-    private let authUseCase: AuthUseCase = DefaultAuthUseCase(authRepository: DefaultAuthRepository(networkAuthService: FirebaseService.shared))
+    private let authUseCase: AuthUseCase = AppContainer.shared.authUseCase
     
     @Published var email: String = ""
     @Published var password: String = ""
@@ -27,7 +27,7 @@ struct SignInView: View {
     @GestureState private var dragOffset = CGSize.zero
     @Environment(\.dismiss) var dismiss
     
-    @ObservedObject private var signInViewModel = SignInViewModel()
+    @ObservedObject private var viewModel: SignInViewModel = SignInViewModel()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -43,9 +43,9 @@ struct SignInView: View {
             
             VStack (alignment: .center) {
                 SFOMTextField(content: Localized.Auth.email,
-                              text: $signInViewModel.email)
+                              text: $viewModel.email)
                 SFOMTextField(content: Localized.Auth.password,
-                              text: $signInViewModel.password,
+                              text: $viewModel.password,
                               secure: true)
             }
             Spacer()
@@ -56,7 +56,7 @@ struct SignInView: View {
                 }
                 
                 Button {
-                    signInViewModel.isPresentPasswordReset = true
+                    viewModel.isPresentPasswordReset = true
                 } label: {
                     Text(Localized.SignInView.resetEmailButtonTitle)
                         .foregroundColor(Color(.lightGray))
@@ -70,7 +70,7 @@ struct SignInView: View {
         //     .toast(isPresenting: $isPresentToast) {
         //     AlertToast(displayMode: .alert, type: .regular, title: self.toastMessage)
         // }
-        .popover(isPresented: $signInViewModel.isPresentPasswordReset) {
+        .popover(isPresented: $viewModel.isPresentPasswordReset) {
             // PasswordResetView()
         }
         .gesture(DragGesture().updating($dragOffset) { (value, state, transaction) in

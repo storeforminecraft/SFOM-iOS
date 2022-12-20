@@ -38,6 +38,9 @@
 		A54776F229518C7900E14D0F /* MyCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776F129518C7900E14D0F /* MyCommentsView.swift */; };
 		A54776F429518E4500E14D0F /* SFOMMoreMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776F329518E4500E14D0F /* SFOMMoreMenu.swift */; };
 		A54776F62951A6B500E14D0F /* TestResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776F52951A6B500E14D0F /* TestResource.swift */; };
+		A54776FA295218EE00E14D0F /* ContentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776F9295218EE00E14D0F /* ContentUseCase.swift */; };
+		A54776FC295218F900E14D0F /* DefaultContentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776FB295218F900E14D0F /* DefaultContentUseCase.swift */; };
+		A54776FE2952246F00E14D0F /* PolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776FD2952246F00E14D0F /* PolicyView.swift */; };
 		A5502F072943883300A4D18A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F062943883300A4D18A /* NetworkService.swift */; };
 		A5502F0B29438A9C00A4D18A /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F0A29438A9C00A4D18A /* AuthRepository.swift */; };
 		A5502F0D29438B6200A4D18A /* DownloadListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F0C29438B6200A4D18A /* DownloadListStorage.swift */; };
@@ -149,6 +152,9 @@
 		A54776F129518C7900E14D0F /* MyCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommentsView.swift; sourceTree = "<group>"; };
 		A54776F329518E4500E14D0F /* SFOMMoreMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMMoreMenu.swift; sourceTree = "<group>"; };
 		A54776F52951A6B500E14D0F /* TestResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResource.swift; sourceTree = "<group>"; };
+		A54776F9295218EE00E14D0F /* ContentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUseCase.swift; sourceTree = "<group>"; };
+		A54776FB295218F900E14D0F /* DefaultContentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultContentUseCase.swift; sourceTree = "<group>"; };
+		A54776FD2952246F00E14D0F /* PolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyView.swift; sourceTree = "<group>"; };
 		A5502F062943883300A4D18A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A5502F0A29438A9C00A4D18A /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		A5502F0C29438B6200A4D18A /* DownloadListStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListStorage.swift; sourceTree = "<group>"; };
@@ -311,6 +317,23 @@
 			path = ListView;
 			sourceTree = "<group>";
 		};
+		A54776F7295218C300E14D0F /* ContentUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				A54776F8295218D900E14D0F /* Protocols */,
+				A54776FB295218F900E14D0F /* DefaultContentUseCase.swift */,
+			);
+			path = ContentUseCase;
+			sourceTree = "<group>";
+		};
+		A54776F8295218D900E14D0F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A54776F9295218EE00E14D0F /* ContentUseCase.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		A5502EFE2943867300A4D18A /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,6 +451,7 @@
 				A5EF9771294DA9BF00CD35FF /* SearchUseCase */,
 				A54776E8295188BD00E14D0F /* MenuUseCase */,
 				A5EF9777294DAB4400CD35FF /* AuthUseCase */,
+				A54776F7295218C300E14D0F /* ContentUseCase */,
 				A56386C62943289000A8CEEA /* Entities */,
 				A5842F39294F58F1007F3116 /* UseCaseError.swift */,
 			);
@@ -509,6 +533,7 @@
 			children = (
 				A5EEA01D29388CBC0000AAB5 /* AuthView.swift */,
 				A5971553292E7CE90081E71A /* SignInView.swift */,
+				A54776FD2952246F00E14D0F /* PolicyView.swift */,
 				A5EEA029293896E40000AAB5 /* SignUpView.swift */,
 			);
 			path = AuthScene;
@@ -829,6 +854,7 @@
 				A5CD4571294ADDE2009F47C1 /* HTTPEndPoint.swift in Sources */,
 				A5CFA7092927322E004C1F2B /* CoreDataStorage.xcdatamodeld in Sources */,
 				A5A783472930640E008B9A62 /* FirebaseService.swift in Sources */,
+				A54776FA295218EE00E14D0F /* ContentUseCase.swift in Sources */,
 				A5971554292E7CE90081E71A /* SignInView.swift in Sources */,
 				A57669AF29461BF900D44CD2 /* SFOMImage.swift in Sources */,
 				A5F4CD4829451CC300789813 /* NetworkAuthService.swift in Sources */,
@@ -840,6 +866,7 @@
 				A52A2DA3294EF8DD00D6F617 /* DefaultCommentEventRepository.swift in Sources */,
 				A597154F292E6F220081E71A /* Localized.swift in Sources */,
 				A57669AD294609FD00D44CD2 /* SFOMIndicator.swift in Sources */,
+				A54776FC295218F900E14D0F /* DefaultContentUseCase.swift in Sources */,
 				A5CD457A294AE3E4009F47C1 /* Query+Publisher.swift in Sources */,
 				A50DE900292B379900E1FD60 /* SearchView.swift in Sources */,
 				A52A2DAD294EFABC00D6F617 /* CommentDTO+Mapping.swift in Sources */,
@@ -917,6 +944,7 @@
 				A5502F1129438C6500A4D18A /* CoreDataDownloadListStorage.swift in Sources */,
 				A5EF977D294DAB4400CD35FF /* ProtectedAuthUseCase.swift in Sources */,
 				A5502F0B29438A9C00A4D18A /* AuthRepository.swift in Sources */,
+				A54776FE2952246F00E14D0F /* PolicyView.swift in Sources */,
 				A5EF977C294DAB4400CD35FF /* DefaultAuthUseCase.swift in Sources */,
 				A56386CC29432B4900A8CEEA /* DefaultHomeUseCase.swift in Sources */,
 				A5502F1E2943A73E00A4D18A /* APIEndPoints.swift in Sources */,
@@ -1085,7 +1113,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1120,7 +1148,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

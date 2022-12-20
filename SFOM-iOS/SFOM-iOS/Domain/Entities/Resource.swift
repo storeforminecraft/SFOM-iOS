@@ -47,7 +47,9 @@ struct Resource {
         }
     }
     
-    
+    var info: String {
+        return "\(createdTimestamp.ago()) ‧ \(downloadCount)\(Localized.ETC.count)"
+    }
     
     var thumbnail: String? {
         if category == .skin {
@@ -55,6 +57,12 @@ struct Resource {
         }
         guard let image = images.first else { return nil }
         return "\(URLStringManager.urlString(key: .imageURL))/\(image)"
+    }
+    
+    var imageUrls: [String] {
+        return images.map { image in
+            "\(URLStringManager.urlString(key: .imageURL))/\(image)"
+        }
     }
     
     init(authorUid: String,

@@ -38,6 +38,20 @@ public struct Localized {
         static let authSignInButtonTitle = "AuthSignInButtonTitle".localized
         static let authSignUpButtonTitle = "AuthSignUpButtonTitle".localized
     }
+    
+    public struct PolicyView {
+        private init() { }
+        static let policyMainTitle = "PolicyMainTitle".localized
+        static let policySubTitle = "PolicySubTitle".localized
+
+        static let agreeAll = "AgreeAll".localized
+        static let privacyPolicy = "PrivacyPolicy".localized
+        static let termsOfService = "TermsOfService".localized
+        static let ageCheck = "AgeCheck".localized
+        static let internationalTransferOfPersonalInformation = "InternationalTransferOfPersonalInformation".localized
+        
+        static let nextStep = "NextStep".localized
+    }
 
     public struct SignUpView {
         private init() { }
@@ -61,8 +75,12 @@ public struct Localized {
 
     public struct Policy {
         private init() { }
-        static let policy1 = "Policy1".localized
+        static let signInPolicy = "SignInPolicy".localized
         static let policy2 = "Policy2".localized
+        
+        static let privacyPolicyUrl = "PrivacyPolicyUrl".localized
+        static let termsOfServiceUrl = "TermsOfServiceUrl".localized
+        static let internationalTransferOfPersonalInformationUrl = "InternationalTransferOfPersonalInformationUrl".localized
     }
 
     public struct Auth {
@@ -134,6 +152,7 @@ public struct Localized {
         private init() { }
         static let leftAComment = "LeftAComment".localized
         static let signOutMessage = "SignOutMessage".localized
+        static let count = "Count".localized
     }
     
     public struct ContentStudio {

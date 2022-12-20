@@ -39,7 +39,7 @@ final class SearchViewModel: ObservableObject {
 }
 
 struct SearchView: View {
-    @ObservedObject private var searchViewModel = SearchViewModel()
+    @ObservedObject private var viewModel: SearchViewModel = SearchViewModel()
 
     let screenWidth: CGFloat = UIScreen.main.bounds.width
     let GridItemCount = 2
@@ -59,14 +59,14 @@ struct SearchView: View {
     var body: some View {
         VStack (alignment: .leading) {
             VStack (alignment: .leading) {
-                if !searchViewModel.isSearching {
+                if !viewModel.isSearching {
                     Text(Localized.SearchView.searchTitle)
                         .font(.SFOMTitleFont)
                 }
 
                 SFOMSearchBar(placeholder: Localized.SearchView.searchPlaceholder,
-                              text: $searchViewModel.searchText,
-                              state: $searchViewModel.isSearching)
+                              text: $viewModel.searchText,
+                              state: $viewModel.isSearching)
 
             }
                 .padding()
@@ -79,7 +79,7 @@ struct SearchView: View {
     var searchContents: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: spacing) {
-                ForEach(searchViewModel.searchData,
+                ForEach(viewModel.searchData,
                         id: \.id) { data in
                     VStack {
                         SFOMSearchItemView(resource: data,

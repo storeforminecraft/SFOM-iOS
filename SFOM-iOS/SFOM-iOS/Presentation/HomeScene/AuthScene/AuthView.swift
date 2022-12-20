@@ -33,7 +33,7 @@ struct AuthView: View {
                     SignUpView()
                 }
 
-                SFOMMarkdownText(Localized.Policy.policy1)
+                SFOMMarkdownText(Localized.Policy.signInPolicy)
                     .font(.caption)
                     .foregroundColor(Color(.lightGray))
                     .multilineTextAlignment(.center)

@@ -29,6 +29,21 @@
 "AuthMainTitle" = "MCPE content store.";
 "AuthSubTitle" = "The best MCPE add-on store in the Universe.";
 
+"AgreeAll" = "Agree to all required terms and conditions.";
+"PolicyMainTitle" = "Please Check\nterms and conditions.";
+"PolicySubTitle" = "You must agree to the mandatory terms and conditions to use SFOM's member services.";
+
+"PrivacyPolicy" = "Privacy Policy";
+"TermsOfService" = "Terms of Service";
+"AgeCheck" = "I am over 14 years old.";
+"InternationalTransferOfPersonalInformation" = "Intl transfer of personal information";
+
+"PrivacyPolicyUrl" = "https://docs.storeforminecraft.com/en/terms/PrivacyPolicy";
+"TermsOfServiceUrl" = "https://docs.storeforminecraft.com/en/terms/Personal_Information_Collection_and_Use_Agreement";
+"InternationalTransferOfPersonalInformationUrl" = "https://docs.storeforminecraft.com/en/terms/Personal_Information_Transfer_Agreement";
+
+"NextStep" = "Go to next step";
+
 "SignUpTitle" = "Have fun";
 "SignUpMainTitle" = "By Registering";
 "SignUpSubTitle" = "You can create an account for STORE for MCPE now.";
@@ -40,8 +55,7 @@
 "SignInButonTitle" = "SIGN IN";
 "ResetEmailButtonTitle" = "Forgot your password?";
 
-"Policy1" = "By continuing, you aggree to the STORE for MCPE's [Terms of Service](https://docs.storeforminecraft.com/en/terms/EULA) and [Privacy Policy](https://docs.storeforminecraft.com/en/terms/PrivacyPolicy).";
-"Policy2" = "버튼을 누름으로서 본인이 만 14세 이상임을 확인하며, [개인정보 수집 및 이용 동의서](https://docs.storeforminecraft.com/en/terms/Personal_Information_Collection_and_Use_Agreement)와 [개인정보 국외 이전 동의서](https://docs.storeforminecraft.com/en/terms/Personal_Information_Transfer_Agreement)에 동의합니다.";
+"SignInPolicy" = "By continuing, you aggree to the STORE for MCPE's [Terms of Service](https://docs.storeforminecraft.com/en/terms/EULA) and [Privacy Policy](https://docs.storeforminecraft.com/en/terms/PrivacyPolicy).";
 
 "AuthSignInButtonTitle" = "GET STARTED";
 "AuthSignUpButtonTitle" = "ALREADY HAVE AN ACCOUNT";
@@ -98,10 +112,11 @@
 
 "SignOutMessage" = "Do you really want to sign out?";
 
-"LeftAComment" = " left a comment.";
-
 "ContentStudio" = "Content Studio";
 "Upload" = "upload";
 "TodayDownloads" = "Tdy Downloads";
 "TodayLikes" = "Tdy Likes";
 "TodayComments" = "Tdy Comments";
+
+"LeftAComment" = " left a comment.";
+"Count" = " hits";
