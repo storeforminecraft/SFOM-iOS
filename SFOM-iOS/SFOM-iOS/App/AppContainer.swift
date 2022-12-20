@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Temp Container
 final class AppContainer {
-    static let shared = AppDIContainer()
+    static let shared = AppContainer()
     private init() { }
     
     let networkService: NetworkService = FirebaseService.shared

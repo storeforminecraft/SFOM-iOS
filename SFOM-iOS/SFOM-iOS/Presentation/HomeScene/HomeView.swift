@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 final class HomeViewModel: ViewModel {
-    private let homeUseCase: HomeUseCase = AppDIContainer.shared.homeUseCase
+    private let homeUseCase: HomeUseCase = AppContainer.shared.homeUseCase
     
     @Published var currentUser: User? = nil
     @Published var posts: [Post] = []

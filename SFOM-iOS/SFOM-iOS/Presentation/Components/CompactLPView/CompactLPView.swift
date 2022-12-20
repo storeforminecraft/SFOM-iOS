@@ -30,10 +30,10 @@ fileprivate final class CompactLPViewModel: ObservableObject {
     
     func fetch(urlString: String){
         metadataProvider.startFetchingMetadataPublisher(for: urlString)
-            .receive(on: DispatchQueue.main)
             .map { metadata -> LPLinkMetadata? in metadata }
             .replaceError(with: nil)
             .eraseToAnyPublisher()
+            .receive(on: DispatchQueue.main)
             .assign(to: \.metadata, on: self)
             .store(in: &cancellable)
     }

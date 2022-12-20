@@ -55,3 +55,15 @@ public struct SFOMNavigationLink<Destination>: View where Destination: View {
     }
 }
 
+public struct SFOMCategoryTapView<Destination>: View where Destination: View {
+    var category: SFOMCategory
+    @ViewBuilder var destination:() -> Destination
+    
+    public var body: some View {
+        NavigationLink {
+            destination()
+        } label: {
+            VStack{ }
+        }
+    }
+}
