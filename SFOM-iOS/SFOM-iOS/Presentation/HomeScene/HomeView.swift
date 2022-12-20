@@ -9,10 +9,7 @@ import SwiftUI
 import Combine
 
 final class HomeViewModel: ViewModel {
-    private let homeUseCase: HomeUseCase = DefaultHomeUseCase(postRepository: DefaultPostRepository(networkService: FirebaseService.shared),
-                                                              userRepository: DefaultUserRepository(networkAuthService: FirebaseService.shared, httpService: DefaultHTTPService()),
-                                                              resourceRepository: DefaultResourceRepository(networkService: FirebaseService.shared),
-                                                              commentEventRepository: DefaultCommentEventRepository(networkService: FirebaseService.shared))
+    private let homeUseCase: HomeUseCase = AppDIContainer.shared.homeUseCase
     
     @Published var currentUser: User? = nil
     @Published var posts: [Post] = []
@@ -61,6 +58,12 @@ struct HomeView: View {
                     .padding()
                 Spacer()
             }
+            
+        }
+    }
+    
+    private var categoryTabButtons: some View {
+        VStack{
             
         }
     }

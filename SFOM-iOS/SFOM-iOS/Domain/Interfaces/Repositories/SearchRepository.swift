@@ -8,5 +8,5 @@
 import Combine
 
 protocol SearchRepository {
-    func search(keyword: String, page: Int, tag: String?, sort: String?)->AnyPublisher<[SearchData],Error>
+    func search(keyword: String, page: Int, tag: String?, sort: String?) -> AnyPublisher<[SearchData],Error>
 }
