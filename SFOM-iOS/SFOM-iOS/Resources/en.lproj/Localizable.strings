@@ -99,3 +99,9 @@
 "SignOutMessage" = "Do you really want to sign out?";
 
 "LeftAComment" = " left a comment.";
+
+"ContentStudio" = "Content Studio";
+"Upload" = "upload";
+"TodayDownloads" = "Tdy Downloads";
+"TodayLikes" = "Tdy Likes";
+"TodayComments" = "Tdy Comments";

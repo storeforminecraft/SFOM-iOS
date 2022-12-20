@@ -135,4 +135,13 @@ public struct Localized {
         static let leftAComment = "LeftAComment".localized
         static let signOutMessage = "SignOutMessage".localized
     }
+    
+    public struct ContentStudio {
+        private init() { }
+        static let contentStudio = "ContentStudio".localized
+        static let upload = "Upload".localized
+        static let todayDownloads = "TodayDownloads".localized
+        static let todayLikes = "TodayLikes".localized
+        static let todayComments = "TodayComments".localized
+    }
 }

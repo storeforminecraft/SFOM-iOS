@@ -99,3 +99,9 @@
 "SignOutMessage" = "정말로 로그아웃할까요?";
 
 "LeftAComment" = "님이 댓글을 남기셨습니다.";
+
+"ContentStudio" = "콘텐츠 스튜디오";
+"Upload" = "콘텐츠 업로드";
+"TodayDownloads" = "오늘 다운로드";
+"TodayLikes" = "오늘 좋아요";
+"TodayComments" = "오늘 댓글";
