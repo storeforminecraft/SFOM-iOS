@@ -121,8 +121,18 @@ public struct Localized {
         static let aDay = "ADay".localized
     }
     
+    public struct MoreMenu {
+        private init() { }
+        static let download = "Download".localized
+        static let notice = "Notice".localized
+        static let settings = "Settings".localized
+        static let myComments = "MyComments".localized
+        static let signOut = "SignOut".localized
+    }
+    
     public struct ETC {
         private init() { }
         static let leftAComment = "LeftAComment".localized
+        static let signOutMessage = "SignOutMessage".localized
     }
 }

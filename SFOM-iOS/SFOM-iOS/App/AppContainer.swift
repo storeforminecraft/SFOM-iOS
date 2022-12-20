@@ -29,4 +29,5 @@ final class AppContainer {
                                               commentEventRepository: commentEventRepository)
     lazy var searchUseCase = DefaultSearchUseCase(searchRepository: searchRepository)
     lazy var authUseCase = DefaultAuthUseCase(authRepository: authRepository)
+    lazy var menuUseCase = DefaultMenuUseCase(userRepository: userRepository, authRepository: authRepository)
 }

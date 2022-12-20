@@ -202,3 +202,25 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
         }
     }
 }
+
+public struct SFOMListItemView<Destination>: View where Destination: View  {
+    let moreMenu: SFOMMoreMenu
+    @ViewBuilder var destination: () -> Destination
+    
+    init(moreMenu: SFOMMoreMenu, @ViewBuilder destination: @escaping () -> Destination) {
+        self.moreMenu = moreMenu
+        self.destination = destination
+    }
+    
+    public var body: some View {
+        NavigationLink{
+            destination()
+        } label: {
+            HStack {
+                moreMenu.assets.image
+                Text(moreMenu.localized)
+                    .font(.SFOMSmallFont.bold())
+            }
+        }
+    }
+}

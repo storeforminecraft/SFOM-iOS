@@ -90,4 +90,12 @@
 "AnHour" = "1시간";
 "ADay" = "1일";
 
+"Download" = "다운로드 내역";
+"Notice" = "공지사항";
+"Settings" = "애플리케이션 설정";
+"MyComments" = "작성한 댓글";
+"SignOut" = "로그아웃";
+
+"SignOutMessage" = "정말로 로그아웃할까요?";
+
 "LeftAComment" = "님이 댓글을 남기셨습니다.";

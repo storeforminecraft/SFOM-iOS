@@ -147,7 +147,7 @@ struct HomeView: View {
     private var postItemsView: some View {
         HStack {
             ForEach(viewModel.posts, id: \.id) { post in
-                SFOMPostItemView(post: post, height: 200) {
+                SFOMPostItemView(post: post) {
                     PostView(post: post)
                 }
             }

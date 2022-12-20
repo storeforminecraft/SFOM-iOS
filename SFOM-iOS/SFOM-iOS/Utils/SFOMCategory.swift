@@ -18,7 +18,10 @@ enum SFOMCategory: String {
     case texturepack
     case unknown
     
-    var assets: Assets.Category{
+}
+
+extension SFOMCategory {
+    var assets: Assets.Category {
         switch self {
         case .addon: return Assets.Category.addon
         case .downloads: return Assets.Category.downloads

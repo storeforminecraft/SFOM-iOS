@@ -64,15 +64,18 @@ struct Assets {
     }
 
     public enum MoreMenu: String {
-        case downloads
-        case preference
+        case download
         case notice
-        case signout
-        case notificationActive
+        case settings
+        case myComments
+        case signOut
         case push
 
         var image: Image {
-            Image("ic_moremenu_\(self.rawValue)")
+            switch self {
+            case .settings,.myComments: return Image("ic_moremenu_preference")
+            default: return Image("ic_moremenu_\(self.rawValue.lowercased())")
+            }
         }
 
     }

@@ -90,4 +90,12 @@
 "AnHour" = "an hour";
 "ADay" = "a day";
 
+"Download" = "Download";
+"Notice" = "Notice";
+"Settings" = "Settings";
+"MyComments" = "My Comments";
+"SignOut" = "Sign out";
+
+"SignOutMessage" = "Do you really want to sign out?";
+
 "LeftAComment" = " left a comment.";
