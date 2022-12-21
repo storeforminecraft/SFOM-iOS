@@ -29,10 +29,12 @@
 "AuthMainTitle" = "MCPE content store.";
 "AuthSubTitle" = "The best MCPE add-on store in the Universe.";
 
-"AgreeAll" = "Agree to all required terms and conditions.";
 "PolicyMainTitle" = "Please Check\nterms and conditions.";
 "PolicySubTitle" = "You must agree to the mandatory terms and conditions to use SFOM's member services.";
 
+"Require" = "req";
+
+"AgreeAll" = "Agree to all required terms and conditions.";
 "PrivacyPolicy" = "Privacy Policy";
 "TermsOfService" = "Terms of Service";
 "AgeCheck" = "I am over 14 years old.";
@@ -57,8 +59,8 @@
 
 "SignInPolicy" = "By continuing, you aggree to the STORE for MCPE's [Terms of Service](https://docs.storeforminecraft.com/en/terms/EULA) and [Privacy Policy](https://docs.storeforminecraft.com/en/terms/PrivacyPolicy).";
 
-"AuthSignInButtonTitle" = "GET STARTED";
-"AuthSignUpButtonTitle" = "ALREADY HAVE AN ACCOUNT";
+"AuthSignInButtonTitle" = "ALREADY HAVE AN ACCOUNT";
+"AuthSignUpButtonTitle" = "GET STARTED";
 
 "Email" = "Email address";
 "Password" = "Password";

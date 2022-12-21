@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AuthView: View {
-    @GestureState private var dragOffset = CGSize.zero
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -21,16 +20,17 @@ struct AuthView: View {
             SFOMBackButton {
                 dismiss()
             }
+            .padding(.top, 5)
 
             Spacer()
 
             VStack (alignment: .center) {
-                SFOMNavigationLink(Localized.AuthView.authSignInButtonTitle) {
-                    SignInView()
+                SFOMNavigationLink(Localized.AuthView.authSignUpButtonTitle, accent: false) {
+                    PolicyView()
                 }
                 
-                SFOMNavigationLink(Localized.AuthView.authSignUpButtonTitle, accent: false) {
-                    SignUpView()
+                SFOMNavigationLink(Localized.AuthView.authSignInButtonTitle) {
+                    SignInView()
                 }
 
                 SFOMMarkdownText(Localized.Policy.signInPolicy)
@@ -43,12 +43,6 @@ struct AuthView: View {
             .navigationBarHidden(true)
             .padding(.top, 30)
             .padding(.horizontal, 25)
-            .gesture(DragGesture().updating($dragOffset) { (value, state, transaction) in
-
-            if (value.startLocation.x < 30 && value.translation.width > 100) {
-                dismiss()
-            }
-        })
     }
 }
 

@@ -24,7 +24,6 @@ final class SignInViewModel: ObservableObject {
 
 
 struct SignInView: View {
-    @GestureState private var dragOffset = CGSize.zero
     @Environment(\.dismiss) var dismiss
     
     @ObservedObject private var viewModel: SignInViewModel = SignInViewModel()
@@ -38,13 +37,14 @@ struct SignInView: View {
             SFOMBackButton {
                 dismiss()
             }
+            .padding(.top, 5)
             
             Spacer()
             
             VStack (alignment: .center) {
-                SFOMTextField(content: Localized.Auth.email,
+                SFOMTextField(Localized.Auth.email,
                               text: $viewModel.email)
-                SFOMTextField(content: Localized.Auth.password,
+                SFOMTextField(Localized.Auth.password,
                               text: $viewModel.password,
                               secure: true)
             }
@@ -73,11 +73,6 @@ struct SignInView: View {
         .popover(isPresented: $viewModel.isPresentPasswordReset) {
             // PasswordResetView()
         }
-        .gesture(DragGesture().updating($dragOffset) { (value, state, transaction) in
-            if (value.startLocation.x < 30 && value.translation.width > 100) {
-                dismiss()
-            }
-        })
     }
 }
 

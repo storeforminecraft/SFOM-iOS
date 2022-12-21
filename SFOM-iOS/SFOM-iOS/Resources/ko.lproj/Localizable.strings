@@ -32,6 +32,8 @@
 "PolicyMainTitle" = "이용약관을\n확인해 주세요";
 "PolicySubTitle" = "필수 이용약관을 동의해야 SFOM의 회원 서비스를 이용할 수 있어요.";
 
+"Require" = "필수";
+
 "AgreeAll" = "필수 이용약관에 전부 동의합니다.";
 "PrivacyPolicy" = "개인정보 처리방침";
 "TermsOfService" = "서비스 이용약관";
@@ -57,8 +59,8 @@
 
 "SignInPolicy" = "계속하시면 STORE for MCPE의 [서비스 이용약관](https://docs.storeforminecraft.com/ko/terms/EULA)과 [개인정보 처리 방침](https://docs.storeforminecraft.com/ko/terms/PrivacyPolicy)에 동의하는 것으로 간주 됩니다.";
 
-"AuthSignInButtonTitle" = "지금 시작하기";
-"AuthSignUpButtonTitle" = "이미 계정이 있습니다.";
+"AuthSignInButtonTitle" = "이미 계정이 있습니다.";
+"AuthSignUpButtonTitle" = "지금 시작하기";
 
 "Email" = "이메일 주소";
 "Password" = "비밀번호";

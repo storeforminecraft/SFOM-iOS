@@ -6,61 +6,111 @@
 //
 
 import SwiftUI
+import Combine
 
 final class PolicyViewModel: ObservableObject {
-    @Published var email: String = ""
-    @Published var password: String = ""
-    @Published var passwordConfirm: String = ""
-    @Published var userName: String = ""
+    @Published var disabled: Bool = true
+    @Published var agreeAll: Bool = false
+    @Published var privacyPolicy: Bool = false
+    @Published var termsOfService: Bool = false
+    @Published var ageCheck: Bool = false
+    @Published var internationalTransferOfPersonalInformation: Bool = false
+    
+    private var cancellable = Set<AnyCancellable>()
+    
+    private var check: Bool = true
+    
+    init() {
+        bind()
+    }
+    
+    func bind(){
+        $agreeAll
+            .sink { result in
+                if self.check {
+                    self.check = false
+                    self.privacyPolicy = result
+                    self.termsOfService = result
+                    self.ageCheck = result
+                    self.internationalTransferOfPersonalInformation = result
+                } else {
+                    self.check = true
+                }
+            }
+            .store(in: &cancellable)
+        
+        $privacyPolicy
+            .combineLatest($termsOfService,
+                           $ageCheck,
+                           $internationalTransferOfPersonalInformation)
+            .map { ![$0.0, $0.1, $0.2, $0.3]
+                    .reduce(true) { partialResult, check in
+                        partialResult && check
+                    }
+            }
+            .handleEvents(receiveOutput: { result in
+                if self.check {
+                    self.check = false
+                    self.agreeAll = !result
+                } else {
+                    self.check = true
+                }
+            })
+            .assign(to: \.disabled, on: self)
+            .store(in: &cancellable)
+    }
 }
 
 struct PolicyView: View {
-    @GestureState private var dragOffset = CGSize.zero
     @Environment(\.dismiss) var dismiss
-
+    
     @ObservedObject private var viewModel: PolicyViewModel = PolicyViewModel()
-
+    
     var body: some View {
         VStack(alignment: .leading) {
-            SFOMHeader(title: Localized.SignUpView.signUpTitle,
-                       mainTitle: Localized.SignUpView.signUpMainTitle,
-                       subTitle: Localized.SignUpView.signUpSubTitle)
-
+            SFOMHeader(title: "",
+                       mainTitle: Localized.PolicyView.policyMainTitle,
+                       subTitle: Localized.PolicyView.policySubTitle)
             SFOMBackButton {
                 dismiss()
             }
-
-            Spacer()
-
+            .padding(.top, 5)
+            .padding(.bottom, 20)
+            
             VStack (alignment: .center) {
-                SFOMTextField(content: Localized.Auth.email, text: $viewModel.email)
-                SFOMTextField(content: Localized.Auth.password, text: $viewModel.email, secure: true)
-                SFOMTextField(content: Localized.Auth.passwordConfirm, text: $viewModel.passwordConfirm, secure: true)
-                SFOMTextField(content: Localized.Auth.userName, text: $viewModel.userName)
+                SFOMCheckButton(content: Localized.PolicyView.agreeAll,
+                                check: $viewModel.agreeAll)
+                SFOMCheckButton(content: Localized.PolicyView.privacyPolicy,
+                                kind: Localized.PolicyView.require,
+                                urlString: Localized.Policy.privacyPolicyUrl,
+                                check: $viewModel.privacyPolicy)
+                SFOMCheckButton(content: Localized.PolicyView.termsOfService,
+                                kind: Localized.PolicyView.require,
+                                urlString: Localized.Policy.termsOfServiceUrl,
+                                check: $viewModel.termsOfService)
+                SFOMCheckButton(content: Localized.PolicyView.ageCheck,
+                                kind: Localized.PolicyView.require,
+                                check: $viewModel.ageCheck)
+                SFOMCheckButton(content: Localized.PolicyView.internationalTransferOfPersonalInformation,
+                                kind: Localized.PolicyView.require,
+                                urlString: Localized.Policy.internationalTransferOfPersonalInformationUrl,
+                                check: $viewModel.internationalTransferOfPersonalInformation)
             }
-
+            
+            
             Spacer()
-
+            
             VStack (alignment: .center) {
-                SFOMButton(Localized.SignUpView.signUpButtonTitle) {
-                    #warning("add SignUp Action")
+                SFOMNavigationLink(Localized.PolicyView.nextStep) {
+                    SignInView()
                 }
-
-                SFOMMarkdownText(Localized.Policy.policy2)
-                    .font(.caption)
-                    .foregroundColor(Color(.lightGray))
-                    .multilineTextAlignment(.center)
+                .disabled(viewModel.disabled)
             }
             HStack { Spacer() }
         }
-            .navigationBarHidden(true)
-            .padding(.top, 30)
-            .padding(.horizontal, 25)
-            .gesture(DragGesture().updating($dragOffset) { (value, state, transaction) in
-            if (value.startLocation.x < 30 && value.translation.width > 100) {
-                dismiss()
-            }
-        })
+        .navigationBarHidden(true)
+        .padding(.top, 30)
+        .padding(.horizontal, 25)
     }
 }
 

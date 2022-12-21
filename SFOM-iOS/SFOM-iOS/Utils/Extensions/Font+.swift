@@ -8,10 +8,9 @@
 import SwiftUI
 
 extension Font {
-    static let SFOMLargeTitleFont: Font = .system(size: 32, weight: .bold)
-    
-    static let SFOMTitleFont: Font = .system(size: 28, weight: .bold)
-    static let SFOMMediumFont: Font = .system(size: 24)
-    static let SFOMSmallFont: Font = .system(size: 18)
-    static let SFOMExtraSmallFont: Font = .system(size: 14)
+    static let SFOMLargeTitleFont: Font = .system(size: 30, weight: .bold)
+    static let SFOMTitleFont: Font = .system(size: 26, weight: .bold)
+    static let SFOMMediumFont: Font = .system(size: 22)
+    static let SFOMSmallFont: Font = .system(size: 16)
+    static let SFOMExtraSmallFont: Font = .system(size: 12)
 }

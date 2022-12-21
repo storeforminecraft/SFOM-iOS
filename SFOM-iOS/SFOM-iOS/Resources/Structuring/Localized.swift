@@ -44,6 +44,7 @@ public struct Localized {
         static let policyMainTitle = "PolicyMainTitle".localized
         static let policySubTitle = "PolicySubTitle".localized
 
+        static let require = "Require".localized
         static let agreeAll = "AgreeAll".localized
         static let privacyPolicy = "PrivacyPolicy".localized
         static let termsOfService = "TermsOfService".localized
@@ -76,7 +77,6 @@ public struct Localized {
     public struct Policy {
         private init() { }
         static let signInPolicy = "SignInPolicy".localized
-        static let policy2 = "Policy2".localized
         
         static let privacyPolicyUrl = "PrivacyPolicyUrl".localized
         static let termsOfServiceUrl = "TermsOfServiceUrl".localized

@@ -45,24 +45,27 @@ public struct SFOMMarkdownText: View {
 }
 
 public struct SFOMTextField: View {
-    var content: String
-    @Binding var text: String
-    var secure: Bool
+    private let placeholder: String
+    private let secure: Bool
+    
+    @Binding private var text: String
 
-    init(content: String, text: Binding<String>, secure: Bool = false) {
-        self.content = content
+    init(_ placeholder: String,
+         text: Binding<String>,
+         secure: Bool = false) {
+        self.placeholder = placeholder
         self._text = text
         self.secure = secure
     }
 
     public var body: some View {
         if secure {
-            SecureField(content, text: $text)
+            SecureField(placeholder, text: $text)
                 .autocapitalization(.none)
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(.lightGray), lineWidth: 1))
         } else {
-            TextField(content, text: $text)
+            TextField(placeholder, text: $text)
                 .autocapitalization(.none)
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(.lightGray), lineWidth: 1))
