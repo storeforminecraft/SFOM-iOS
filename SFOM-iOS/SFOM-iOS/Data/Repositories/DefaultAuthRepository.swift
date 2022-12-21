@@ -16,6 +16,10 @@ final class DefaultAuthRepository {
 }
 
 extension DefaultAuthRepository: AuthRepository {
+    func uidChanges() -> AnyPublisher<String?, Never> {
+        return networkAuthService.uid.eraseToAnyPublisher()
+    }
+    
     func signIn(email: String, password: String) -> AnyPublisher<Bool, Error> {
         return networkAuthService.signIn(email: email, password: password)
     }

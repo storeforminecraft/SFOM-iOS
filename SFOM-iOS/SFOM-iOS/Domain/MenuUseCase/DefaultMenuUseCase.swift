@@ -8,19 +8,31 @@
 import Combine
 
 final class DefaultMenuUseCase {
-    private let userRepository: UserRepository
     private let authRepository: AuthRepository
+    private let userRepository: UserRepository
     
-    init(userRepository: UserRepository, authRepository: AuthRepository) {
-        self.userRepository = userRepository
+    init( authRepository: AuthRepository, userRepository: UserRepository) {
         self.authRepository = authRepository
+        self.userRepository = userRepository
     }
     
 }
 
 extension DefaultMenuUseCase: MenuUseCase {
-    func fetchCurrentUser() -> AnyPublisher<User, Error> {
-        return userRepository.fetchCurrentUser()
+    func fetchCurrentUserWithUidChanges() -> AnyPublisher<User?, Error> {
+        return authRepository.uidChanges()
+            .flatMap { uid -> AnyPublisher<User?, Error> in
+                if uid != nil {
+                    return self.userRepository.fetchCurrentUser()
+                        .map { user -> User? in user }
+                        .eraseToAnyPublisher()
+                } else {
+                    return Just<User?>(nil)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+            }
+            .eraseToAnyPublisher()
     }
     
     func signOut() -> AnyPublisher<Bool, Error> {

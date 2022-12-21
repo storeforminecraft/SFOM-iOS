@@ -12,15 +12,25 @@ final class MenuViewModel: ViewModel {
     private let menuUseCase: MenuUseCase = AppContainer.shared.menuUseCase
     
     @Published var currentUser: User? = nil
+    @Published var result: Bool? = nil
     
     private var cancellable = Set<AnyCancellable>()
     
     init() {
-        menuUseCase.fetchCurrentUser()
-            .map{ user -> User? in user }
+        menuUseCase.fetchCurrentUserWithUidChanges()
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
             .assign(to: \.currentUser, on: self)
+            .store(in: &cancellable)
+    }
+    
+    func signOut(){
+        result = nil
+        menuUseCase.signOut()
+            .map { result -> Bool? in result }
+            .replaceError(with: false)
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.result, on: self)
             .store(in: &cancellable)
     }
 }
@@ -41,6 +51,15 @@ struct MenuView: View {
             .listStyle(PlainListStyle())
         }
         .padding()
+        .onReceive(viewModel.$result) { result in
+            if let result = result {
+                if result {
+                    print("Sign Out Success")
+                } else {
+                    print("Sign Out Fail")
+                }
+            }
+        }
     }
     
     private var profile: some View {
@@ -77,21 +96,21 @@ struct MenuView: View {
     
     private var settingListSection: some View {
         Section {
-            SFOMListItemView(moreMenu: .download) {
+            SFOMListItemLinkView(moreMenu: .download) {
                 DownloadView()
             }
-            SFOMListItemView(moreMenu: .notice) {
+            SFOMListItemLinkView(moreMenu: .notice) {
                 NoticeView()
             }
-            SFOMListItemView(moreMenu: .settings) {
+            SFOMListItemLinkView(moreMenu: .settings) {
                 SettingsView()
             }
             if let _ = viewModel.currentUser {
-                SFOMListItemView(moreMenu: .myComments) {
+                SFOMListItemLinkView(moreMenu: .myComments) {
                     MyCommentsView()
                 }
                 SFOMListItemView(moreMenu: .signOut) {
-                    AuthView()
+                    viewModel.signOut()
                 }
             }
         }

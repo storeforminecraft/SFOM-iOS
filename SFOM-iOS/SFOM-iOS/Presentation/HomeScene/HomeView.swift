@@ -23,8 +23,7 @@ final class HomeViewModel: ViewModel {
     }
     
     func bind(){
-        homeUseCase.fetchCurrentUser()
-            .map{ user -> User? in user }
+        homeUseCase.fetchCurrentUserWithUidChanges()
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
             .assign(to: \.currentUser, on: self)
@@ -68,7 +67,6 @@ struct HomeView: View {
                     .padding()
                 Spacer()
             }
-            
         }
     }
     

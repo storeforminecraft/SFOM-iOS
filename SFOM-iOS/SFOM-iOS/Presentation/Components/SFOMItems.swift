@@ -203,7 +203,7 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
     }
 }
 
-public struct SFOMListItemView<Destination>: View where Destination: View  {
+public struct SFOMListItemLinkView<Destination>: View where Destination: View  {
     let moreMenu: SFOMMoreMenu
     @ViewBuilder var destination: () -> Destination
     
@@ -215,6 +215,28 @@ public struct SFOMListItemView<Destination>: View where Destination: View  {
     public var body: some View {
         NavigationLink{
             destination()
+        } label: {
+            HStack {
+                moreMenu.assets.image
+                Text(moreMenu.localized)
+                    .font(.SFOMSmallFont.bold())
+            }
+        }
+    }
+}
+
+public struct SFOMListItemView: View {
+    let moreMenu: SFOMMoreMenu
+    let completion: () -> Void
+    
+    init(moreMenu: SFOMMoreMenu,completion: @escaping () -> Void) {
+        self.moreMenu = moreMenu
+        self.completion = completion
+    }
+    
+    public var body: some View {
+        Button {
+            completion()
         } label: {
             HStack {
                 moreMenu.assets.image

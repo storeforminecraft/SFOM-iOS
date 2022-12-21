@@ -15,9 +15,7 @@ final class PolicyViewModel: ObservableObject {
     @Published var termsOfService: Bool = false
     @Published var ageCheck: Bool = false
     @Published var internationalTransferOfPersonalInformation: Bool = false
-    
     private var cancellable = Set<AnyCancellable>()
-    
     private var check: Bool = true
     
     init() {
@@ -63,7 +61,6 @@ final class PolicyViewModel: ObservableObject {
 
 struct PolicyView: View {
     @Environment(\.dismiss) var dismiss
-    
     @ObservedObject private var viewModel: PolicyViewModel = PolicyViewModel()
     
     var body: some View {

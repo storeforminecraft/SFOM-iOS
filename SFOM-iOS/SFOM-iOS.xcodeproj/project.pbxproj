@@ -77,6 +77,7 @@
 		A5A78344293063DE008B9A62 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A5A78343293063DE008B9A62 /* FirebaseStorage */; };
 		A5A783472930640E008B9A62 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A783462930640E008B9A62 /* FirebaseService.swift */; };
 		A5A783492930679C008B9A62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5A783482930679C008B9A62 /* GoogleService-Info.plist */; };
+		A5BA46592953637400B89F77 /* PasswordResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA46582953637400B89F77 /* PasswordResetView.swift */; };
 		A5C3A0D9294B42C700CC1940 /* Query+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3A0D8294B42C600CC1940 /* Query+.swift */; };
 		A5C3A0DB294BE41C00CC1940 /* HTTPEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3A0DA294BE41C00CC1940 /* HTTPEndPoints.swift */; };
 		A5C3A0DF294BE98B00CC1940 /* DefaultHTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C3A0DE294BE98B00CC1940 /* DefaultHTTPService.swift */; };
@@ -187,6 +188,7 @@
 		A5971556292E7D310081E71A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A5A783462930640E008B9A62 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		A5A783482930679C008B9A62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A5BA46582953637400B89F77 /* PasswordResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetView.swift; sourceTree = "<group>"; };
 		A5C3A0D8294B42C600CC1940 /* Query+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+.swift"; sourceTree = "<group>"; };
 		A5C3A0DA294BE41C00CC1940 /* HTTPEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPEndPoints.swift; sourceTree = "<group>"; };
 		A5C3A0DE294BE98B00CC1940 /* DefaultHTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHTTPService.swift; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 				A5971553292E7CE90081E71A /* SignInView.swift */,
 				A54776FD2952246F00E14D0F /* PolicyView.swift */,
 				A5EEA029293896E40000AAB5 /* SignUpView.swift */,
+				A5BA46582953637400B89F77 /* PasswordResetView.swift */,
 			);
 			path = AuthScene;
 			sourceTree = "<group>";
@@ -748,8 +751,8 @@
 		A5EF9777294DAB4400CD35FF /* AuthUseCase */ = {
 			isa = PBXGroup;
 			children = (
-				A5EF9778294DAB4400CD35FF /* DefaultAuthUseCase.swift */,
 				A5EF9779294DAB4400CD35FF /* Protocols */,
+				A5EF9778294DAB4400CD35FF /* DefaultAuthUseCase.swift */,
 			);
 			path = AuthUseCase;
 			sourceTree = "<group>";
@@ -874,6 +877,7 @@
 				A525E7B6293B4F2D006246FA /* SFOMItems.swift in Sources */,
 				A5D285CF294635DB001F9343 /* PostRepository.swift in Sources */,
 				A52A2DA5294EF91900D6F617 /* CommentEventRepository.swift in Sources */,
+				A5BA46592953637400B89F77 /* PasswordResetView.swift in Sources */,
 				A5EF9782294DD9D700CD35FF /* ResourceDTO+Mapping.swift in Sources */,
 				A5EEA01E29388CBC0000AAB5 /* AuthView.swift in Sources */,
 				A5842F36294F4D09007F3116 /* UserRepository.swift in Sources */,

@@ -6,27 +6,32 @@
 //
 
 import SwiftUI
+import Combine
 
 final class SignInViewModel: ObservableObject {
     private let authUseCase: AuthUseCase = AppContainer.shared.authUseCase
-    
     @Published var email: String = ""
     @Published var password: String = ""
-    @Published var isPresentPasswordReset: Bool = false
-    @Published var isPresentToast: Bool = false
-    @Published var toastMessage: String = ""
+    @Published var result: Bool? = nil
+    private var cancellable = Set<AnyCancellable>()
     
     func signIn(){
-        // authUseCase.signIn(email: email, password: password)
-        // 결과 처리
+        result = nil
+        authUseCase
+            .signIn(email: email, password: password)
+            .map { result -> Bool? in result }
+            .replaceError(with: false)
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.result, on: self)
+            .store(in: &cancellable)
     }
 }
 
-
 struct SignInView: View {
     @Environment(\.dismiss) var dismiss
-    
     @ObservedObject private var viewModel: SignInViewModel = SignInViewModel()
+    
+    @State var isPresentPasswordReset: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -48,15 +53,16 @@ struct SignInView: View {
                               text: $viewModel.password,
                               secure: true)
             }
+            
             Spacer()
             
             VStack (alignment: .center, spacing: 20) {
                 SFOMButton(Localized.SignInView.signInButonTitle) {
-                    
+                    viewModel.signIn()
                 }
                 
                 Button {
-                    viewModel.isPresentPasswordReset = true
+                    isPresentPasswordReset = true
                 } label: {
                     Text(Localized.SignInView.resetEmailButtonTitle)
                         .foregroundColor(Color(.lightGray))
@@ -67,11 +73,15 @@ struct SignInView: View {
         .navigationBarHidden(true)
         .padding(.top, 30)
         .padding(.horizontal, 25)
-        //     .toast(isPresenting: $isPresentToast) {
-        //     AlertToast(displayMode: .alert, type: .regular, title: self.toastMessage)
-        // }
-        .popover(isPresented: $viewModel.isPresentPasswordReset) {
-            // PasswordResetView()
+        .onReceive(viewModel.$result) { result in
+            if let result = result {
+                if result {
+                    print("Sign In Success")
+                    dismiss()
+                } else {
+                    print("Sign In Fail")
+                }
+            }
         }
     }
 }

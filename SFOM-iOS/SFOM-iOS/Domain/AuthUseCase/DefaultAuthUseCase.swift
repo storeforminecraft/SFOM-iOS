@@ -9,13 +9,19 @@ import Combine
 
 final class DefaultAuthUseCase {
     private let authRepository: AuthRepository
+    private let userRepository: UserRepository
     
-    init(authRepository: AuthRepository) {
+    init(authRepository: AuthRepository, userRepository: UserRepository) {
         self.authRepository = authRepository
+        self.userRepository = userRepository
     }
 }
 
 extension DefaultAuthUseCase: AuthUseCase {
+    func uidChanges() -> AnyPublisher<String?, Never> {
+        return authRepository.uidChanges()
+    }
+    
     func signIn(email: String, password: String) -> AnyPublisher<Bool, Error> {
         return authRepository.signIn(email: email, password: password)
     }

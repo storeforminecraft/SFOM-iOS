@@ -8,15 +8,18 @@
 import Combine
 
 final class DefaultHomeUseCase {
+    private let authRepository: AuthRepository
     private let postRepository: PostRepository
     private let userRepository: UserRepository
     private let resourceRepository: ResourceRepository
     private let commentEventRepository: CommentEventRepository
     
-    init(postRepository: PostRepository,
+    init(authRepository: AuthRepository,
+         postRepository: PostRepository,
          userRepository: UserRepository,
          resourceRepository:ResourceRepository,
          commentEventRepository: CommentEventRepository) {
+        self.authRepository = authRepository
         self.postRepository = postRepository
         self.userRepository = userRepository
         self.resourceRepository = resourceRepository
@@ -25,8 +28,20 @@ final class DefaultHomeUseCase {
 }
 
 extension DefaultHomeUseCase: HomeUseCase {
-    func fetchCurrentUser() -> AnyPublisher<User, Error> {
-        return userRepository.fetchCurrentUser()
+    func fetchCurrentUserWithUidChanges() -> AnyPublisher<User?, Error> {
+        return authRepository.uidChanges()
+            .flatMap { uid -> AnyPublisher<User?, Error> in
+                if uid != nil {
+                    return self.userRepository.fetchCurrentUser()
+                        .map { user -> User? in user }
+                        .eraseToAnyPublisher()
+                } else {
+                    return Just<User?>(nil)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+            }
+            .eraseToAnyPublisher()
     }
     
     func fetchPost() -> AnyPublisher<[Post], Error> {

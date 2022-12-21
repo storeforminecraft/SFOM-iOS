@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 final class SignUpViewModel: ObservableObject {
-    private let authUseCase: AuthUseCase = DefaultAuthUseCase(authRepository: DefaultAuthRepository(networkAuthService: FirebaseService.shared))
+    private let authUseCase: AuthUseCase = AppContainer.shared.authUseCase
     
     @Published var disabled: Bool = false
     
@@ -27,7 +27,6 @@ final class SignUpViewModel: ObservableObject {
 
 struct SignUpView: View {
     @Environment(\.dismiss) var dismiss
-    
     @ObservedObject private var viewModel: SignUpViewModel = SignUpViewModel()
     
     var body: some View {
