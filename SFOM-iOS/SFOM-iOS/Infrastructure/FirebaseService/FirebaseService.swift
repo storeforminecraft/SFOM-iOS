@@ -189,6 +189,28 @@ private extension FirebaseService {
     }
 }
 
+// MARK: - DatabaseService
+extension FirebaseService: DatabaseService {
+    func set(endPoint: DatabaseEndPoint, value: [String: Any?]) -> AnyPublisher<Bool, Error> {
+        databaseReference(endPoint: endPoint).setValue(value)
+    }
+    
+    func get(endPoint: DatabaseEndPoint) -> AnyPublisher<[String: Any?]> {
+        databaseReference(endPoint: endPoint).getDataPublisher
+            .map { dataSnapshot in
+                dataSnapshot.key
+            }
+    }
+}
+
+// MARK: - Database Reference
+private extension FirebaseService {
+    func databaseReference(endPoint: DatabaseEndPoint) -> DatabaseReference {
+        return endPoint.databaseChilds.reduce(reference) { partialResult, child in
+            partialResult.child(child)
+        }
+    }
+}
 
 // MARK: - Secure
 private extension FirebaseService {

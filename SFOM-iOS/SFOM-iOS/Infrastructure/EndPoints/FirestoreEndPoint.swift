@@ -1,5 +1,5 @@
 //
-//  SFOMEndPoint.swift
+//  FirestoreEndPoint.swift
 //  SFOM-iOS
 //
 //  Created by 이전희 on 2022/12/10.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SFOMEndPoint: FIREndPoint {
+public struct FirestoreEndPoint: FIREndPoint {
     private var collection: MainCollection
     private var document: Document?
     private var subCollection: SubCollection?
@@ -17,10 +17,10 @@ public struct SFOMEndPoint: FIREndPoint {
           document: Document?,
           subCollection: (any SubCollection)? = nil,
           subDocument: Document? = nil) {
-        guard let collection = collection as? SFOMEndPoint.SFOMCollection else { return nil }
+        guard let collection = collection as? FirestoreEndPoint.SFOMCollection else { return nil }
         if let subCollectionParent = subCollection?.parent {
             guard document != nil else { return nil }
-            guard let subCollectionParent = subCollectionParent as? SFOMEndPoint.SFOMCollection,
+            guard let subCollectionParent = subCollectionParent as? FirestoreEndPoint.SFOMCollection,
                 subCollectionParent == collection else { return nil }
         }
 
@@ -38,7 +38,7 @@ public struct SFOMEndPoint: FIREndPoint {
     }
 }
 
-extension SFOMEndPoint {
+extension FirestoreEndPoint {
     enum SFOMCollection: String, MainCollection {
         case posts
         case events_timeline
@@ -57,31 +57,31 @@ extension SFOMEndPoint {
     
     enum Resources: String, SubCollection {
         case comments
-        var parent: MainCollection { SFOMEndPoint.SFOMCollection.resources }
+        var parent: MainCollection { FirestoreEndPoint.SFOMCollection.resources }
         var path: String { self.rawValue }
     }
 
     enum Favorites: String, SubCollection {
         case favorites_playlist
-        var parent: MainCollection { SFOMEndPoint.SFOMCollection.favorites }
+        var parent: MainCollection { FirestoreEndPoint.SFOMCollection.favorites }
         var path: String { self.rawValue }
     }
 
     enum Playlists: String, SubCollection {
         case resources_playlist
-        var parent: MainCollection { SFOMEndPoint.SFOMCollection.playlists }
+        var parent: MainCollection { FirestoreEndPoint.SFOMCollection.playlists }
         var path: String { self.rawValue }
     }
 
     enum Ranks_daily: String, SubCollection {
         case rankdatas
-        var parent: MainCollection { SFOMEndPoint.SFOMCollection.ranks_daily }
+        var parent: MainCollection { FirestoreEndPoint.SFOMCollection.ranks_daily }
         var path: String { self.rawValue }
     }
 
     enum Ranks_mothly: String, SubCollection {
         case rankdatas
-        var parent: MainCollection { SFOMEndPoint.SFOMCollection.ranks_monthly }
+        var parent: MainCollection { FirestoreEndPoint.SFOMCollection.ranks_monthly }
         var path: String { self.rawValue }
     }
 

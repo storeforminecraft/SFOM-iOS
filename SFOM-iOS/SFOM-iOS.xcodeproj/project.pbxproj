@@ -46,9 +46,9 @@
 		A5502F0D29438B6200A4D18A /* DownloadListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F0C29438B6200A4D18A /* DownloadListStorage.swift */; };
 		A5502F1129438C6500A4D18A /* CoreDataDownloadListStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F1029438C6500A4D18A /* CoreDataDownloadListStorage.swift */; };
 		A5502F132943909B00A4D18A /* typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F122943909B00A4D18A /* typealias.swift */; };
-		A5502F152943919F00A4D18A /* SFOMEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F142943919F00A4D18A /* SFOMEndPoint.swift */; };
+		A5502F152943919F00A4D18A /* FirestoreEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F142943919F00A4D18A /* FirestoreEndPoint.swift */; };
 		A5502F1B29439B5D00A4D18A /* DocumentReference+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F1A29439B5D00A4D18A /* DocumentReference+Publisher.swift */; };
-		A5502F1E2943A73E00A4D18A /* APIEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F1D2943A73E00A4D18A /* APIEndPoints.swift */; };
+		A5502F1E2943A73E00A4D18A /* NetworkEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F1D2943A73E00A4D18A /* NetworkEndPoints.swift */; };
 		A5502F232943B4A600A4D18A /* FIREndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F222943B4A600A4D18A /* FIREndPoint.swift */; };
 		A5502F282943CCDD00A4D18A /* DatabaseReference+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5502F272943CCDD00A4D18A /* DatabaseReference+Publisher.swift */; };
 		A5602D7729390DB70042496A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5602D7629390DB70042496A /* ContentView.swift */; };
@@ -100,6 +100,10 @@
 		A5D285D12946367D001F9343 /* PostDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D285D02946367D001F9343 /* PostDTO+Mapping.swift */; };
 		A5D285D3294637F8001F9343 /* DefaultPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D285D2294637F8001F9343 /* DefaultPostRepository.swift */; };
 		A5D4EEC3292E6C210005812C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D4EEC5292E6C210005812C /* Localizable.strings */; };
+		A5E38FDD29543E32005C4A4C /* DatabaseEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E38FDC29543E32005C4A4C /* DatabaseEndPoint.swift */; };
+		A5E38FDF29543FC1005C4A4C /* DatabaseEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E38FDE29543FC1005C4A4C /* DatabaseEndPoints.swift */; };
+		A5E38FE129544009005C4A4C /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E38FE029544009005C4A4C /* DatabaseService.swift */; };
+		A5E38FE8295446E3005C4A4C /* DatabaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E38FE7295446E3005C4A4C /* DatabaseUser.swift */; };
 		A5EEA01E29388CBC0000AAB5 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEA01D29388CBC0000AAB5 /* AuthView.swift */; };
 		A5EEA02129388F240000AAB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEA02029388F240000AAB5 /* User.swift */; };
 		A5EEA026293892DF0000AAB5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEA025293892DF0000AAB5 /* ProfileView.swift */; };
@@ -161,9 +165,9 @@
 		A5502F0C29438B6200A4D18A /* DownloadListStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListStorage.swift; sourceTree = "<group>"; };
 		A5502F1029438C6500A4D18A /* CoreDataDownloadListStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDownloadListStorage.swift; sourceTree = "<group>"; };
 		A5502F122943909B00A4D18A /* typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = typealias.swift; sourceTree = "<group>"; };
-		A5502F142943919F00A4D18A /* SFOMEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMEndPoint.swift; sourceTree = "<group>"; };
+		A5502F142943919F00A4D18A /* FirestoreEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreEndPoint.swift; sourceTree = "<group>"; };
 		A5502F1A29439B5D00A4D18A /* DocumentReference+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentReference+Publisher.swift"; sourceTree = "<group>"; };
-		A5502F1D2943A73E00A4D18A /* APIEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndPoints.swift; sourceTree = "<group>"; };
+		A5502F1D2943A73E00A4D18A /* NetworkEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEndPoints.swift; sourceTree = "<group>"; };
 		A5502F222943B4A600A4D18A /* FIREndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIREndPoint.swift; sourceTree = "<group>"; };
 		A5502F272943CCDD00A4D18A /* DatabaseReference+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseReference+Publisher.swift"; sourceTree = "<group>"; };
 		A5602D7629390DB70042496A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -213,6 +217,10 @@
 		A5D285D2294637F8001F9343 /* DefaultPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostRepository.swift; sourceTree = "<group>"; };
 		A5D4EEC4292E6C210005812C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5D4EEC6292E6C240005812C /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5E38FDC29543E32005C4A4C /* DatabaseEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseEndPoint.swift; sourceTree = "<group>"; };
+		A5E38FDE29543FC1005C4A4C /* DatabaseEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseEndPoints.swift; sourceTree = "<group>"; };
+		A5E38FE029544009005C4A4C /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		A5E38FE7295446E3005C4A4C /* DatabaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUser.swift; sourceTree = "<group>"; };
 		A5EEA01D29388CBC0000AAB5 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		A5EEA02029388F240000AAB5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A5EEA025293892DF0000AAB5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -399,8 +407,10 @@
 		A5502F1C2943A73100A4D18A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				A5502F1D2943A73E00A4D18A /* APIEndPoints.swift */,
+				A5502F1D2943A73E00A4D18A /* NetworkEndPoints.swift */,
+				A5E38FDE29543FC1005C4A4C /* DatabaseEndPoints.swift */,
 				A5C3A0DA294BE41C00CC1940 /* HTTPEndPoints.swift */,
+				A5E38FE6295446D3005C4A4C /* Data */,
 				A5502F1F2943A74400A4D18A /* DataMapping */,
 			);
 			path = Network;
@@ -506,7 +516,8 @@
 			isa = PBXGroup;
 			children = (
 				A5502F222943B4A600A4D18A /* FIREndPoint.swift */,
-				A5502F142943919F00A4D18A /* SFOMEndPoint.swift */,
+				A5502F142943919F00A4D18A /* FirestoreEndPoint.swift */,
+				A5E38FDC29543E32005C4A4C /* DatabaseEndPoint.swift */,
 				A5CD4570294ADDE1009F47C1 /* HTTPEndPoint.swift */,
 			);
 			path = EndPoints;
@@ -515,8 +526,9 @@
 		A5807CED294A20F800E2EB07 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				A5502F062943883300A4D18A /* NetworkService.swift */,
 				A5F4CD4729451CC300789813 /* NetworkAuthService.swift */,
+				A5502F062943883300A4D18A /* NetworkService.swift */,
+				A5E38FE029544009005C4A4C /* DatabaseService.swift */,
 				A5C3A0E0294BE9C200CC1940 /* HTTPService.swift */,
 			);
 			path = Protocols;
@@ -721,6 +733,14 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
+		A5E38FE6295446D3005C4A4C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A5E38FE7295446E3005C4A4C /* DatabaseUser.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		A5EEA024293892C40000AAB5 /* CommonScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -851,7 +871,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5EF9784294DDB4700CD35FF /* UserDTO+Mapping.swift in Sources */,
-				A5502F152943919F00A4D18A /* SFOMEndPoint.swift in Sources */,
+				A5502F152943919F00A4D18A /* FirestoreEndPoint.swift in Sources */,
 				A52019FB293C857500FAA9B4 /* SFOMSkinImage.swift in Sources */,
 				A53CF335294E2C310026A655 /* DefaultUserRepository.swift in Sources */,
 				A5CD4571294ADDE2009F47C1 /* HTTPEndPoint.swift in Sources */,
@@ -886,6 +906,7 @@
 				A5EEA02129388F240000AAB5 /* User.swift in Sources */,
 				A54776F429518E4500E14D0F /* SFOMMoreMenu.swift in Sources */,
 				A5C3A0E4294BEDE200CC1940 /* SearchDataDTO+Mapping.swift in Sources */,
+				A5E38FE129544009005C4A4C /* DatabaseService.swift in Sources */,
 				A5EEA02A293896E40000AAB5 /* SignUpView.swift in Sources */,
 				A5842F3C294F6508007F3116 /* RecentComment.swift in Sources */,
 				A54776EE29518C5200E14D0F /* NoticeView.swift in Sources */,
@@ -910,6 +931,7 @@
 				A54776EB29518AC500E14D0F /* DefaultMenuUseCase.swift in Sources */,
 				A52A2DA7294EF94F00D6F617 /* CommentEvent.swift in Sources */,
 				A54776F229518C7900E14D0F /* MyCommentsView.swift in Sources */,
+				A5E38FDD29543E32005C4A4C /* DatabaseEndPoint.swift in Sources */,
 				A50DE8FC292B32D800E1FD60 /* SFOMButtons.swift in Sources */,
 				A5842F3A294F58F1007F3116 /* UseCaseError.swift in Sources */,
 				A5C3A0E8294BF06C00CC1940 /* DefaultAuthRepository.swift in Sources */,
@@ -920,6 +942,7 @@
 				A52019FD293C8B6F00FAA9B4 /* SFOMCategory.swift in Sources */,
 				A52A2D9F294EEA5F00D6F617 /* LPMetadataProvider+.swift in Sources */,
 				A5EF9774294DA9EF00CD35FF /* SearchUseCase.swift in Sources */,
+				A5E38FE8295446E3005C4A4C /* DatabaseUser.swift in Sources */,
 				A5CFA72929274846004C1F2B /* Assets.swift in Sources */,
 				A5842F34294F4CFD007F3116 /* ResourceRepository.swift in Sources */,
 				A583F2FB2945009800CC4585 /* Auth+Publisher.swift in Sources */,
@@ -933,6 +956,7 @@
 				A50DE8FE292B379100E1FD60 /* HomeView.swift in Sources */,
 				A54776F029518C5C00E14D0F /* SettingsView.swift in Sources */,
 				A53CF333294E23D90026A655 /* RepositoryError.swift in Sources */,
+				A5E38FDF29543FC1005C4A4C /* DatabaseEndPoints.swift in Sources */,
 				A52A2DA1294EEAFE00D6F617 /* CompactLPError.swift in Sources */,
 				A5EEA026293892DF0000AAB5 /* ProfileView.swift in Sources */,
 				A5C3A0E1294BE9C200CC1940 /* HTTPService.swift in Sources */,
@@ -951,7 +975,7 @@
 				A54776FE2952246F00E14D0F /* PolicyView.swift in Sources */,
 				A5EF977C294DAB4400CD35FF /* DefaultAuthUseCase.swift in Sources */,
 				A56386CC29432B4900A8CEEA /* DefaultHomeUseCase.swift in Sources */,
-				A5502F1E2943A73E00A4D18A /* APIEndPoints.swift in Sources */,
+				A5502F1E2943A73E00A4D18A /* NetworkEndPoints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

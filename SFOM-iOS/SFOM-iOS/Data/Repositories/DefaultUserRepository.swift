@@ -11,7 +11,9 @@ final class DefaultUserRepository {
     private let networkAuthService: NetworkAuthService
     private let httpService: HTTPService
     
-    init(networkAuthService: NetworkAuthService, httpService: HTTPService) {
+    init(networkAuthService: NetworkAuthService,
+         DatabaseService: DatabaseService,
+         httpService: HTTPService) {
         self.networkAuthService = networkAuthService
         self.httpService = httpService
     }

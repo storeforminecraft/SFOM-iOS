@@ -17,8 +17,8 @@ final class DefaultResourceRepository {
 
 extension DefaultResourceRepository: ResourceRepository {
     func fetchResource(resourceId: String) -> AnyPublisher<Resource, Error> {
-        guard let endPoint = APIEndPoints.shared.resources(doc: resourceId) else {
-            return Fail(error: APIEndPointError.wrongEndPointError).eraseToAnyPublisher()
+        guard let endPoint = NetworkEndPoints.shared.resources(doc: resourceId) else {
+            return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
         }
         return networkService.read(endPoint: endPoint, type: ResourceDTO.self)
             .map { $0.toDomain() }
@@ -26,8 +26,8 @@ extension DefaultResourceRepository: ResourceRepository {
     }
     
     func fetchResourceComments(resourceId: String) -> AnyPublisher<[Comment], Error> {
-        guard let endPoint = APIEndPoints.shared.resourcesComments(doc: resourceId, subDoc: nil) else {
-            return Fail(error: APIEndPointError.wrongEndPointError).eraseToAnyPublisher()
+        guard let endPoint = NetworkEndPoints.shared.resourcesComments(doc: resourceId, subDoc: nil) else {
+            return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
         }
         return networkService.readAllWithFilter(endPoint: endPoint,
                                                 type: CommentDTO.self,
@@ -39,8 +39,8 @@ extension DefaultResourceRepository: ResourceRepository {
     }
     
     func fetchUserResources(uid: String) -> AnyPublisher<[Resource], Error> {
-        guard let endPoint = APIEndPoints.shared.resources(doc: nil) else {
-            return Fail(error: APIEndPointError.wrongEndPointError).eraseToAnyPublisher()
+        guard let endPoint = NetworkEndPoints.shared.resources(doc: nil) else {
+            return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
         }
         return networkService.readAllWithFilter(endPoint: endPoint,
                                                 type: ResourceDTO.self,

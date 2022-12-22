@@ -73,7 +73,6 @@ struct PolicyView: View {
             }
             .padding(.top, 5)
             .padding(.bottom, 20)
-            
             VStack (alignment: .center) {
                 SFOMCheckButton(content: Localized.PolicyView.agreeAll,
                                 check: $viewModel.agreeAll)
@@ -93,10 +92,7 @@ struct PolicyView: View {
                                 urlString: Localized.Policy.internationalTransferOfPersonalInformationUrl,
                                 check: $viewModel.internationalTransferOfPersonalInformation)
             }
-            
-            
             Spacer()
-            
             VStack (alignment: .center) {
                 SFOMNavigationLink(Localized.PolicyView.nextStep) {
                     SignInView()

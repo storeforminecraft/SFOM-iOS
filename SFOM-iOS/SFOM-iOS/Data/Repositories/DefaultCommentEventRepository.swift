@@ -18,8 +18,8 @@ final class DefaultCommentEventRepository {
 
 extension DefaultCommentEventRepository: CommentEventRepository {
     func fetchCommentEvent() -> AnyPublisher<[CommentEvent], Error> {
-        guard let endPoint = APIEndPoints.shared.eventsTimeline() else {
-            return Fail(error: APIEndPointError.wrongEndPointError).eraseToAnyPublisher()
+        guard let endPoint = NetworkEndPoints.shared.eventsTimeline() else {
+            return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
         }
         return networkService.readAllWithFilter(endPoint: endPoint,
                                                 type: CommentEventDTO.self,
@@ -33,14 +33,12 @@ extension DefaultCommentEventRepository: CommentEventRepository {
     func fetchCommentInfo(eventPath: String) -> AnyPublisher<Comment, Error> {
         let components = eventPath.components(separatedBy: "/").filter{ !["","resources","comments"].contains($0) }
         guard components.count == 2,
-              let endPoint = APIEndPoints.shared.resourcesComments(doc: components[0], subDoc: components[1]) else {
-            return Fail(error: APIEndPointError.wrongEndPointError).eraseToAnyPublisher()
+              let endPoint = NetworkEndPoints.shared.resourcesComments(doc: components[0], subDoc: components[1]) else {
+            return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
         }
         return networkService.read(endPoint: endPoint, type: CommentDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }
-    
-    
 }
 
