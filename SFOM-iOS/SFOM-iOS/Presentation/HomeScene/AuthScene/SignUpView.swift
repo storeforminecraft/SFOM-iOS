@@ -44,10 +44,12 @@ struct SignUpView: View {
             SFOMHeader(title: Localized.SignUpView.signUpTitle,
                        mainTitle: Localized.SignUpView.signUpMainTitle,
                        subTitle: Localized.SignUpView.signUpSubTitle)
+            
             SFOMBackButton {
                 dismiss()
             }
             .padding(.top, 5)
+            
             Spacer()
             VStack (alignment: .center) {
                 SFOMTextField(Localized.Auth.email, text: $viewModel.email)

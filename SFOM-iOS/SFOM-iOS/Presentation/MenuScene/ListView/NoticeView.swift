@@ -21,11 +21,6 @@ final class NoticeViewModel: ViewModel {
     
     func bind(){
         noticeUseCase.fetchNotices()
-            .handleEvents(receiveOutput: { not in
-                print(not)
-            }, receiveCompletion: { error in
-                print(error)
-            })
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
             .assign(to: \.notices, on: self)

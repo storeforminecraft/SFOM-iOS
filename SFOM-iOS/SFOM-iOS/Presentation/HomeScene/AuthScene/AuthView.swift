@@ -38,6 +38,7 @@ struct AuthView: View {
             SFOMBackButton {
                 dismiss()
             }
+            .padding(.top, 5)
 
             Spacer()
 

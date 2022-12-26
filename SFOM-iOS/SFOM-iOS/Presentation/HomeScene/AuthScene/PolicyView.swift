@@ -73,6 +73,7 @@ struct PolicyView: View {
             }
             .padding(.top, 5)
             .padding(.bottom, 20)
+            
             VStack (alignment: .center) {
                 SFOMCheckButton(content: Localized.PolicyView.agreeAll,
                                 check: $viewModel.agreeAll)
