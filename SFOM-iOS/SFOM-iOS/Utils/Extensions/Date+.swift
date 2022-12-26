@@ -8,6 +8,13 @@
 import Foundation
 
 extension Date {
+    func toString() -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: Localized.location)
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss EEEE"
+        return formatter.string(from: self)
+    }
+    
     func ago() -> String {
         let minutes = self.agoMiniutes()
         let hours = minutes / 60

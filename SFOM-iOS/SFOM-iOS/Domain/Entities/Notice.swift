@@ -8,7 +8,7 @@
 import Foundation
 
 struct Notice {
-    let authorUid: String
+    let authorUid: String?
     let basedLanguage: String
     let boardId: String
     let title: String
@@ -16,7 +16,7 @@ struct Notice {
     let createdTimestamp: Date
     let id: String
     let modifiedTimestamp: Date
-    let translatedContent: [String: String]
+    let translatedContents: [String: String]
     let translatedTitles: [String: String]
     
     var localizedTitle: String {
@@ -33,7 +33,7 @@ struct Notice {
         if basedLanguage == location {
             return content
         } else {
-            return translatedContent[location] ?? content
+            return translatedContents[location] ?? content
         }
     }
 }

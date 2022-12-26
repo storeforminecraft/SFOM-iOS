@@ -11,11 +11,10 @@ final class DefaultMenuUseCase {
     private let authRepository: AuthRepository
     private let userRepository: UserRepository
     
-    init( authRepository: AuthRepository, userRepository: UserRepository) {
+    init(authRepository: AuthRepository, userRepository: UserRepository) {
         self.authRepository = authRepository
         self.userRepository = userRepository
     }
-    
 }
 
 extension DefaultMenuUseCase: MenuUseCase {

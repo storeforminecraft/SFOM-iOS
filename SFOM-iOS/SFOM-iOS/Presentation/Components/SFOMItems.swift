@@ -248,10 +248,10 @@ public struct SFOMListItemView: View {
 }
 
 public struct SFOMNoticeItemView: View {
-    private let notice: String
+    private let notice: Notice
     @State private var showingContent: Bool = false
     
-    init(notice: String) {
+    init(notice: Notice) {
         self.notice = notice
     }
     
@@ -259,9 +259,32 @@ public struct SFOMNoticeItemView: View {
         Button {
             showingContent.toggle()
         } label: {
-            HStack {
-              
+            VStack(alignment: .leading) {
+                HStack (alignment: .center) {
+                    Text(notice.localizedTitle)
+                        .foregroundColor(Color(.lightGray))
+                        .font(.SFOMSmallFont)
+                        .multilineTextAlignment(.leading)
+                    Spacer()
+                    Image(systemName: showingContent ? "chevron.up" : "chevron.down")
+                }
+                Text(notice.createdTimestamp.toString())
+                    .foregroundColor(Color(.lightGray))
+                    .font(.SFOMExtraSmallFont)
+                    .multilineTextAlignment(.leading)
+                
+                if showingContent {
+                    Text(notice.localizedContent)
+                        .foregroundColor(Color(.lightGray))
+                        .font(.SFOMExtraSmallFont)
+                        .multilineTextAlignment(.leading)
+                }
+                HStack { Spacer() }
             }
+            .padding()
+            .background(Color(.white))
+            .cornerRadius(12)
+            .shadow(color: .init(white: 0, opacity: 0.12), radius: 8, x: 0, y: 2)
         }
     }
 }

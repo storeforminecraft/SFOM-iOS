@@ -18,6 +18,10 @@ final class MenuViewModel: ViewModel {
     private var cancellable = Set<AnyCancellable>()
 
     init() {
+       bind()
+    }
+    
+    func bind(){
         menuUseCase.fetchCurrentUserWithUidChanges()
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)

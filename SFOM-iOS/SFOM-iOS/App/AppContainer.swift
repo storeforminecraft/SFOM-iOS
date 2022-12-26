@@ -23,6 +23,7 @@ final class AppContainer {
     lazy var userRepository: UserRepository = DefaultUserRepository(networkAuthService: networkAuthService, httpService: httpService)
     lazy var resourceRepository: ResourceRepository = DefaultResourceRepository(networkService: networkService)
     lazy var commentEventRepository: CommentEventRepository = DefaultCommentEventRepository(networkService: networkService)
+    lazy var noticeRepository: NoticeRepository = DefaultNoticeRepository(networkService: networkService)
     
     lazy var homeUseCase = DefaultHomeUseCase(authRepository: authRepository,
                                               postRepository: postRepository,
@@ -34,4 +35,5 @@ final class AppContainer {
     lazy var menuUseCase = DefaultMenuUseCase(authRepository: authRepository,
                                               userRepository: userRepository)
     lazy var contentUseCase = DefaultContentUseCase(resourceReposiotry: resourceRepository, userRepository: userRepository)
+    lazy var noticeUseCase = DefaultNoticeUseCase(noticeRepository: noticeRepository)
 }

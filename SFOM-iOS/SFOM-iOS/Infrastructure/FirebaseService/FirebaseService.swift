@@ -71,14 +71,12 @@ extension FirebaseService: NetworkAuthService {
                 }
                 return self.auth.signUpPublisher(email: email, password: password)
                     .map { authDataResult in
-                        print(authDataResult)
                         return authDataResult.user.uid
                     }
                     .eraseToAnyPublisher()
             }
             .handleEvents(receiveOutput: { [weak self] uid in
                 guard let self = self else { return }
-                print(uid ?? "aaaaaaa")
                 self.uid.send(uid)
             })
             .eraseToAnyPublisher()

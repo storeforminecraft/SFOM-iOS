@@ -8,7 +8,7 @@
 import Foundation
 
 struct NoticeDTO: Decodable {
-    let authorUid: String
+    let authorUid: String?
     let basedLanguage: String
     let boardId: String
     let title: String
@@ -16,7 +16,7 @@ struct NoticeDTO: Decodable {
     let createdTimestamp: Date
     let id: String
     let modifiedTimestamp: Date
-    let translatedContent: [String: String]
+    let translatedContents: [String: String]
     let translatedTitles: [String: String]
 }
 
@@ -30,7 +30,7 @@ extension NoticeDTO{
                createdTimestamp: createdTimestamp,
                id: id,
                modifiedTimestamp: modifiedTimestamp,
-               translatedContent: translatedContent,
+               translatedContents: translatedContents,
                translatedTitles: translatedTitles)
     }
 }

@@ -17,15 +17,15 @@ final class DefaultNoticeRepository {
 }
 
 extension DefaultNoticeRepository: NoticeRepository {
-    func fetchCommentEvent() -> AnyPublisher<[CommentEvent], Error> {
-        guard let endPoint = NetworkEndPoints.shared.eventsTimeline() else {
+    func fetchNotices() -> AnyPublisher<[Notice], Error>{
+        guard let endPoint = NetworkEndPoints.shared.notice() else {
             return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
         }
         return networkService.readAllWithFilter(endPoint: endPoint,
-                                                type: CommentEventDTO.self,
-                                                whereFields: [.isEqualTo("eventType", value: "created:comment")],
-                                                order: .descending("eventTimestamp"),
-                                                limit: 10)
+                                                type: NoticeDTO.self,
+                                                whereFields: nil,
+                                                order: .descending("createdTimestamp"),
+                                                limit: nil)
         .map { $0.map{ $0.toDomain() } }
         .eraseToAnyPublisher()
     }
