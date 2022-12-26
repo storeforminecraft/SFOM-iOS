@@ -25,6 +25,12 @@
 		A52A2DAB294EFA5000D6F617 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2DAA294EFA5000D6F617 /* Comment.swift */; };
 		A52A2DAD294EFABC00D6F617 /* CommentDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2DAC294EFABC00D6F617 /* CommentDTO+Mapping.swift */; };
 		A52A2DAF294F00A400D6F617 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2DAE294F00A400D6F617 /* AppContainer.swift */; };
+		A52F6CE6295969D300D9DB10 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = A52F6CE5295969D300D9DB10 /* AlertToast */; };
+		A52F6CE9295972BF00D9DB10 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A52F6CE8295972BF00D9DB10 /* SDWebImageSwiftUI */; };
+		A52F6CEB29597A0800D9DB10 /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CEA29597A0800D9DB10 /* Notice.swift */; };
+		A52F6CED29597AE200D9DB10 /* NoticeDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CEC29597AE200D9DB10 /* NoticeDTO+Mapping.swift */; };
+		A52F6CEF29597BE200D9DB10 /* DefaultNoticeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CEE29597BE200D9DB10 /* DefaultNoticeRepository.swift */; };
+		A52F6CF129597C0600D9DB10 /* NoticeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CF029597C0600D9DB10 /* NoticeRepository.swift */; };
 		A53CF331294E1F440026A655 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CF330294E1F440026A655 /* SearchRepository.swift */; };
 		A53CF333294E23D90026A655 /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CF332294E23D90026A655 /* RepositoryError.swift */; };
 		A53CF335294E2C310026A655 /* DefaultUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CF334294E2C310026A655 /* DefaultUserRepository.swift */; };
@@ -144,6 +150,10 @@
 		A52A2DAA294EFA5000D6F617 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		A52A2DAC294EFABC00D6F617 /* CommentDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommentDTO+Mapping.swift"; sourceTree = "<group>"; };
 		A52A2DAE294F00A400D6F617 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		A52F6CEA29597A0800D9DB10 /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
+		A52F6CEC29597AE200D9DB10 /* NoticeDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoticeDTO+Mapping.swift"; sourceTree = "<group>"; };
+		A52F6CEE29597BE200D9DB10 /* DefaultNoticeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNoticeRepository.swift; sourceTree = "<group>"; };
+		A52F6CF029597C0600D9DB10 /* NoticeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeRepository.swift; sourceTree = "<group>"; };
 		A53CF330294E1F440026A655 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
 		A53CF332294E23D90026A655 /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
 		A53CF334294E2C310026A655 /* DefaultUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserRepository.swift; sourceTree = "<group>"; };
@@ -248,9 +258,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A52F6CE9295972BF00D9DB10 /* SDWebImageSwiftUI in Frameworks */,
 				A5A78340293063DE008B9A62 /* FirebaseDatabaseSwift in Frameworks */,
 				A5A78344293063DE008B9A62 /* FirebaseStorage in Frameworks */,
 				A5A7833E293063DE008B9A62 /* FirebaseAuth in Frameworks */,
+				A52F6CE6295969D300D9DB10 /* AlertToast in Frameworks */,
 				A5A78342293063DE008B9A62 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +395,7 @@
 				A5842F33294F4CFD007F3116 /* ResourceRepository.swift */,
 				A52A2DA4294EF91900D6F617 /* CommentEventRepository.swift */,
 				A53CF332294E23D90026A655 /* RepositoryError.swift */,
+				A52F6CF029597C0600D9DB10 /* NoticeRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -425,6 +438,7 @@
 				A5EF9783294DDB4700CD35FF /* UserDTO+Mapping.swift */,
 				A52A2DA8294EF9B400D6F617 /* CommentEventDTO+Mapping.swift */,
 				A52A2DAC294EFABC00D6F617 /* CommentDTO+Mapping.swift */,
+				A52F6CEC29597AE200D9DB10 /* NoticeDTO+Mapping.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -491,6 +505,7 @@
 				A52A2DA6294EF94F00D6F617 /* CommentEvent.swift */,
 				A52A2DAA294EFA5000D6F617 /* Comment.swift */,
 				A5842F3B294F6508007F3116 /* RecentComment.swift */,
+				A52F6CEA29597A0800D9DB10 /* Notice.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -729,6 +744,7 @@
 				A53CF334294E2C310026A655 /* DefaultUserRepository.swift */,
 				A5842F37294F503B007F3116 /* DefaultResourceRepository.swift */,
 				A52A2DA2294EF8DD00D6F617 /* DefaultCommentEventRepository.swift */,
+				A52F6CEE29597BE200D9DB10 /* DefaultNoticeRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -807,6 +823,8 @@
 				A5A7833F293063DE008B9A62 /* FirebaseDatabaseSwift */,
 				A5A78341293063DE008B9A62 /* FirebaseFirestoreSwift */,
 				A5A78343293063DE008B9A62 /* FirebaseStorage */,
+				A52F6CE5295969D300D9DB10 /* AlertToast */,
+				A52F6CE8295972BF00D9DB10 /* SDWebImageSwiftUI */,
 			);
 			productName = "SFOM-iOS";
 			productReference = A5CFA6F92927322C004C1F2B /* SFOM-iOS.app */;
@@ -839,6 +857,8 @@
 			mainGroup = A5CFA6F02927322C004C1F2B;
 			packageReferences = (
 				A5A7833C293063DE008B9A62 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A52F6CE4295969D300D9DB10 /* XCRemoteSwiftPackageReference "AlertToast" */,
+				A52F6CE7295972BF00D9DB10 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = A5CFA6FA2927322C004C1F2B /* Products */;
 			projectDirPath = "";
@@ -908,6 +928,7 @@
 				A5C3A0E4294BEDE200CC1940 /* SearchDataDTO+Mapping.swift in Sources */,
 				A5E38FE129544009005C4A4C /* DatabaseService.swift in Sources */,
 				A5EEA02A293896E40000AAB5 /* SignUpView.swift in Sources */,
+				A52F6CED29597AE200D9DB10 /* NoticeDTO+Mapping.swift in Sources */,
 				A5842F3C294F6508007F3116 /* RecentComment.swift in Sources */,
 				A54776EE29518C5200E14D0F /* NoticeView.swift in Sources */,
 				A5502F0D29438B6200A4D18A /* DownloadListStorage.swift in Sources */,
@@ -937,8 +958,10 @@
 				A5C3A0E8294BF06C00CC1940 /* DefaultAuthRepository.swift in Sources */,
 				A59132DC293B886C00D28CCA /* Resource.swift in Sources */,
 				A5CFA7262927428B004C1F2B /* Color+.swift in Sources */,
+				A52F6CEF29597BE200D9DB10 /* DefaultNoticeRepository.swift in Sources */,
 				A54776E529517AF100E14D0F /* CategoryView.swift in Sources */,
 				A50DE904292B37BD00E1FD60 /* MenuView.swift in Sources */,
+				A52F6CF129597C0600D9DB10 /* NoticeRepository.swift in Sources */,
 				A52019FD293C8B6F00FAA9B4 /* SFOMCategory.swift in Sources */,
 				A52A2D9F294EEA5F00D6F617 /* LPMetadataProvider+.swift in Sources */,
 				A5EF9774294DA9EF00CD35FF /* SearchUseCase.swift in Sources */,
@@ -959,6 +982,7 @@
 				A5E38FDF29543FC1005C4A4C /* DatabaseEndPoints.swift in Sources */,
 				A52A2DA1294EEAFE00D6F617 /* CompactLPError.swift in Sources */,
 				A5EEA026293892DF0000AAB5 /* ProfileView.swift in Sources */,
+				A52F6CEB29597A0800D9DB10 /* Notice.swift in Sources */,
 				A5C3A0E1294BE9C200CC1940 /* HTTPService.swift in Sources */,
 				A5EF977E294DAB4400CD35FF /* AuthUseCase.swift in Sources */,
 				A5CFA72B29274881004C1F2B /* String+.swift in Sources */,
@@ -1204,6 +1228,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A52F6CE4295969D300D9DB10 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		A52F6CE7295972BF00D9DB10 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		A5A7833C293063DE008B9A62 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1215,6 +1255,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A52F6CE5295969D300D9DB10 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A52F6CE4295969D300D9DB10 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+		A52F6CE8295972BF00D9DB10 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A52F6CE7295972BF00D9DB10 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		A5A7833D293063DE008B9A62 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A5A7833C293063DE008B9A62 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

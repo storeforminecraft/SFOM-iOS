@@ -56,15 +56,20 @@ public struct Localized {
 
     public struct SignUpView {
         private init() { }
+        static let signUp = "SignUp".localized
         static let signUpTitle = "SignUpTitle".localized
         static let signUpMainTitle = "SignUpMainTitle".localized
         static let signUpSubTitle = "SignUpSubTitle".localized
 
         static let signUpButtonTitle = "SignUpButtonTitle".localized
+        
+        static let signUpSuccess = "SignUpSuccess".localized
+        static let signUpFail = "SignUpFail".localized
     }
 
     public struct SignInView {
         private init() { }
+        static let signIn = "SignIn".localized
         static let signInTitle = "SignInTitle".localized
         static let signInMainTitle = "SignInMainTitle".localized
         static let signInSubTitle = "SignInSubTitle".localized
@@ -72,6 +77,9 @@ public struct Localized {
         static let signInButonTitle = "SignInButonTitle".localized
 
         static let resetEmailButtonTitle = "ResetEmailButtonTitle".localized
+        
+        static let signInSuccess = "SignInSuccess".localized
+        static let signInFail = "SignInFail".localized
     }
 
     public struct Policy {
@@ -146,6 +154,9 @@ public struct Localized {
         static let settings = "Settings".localized
         static let myComments = "MyComments".localized
         static let signOut = "SignOut".localized
+        
+        static let signOutSuccess = "SignOutSuccess".localized
+        static let signOutFail = "SignOutFail".localized
     }
     
     public struct ETC {

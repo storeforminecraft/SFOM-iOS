@@ -40,42 +40,46 @@ final class FirebaseService {
 
 // MARK: - NetworkAuthService
 extension FirebaseService: NetworkAuthService {
-    func signIn(email: String, password: String) -> AnyPublisher<Bool, Error> {
+    func signIn(email: String, password: String) -> AnyPublisher<String?, Error> {
         return self.saltPassword(email: email, password: password)
-            .flatMap { [weak self] password -> AnyPublisher<Bool,Error> in
-                guard let self = self else { return Fail<Bool, Error>(error: FirebaseCombineError.noDataError).eraseToAnyPublisher() }
+            .flatMap { [weak self] password -> AnyPublisher<String?,Error> in
+                guard let self = self else { return Fail(error: FirebaseCombineError.noDataError).eraseToAnyPublisher() }
                 guard let password = password else {
-                    return Just<Bool>(false)
+                    return Just<String?>(nil)
                         .setFailureType(to: Error.self)
                         .eraseToAnyPublisher()
                 }
                 return self.auth.signInPublisher(email: email, password: password)
-                    .map { _ in true }
+                    .map { authDataResult in authDataResult.user.uid }
                     .eraseToAnyPublisher()
             }
-            .handleEvents(receiveOutput: { [weak self] _ in
+            .handleEvents(receiveOutput: { [weak self] uid in
                 guard let self = self else { return }
-                self.uid.send(self.auth.currentUser?.uid)
+                self.uid.send(uid)
             })
             .eraseToAnyPublisher()
     }
     
-    func signUp(email: String, password: String) -> AnyPublisher<Bool, Error> {
+    func signUp(email: String, password: String) -> AnyPublisher<String?, Error> {
         return self.saltPassword(email: email, password: password)
-            .flatMap { [weak self] password -> AnyPublisher<Bool,Error> in
-                guard let self = self else { return Fail<Bool, Error>(error: FirebaseCombineError.noDataError).eraseToAnyPublisher() }
+            .flatMap { [weak self] password -> AnyPublisher<String?, Error> in
+                guard let self = self else { return Fail(error: FirebaseCombineError.noDataError).eraseToAnyPublisher() }
                 guard let password = password else {
-                    return Just<Bool>(false)
+                    return Just<String?>(nil)
                         .setFailureType(to: Error.self)
                         .eraseToAnyPublisher()
                 }
                 return self.auth.signUpPublisher(email: email, password: password)
-                    .map { _ in true }
+                    .map { authDataResult in
+                        print(authDataResult)
+                        return authDataResult.user.uid
+                    }
                     .eraseToAnyPublisher()
             }
-            .handleEvents(receiveOutput: { [weak self] _ in
+            .handleEvents(receiveOutput: { [weak self] uid in
                 guard let self = self else { return }
-                self.uid.send(self.auth.currentUser?.uid)
+                print(uid ?? "aaaaaaa")
+                self.uid.send(uid)
             })
             .eraseToAnyPublisher()
     }
@@ -191,15 +195,16 @@ private extension FirebaseService {
 
 // MARK: - DatabaseService
 extension FirebaseService: DatabaseService {
-    func set(endPoint: DatabaseEndPoint, value: [String: Any?]) -> AnyPublisher<Bool, Error> {
-        databaseReference(endPoint: endPoint).setValue(value)
+    func setValue(endPoint: DatabaseEndPoint, value: [String: Any?]) -> AnyPublisher<Bool, Error> {
+        databaseReference(endPoint: endPoint).setValuePublisher(value: value)
     }
     
-    func get(endPoint: DatabaseEndPoint) -> AnyPublisher<[String: Any?]> {
-        databaseReference(endPoint: endPoint).getDataPublisher
-            .map { dataSnapshot in
-                dataSnapshot.key
-            }
+    func getData(endPoint: DatabaseEndPoint) -> AnyPublisher<[String: Any?]?, Error> {
+        databaseReference(endPoint: endPoint).getDataPublisher()
+    }
+    
+    func observeSingleEvent(endPoint: DatabaseEndPoint) -> AnyPublisher<[String: Any?]?, Error> {
+        databaseReference(endPoint: endPoint).observeSingleEventPublisher()
     }
 }
 
@@ -222,19 +227,17 @@ private extension FirebaseService {
         
         return self.reference.child("salts")
             .child(child)
-            .getDataPublisher
+            .getDataPublisher()
             .timeout(.seconds(5), scheduler: DispatchQueue.global())
             .catch { _ in Fail(error: FirebaseCombineError.noDataError).eraseToAnyPublisher() }
-            .map { [weak self] dataSnapshot -> String? in
+            .map { [weak self] databaseValue -> String? in
                 guard let self = self else { return nil }
-                guard let dataSnapshotValue = dataSnapshot.value else { return nil }
-                
                 var salt = ""
-                if dataSnapshot.value! is NSNull {
+                if databaseValue == nil {
                     guard let sha1Email = self.sha1Hash(data: emailData).lastWord else { return nil }
                     salt = String(sha1Email.prefix(5))
                 } else {
-                    guard let salt2 = (dataSnapshotValue as? NSDictionary)?["salt"] as? String else { return nil }
+                    guard let salt2 = (databaseValue as? NSDictionary)?["salt"] as? String else { return nil }
                     salt = salt2
                 }
                 

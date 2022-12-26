@@ -49,6 +49,7 @@ extension FirestoreEndPoint {
         case playlists
         case favorites
         case favorites_resource
+        case notice
 
         var path: String {
             return self.rawValue

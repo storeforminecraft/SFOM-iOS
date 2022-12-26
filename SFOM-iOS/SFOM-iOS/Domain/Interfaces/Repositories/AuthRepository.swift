@@ -10,7 +10,7 @@ import Combine
 protocol AuthRepository {
     func uidChanges() -> AnyPublisher<String?, Never>
     func signIn(email: String, password: String) -> AnyPublisher<Bool, Error>
-    func signUp(email: String, password: String) -> AnyPublisher<Bool, Error>
+    func signUp(email: String, password: String, userName: String) -> AnyPublisher<Bool, Error>
     func signOut() -> AnyPublisher<Bool, Error>
 }
 

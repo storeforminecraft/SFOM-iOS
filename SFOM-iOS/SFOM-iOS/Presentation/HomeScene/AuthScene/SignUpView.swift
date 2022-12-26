@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AlertToast
 
 final class SignUpViewModel: ObservableObject {
     private let authUseCase: AuthUseCase = AppContainer.shared.authUseCase
@@ -35,6 +36,9 @@ struct SignUpView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject private var viewModel: SignUpViewModel = SignUpViewModel()
     
+    @State private var isLoading: Bool = false
+    @State private var signUpFail: Bool = false
+    
     var body: some View {
         VStack(alignment: .leading) {
             SFOMHeader(title: Localized.SignUpView.signUpTitle,
@@ -47,13 +51,14 @@ struct SignUpView: View {
             Spacer()
             VStack (alignment: .center) {
                 SFOMTextField(Localized.Auth.email, text: $viewModel.email)
-                SFOMTextField(Localized.Auth.password, text: $viewModel.email, secure: true)
+                SFOMTextField(Localized.Auth.password, text: $viewModel.password, secure: true)
                 SFOMTextField(Localized.Auth.passwordConfirm, text: $viewModel.passwordConfirm, secure: true)
                 SFOMTextField(Localized.Auth.userName, text: $viewModel.userName)
             }
             Spacer()
             VStack (alignment: .center) {
                 SFOMButton(Localized.SignUpView.signUpButtonTitle) {
+                    isLoading = true
                     viewModel.signOut()
                 }
             }
@@ -64,10 +69,23 @@ struct SignUpView: View {
         .padding(.horizontal, 25)
         .onReceive(viewModel.$result) { result in
             if let result = result {
+                isLoading = false
                 if result {
                     dismiss()
+                } else {
+                    signUpFail = true
                 }
             }
+        }
+        .toast(isPresenting: $isLoading) {
+            AlertToast(type: .loading)
+        }
+        .toast(isPresenting: $signUpFail,
+               duration: 2,
+               tapToDismiss: true) {
+            AlertToast(type: .error(.red),
+                       title: Localized.SignInView.signIn,
+                       subTitle: Localized.SignInView.signInFail)
         }
     }
 }

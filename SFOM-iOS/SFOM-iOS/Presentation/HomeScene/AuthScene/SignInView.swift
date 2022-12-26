@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AlertToast
 
 final class SignInViewModel: ObservableObject {
     private let authUseCase: AuthUseCase = AppContainer.shared.authUseCase
@@ -31,7 +32,9 @@ struct SignInView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject private var viewModel: SignInViewModel = SignInViewModel()
     
-    @State var isPresentPasswordReset: Bool = false
+    @State private var isPresentPasswordReset: Bool = false
+    @State private var isLoading: Bool = false
+    @State private var signInFail: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -58,6 +61,7 @@ struct SignInView: View {
             
             VStack (alignment: .center, spacing: 20) {
                 SFOMButton(Localized.SignInView.signInButonTitle) {
+                    isLoading = true
                     viewModel.signIn()
                 }
                 
@@ -75,13 +79,23 @@ struct SignInView: View {
         .padding(.horizontal, 25)
         .onReceive(viewModel.$result) { result in
             if let result = result {
+                isLoading = false
                 if result {
-                    print("Sign In Success")
                     dismiss()
                 } else {
-                    print("Sign In Fail")
+                    signInFail = true
                 }
             }
+        }
+        .toast(isPresenting: $isLoading) {
+            AlertToast(type: .loading)
+        }
+        .toast(isPresenting: $signInFail,
+               duration: 2,
+               tapToDismiss: true) {
+            AlertToast(type: .error(.red),
+                       title: Localized.SignInView.signIn,
+                       subTitle: Localized.SignInView.signInFail)
         }
     }
 }

@@ -121,8 +121,8 @@ struct HomeView: View {
                 } label: {
                     Assets.Default.profile.image
                         .resizable()
-                        .frame(width: 42, height: 42)
-                        .cornerRadius(26)
+                        .frame(width: 36, height: 36)
+                        .cornerRadius(18)
                 }
             } else {
                 NavigationLink {

@@ -8,6 +8,7 @@
 import Foundation
 
 enum RepositoryError {
+    case noObjectError
     case castingError
     case noAuthError
 }
@@ -15,6 +16,8 @@ enum RepositoryError {
 extension RepositoryError: LocalizedError {
     public var errorDescription: String? {
         switch self {
+        case .noObjectError:
+            return NSLocalizedString("No Object Error", comment: "counln't found Object")
         case .castingError:
             return NSLocalizedString("Casting Error", comment: "counln't cast Repository")
         case .noAuthError:

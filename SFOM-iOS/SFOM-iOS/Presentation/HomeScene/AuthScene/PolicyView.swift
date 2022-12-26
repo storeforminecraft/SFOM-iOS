@@ -95,7 +95,7 @@ struct PolicyView: View {
             Spacer()
             VStack (alignment: .center) {
                 SFOMNavigationLink(Localized.PolicyView.nextStep) {
-                    SignInView()
+                    SignUpView()
                 }
                 .disabled(viewModel.disabled)
             }

@@ -7,15 +7,16 @@
 
 import SwiftUI
 import Combine
+import AlertToast
 
 final class MenuViewModel: ViewModel {
     private let menuUseCase: MenuUseCase = AppContainer.shared.menuUseCase
-    
+
     @Published var currentUser: User? = nil
     @Published var result: Bool? = nil
-    
+
     private var cancellable = Set<AnyCancellable>()
-    
+
     init() {
         menuUseCase.fetchCurrentUserWithUidChanges()
             .replaceError(with: nil)
@@ -23,8 +24,8 @@ final class MenuViewModel: ViewModel {
             .assign(to: \.currentUser, on: self)
             .store(in: &cancellable)
     }
-    
-    func signOut(){
+
+    func signOut() {
         result = nil
         menuUseCase.signOut()
             .map { result -> Bool? in result }
@@ -38,43 +39,68 @@ final class MenuViewModel: ViewModel {
 struct MenuView: View {
     @ObservedObject var viewModel: MenuViewModel = MenuViewModel()
     
+    @State private var isSignOut: Bool = false
+    @State private var isLoading: Bool = false
+    @State private var signOutSuccess: Bool = false
+    @State private var signOutFail: Bool = false
+
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             profile
             List {
-                Section{
+                Section {
                     contentStudioItem
                 }
                 settingListSection
             }
-            .padding(.vertical, 10)
-            .listStyle(PlainListStyle())
+                .padding(.vertical, 10)
+                .listStyle(PlainListStyle())
         }
-        .padding()
-        .onReceive(viewModel.$result) { result in
+            .padding()
+            .onReceive(viewModel.$result) { result in
             if let result = result {
+                isLoading = false
                 if result {
-                    print("Sign Out Success")
+                    signOutSuccess = true
                 } else {
-                    print("Sign Out Fail")
+                    signOutFail = true
                 }
             }
         }
+            .confirmationDialog(Localized.ETC.signOutMessage,
+                                isPresented: $isSignOut,
+                                titleVisibility: .visible) {
+            Button(Localized.MoreMenu.signOut, role: .destructive) {
+                isLoading = true
+                viewModel.signOut()
+            }
+        }
+            .toast(isPresenting: $signOutSuccess,
+                   duration: 2,
+                   tapToDismiss: true) {
+                AlertToast(type: .complete(.accentColor), title: Localized.MoreMenu.signOut, subTitle: "Sign Out Success")
+        }
+            .toast(isPresenting: $signOutFail,
+                   duration: 2,
+                   tapToDismiss: true) {
+            AlertToast(type: .error(.red), title: "Sign Out Fail")
+        }
     }
-    
+
     private var profile: some View {
-        VStack (alignment: .leading){
+        VStack (alignment: .leading) {
             if let user = viewModel.currentUser {
                 NavigationLink {
                     ProfileView(uid: user.uid)
                 } label: {
-                    HStack{
+                    HStack {
                         Assets.Default.profile.image
                             .resizable()
-                            .frame(width: 42, height: 42)
-                            .cornerRadius(26)
+                            .frame(width: 36, height: 36)
+                            .cornerRadius(18)
                         Text(user.nickname)
                             .font(.SFOMMediumFont.bold())
+                            .foregroundColor(.black)
                     }
                 }
             } else {
@@ -93,7 +119,7 @@ struct MenuView: View {
             }
         }
     }
-    
+
     private var settingListSection: some View {
         Section {
             SFOMListItemLinkView(moreMenu: .download) {
@@ -110,13 +136,13 @@ struct MenuView: View {
                     MyCommentsView()
                 }
                 SFOMListItemView(moreMenu: .signOut) {
-                    viewModel.signOut()
+                    isSignOut = true
                 }
             }
         }
-        .listRowSeparator(.hidden)
+            .listRowSeparator(.hidden)
     }
-    
+
     var contentStudioItem: some View {
         VStack { }
     }

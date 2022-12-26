@@ -12,32 +12,59 @@ extension DatabaseReference {
     typealias DatabaseValue = [String: Any?]
     
     // MARK: - CREATE, UPDATE, DELETE
-    func setValuePublisher(value: DatabaseValue) -> AnyPublisher<DatabaseValue, Error> {
-        return Future<DatabaseValue, Error> { [weak self] promise in
+    func setValuePublisher(value: DatabaseValue) -> AnyPublisher<Bool, Error> {
+        return Future<Bool, Error> { [weak self] promise in
             guard let self = self else {
                 promise(.failure(FirebaseCombineError.objectError))
                 return
             }
-            self.setValue(<#T##value: Any?##Any?#>, withCompletionBlock: <#T##(Error?, DatabaseReference) -> Void#>)
+            self.setValue(value) { error, databaseReference in
+                do {
+                    if let error = error { throw error }
+                    promise(.success(true))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
         }
         .eraseToAnyPublisher()
     }
     
     // MARK: - READ
-    func getDataPublisher() -> AnyPublisher<DataSnapshot, Error> {
-        return Future<DataSnapshot, Error> { [weak self] promise in
+    func getDataPublisher() -> AnyPublisher<DatabaseValue?, Error> {
+        return Future<DatabaseValue?, Error> { [weak self] promise in
             guard let self = self else {
                 promise(.failure(FirebaseCombineError.objectError))
                 return
             }
-            self.getData { error, dataSnapShot in
-                if let error = error {
+            self.getData { error, dataSnapshot in
+                do {
+                    if let error = error { throw error }
+                    guard let dataSnapshot = dataSnapshot else { throw FirebaseCombineError.noDataError }
+                    guard let databaseValue = dataSnapshot.value as? DatabaseValue else {
+                        promise(.success(nil))
+                        return
+                    }
+                    promise(.success(databaseValue))
+                } catch {
                     promise(.failure(error))
                 }
-                guard let dataSnapShot = dataSnapShot else {
-                    return promise(.failure(FirebaseCombineError.noDataError))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func observeSingleEventPublisher() -> AnyPublisher<DatabaseValue?, Error> {
+        return Future<DatabaseValue?, Error> { [weak self] promise in
+            guard let self = self else {
+                promise(.failure(FirebaseCombineError.objectError))
+                return
+            }
+            self.observeSingleEvent(of: .value) { dataSnapshot in
+                guard let databaseValue = dataSnapshot.value as? DatabaseValue else {
+                    promise(.success(nil))
+                    return
                 }
-                promise(.success(dataSnapShot))
+                promise(.success(databaseValue))
             }
         }.eraseToAnyPublisher()
     }

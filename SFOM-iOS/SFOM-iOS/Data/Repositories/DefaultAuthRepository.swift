@@ -6,12 +6,15 @@
 //
 
 import Combine
+import UIKit
 
 final class DefaultAuthRepository {
     private let networkAuthService: NetworkAuthService
+    private let databaseService: DatabaseService
     
-    init(networkAuthService: NetworkAuthService) {
+    init(networkAuthService: NetworkAuthService, databaseService: DatabaseService) {
         self.networkAuthService = networkAuthService
+        self.databaseService = databaseService
     }
 }
 
@@ -22,10 +25,35 @@ extension DefaultAuthRepository: AuthRepository {
     
     func signIn(email: String, password: String) -> AnyPublisher<Bool, Error> {
         return networkAuthService.signIn(email: email, password: password)
+            .flatMap{ [weak self] uid -> AnyPublisher<Bool, Error> in
+                guard let self = self else { return Fail(error: RepositoryError.noObjectError).eraseToAnyPublisher() }
+                guard let uid = uid else { return Fail(error: RepositoryError.noAuthError).eraseToAnyPublisher() }
+                let endPoint = DatabaseEndPoints.shared.user(uid: uid)
+                let databaseValue = DatabaseUser(handles: [.set(.lastSignInDeviceId(UIDevice.current.identifierForVendor!.uuidString)),
+                                                           .set(.lastSignInTime(Date())),
+                                                           // .delete(.language())
+                ]).values
+                return self.databaseService.setValue(endPoint: endPoint, value: databaseValue)
+            }
+            .eraseToAnyPublisher()
     }
     
-    func signUp(email: String, password: String) -> AnyPublisher<Bool, Error> {
+    func signUp(email: String, password: String, userName: String) -> AnyPublisher<Bool, Error> {
         return networkAuthService.signUp(email: email, password: password)
+            .flatMap{ [weak self] uid -> AnyPublisher<Bool, Error> in
+                guard let self = self else { return Fail(error: RepositoryError.noObjectError).eraseToAnyPublisher() }
+                guard let uid = uid else { return Fail(error: RepositoryError.noAuthError).eraseToAnyPublisher() }
+                let endPoint = DatabaseEndPoints.shared.user(uid: uid)
+                let databaseValue = DatabaseUser(handles: [.set(.email(email)),
+                                                           .set(.lastSignInDeviceId(UIDevice.current.identifierForVendor!.uuidString)),
+                                                           .set(.lastSignInTime(Date())),
+                                                           .set(.language(Localized.location)),
+                                                           .set(.nickname(userName)),
+                                                           .set(.profileImage("")),
+                                                           .set(.uid(uid))]).values
+                return self.databaseService.setValue(endPoint: endPoint, value: databaseValue)
+            }
+            .eraseToAnyPublisher()
     }
     
     func signOut() -> AnyPublisher<Bool, Error> {
@@ -33,6 +61,7 @@ extension DefaultAuthRepository: AuthRepository {
     }
     
     func withdrawal() -> AnyPublisher<Bool, Error>  {
+        
         return networkAuthService.withdrawal()
     }
 }

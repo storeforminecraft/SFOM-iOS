@@ -8,5 +8,13 @@
 import Foundation
 
 final class DatabaseEndPoints {
-    
+    static let shared = DatabaseEndPoints()
+    private init() { }
 }
+
+extension DatabaseEndPoints {
+    func user(uid: String) -> DatabaseEndPoint {
+        return DatabaseEndPoint(childs: [.users, .another(uid)])
+    }
+}
+

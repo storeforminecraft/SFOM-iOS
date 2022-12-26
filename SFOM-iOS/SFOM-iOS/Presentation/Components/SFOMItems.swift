@@ -11,7 +11,7 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
     private let post: Post
     private let height: CGFloat
     private let aspectRatio: CGFloat
-    @ViewBuilder var destination:() -> Destination
+    @ViewBuilder private var destination:() -> Destination
     
     init(post: Post,
          height: CGFloat = 200,
@@ -72,9 +72,9 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
 }
 
 public struct SFOMSearchItemView<Destination>: View where Destination: View {
-    var resource: Resource
-    var width: CGFloat
-    @ViewBuilder var destination: () -> Destination
+    private var resource: Resource
+    private var width: CGFloat
+    @ViewBuilder private var destination: () -> Destination
     
     var imageHeight: CGFloat {
         return width * 0.6
@@ -128,8 +128,8 @@ public struct SFOMSearchItemView<Destination>: View where Destination: View {
 }
 
 public struct SFOMRecentCommentItemView<Destination>: View where Destination: View {
-    let recentComment: RecentComment
-    @ViewBuilder var destination: () -> Destination
+    private let recentComment: RecentComment
+    @ViewBuilder private var destination: () -> Destination
     
     init(recentComment: RecentComment, @ViewBuilder destination: @escaping () -> Destination) {
         self.recentComment = recentComment
@@ -204,8 +204,8 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
 }
 
 public struct SFOMListItemLinkView<Destination>: View where Destination: View  {
-    let moreMenu: SFOMMoreMenu
-    @ViewBuilder var destination: () -> Destination
+    private let moreMenu: SFOMMoreMenu
+    @ViewBuilder private var destination: () -> Destination
     
     init(moreMenu: SFOMMoreMenu, @ViewBuilder destination: @escaping () -> Destination) {
         self.moreMenu = moreMenu
@@ -226,8 +226,8 @@ public struct SFOMListItemLinkView<Destination>: View where Destination: View  {
 }
 
 public struct SFOMListItemView: View {
-    let moreMenu: SFOMMoreMenu
-    let completion: () -> Void
+    private let moreMenu: SFOMMoreMenu
+    private let completion: () -> Void
     
     init(moreMenu: SFOMMoreMenu,completion: @escaping () -> Void) {
         self.moreMenu = moreMenu
@@ -242,6 +242,25 @@ public struct SFOMListItemView: View {
                 moreMenu.assets.image
                 Text(moreMenu.localized)
                     .font(.SFOMSmallFont.bold())
+            }
+        }
+    }
+}
+
+public struct SFOMNoticeItemView: View {
+    private let notice: String
+    @State private var showingContent: Bool = false
+    
+    init(notice: String) {
+        self.notice = notice
+    }
+    
+    public var body: some View {
+        Button {
+            showingContent.toggle()
+        } label: {
+            HStack {
+              
             }
         }
     }

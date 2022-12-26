@@ -12,6 +12,7 @@
 
 "HomeTitle" = "SFOM";
 "SignIn" = "Sign In";
+"SignUp" = "Sign Up";
 
 "Back" = "Back";
 
@@ -51,11 +52,17 @@
 "SignUpSubTitle" = "You can create an account for STORE for MCPE now.";
 "SignUpButtonTitle" = "CREATE";
 
+"SignUpSuccess" = "Sign Up Success";
+"SignUpFail" = "Sign Up Fail";
+
 "SignInTitle" = "Nice to see you again!";
 "SignInMainTitle" = "Please sign in.";
 "SignInSubTitle" = "Sign in with your STORE for MCPE account.";
 "SignInButonTitle" = "SIGN IN";
 "ResetEmailButtonTitle" = "Forgot your password?";
+
+"SignInSuccess" = "Sign In Success";
+"SignInFail" = "Sign In Fail";
 
 "SignInPolicy" = "By continuing, you aggree to the STORE for MCPE's [Terms of Service](https://docs.storeforminecraft.com/en/terms/EULA) and [Privacy Policy](https://docs.storeforminecraft.com/en/terms/PrivacyPolicy).";
 
@@ -113,6 +120,9 @@
 "SignOut" = "Sign out";
 
 "SignOutMessage" = "Do you really want to sign out?";
+
+"SignOutSuccess" = "Sign Out Success";
+"SignOutFail" = "Sign Out Fail";
 
 "ContentStudio" = "Content Studio";
 "Upload" = "upload";

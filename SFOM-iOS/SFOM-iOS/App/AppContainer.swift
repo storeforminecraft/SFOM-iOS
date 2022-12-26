@@ -15,8 +15,9 @@ final class AppContainer {
     let networkService: NetworkService = FirebaseService.shared
     let httpService: HTTPService = DefaultHTTPService()
     let networkAuthService = FirebaseService.shared as NetworkAuthService
+    let databaseService = FirebaseService.shared as DatabaseService
     
-    lazy var authRepository: AuthRepository = DefaultAuthRepository(networkAuthService: networkAuthService)
+    lazy var authRepository: AuthRepository = DefaultAuthRepository(networkAuthService: networkAuthService, databaseService: databaseService)
     lazy var postRepository: PostRepository = DefaultPostRepository(networkService: networkService)
     lazy var searchRepository: SearchRepository = DefaultSearchRepository(httpService: httpService)
     lazy var userRepository: UserRepository = DefaultUserRepository(networkAuthService: networkAuthService, httpService: httpService)

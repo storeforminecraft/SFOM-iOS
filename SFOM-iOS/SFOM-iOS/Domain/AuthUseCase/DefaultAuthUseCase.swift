@@ -27,7 +27,7 @@ extension DefaultAuthUseCase: AuthUseCase {
     }
     
     func signUp(email: String, password: String, userName: String) -> AnyPublisher<Bool, Error> {
-        return authRepository.signUp(email: email, password: password)
+        return authRepository.signUp(email: email, password: password, userName: userName)
     }
 
     func signOut() -> AnyPublisher<Bool, Error> {

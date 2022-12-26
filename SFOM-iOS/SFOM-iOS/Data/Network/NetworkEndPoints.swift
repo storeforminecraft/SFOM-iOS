@@ -87,6 +87,11 @@ extension NetworkEndPoints {
         return FirestoreEndPoint(collection: collection, document: document)
     }
     
+    func notice() -> FirestoreEndPoint? {
+        let collection = FirestoreEndPoint.SFOMCollection.notice
+        return FirestoreEndPoint(collection: collection, document: nil)
+    }
+    
     //MARK: - SubCollection
     func resourcesComments(doc: String, subDoc: String?) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.resources
