@@ -25,7 +25,7 @@ struct SFOMSkinImage: View {
     
     var body: some View {
         KFImage(imageUrl)
-            .setProcessor(SFOMImageProcessor.default)
+            // .setProcessor(SFOMImageProcessor.default)
             .placeholder{
                 Assets.Default.profileBackground.image
             }

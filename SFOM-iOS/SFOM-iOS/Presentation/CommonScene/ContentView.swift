@@ -38,6 +38,11 @@ final class ContentViewModel: ViewModel {
         contentUseCase
             .fetchUserResources(uid: resource.authorUid)
             .receive(on: DispatchQueue.main)
+            .map{ resources in
+                resources
+                    .filter { resource.id != $0.id }
+                    .sorted { $0.createdTimestamp > $1.createdTimestamp }
+            }
             .replaceError(with: [])
             .assign(to: \.authorUserResources, on: self)
             .store(in: &cancellable)
