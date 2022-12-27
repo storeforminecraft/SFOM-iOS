@@ -92,12 +92,14 @@ struct ContentView: View {
         if resource.category != .skin {
             TabView{
                 ForEach(resource.imageUrls, id: \.hashValue) { image in
-                    SFOMImage(urlString: image)
+                    SFOMImage(placeholder: Assets.Default.profileBackground.image,
+                              urlString: image)
                 }
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
         } else {
-            SFOMSkinImage(defaultImage: Assets.Default.profileBackground.image, category: .skin, urlStr: resource.thumbnail)
+            SFOMSkinImage(placeholder: Assets.Default.profileBackground.image,
+                          urlString: resource.thumbnail)
         }
     }
     
@@ -124,7 +126,7 @@ struct ContentView: View {
                 } label: {
                     HStack (spacing: 10) {
                         // FIXME: - SFOMImage DefaultImage
-                        SFOMImage(defaultImage: Assets.Default.profile.image,
+                        SFOMImage(placeholder: Assets.Default.profile.image,
                                   urlString: user.thumbnail)
                         .frame(width: 40, height: 40)
                         .cornerRadius(40)
@@ -203,7 +205,7 @@ struct ContentView: View {
                         NavigationLink {
                             ProfileView(uid: userComment.user.uid)
                         } label: {
-                            SFOMImage(defaultImage: Assets.Default.profile.image,
+                            SFOMImage(placeholder: Assets.Default.profile.image,
                                       urlString: userComment.user.thumbnail)
                             .frame(width: 28, height: 28)
                             .cornerRadius(28)
@@ -269,7 +271,7 @@ struct ContentView: View {
                             ContentView(resource: resource)
                         } label: {
                             VStack(alignment: .leading) {
-                                SFOMImage(defaultImage: Assets.Default.profileBackground.image,
+                                SFOMImage(placeholder: Assets.Default.profileBackground.image,
                                           urlString: resource.thumbnail)
                                 .aspectRatio(1.7, contentMode: .fit)
                                 .padding(.bottom,4)

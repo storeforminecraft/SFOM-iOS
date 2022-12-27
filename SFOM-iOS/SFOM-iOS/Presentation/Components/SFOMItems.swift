@@ -28,24 +28,13 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
             destination()
         } label: {
             ZStack(alignment: .topLeading) {
-                if let coverImage = post.coverImage, coverImage != "" {
-                    SFOMImage(urlString: coverImage)
-                        .cornerRadius(14)
-                        .overlay(RoundedRectangle(cornerRadius: 14)
-                            .foregroundColor(.black)
-                            .opacity(0.3))
-                } else {
-                    Assets.Default.profileBackground.image
-                        .resizable()
-                        .cornerRadius(14)
-                        .overlay(RoundedRectangle(cornerRadius: 14)
-                            .foregroundColor(.black)
-                            .opacity(0.3))
-                }
+                SFOMImage(placeholder: Assets.Default.profileBackground.image, urlString: post.coverImage)
+                    .cornerRadius(14)
+                    .overlay(RoundedRectangle(cornerRadius: 14)
+                        .foregroundColor(.black)
+                        .opacity(0.3))
                 
                 VStack(alignment: .leading) {
-                    HStack { Spacer() }
-                    
                     HStack (alignment: .center) {
                         Assets.Symbol.white.image
                             .resizable()
@@ -58,7 +47,7 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
                         .font(.system(size: 20, weight: .bold))
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
-                    
+                    HStack { Spacer() }
                 }
                 .foregroundColor(.white)
                 .padding(.vertical, 5)
@@ -91,9 +80,8 @@ public struct SFOMSearchItemView<Destination>: View where Destination: View {
             destination()
         } label: {
             VStack (alignment: .leading) {
-                SFOMSkinImage(defaultImage: Assets.Default.profileBackground.image,
-                              category: resource.category,
-                              urlStr: resource.thumbnail,
+                SFOMSkinImage(placeholder: Assets.Default.profileBackground.image,
+                              urlString: resource.thumbnail,
                               search: true)
                 .frame(width: width, height: imageHeight)
                 .scaledToFill()
@@ -142,13 +130,8 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
         } label: {
             VStack(alignment: .leading){
                 HStack{
-                    Group {
-                        if let thumbnail = recentComment.resource.thumbnail {
-                            SFOMImage(urlString: thumbnail)
-                        } else {
-                            Assets.Default.profileBackground.image
-                        }
-                    }
+                    SFOMImage(placeholder: Assets.Default.profileBackground.image,
+                              urlString: recentComment.resource.thumbnail)
                     .frame(width: 30, height: 30)
                     .cornerRadius(15)
                     
@@ -159,14 +142,8 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
                 }
                 
                 HStack (spacing: 0) {
-                    Group {
-                        if let thumbnail = recentComment.user.thumbnail {
-                            SFOMImage(urlString: thumbnail)
-                        } else {
-                            Assets.Default.profile.image
-                                .resizable()
-                        }
-                    }
+                    SFOMImage(placeholder: Assets.Default.profile.image,
+                              urlString: recentComment.user.thumbnail)
                     .frame(width: 15, height: 15)
                     .cornerRadius(12.5)
                     .padding(.horizontal,5)

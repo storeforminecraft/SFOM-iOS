@@ -13,6 +13,8 @@
 		A50DE904292B37BD00E1FD60 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE903292B37BD00E1FD60 /* MenuView.swift */; };
 		A52019FB293C857500FAA9B4 /* SFOMSkinImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52019FA293C857500FAA9B4 /* SFOMSkinImage.swift */; };
 		A52019FD293C8B6F00FAA9B4 /* SFOMCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52019FC293C8B6F00FAA9B4 /* SFOMCategory.swift */; };
+		A523F69C295AD80900858D8A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A523F69B295AD80900858D8A /* Kingfisher */; };
+		A523F69E295AE6B300858D8A /* LazyNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A523F69D295AE6B300858D8A /* LazyNavigationLink.swift */; };
 		A525E7B2293B38C3006246FA /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A525E7B1293B38C3006246FA /* SearchData.swift */; };
 		A525E7B6293B4F2D006246FA /* SFOMItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = A525E7B5293B4F2D006246FA /* SFOMItems.swift */; };
 		A52A2D9C294EE64B00D6F617 /* CompactLPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2D9B294EE64B00D6F617 /* CompactLPView.swift */; };
@@ -26,7 +28,6 @@
 		A52A2DAD294EFABC00D6F617 /* CommentDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2DAC294EFABC00D6F617 /* CommentDTO+Mapping.swift */; };
 		A52A2DAF294F00A400D6F617 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2DAE294F00A400D6F617 /* AppContainer.swift */; };
 		A52F6CE6295969D300D9DB10 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = A52F6CE5295969D300D9DB10 /* AlertToast */; };
-		A52F6CE9295972BF00D9DB10 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A52F6CE8295972BF00D9DB10 /* SDWebImageSwiftUI */; };
 		A52F6CEB29597A0800D9DB10 /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CEA29597A0800D9DB10 /* Notice.swift */; };
 		A52F6CED29597AE200D9DB10 /* NoticeDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CEC29597AE200D9DB10 /* NoticeDTO+Mapping.swift */; };
 		A52F6CEF29597BE200D9DB10 /* DefaultNoticeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CEE29597BE200D9DB10 /* DefaultNoticeRepository.swift */; };
@@ -143,6 +144,7 @@
 		A50DE903292B37BD00E1FD60 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		A52019FA293C857500FAA9B4 /* SFOMSkinImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMSkinImage.swift; sourceTree = "<group>"; };
 		A52019FC293C8B6F00FAA9B4 /* SFOMCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMCategory.swift; sourceTree = "<group>"; };
+		A523F69D295AE6B300858D8A /* LazyNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyNavigationLink.swift; sourceTree = "<group>"; };
 		A525E7B1293B38C3006246FA /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 		A525E7B5293B4F2D006246FA /* SFOMItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMItems.swift; sourceTree = "<group>"; };
 		A52A2D9B294EE64B00D6F617 /* CompactLPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLPView.swift; sourceTree = "<group>"; };
@@ -268,7 +270,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A52F6CE9295972BF00D9DB10 /* SDWebImageSwiftUI in Frameworks */,
+				A523F69C295AD80900858D8A /* Kingfisher in Frameworks */,
 				A5A78340293063DE008B9A62 /* FirebaseDatabaseSwift in Frameworks */,
 				A5A78344293063DE008B9A62 /* FirebaseStorage in Frameworks */,
 				A5A7833E293063DE008B9A62 /* FirebaseAuth in Frameworks */,
@@ -734,6 +736,7 @@
 				A57669AE29461BF900D44CD2 /* SFOMImage.swift */,
 				A52019FA293C857500FAA9B4 /* SFOMSkinImage.swift */,
 				A52A2D9D294EEA2B00D6F617 /* CompactLPView */,
+				A523F69D295AE6B300858D8A /* LazyNavigationLink.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -839,7 +842,7 @@
 				A5A78341293063DE008B9A62 /* FirebaseFirestoreSwift */,
 				A5A78343293063DE008B9A62 /* FirebaseStorage */,
 				A52F6CE5295969D300D9DB10 /* AlertToast */,
-				A52F6CE8295972BF00D9DB10 /* SDWebImageSwiftUI */,
+				A523F69B295AD80900858D8A /* Kingfisher */,
 			);
 			productName = "SFOM-iOS";
 			productReference = A5CFA6F92927322C004C1F2B /* SFOM-iOS.app */;
@@ -873,7 +876,7 @@
 			packageReferences = (
 				A5A7833C293063DE008B9A62 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A52F6CE4295969D300D9DB10 /* XCRemoteSwiftPackageReference "AlertToast" */,
-				A52F6CE7295972BF00D9DB10 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				A523F69A295AD80900858D8A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = A5CFA6FA2927322C004C1F2B /* Products */;
 			projectDirPath = "";
@@ -950,6 +953,7 @@
 				A54776EE29518C5200E14D0F /* NoticeView.swift in Sources */,
 				A5502F0D29438B6200A4D18A /* DownloadListStorage.swift in Sources */,
 				A5F4CD46294506FB00789813 /* FirebaseCombineError.swift in Sources */,
+				A523F69E295AE6B300858D8A /* LazyNavigationLink.swift in Sources */,
 				A5713871295054AE00731F1B /* PushView.swift in Sources */,
 				A5CD4573294AE01E009F47C1 /* WhereField.swift in Sources */,
 				A5842F38294F503B007F3116 /* DefaultResourceRepository.swift in Sources */,
@@ -1248,17 +1252,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A523F69A295AD80900858D8A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		A52F6CE4295969D300D9DB10 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/elai950/AlertToast.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		A52F6CE7295972BF00D9DB10 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -1275,15 +1279,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A523F69B295AD80900858D8A /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A523F69A295AD80900858D8A /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		A52F6CE5295969D300D9DB10 /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A52F6CE4295969D300D9DB10 /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
-		};
-		A52F6CE8295972BF00D9DB10 /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A52F6CE7295972BF00D9DB10 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
 		};
 		A5A7833D293063DE008B9A62 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

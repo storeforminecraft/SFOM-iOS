@@ -7,79 +7,23 @@
 
 import SwiftUI
 import Combine
-
-// TODO: - 이미지 캐싱 및 view model 처리 작업
-fileprivate final class SFOMImageViewModel: ObservableObject {
-    @Published private(set) var image: Image? = nil
-    @Published private(set) var progressing: Bool = false
-    
-    private var failureImage: Image? = nil
-    
-    private var cancellable = Set<AnyCancellable>()
-    
-    func setDefaultImage(image: Image?) {
-        self.image = image
-    }
-    
-    func setFailureImage(image: Image?) {
-        self.failureImage = image
-    }
-    
-    func fetch(urlString: String){
-        self.image = nil
-        self.progressing = true
-        guard let url = URL(string: urlString) else { return }
-        URLSession(configuration: .default)
-            .dataTaskPublisher(for: url)
-            .map { (data, response) in  return data }
-            .catch{ error -> AnyPublisher<Data?, Never> in
-                Just<Data?>(nil).eraseToAnyPublisher()
-            }
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: self.receiveResponse(data:))
-            .store(in: &cancellable)
-    }
-    
-    private func receiveResponse(data: Data?) {
-        self.progressing = false
-        guard let data =  data,  let uiImage = UIImage(data:data) else {
-            if let failureImage = self.failureImage {
-                self.image = failureImage
-            }
-            return
-        }
-        self.image = Image(uiImage: uiImage)
-    }
-}
+import Kingfisher
 
 public struct SFOMImage: View {
-    @ObservedObject private var sfomImageViewModel = SFOMImageViewModel()
+    private var imageUrl: URL? = nil
     
-    init(defaultImage: Image, urlString: String?){
-        sfomImageViewModel.setDefaultImage(image: defaultImage)
-        if let urlString = urlString {
-            sfomImageViewModel.fetch(urlString: urlString)
+    init(placeholder: Image, urlString: String?){
+        if let urlString = urlString, let url = URL(string: urlString) {
+            self.imageUrl = url
         }
     }
-    
-    init(urlString: String, defaultImage: Image? = nil, failureImage: Image? = nil){
-        sfomImageViewModel.setDefaultImage(image: defaultImage)
-        sfomImageViewModel.setFailureImage(image: failureImage)
-        sfomImageViewModel.fetch(urlString: urlString)
-    }
-    
+
     public var body: some View {
-        ZStack (alignment: .center) {
-            if let sfomImage = sfomImageViewModel.image {
-                sfomImage
-                    .resizable()
+        KFImage.url(imageUrl)
+            .placeholder{
+                Assets.Default.profileBackground.image
             }
-            if sfomImageViewModel.progressing {
-                ProgressView()
-                    .progressViewStyle(.circular)
-                    .scaleEffect(3)
-                    .tint(.accentColor)
-            }
-        }
+            .fade(duration: 0.25)
+            .resizable()
     }
 }
