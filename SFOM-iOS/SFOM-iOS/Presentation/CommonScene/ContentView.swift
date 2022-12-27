@@ -10,7 +10,7 @@ import Combine
 
 final class ContentViewModel: ViewModel {
     private let contentUseCase: ContentUseCase = AppContainer.shared.contentUseCase
-
+    
     @Published var currentUser: User? = nil
     @Published var authorUser: User? = nil
     @Published var authorUserResources: [Resource] = []
@@ -72,41 +72,46 @@ struct ContentView: View {
                 resourceContent
                     .padding(.horizontal, 20)
                 Divider()
-                    .padding(.vertical)
+                    .padding(.vertical,5)
                 comments
                     .padding(.horizontal, 20)
                 Divider()
-                    .padding(.vertical)
+                    .padding(.vertical,5)
                 userResources
-                    .padding()
             }
         }
         .ignoresSafeArea()
+        .navigationBarBackButtonHidden()
         .overlay {
             // File Download & apply
         }
     }
     
+    @ViewBuilder
     private var imagesTabView: some View {
-        TabView{
-            ForEach(resource.imageUrls, id: \.hashValue) { image in
-                SFOMImage(urlString: image)
+        if resource.category != .skin {
+            TabView{
+                ForEach(resource.imageUrls, id: \.hashValue) { image in
+                    SFOMImage(urlString: image)
+                }
             }
+            .tabViewStyle(.page(indexDisplayMode: .always))
+        } else {
+            SFOMSkinImage(defaultImage: Assets.Default.profileBackground.image, category: .skin, urlStr: resource.thumbnail)
         }
-        .tabViewStyle(.page(indexDisplayMode: .always))
     }
     
     private var resourceContent: some View {
         VStack(alignment: .leading) {
             Text(resource.localizedName)
-                .font(.SFOMSmallFont.bold())
+                .font(.SFOMMediumFont.bold())
             Text(resource.info)
                 .foregroundColor(Color(.darkGray))
-                .font(.SFOMExtraSmallFont)
+                .font(.SFOMSmallFont)
             userInfo
                 .padding(.vertical)
             Text(resource.localizedDescs)
-                .font(.SFOMExtraSmallFont)
+                .font(.SFOMSmallFont)
                 .foregroundColor(Color(.darkGray))
         }
     }
@@ -117,7 +122,7 @@ struct ContentView: View {
                 NavigationLink {
                     ProfileView(uid: user.uid)
                 } label: {
-                    HStack {
+                    HStack (spacing: 10) {
                         // FIXME: - SFOMImage DefaultImage
                         SFOMImage(defaultImage: Assets.Default.profile.image,
                                   urlString: user.thumbnail)
@@ -125,12 +130,15 @@ struct ContentView: View {
                         .cornerRadius(40)
                         
                         VStack(alignment: .leading, spacing: 0){
-                            Text(user.nickname)
+                            Text(user.nickname.strip)
                                 .font(.SFOMExtraSmallFont.bold())
                                 .foregroundColor(.black)
+                                .lineLimit(1)
                             Text(user.uid.prefix(6))
                                 .font(.SFOMExtraSmallFont)
                                 .foregroundColor(Color(.darkGray))
+                                .lineLimit(1)
+                            HStack { Spacer() }
                         }
                     }
                 }
@@ -161,21 +169,21 @@ struct ContentView: View {
                 if viewModel.currentUser != nil {
                     // FIXME: - 댓글 쓰기
                     VStack(spacing: 0){
-                    TextField("평가를 작성해주세요", text: $viewModel.comment)
-                        .autocapitalization(.none)
-                        .padding(8)
-                        .padding(.horizontal, 2)
-                        .font(.SFOMSmallFont)
-                        .onSubmit {
-                            viewModel.addComments()
-                        }
+                        TextField("평가를 작성해주세요", text: $viewModel.comment)
+                            .autocapitalization(.none)
+                            .padding(8)
+                            .padding(.horizontal, 2)
+                            .font(.SFOMSmallFont)
+                            .onSubmit {
+                                viewModel.addComments()
+                            }
                         HStack { Spacer() }
                     }
-                        .background(Color.searchBarColor)
-                        .cornerRadius(24)
-                        .overlay(RoundedRectangle(cornerRadius: 24)
-                            .stroke(.black, lineWidth: 2))
-                        .padding()
+                    .background(Color.searchBarColor)
+                    .cornerRadius(24)
+                    .overlay(RoundedRectangle(cornerRadius: 24)
+                        .stroke(.black, lineWidth: 2))
+                    .padding()
                 } else {
                     VStack(alignment: .center){
                         NavigationLink{
@@ -207,7 +215,7 @@ struct ContentView: View {
                                     ProfileView(uid: userComment.user.uid)
                                 } label: {
                                     Text(userComment.user.summary)
-                                        .font(.SFOMSmallFont.bold())
+                                        .font(.SFOMExtraSmallFont.bold())
                                         .foregroundColor(.black)
                                 }
                                 Spacer()
@@ -215,7 +223,7 @@ struct ContentView: View {
                                     // FIXME: - 신고
                                 } label: {
                                     Image(systemName: "ellipsis")
-                                        .font(.SFOMSmallFont)
+                                        .font(.SFOMExtraSmallFont)
                                         .foregroundColor(Color(.lightGray))
                                 }
                             }
@@ -225,18 +233,82 @@ struct ContentView: View {
                             HStack{ Spacer() }
                         }
                         .padding()
-                        .background(Color(.lightGray).opacity(0.05))
+                        .background(Color(.lightGray).opacity(0.08))
                         .cornerRadius(12)
                     }
                 }
-                
             }
         }
     }
     
     private var userResources: some View {
-        VStack {
+        VStack(spacing: 10){
+            VStack(alignment:.leading, spacing: 5){
+                if let authorUser = viewModel.authorUser {
+                    HStack(spacing: 0) {
+                        Text(authorUser.nickname.strip)
+                            .font(.SFOMSmallFont.bold())
+                        Text(Localized.ETC.userSuffix)
+                            .font(.SFOMSmallFont)
+                    }
+                    .foregroundColor(.black)
+                    if let introduction = authorUser.introduction{
+                        Text(introduction)
+                            .font(.SFOMExtraSmallFont)
+                            .foregroundColor(Color(.lightGray))
+                    }
+                }
+                HStack { Spacer() }
+            }
+            .padding(.horizontal, 20)
             
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: 10){
+                    ForEach(viewModel.authorUserResources, id: \.id) { resource in
+                        NavigationLink {
+                            ContentView(resource: resource)
+                        } label: {
+                            VStack(alignment: .leading) {
+                                SFOMImage(defaultImage: Assets.Default.profileBackground.image,
+                                          urlString: resource.thumbnail)
+                                .aspectRatio(1.7, contentMode: .fit)
+                                .padding(.bottom,4)
+                                VStack(alignment: .leading, spacing: 5) {
+                                    Text(resource.localizedName)
+                                        .font(.SFOMExtraSmallFont)
+                                        .foregroundColor(.black)
+                                        .lineLimit(2)
+                                        .multilineTextAlignment(.leading)
+                                        .frame(height: 30, alignment: .top)
+                                    HStack (spacing: 0) {
+                                        Image(systemName: "hand.thumbsup.fill")
+                                            .font(.SFOMExtraSmallFont)
+                                            .foregroundColor(.accentColor)
+                                        Group {
+                                            Text("\(resource.likeCount)")
+                                                .padding(.trailing,4)
+                                            Text("\(resource.downloadCount)\(Localized.ETC.count)")
+                                        }
+                                        .font(.SFOMExtraSmallFont)
+                                        .foregroundColor(Color(.lightGray))
+                                        .lineLimit(1)
+                                    }
+                                }
+                                .padding(.horizontal, 6)
+                                .padding(.bottom,8)
+                            }
+                            .frame(width: 150)
+                            .background(Color(.white))
+                            .cornerRadius(12)
+                            .shadow(color: Color(.lightGray),
+                                    radius: 2, x: 0, y: 2)
+                        }
+                    }
+                }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 10)
+            }
+            HStack { Spacer() }
         }
     }
 }

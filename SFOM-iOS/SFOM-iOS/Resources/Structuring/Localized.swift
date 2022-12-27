@@ -86,7 +86,7 @@ public struct Localized {
         private init() { }
         static let comments = "Comments".localized
         static let more = "More".localized
-        static let signInAndWriteAComment = "SignInAndWriteAComment".localized
+        static let signInAndWriteAComment = "LeaveACommentAfterSignIn".localized
     }
 
     public struct Policy {
@@ -171,6 +171,7 @@ public struct Localized {
         static let leftAComment = "LeftAComment".localized
         static let signOutMessage = "SignOutMessage".localized
         static let count = "Count".localized
+        static let userSuffix = "UserSuffix".localized
     }
     
     public struct ContentStudio {

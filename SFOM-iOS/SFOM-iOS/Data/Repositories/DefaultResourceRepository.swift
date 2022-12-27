@@ -38,7 +38,7 @@ extension DefaultResourceRepository: ResourceRepository {
         .eraseToAnyPublisher()
     }
     
-    func fetchUserResources(uid: String) -> AnyPublisher<[Resource], Error> {
+    func fetchUserResources(uid: String, limit: Int? = nil) -> AnyPublisher<[Resource], Error> {
         guard let endPoint = NetworkEndPoints.shared.resources(doc: nil) else {
             return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
         }
@@ -46,7 +46,7 @@ extension DefaultResourceRepository: ResourceRepository {
                                                 type: ResourceDTO.self,
                                                 whereFields: [.isEqualTo("authorUid", value: uid)],
                                                 order: .descending("createdTimestamp"),
-                                                limit: nil)
+                                                limit: limit)
         .map{ $0.map{ $0.toDomain() } }
         .eraseToAnyPublisher()
     }

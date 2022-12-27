@@ -135,4 +135,6 @@
 
 "Comments" = "comments";
 "More" = "more";
-"SignInAndWriteAComment" = "Sign In, write a Comment";
+"LeaveACommentAfterSignIn" = "Leave a Comment after sign in.";
+
+"UserSuffix" = "";

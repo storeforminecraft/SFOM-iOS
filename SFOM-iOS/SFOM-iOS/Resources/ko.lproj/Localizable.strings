@@ -135,4 +135,6 @@
 
 "Comments" = "이용자 평가";
 "More" = "더보기";
-"SignInAndWriteAComment" = "로그인 한 후 댓글 작성";
+"LeaveACommentAfterSignIn" = "로그인 한 후 댓글 작성";
+
+"UserSuffix" = "님";

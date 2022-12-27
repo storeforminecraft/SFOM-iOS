@@ -59,7 +59,7 @@ extension DefaultContentUseCase: ContentUseCase {
     }
     
     func fetchUserResources(uid: String) -> AnyPublisher<[Resource], Error> {
-        resourceReposiotry.fetchUserResources(uid: uid)
+        resourceReposiotry.fetchUserResources(uid: uid, limit: 5)
     }
 }
 

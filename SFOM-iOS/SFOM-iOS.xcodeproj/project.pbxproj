@@ -33,6 +33,7 @@
 		A52F6CF129597C0600D9DB10 /* NoticeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CF029597C0600D9DB10 /* NoticeRepository.swift */; };
 		A52F6CF329597CC900D9DB10 /* NoticeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CF229597CC900D9DB10 /* NoticeUseCase.swift */; };
 		A52F6CF529597CEF00D9DB10 /* DefaultNoticeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CF429597CEF00D9DB10 /* DefaultNoticeUseCase.swift */; };
+		A5332E4B295AC41200EF7378 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5332E4A295AC41200EF7378 /* UIViewController+.swift */; };
 		A53CF331294E1F440026A655 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CF330294E1F440026A655 /* SearchRepository.swift */; };
 		A53CF333294E23D90026A655 /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CF332294E23D90026A655 /* RepositoryError.swift */; };
 		A53CF335294E2C310026A655 /* DefaultUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CF334294E2C310026A655 /* DefaultUserRepository.swift */; };
@@ -160,6 +161,7 @@
 		A52F6CF029597C0600D9DB10 /* NoticeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeRepository.swift; sourceTree = "<group>"; };
 		A52F6CF229597CC900D9DB10 /* NoticeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeUseCase.swift; sourceTree = "<group>"; };
 		A52F6CF429597CEF00D9DB10 /* DefaultNoticeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNoticeUseCase.swift; sourceTree = "<group>"; };
+		A5332E4A295AC41200EF7378 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		A53CF330294E1F440026A655 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
 		A53CF332294E23D90026A655 /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
 		A53CF334294E2C310026A655 /* DefaultUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserRepository.swift; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 				A5CFA72A29274881004C1F2B /* String+.swift */,
 				A597154C292E6DFC0081E71A /* Font+.swift */,
 				A571386E2950418A00731F1B /* Date+.swift */,
+				A5332E4A295AC41200EF7378 /* UIViewController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -939,6 +942,7 @@
 				A5EEA02129388F240000AAB5 /* User.swift in Sources */,
 				A54776F429518E4500E14D0F /* SFOMMoreMenu.swift in Sources */,
 				A5C3A0E4294BEDE200CC1940 /* SearchDataDTO+Mapping.swift in Sources */,
+				A5332E4B295AC41200EF7378 /* UIViewController+.swift in Sources */,
 				A5E38FE129544009005C4A4C /* DatabaseService.swift in Sources */,
 				A5EEA02A293896E40000AAB5 /* SignUpView.swift in Sources */,
 				A52F6CED29597AE200D9DB10 /* NoticeDTO+Mapping.swift in Sources */,
