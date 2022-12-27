@@ -36,9 +36,6 @@ final class HomeViewModel: ViewModel {
             .store(in: &cancellable)
         
         homeUseCase.fetchRecentComment()
-            .handleEvents(receiveOutput: { ou in
-                print(ou)
-            })
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
             .assign(to: \.recentComments, on: self)

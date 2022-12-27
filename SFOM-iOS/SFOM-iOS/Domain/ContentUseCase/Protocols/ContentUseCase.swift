@@ -8,7 +8,8 @@
 import Combine
 
 protocol ContentUseCase {
+    func fetchCurrentUserWithUidChanges() -> AnyPublisher<User?, Error> 
     func fetchUser(uid: String) -> AnyPublisher<User, Error>
-    func fetchComment(resourceId: String) -> AnyPublisher<[Comment], Error>
+    func fetchUserComment(resourceId: String) -> AnyPublisher<[UserComment], Error>
     func fetchUserResources(uid: String) -> AnyPublisher<[Resource], Error>
 }

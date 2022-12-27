@@ -31,7 +31,7 @@ extension DefaultResourceRepository: ResourceRepository {
         }
         return networkService.readAllWithFilter(endPoint: endPoint,
                                                 type: CommentDTO.self,
-                                                whereFields: nil,
+                                                whereFields: [.isEqualTo("state", value: "published")],
                                                 order: .descending("createdTimestamp"),
                                                 limit: nil)
         .map { $0.map{ $0.toDomain() } }

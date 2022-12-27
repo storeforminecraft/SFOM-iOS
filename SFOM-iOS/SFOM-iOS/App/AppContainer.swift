@@ -34,6 +34,8 @@ final class AppContainer {
     lazy var authUseCase = DefaultAuthUseCase(authRepository: authRepository, userRepository: userRepository)
     lazy var menuUseCase = DefaultMenuUseCase(authRepository: authRepository,
                                               userRepository: userRepository)
-    lazy var contentUseCase = DefaultContentUseCase(resourceReposiotry: resourceRepository, userRepository: userRepository)
+    lazy var contentUseCase = DefaultContentUseCase(authRepository:authRepository,
+                                                    resourceReposiotry: resourceRepository,
+                                                    userRepository: userRepository)
     lazy var noticeUseCase = DefaultNoticeUseCase(noticeRepository: noticeRepository)
 }

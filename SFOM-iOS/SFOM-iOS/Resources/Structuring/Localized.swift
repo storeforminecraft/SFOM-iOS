@@ -81,6 +81,13 @@ public struct Localized {
         static let signInSuccess = "SignInSuccess".localized
         static let signInFail = "SignInFail".localized
     }
+    
+    public struct ContentView {
+        private init() { }
+        static let comments = "Comments".localized
+        static let more = "More".localized
+        static let signInAndWriteAComment = "SignInAndWriteAComment".localized
+    }
 
     public struct Policy {
         private init() { }

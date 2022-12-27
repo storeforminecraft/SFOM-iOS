@@ -55,14 +55,17 @@ fileprivate final class SFOMImageViewModel: ObservableObject {
 public struct SFOMImage: View {
     @ObservedObject private var sfomImageViewModel = SFOMImageViewModel()
     
-    init(defaultImage: Image){
+    init(defaultImage: Image, urlString: String?){
         sfomImageViewModel.setDefaultImage(image: defaultImage)
+        if let urlString = urlString {
+            sfomImageViewModel.fetch(urlString: urlString)
+        }
     }
     
     init(urlString: String, defaultImage: Image? = nil, failureImage: Image? = nil){
         sfomImageViewModel.setDefaultImage(image: defaultImage)
         sfomImageViewModel.setFailureImage(image: failureImage)
-        self.sfomImageViewModel.fetch(urlString: urlString)
+        sfomImageViewModel.fetch(urlString: urlString)
     }
     
     public var body: some View {

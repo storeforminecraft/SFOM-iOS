@@ -132,3 +132,7 @@
 
 "LeftAComment" = "님이 댓글을 남기셨습니다.";
 "Count" = "회";
+
+"Comments" = "이용자 평가";
+"More" = "더보기";
+"SignInAndWriteAComment" = "로그인 한 후 댓글 작성";

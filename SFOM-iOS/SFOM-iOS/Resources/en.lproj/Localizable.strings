@@ -132,3 +132,7 @@
 
 "LeftAComment" = " left a comment.";
 "Count" = " hits";
+
+"Comments" = "comments";
+"More" = "more";
+"SignInAndWriteAComment" = "Sign In, write a Comment";
