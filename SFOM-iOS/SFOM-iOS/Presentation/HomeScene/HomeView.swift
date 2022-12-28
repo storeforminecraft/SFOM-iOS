@@ -81,7 +81,7 @@ struct HomeView: View {
                             if categorySequence[4 * row + column] != .downloads {
                                 CategoryView(category: categorySequence[4 * row + column])
                             } else {
-                                DownloadView()
+                                DownloadListView()
                             }
                         }
                         Spacer()

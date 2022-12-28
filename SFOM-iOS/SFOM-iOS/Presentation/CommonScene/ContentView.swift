@@ -18,13 +18,15 @@ final class ContentViewModel: ViewModel {
     
     @Published var comment: String = ""
     
-    private var cancellable = Set<AnyCancellable>()
+    private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
     
     func bind(resource: Resource){
         contentUseCase.fetchCurrentUserWithUidChanges()
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
-            .assign(to: \.currentUser, on: self)
+            .sink(receiveValue: { [unowned self] user in
+                self.currentUser = user
+            })
             .store(in: &cancellable)
         
         contentUseCase
@@ -32,7 +34,9 @@ final class ContentViewModel: ViewModel {
             .map{ user -> User? in user }
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
-            .assign(to: \.authorUser, on: self)
+            .sink(receiveValue: { [unowned self] user in
+                self.authorUser = user
+            })
             .store(in: &cancellable)
         
         contentUseCase
@@ -44,14 +48,18 @@ final class ContentViewModel: ViewModel {
                     .sorted { $0.createdTimestamp > $1.createdTimestamp }
             }
             .replaceError(with: [])
-            .assign(to: \.authorUserResources, on: self)
+            .sink(receiveValue: { [unowned self] resources in
+                self.authorUserResources = resources
+            })
             .store(in: &cancellable)
         
         contentUseCase
             .fetchUserComment(resourceId: resource.id)
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
-            .assign(to: \.resourceComments, on: self)
+            .sink(receiveValue: { [unowned self] resourceComments in
+                self.resourceComments = resourceComments
+            })
             .store(in: &cancellable)
     }
     
@@ -63,6 +71,8 @@ final class ContentViewModel: ViewModel {
 struct ContentView: View {
     @ObservedObject private var viewModel: ContentViewModel = ContentViewModel()
     let resource: Resource
+    
+    @State private var showDownload: Bool = false
     
     init(resource: Resource) {
         self.resource = resource
@@ -84,11 +94,18 @@ struct ContentView: View {
                     .padding(.vertical,5)
                 userResources
             }
+            .padding(.bottom, 100)
         }
         .ignoresSafeArea()
         .navigationBarBackButtonHidden()
-        .overlay {
-            // File Download & apply
+        .overlay(alignment: .bottom) {
+            SFOMDownloadButton(Localized.ContentView.download) {
+                showDownload = true
+            }
+            .padding()
+        }
+        .halfModal(isPresented: $showDownload) {
+            DownloadView()
         }
     }
     

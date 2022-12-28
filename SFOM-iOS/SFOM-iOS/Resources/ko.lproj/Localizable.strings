@@ -138,3 +138,9 @@
 "LeaveACommentAfterSignIn" = "로그인 한 후 댓글 작성";
 
 "UserSuffix" = "님";
+
+"Download" = "다운로드";
+
+"ResetPassword" = "비밀번호 초기화";
+"ResetPasswordSuccess" = "이메일을 확인해주세요.";
+"ResetPasswordFail" = "비밀번호 초기화 실패";

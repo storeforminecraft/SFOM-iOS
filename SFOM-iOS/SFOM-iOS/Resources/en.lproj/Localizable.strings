@@ -138,3 +138,9 @@
 "LeaveACommentAfterSignIn" = "Leave a Comment after sign in.";
 
 "UserSuffix" = "";
+
+"Download" = "Download";
+
+"ResetPassword" = "Reset Password";
+"ResetPasswordSuccess" = "Please Check Your Email";
+"ResetPasswordFail" = "Reset Passowrd Fail";

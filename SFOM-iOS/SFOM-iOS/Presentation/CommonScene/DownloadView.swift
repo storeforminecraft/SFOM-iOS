@@ -7,9 +7,15 @@
 
 import SwiftUI
 
+final class DownloadViewModel: ObservableObject {
+    
+}
+
 struct DownloadView: View {
     var body: some View {
-        Text("DownloadView")
+        VStack {
+            Text("Hellow")
+        }
     }
 }
 

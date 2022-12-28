@@ -82,11 +82,19 @@ public struct Localized {
         static let signInFail = "SignInFail".localized
     }
     
+    public struct PasswordResetView {
+        private init() { }
+        static let resetPassword = "ResetPassword".localized
+        static let resetPasswordSuccess = "ResetPasswordSuccess".localized
+        static let resetPasswordFail = "ResetPasswordFail".localized
+    }
+    
     public struct ContentView {
         private init() { }
         static let comments = "Comments".localized
         static let more = "More".localized
         static let signInAndWriteAComment = "LeaveACommentAfterSignIn".localized
+        static let download = "Download".localized
     }
 
     public struct Policy {

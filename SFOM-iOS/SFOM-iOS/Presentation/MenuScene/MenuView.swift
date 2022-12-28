@@ -127,7 +127,7 @@ struct MenuView: View {
     private var settingListSection: some View {
         Section {
             SFOMListItemLinkView(moreMenu: .download) {
-                DownloadView()
+                DownloadListView()
             }
             SFOMListItemLinkView(moreMenu: .notice) {
                 NoticeView()

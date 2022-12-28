@@ -7,18 +7,30 @@
 
 import SwiftUI
 
-struct PasswordResetView: View {
+final class PasswordResetViewModel: ViewModel {
+    private let authUseCase: AuthUseCase = AppContainer.shared.authUseCase
     
-      var body: some View {
-        Group {
-          Text("Modal view")
-          Button(action: {
-             
-          }) {
-            Text("Dismiss")
-          }
+    @Published var email: String = ""
+    @Published var result: Bool?
+    
+    func resetPassword(){
+        // authUseCase
+        print("resetPassword")
+    }
+}
+
+struct PasswordResetView: View {
+    @ObservedObject private var viewModel: PasswordResetViewModel = PasswordResetViewModel()
+    
+    var body: some View {
+        VStack {
+            SFOMTextField(Localized.Auth.email, text: $viewModel.email)
+            SFOMButton() {
+                viewModel.resetPassword()
+            }
+            HStack { Spacer()}
         }
-      }
+    }
 }
 
 struct PasswordResetView_Previews: PreviewProvider {

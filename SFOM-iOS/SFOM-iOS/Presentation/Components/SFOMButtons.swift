@@ -177,3 +177,41 @@ public struct SFOMCheckButton: View {
         
     }
 }
+
+public struct SFOMDownloadButton: View {
+    private let content: String
+    private let font: Font
+    private let action: () -> Void
+    
+    public init<S>(_ content: S,
+                   font: Font = .body.bold(),
+                   action: @escaping () -> Void)
+    where S: StringProtocol {
+        self.content = content as? String ?? ""
+        self.font = font
+        self.action = action
+    }
+    
+    public var body: some View {
+        Button {
+            action()
+        } label: {
+            HStack(spacing: 5) {
+                Spacer()
+                Group {
+                    Assets.MoreMenu.download.image
+                        .blendMode(.hardLight)
+                    Text(content)
+                }
+                .foregroundColor(.white)
+                .font(font.bold())
+                
+                Spacer()
+            }
+            .padding()
+            .foregroundColor(Color.white)
+            .background(Color.accentColor)
+            .cornerRadius(24)
+        }
+    }
+}
