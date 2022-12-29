@@ -33,6 +33,10 @@ extension DefaultAuthUseCase: AuthUseCase {
     func signOut() -> AnyPublisher<Bool, Error> {
         return authRepository.signOut()
     }
+    
+    func resetPassword(email: String) -> AnyPublisher<Bool, Error> {
+        return authRepository.resetPassword(email: email)
+    }
 }
 
 extension DefaultAuthUseCase: ProtectedAuthUseCase {

@@ -82,12 +82,16 @@ struct MenuView: View {
             .toast(isPresenting: $signOutSuccess,
                    duration: 2,
                    tapToDismiss: true) {
-                AlertToast(type: .complete(.accentColor), title: Localized.MoreMenu.signOut, subTitle: "Sign Out Success")
+                AlertToast(type: .complete(.accentColor),
+                           title: Localized.MoreMenu.signOut,
+                           subTitle: Localized.MoreMenu.signOutSuccess)
         }
             .toast(isPresenting: $signOutFail,
                    duration: 2,
                    tapToDismiss: true) {
-            AlertToast(type: .error(.red), title: "Sign Out Fail")
+            AlertToast(type: .error(.red),
+                       title: Localized.MoreMenu.signOut,
+                       subTitle: Localized.MoreMenu.signOutFail)
         }
     }
 

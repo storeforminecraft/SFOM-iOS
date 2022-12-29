@@ -13,5 +13,4 @@ protocol NetworkAuthService {
     func signIn(email: String, password: String) -> AnyPublisher<String?, Error>
     func signUp(email: String, password: String) -> AnyPublisher<String?, Error>
     func signOut() -> AnyPublisher<Bool, Error>
-    func withdrawal() -> AnyPublisher<Bool, Error>
 }

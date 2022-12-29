@@ -90,15 +90,6 @@ extension FirebaseService: NetworkAuthService {
             })
             .eraseToAnyPublisher()
     }
-    
-    func withdrawal() -> AnyPublisher<Bool, Error> {
-        return self.auth.withdrawalPublisher()
-            .handleEvents(receiveOutput: { [weak self] _ in
-                guard let self = self else { return }
-                self.uid.send(self.auth.currentUser?.uid)
-            })
-            .eraseToAnyPublisher()
-    }
 }
 
 // MARK: - NetworkService

@@ -17,10 +17,13 @@ final class AppContainer {
     let networkAuthService = FirebaseService.shared as NetworkAuthService
     let databaseService = FirebaseService.shared as DatabaseService
     
-    lazy var authRepository: AuthRepository = DefaultAuthRepository(networkAuthService: networkAuthService, databaseService: databaseService)
+    lazy var authRepository: AuthRepository = DefaultAuthRepository(networkAuthService: networkAuthService,
+                                                                    databaseService: databaseService,
+                                                                    httpService: httpService)
     lazy var postRepository: PostRepository = DefaultPostRepository(networkService: networkService)
     lazy var searchRepository: SearchRepository = DefaultSearchRepository(httpService: httpService)
-    lazy var userRepository: UserRepository = DefaultUserRepository(networkAuthService: networkAuthService, httpService: httpService)
+    lazy var userRepository: UserRepository = DefaultUserRepository(networkAuthService: networkAuthService,
+                                                                    httpService: httpService)
     lazy var resourceRepository: ResourceRepository = DefaultResourceRepository(networkService: networkService)
     lazy var commentEventRepository: CommentEventRepository = DefaultCommentEventRepository(networkService: networkService)
     lazy var noticeRepository: NoticeRepository = DefaultNoticeRepository(networkService: networkService)
@@ -31,7 +34,8 @@ final class AppContainer {
                                               resourceRepository: resourceRepository,
                                               commentEventRepository: commentEventRepository)
     lazy var searchUseCase = DefaultSearchUseCase(searchRepository: searchRepository)
-    lazy var authUseCase = DefaultAuthUseCase(authRepository: authRepository, userRepository: userRepository)
+    lazy var authUseCase = DefaultAuthUseCase(authRepository: authRepository,
+                                              userRepository: userRepository)
     lazy var menuUseCase = DefaultMenuUseCase(authRepository: authRepository,
                                               userRepository: userRepository)
     lazy var contentUseCase = DefaultContentUseCase(authRepository:authRepository,

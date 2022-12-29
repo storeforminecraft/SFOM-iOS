@@ -48,18 +48,26 @@ public struct HTTPEndPoint {
 
 extension HTTPEndPoint {
     enum Method: String {
-        case get
-        case post
+        case GET
+        case POST
+        case DELETE
     }
     
     enum Path: String{
-        case resource = "v1/Resource"
-        case userProfile = "v1/profiles"
-        case increaseResourcesDownloads = "v1/resources"
-        case resetPassword = "v1/users"
+        case resource
+        case userProfile
+        case increaseResourcesDownloads
+        case resetPassword
+        case withdrawal
         
         var prevPath: String {
-            return self.rawValue
+            switch self {
+            case .resource: return "v1/Resource"
+            case .userProfile: return "v1/profiles"
+            case .increaseResourcesDownloads: return "v1/resources"
+            case .resetPassword: return "v1/users"
+            case .withdrawal: return "v1/users"
+            }
         }
         
         var nextPath: String? {
@@ -68,6 +76,7 @@ extension HTTPEndPoint {
             case .userProfile: return nil
             case .increaseResourcesDownloads: return "count/download"
             case .resetPassword: return  "reset_password"
+            case .withdrawal: return  nil
             }
         }
     }

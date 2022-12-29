@@ -12,6 +12,7 @@ protocol AuthRepository {
     func signIn(email: String, password: String) -> AnyPublisher<Bool, Error>
     func signUp(email: String, password: String, userName: String) -> AnyPublisher<Bool, Error>
     func signOut() -> AnyPublisher<Bool, Error>
+    func resetPassword(email: String) -> AnyPublisher<Bool, Error>
 }
 
 protocol ProtectedAuthRepository {

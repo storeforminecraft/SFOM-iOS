@@ -18,18 +18,22 @@ extension HTTPEndPoints {
                                                       .page: "\(page)"]
         if let tag = tag { query[.tag] = tag }
         if let sort = sort { query[.sort] = sort }
-        return HTTPEndPoint(method: .get, path: .resource, query: query)
+        return HTTPEndPoint(method: .GET, path: .resource, query: query)
     }
     
     func userProfile(uid: String) -> HTTPEndPoint {
-        return HTTPEndPoint(method:.get, path: .userProfile, value: uid)
+        return HTTPEndPoint(method:.GET, path: .userProfile, value: uid)
     }
     
     func increaseResourcesDownloads(resourceId: String) -> HTTPEndPoint {
-        return HTTPEndPoint(method:.post, path: .increaseResourcesDownloads, value: resourceId)
+        return HTTPEndPoint(method:.POST, path: .increaseResourcesDownloads, value: resourceId)
     }
     
     func resetPassword(email: String) -> HTTPEndPoint {
-        return HTTPEndPoint(method:.get, path: .resetPassword, value: email)
+        return HTTPEndPoint(method:.GET, path: .resetPassword, value: email)
+    }
+    
+    func withdrawal(uid: String) -> HTTPEndPoint {
+        return HTTPEndPoint(method: .DELETE, path: .withdrawal, value: uid)
     }
 }

@@ -11,10 +11,12 @@ import UIKit
 final class DefaultAuthRepository {
     private let networkAuthService: NetworkAuthService
     private let databaseService: DatabaseService
+    private let httpService: HTTPService
     
-    init(networkAuthService: NetworkAuthService, databaseService: DatabaseService) {
+    init(networkAuthService: NetworkAuthService, databaseService: DatabaseService, httpService: HTTPService) {
         self.networkAuthService = networkAuthService
         self.databaseService = databaseService
+        self.httpService = httpService
     }
 }
 
@@ -61,8 +63,14 @@ extension DefaultAuthRepository: AuthRepository {
     }
     
     func withdrawal() -> AnyPublisher<Bool, Error>  {
-        
-        return networkAuthService.withdrawal()
+        guard let uid = networkAuthService.uid.value else { return Fail(error: RepositoryError.noObjectError).eraseToAnyPublisher() }
+        let endPoint = HTTPEndPoints.shared.withdrawal(uid: uid)
+        return httpService.dataTaskPublisher(endPoint: endPoint)
+    }
+    
+    func resetPassword(email: String) -> AnyPublisher<Bool, Error> {
+        let endPoint = HTTPEndPoints.shared.resetPassword(email: email)
+        return httpService.dataTaskPublisher(endPoint: endPoint)
     }
 }
 

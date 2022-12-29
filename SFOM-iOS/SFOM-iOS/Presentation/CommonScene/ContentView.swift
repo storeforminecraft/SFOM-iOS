@@ -80,34 +80,37 @@ struct ContentView: View {
     }
     
     var body: some View {
-        ScrollView{
-            VStack(alignment: .leading) {
-                imagesTabView
-                    .aspectRatio(1.7, contentMode: .fit)
-                resourceContent
-                    .padding(.horizontal, 20)
-                Divider()
-                    .padding(.vertical,5)
-                comments
-                    .padding(.horizontal, 20)
-                Divider()
-                    .padding(.vertical,5)
-                userResources
+            ScrollView{
+                VStack(alignment: .leading) {
+                    imagesTabView
+                        .aspectRatio(1.7, contentMode: .fit)
+                    resourceContent
+                        .padding(.horizontal, 20)
+                    Divider()
+                        .padding(.vertical,5)
+                    comments
+                        .padding(.horizontal, 20)
+                    Divider()
+                        .padding(.vertical,5)
+                    userResources
+                }
+                .padding(.bottom, 100)
             }
-            .padding(.bottom, 100)
-        }
-        .ignoresSafeArea()
-        .navigationBarBackButtonHidden()
-        .overlay(alignment: .bottom) {
-            SFOMDownloadButton(Localized.ContentView.download) {
-                showDownload = true
+            .ignoresSafeArea()
+            .navigationBarBackButtonHidden()
+            .overlay(alignment: .bottom) {
+                SFOMDownloadButton(Localized.ContentView.download) {
+                    showDownload = true
+                }
+                .padding()
             }
-            .padding()
+            // .halfModal(isPresented: $showDownload) {
+            //     DownloadView()
+            // }
+            .sheet(isPresented: $showDownload) {
+                DownloadView()
+            }
         }
-        .halfModal(isPresented: $showDownload) {
-            DownloadView()
-        }
-    }
     
     @ViewBuilder
     private var imagesTabView: some View {
