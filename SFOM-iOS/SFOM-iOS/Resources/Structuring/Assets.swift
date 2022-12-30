@@ -12,7 +12,7 @@ struct Assets {
         case `default`
         case white
 
-        var image: Image { Image("sfom_symbol_\(self.rawValue)") }
+        var image: Image { Image("sfom_symbol_\(self.rawValue)").resizable() }
     }
 
     public enum `Default`: String {
@@ -20,7 +20,7 @@ struct Assets {
         case profileBackground
         case gradientBackground
 
-        var image: Image { Image("defaultImage_\(self.rawValue)") }
+        var image: Image { Image("defaultImage_\(self.rawValue)").resizable() }
     }
 
     public enum Category: String {
@@ -44,7 +44,7 @@ struct Assets {
         }
 
         var image: Image {
-            Image("ic_mainbutton_\(self.rawValue)")
+            Image("ic_mainbutton_\(self.rawValue)").resizable()
         }
 
         var backgroundColor: Color {
@@ -59,7 +59,7 @@ struct Assets {
         case chat
 
         var image: Image {
-            Image("ic_tabbar_\(self.rawValue)")
+            Image("ic_tabbar_\(self.rawValue)").resizable()
         }
     }
 
@@ -84,7 +84,7 @@ struct Assets {
         case backCircle = "arrow.backward.circle"
         case back = "chevron.backward"
 
-        var image: Image { Image(systemName: self.rawValue) }
+        var image: Image { Image(systemName: self.rawValue).resizable() }
     }
 
 }

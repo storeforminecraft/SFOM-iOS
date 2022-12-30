@@ -13,7 +13,7 @@ public struct SFOMNavigationLink<Destination>: View where Destination: View {
     private let spacer: Bool
     private let font: Font
     @ViewBuilder var destination:() -> Destination
-
+    
     public init<S>(_ content: S,
                    accent: Bool = true,
                    spacer: Bool = true,
@@ -26,7 +26,7 @@ public struct SFOMNavigationLink<Destination>: View where Destination: View {
         self.font = font
         self.destination = destination
     }
-
+    
     public var body: some View {
         NavigationLink {
             destination()
@@ -38,10 +38,10 @@ public struct SFOMNavigationLink<Destination>: View where Destination: View {
                         .font(font)
                     Spacer()
                 }
-                    .padding()
-                    .background(accent ? Color.accentColor : Color.accentColor.opacity(0.2))
-                    .foregroundColor(accent ? Color.white : Color.accentColor)
-                    .cornerRadius(12)
+                .padding()
+                .background(accent ? Color.accentColor : Color.accentColor.opacity(0.2))
+                .foregroundColor(accent ? Color.white : Color.accentColor)
+                .cornerRadius(12)
             } else {
                 Text(content)
                     .padding(.vertical, 4)
@@ -56,14 +56,53 @@ public struct SFOMNavigationLink<Destination>: View where Destination: View {
 }
 
 public struct SFOMCategoryTapView<Destination>: View where Destination: View {
-    var category: SFOMCategory
-    @ViewBuilder var destination:() -> Destination
+    private let category: SFOMCategory
+    @ViewBuilder private let destination:() -> Destination
+    
+    init(category: SFOMCategory, destination: @escaping () -> Destination) {
+        self.category = category
+        self.destination = destination
+    }
     
     public var body: some View {
         NavigationLink {
             destination()
         } label: {
             VStack{ }
+        }
+    }
+}
+
+public struct UserInfoLink<Destination>: View where Destination: View {
+    private let user: User
+    @ViewBuilder private let destination:() -> Destination
+    init(user: User, destination: @escaping () -> Destination) {
+        self.user = user
+        self.destination = destination
+    }
+    
+    public var body: some View {
+        NavigationLink {
+            ProfileView(uid: user.uid)
+        } label: {
+            HStack (spacing: 10) {
+                SFOMImage(placeholder: Assets.Default.profile.image,
+                          urlString: user.thumbnail)
+                .frame(width: 40, height: 40)
+                .cornerRadius(40)
+                
+                VStack(alignment: .leading, spacing: 0){
+                    Text(user.nickname.strip)
+                        .font(.SFOMExtraSmallFont.bold())
+                        .foregroundColor(.black)
+                        .lineLimit(1)
+                    Text(user.uid.prefix(6))
+                        .font(.SFOMExtraSmallFont)
+                        .foregroundColor(Color(.darkGray))
+                        .lineLimit(1)
+                    HStack { Spacer() }
+                }
+            }
         }
     }
 }

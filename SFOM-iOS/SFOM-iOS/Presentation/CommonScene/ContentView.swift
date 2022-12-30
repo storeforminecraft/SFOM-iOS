@@ -148,40 +148,16 @@ struct ContentView: View {
             Text(resource.info)
                 .foregroundColor(Color(.darkGray))
                 .font(.SFOMExtraSmallFont)
-            userInfo
+            if let user = viewModel.authorUser {
+                UserInfoLink(user: user) {
+                    ProfileView(uid: user.uid)
+                }
                 .padding(.vertical)
+            }
+                
             Text(resource.localizedDescs)
                 .font(.SFOMExtraSmallFont)
                 .foregroundColor(Color(.darkGray))
-        }
-    }
-    
-    private var userInfo: some View {
-        VStack {
-            if let user = viewModel.authorUser {
-                NavigationLink {
-                    ProfileView(uid: user.uid)
-                } label: {
-                    HStack (spacing: 10) {
-                        SFOMImage(placeholder: Assets.Default.profile.image,
-                                  urlString: user.thumbnail)
-                        .frame(width: 40, height: 40)
-                        .cornerRadius(40)
-                        
-                        VStack(alignment: .leading, spacing: 0){
-                            Text(user.nickname.strip)
-                                .font(.SFOMExtraSmallFont.bold())
-                                .foregroundColor(.black)
-                                .lineLimit(1)
-                            Text(user.uid.prefix(6))
-                                .font(.SFOMExtraSmallFont)
-                                .foregroundColor(Color(.darkGray))
-                                .lineLimit(1)
-                            HStack { Spacer() }
-                        }
-                    }
-                }
-            }
         }
     }
     

@@ -15,6 +15,8 @@
 		A52019FD293C8B6F00FAA9B4 /* SFOMCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52019FC293C8B6F00FAA9B4 /* SFOMCategory.swift */; };
 		A521040F295B50F700061149 /* CornerRadiusRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521040E295B50F700061149 /* CornerRadiusRectangle.swift */; };
 		A523F69C295AD80900858D8A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A523F69B295AD80900858D8A /* Kingfisher */; };
+		A5240EB0295F1D6E000443C3 /* PostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5240EAF295F1D6E000443C3 /* PostUseCase.swift */; };
+		A5240EB2295F1DF3000443C3 /* DefaultPostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5240EB1295F1DF3000443C3 /* DefaultPostUseCase.swift */; };
 		A525E7B2293B38C3006246FA /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A525E7B1293B38C3006246FA /* SearchData.swift */; };
 		A525E7B6293B4F2D006246FA /* SFOMItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = A525E7B5293B4F2D006246FA /* SFOMItems.swift */; };
 		A52A2DA3294EF8DD00D6F617 /* DefaultCommentEventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2DA2294EF8DD00D6F617 /* DefaultCommentEventRepository.swift */; };
@@ -143,6 +145,8 @@
 		A52019FA293C857500FAA9B4 /* SFOMSkinImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMSkinImage.swift; sourceTree = "<group>"; };
 		A52019FC293C8B6F00FAA9B4 /* SFOMCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMCategory.swift; sourceTree = "<group>"; };
 		A521040E295B50F700061149 /* CornerRadiusRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusRectangle.swift; sourceTree = "<group>"; };
+		A5240EAF295F1D6E000443C3 /* PostUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUseCase.swift; sourceTree = "<group>"; };
+		A5240EB1295F1DF3000443C3 /* DefaultPostUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostUseCase.swift; sourceTree = "<group>"; };
 		A525E7B1293B38C3006246FA /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 		A525E7B5293B4F2D006246FA /* SFOMItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMItems.swift; sourceTree = "<group>"; };
 		A52A2DA2294EF8DD00D6F617 /* DefaultCommentEventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCommentEventRepository.swift; sourceTree = "<group>"; };
@@ -284,6 +288,23 @@
 				A5C3A0DE294BE98B00CC1940 /* DefaultHTTPService.swift */,
 			);
 			path = HTTPService;
+			sourceTree = "<group>";
+		};
+		A5240EAD295F1D54000443C3 /* CommonUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				A5240EAE295F1D60000443C3 /* Protocols */,
+				A5240EB1295F1DF3000443C3 /* DefaultPostUseCase.swift */,
+			);
+			path = CommonUseCase;
+			sourceTree = "<group>";
+		};
+		A5240EAE295F1D60000443C3 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A5240EAF295F1D6E000443C3 /* PostUseCase.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		A54776DF29517A0900E14D0F /* PostScene */ = {
@@ -478,6 +499,7 @@
 				A54776E8295188BD00E14D0F /* MenuUseCase */,
 				A5EF9777294DAB4400CD35FF /* AuthUseCase */,
 				A54776F7295218C300E14D0F /* ContentUseCase */,
+				A5240EAD295F1D54000443C3 /* CommonUseCase */,
 				A56386C62943289000A8CEEA /* Entities */,
 				A5842F39294F58F1007F3116 /* UseCaseError.swift */,
 			);
@@ -929,6 +951,7 @@
 				A525E7B2293B38C3006246FA /* SearchData.swift in Sources */,
 				A5502F282943CCDD00A4D18A /* DatabaseReference+Publisher.swift in Sources */,
 				A5EEA02129388F240000AAB5 /* User.swift in Sources */,
+				A5240EB2295F1DF3000443C3 /* DefaultPostUseCase.swift in Sources */,
 				A54776F429518E4500E14D0F /* SFOMMoreMenu.swift in Sources */,
 				A5C3A0E4294BEDE200CC1940 /* SearchDataDTO+Mapping.swift in Sources */,
 				A5332E4B295AC41200EF7378 /* UIViewController+.swift in Sources */,
@@ -974,6 +997,7 @@
 				A5EF9774294DA9EF00CD35FF /* SearchUseCase.swift in Sources */,
 				A5E38FE8295446E3005C4A4C /* DatabaseUser.swift in Sources */,
 				A5CFA72929274846004C1F2B /* Assets.swift in Sources */,
+				A5240EB0295F1D6E000443C3 /* PostUseCase.swift in Sources */,
 				A5842F34294F4CFD007F3116 /* ResourceRepository.swift in Sources */,
 				A583F2FB2945009800CC4585 /* Auth+Publisher.swift in Sources */,
 				A52A2DAF294F00A400D6F617 /* AppContainer.swift in Sources */,
