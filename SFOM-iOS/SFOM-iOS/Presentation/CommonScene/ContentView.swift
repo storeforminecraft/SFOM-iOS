@@ -11,7 +11,6 @@ import Combine
 final class ContentViewModel: ViewModel {
     private let contentUseCase: ContentUseCase = AppContainer.shared.contentUseCase
     
-    @Published var currentUser: User? = nil
     @Published var authorUser: User? = nil
     @Published var authorUserResources: [Resource] = []
     @Published var resourceComments: [UserComment] = []
@@ -21,22 +20,12 @@ final class ContentViewModel: ViewModel {
     private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
     
     func bind(resource: Resource){
-        contentUseCase.fetchCurrentUserWithUidChanges()
-            .replaceError(with: nil)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [unowned self] user in
-                self.currentUser = user
-            })
-            .store(in: &cancellable)
-        
         contentUseCase
             .fetchUser(uid: resource.authorUid)
             .map{ user -> User? in user }
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [unowned self] user in
-                self.authorUser = user
-            })
+            .assign(to: \.authorUser, on: self)
             .store(in: &cancellable)
         
         contentUseCase
@@ -48,18 +37,14 @@ final class ContentViewModel: ViewModel {
                     .sorted { $0.createdTimestamp > $1.createdTimestamp }
             }
             .replaceError(with: [])
-            .sink(receiveValue: { [unowned self] resources in
-                self.authorUserResources = resources
-            })
+            .assign(to: \.authorUserResources, on: self)
             .store(in: &cancellable)
         
         contentUseCase
             .fetchUserComment(resourceId: resource.id)
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [unowned self] resourceComments in
-                self.resourceComments = resourceComments
-            })
+            .assign(to: \.resourceComments, on: self)
             .store(in: &cancellable)
     }
     
@@ -69,14 +54,15 @@ final class ContentViewModel: ViewModel {
 }
 
 struct ContentView: View {
-    @ObservedObject private var viewModel: ContentViewModel = ContentViewModel()
+    @StateObject private var viewModel: ContentViewModel = ContentViewModel()
+    @AppStorage("User") var currentUser: User? = UserDefaults.standard.object(forKey: "User") as? User 
+    
     let resource: Resource
     
     @State private var showDownload: Bool = false
     
     init(resource: Resource) {
         self.resource = resource
-        viewModel.bind(resource: resource)
     }
     
     var body: some View {
@@ -104,11 +90,8 @@ struct ContentView: View {
                 }
                 .padding()
             }
-            // .halfModal(isPresented: $showDownload) {
-            //     DownloadView()
-            // }
-            .sheet(isPresented: $showDownload) {
-                DownloadView()
+            .onAppear {
+                self.viewModel.bind(resource: resource)
             }
         }
     
@@ -193,7 +176,7 @@ struct ContentView: View {
             .padding(.bottom, 5)
             
             VStack(alignment: .leading) {
-                if viewModel.currentUser != nil {
+                if currentUser != nil {
                     // FIXME: - 댓글 쓰기
                     VStack(spacing: 0){
                         TextField("평가를 작성해주세요", text: $viewModel.comment)

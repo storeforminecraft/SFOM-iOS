@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct SFOM_iOSApp: App {
+    let appContainer = AppContainer.shared.authRepository
+    
     var body: some Scene {
         WindowGroup {
             MainView()

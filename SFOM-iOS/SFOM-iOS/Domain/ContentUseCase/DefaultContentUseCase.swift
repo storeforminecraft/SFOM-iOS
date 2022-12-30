@@ -8,36 +8,17 @@
 import Combine
 
 final class DefaultContentUseCase {
-    private let authRepository: AuthRepository
     private let resourceReposiotry: ResourceRepository
     private let userRepository: UserRepository
     
-    init(authRepository: AuthRepository,
-         resourceReposiotry: ResourceRepository,
+    init(resourceReposiotry: ResourceRepository,
          userRepository: UserRepository) {
-        self.authRepository = authRepository
         self.resourceReposiotry = resourceReposiotry
         self.userRepository = userRepository
     }
 }
 
 extension DefaultContentUseCase: ContentUseCase {
-    func fetchCurrentUserWithUidChanges() -> AnyPublisher<User?, Error> {
-        return authRepository.uidChanges()
-            .flatMap { uid -> AnyPublisher<User?, Error> in
-                if uid != nil {
-                    return self.userRepository.fetchCurrentUser()
-                        .map { user -> User? in user }
-                        .eraseToAnyPublisher()
-                } else {
-                    return Just<User?>(nil)
-                        .setFailureType(to: Error.self)
-                        .eraseToAnyPublisher()
-                }
-            }
-            .eraseToAnyPublisher()
-    }
-    
     func fetchUser(uid: String) -> AnyPublisher<User, Error> {
         userRepository.fetchUser(uid: uid)
     }

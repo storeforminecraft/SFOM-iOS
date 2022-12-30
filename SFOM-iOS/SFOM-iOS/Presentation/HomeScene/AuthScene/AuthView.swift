@@ -12,21 +12,12 @@ final class AuthViewModel: ObservableObject {
     private let authUseCase: AuthUseCase = AppContainer.shared.authUseCase
     @Published var isSignIn: Bool? = nil
     private var cancellable = Set<AnyCancellable>()
-    
-    func bind(){
-        authUseCase
-            .uidChanges()
-            .map{ uid -> Bool? in uid != nil }
-            .replaceError(with: false)
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.isSignIn, on: self)
-            .store(in: &cancellable)
-    }
 }
 
 struct AuthView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject private var viewModel: AuthViewModel = AuthViewModel()
+    @AppStorage("User") var currentUser: User? = UserDefaults.standard.object(forKey: "User") as? User
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -61,8 +52,8 @@ struct AuthView: View {
             .navigationBarHidden(true)
             .padding(.top, 30)
             .padding(.horizontal, 25)
-            .onReceive(viewModel.$isSignIn) { result in
-                if let result = result, result {
+            .onChange(of: currentUser){ result in
+                if result != nil {
                     dismiss()
                 }
             }

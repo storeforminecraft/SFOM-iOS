@@ -11,24 +11,10 @@ import AlertToast
 
 final class MenuViewModel: ViewModel {
     private let menuUseCase: MenuUseCase = AppContainer.shared.menuUseCase
-
-    @Published var currentUser: User? = nil
-    @Published var result: Bool? = nil
-
-    private var cancellable = Set<AnyCancellable>()
-
-    init() {
-       bind()
-    }
     
-    func bind(){
-        menuUseCase.fetchCurrentUserWithUidChanges()
-            .replaceError(with: nil)
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.currentUser, on: self)
-            .store(in: &cancellable)
-    }
-
+    @Published var result: Bool? = nil
+    private var cancellable = Set<AnyCancellable>()
+    
     func signOut() {
         result = nil
         menuUseCase.signOut()
@@ -42,12 +28,18 @@ final class MenuViewModel: ViewModel {
 
 struct MenuView: View {
     @ObservedObject var viewModel: MenuViewModel = MenuViewModel()
+    @AppStorage("User") var currentUser: User? = UserDefaults.standard.object(forKey: "User") as? User {
+        didSet {
+            print("HomeView: ", currentUser)
+        }
+    }
+    
     
     @State private var isSignOut: Bool = false
     @State private var isLoading: Bool = false
     @State private var signOutSuccess: Bool = false
     @State private var signOutFail: Bool = false
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             profile
@@ -57,11 +49,11 @@ struct MenuView: View {
                 }
                 settingListSection
             }
-                .padding(.vertical, 10)
-                .listStyle(PlainListStyle())
+            .padding(.vertical, 10)
+            .listStyle(PlainListStyle())
         }
-            .padding()
-            .onReceive(viewModel.$result) { result in
+        .padding()
+        .onReceive(viewModel.$result) { result in
             if let result = result {
                 isLoading = false
                 if result {
@@ -71,33 +63,33 @@ struct MenuView: View {
                 }
             }
         }
-            .confirmationDialog(Localized.ETC.signOutMessage,
-                                isPresented: $isSignOut,
-                                titleVisibility: .visible) {
+        .confirmationDialog(Localized.ETC.signOutMessage,
+                            isPresented: $isSignOut,
+                            titleVisibility: .visible) {
             Button(Localized.MoreMenu.signOut, role: .destructive) {
                 isLoading = true
                 viewModel.signOut()
             }
         }
-            .toast(isPresenting: $signOutSuccess,
-                   duration: 2,
-                   tapToDismiss: true) {
-                AlertToast(type: .complete(.accentColor),
-                           title: Localized.MoreMenu.signOut,
-                           subTitle: Localized.MoreMenu.signOutSuccess)
-        }
-            .toast(isPresenting: $signOutFail,
-                   duration: 2,
-                   tapToDismiss: true) {
-            AlertToast(type: .error(.red),
-                       title: Localized.MoreMenu.signOut,
-                       subTitle: Localized.MoreMenu.signOutFail)
-        }
+                            .toast(isPresenting: $signOutSuccess,
+                                   duration: 2,
+                                   tapToDismiss: true) {
+                                AlertToast(type: .complete(.accentColor),
+                                           title: Localized.MoreMenu.signOut,
+                                           subTitle: Localized.MoreMenu.signOutSuccess)
+                            }
+                                   .toast(isPresenting: $signOutFail,
+                                          duration: 2,
+                                          tapToDismiss: true) {
+                                       AlertToast(type: .error(.red),
+                                                  title: Localized.MoreMenu.signOut,
+                                                  subTitle: Localized.MoreMenu.signOutFail)
+                                   }
     }
-
+    
     private var profile: some View {
         VStack (alignment: .leading) {
-            if let user = viewModel.currentUser {
+            if let user = currentUser {
                 NavigationLink {
                     ProfileView(uid: user.uid)
                 } label: {
@@ -127,7 +119,7 @@ struct MenuView: View {
             }
         }
     }
-
+    
     private var settingListSection: some View {
         Section {
             SFOMListItemLinkView(moreMenu: .download) {
@@ -139,7 +131,7 @@ struct MenuView: View {
             SFOMListItemLinkView(moreMenu: .settings) {
                 SettingsView()
             }
-            if let _ = viewModel.currentUser {
+            if currentUser != nil {
                 SFOMListItemLinkView(moreMenu: .myComments) {
                     MyCommentsView()
                 }
@@ -148,9 +140,9 @@ struct MenuView: View {
                 }
             }
         }
-            .listRowSeparator(.hidden)
+        .listRowSeparator(.hidden)
     }
-
+    
     var contentStudioItem: some View {
         VStack { }
     }

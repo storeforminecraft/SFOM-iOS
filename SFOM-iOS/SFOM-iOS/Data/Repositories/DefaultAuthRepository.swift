@@ -32,8 +32,7 @@ extension DefaultAuthRepository: AuthRepository {
                 guard let uid = uid else { return Fail(error: RepositoryError.noAuthError).eraseToAnyPublisher() }
                 let endPoint = DatabaseEndPoints.shared.user(uid: uid)
                 let databaseValue = DatabaseUser(handles: [.set(.lastSignInDeviceId(UIDevice.current.identifierForVendor!.uuidString)),
-                                                           .set(.lastSignInTime(Date())),
-                                                           // .delete(.language())
+                                                           .set(.lastSignInTime(Date()))
                 ]).values
                 return self.databaseService.setValue(endPoint: endPoint, value: databaseValue)
             }

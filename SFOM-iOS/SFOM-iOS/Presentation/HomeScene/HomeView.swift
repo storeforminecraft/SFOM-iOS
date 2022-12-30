@@ -10,8 +10,7 @@ import Combine
 
 final class HomeViewModel: ViewModel {
     private let homeUseCase: HomeUseCase = AppContainer.shared.homeUseCase
-    
-    @Published var currentUser: User? = nil
+
     @Published var posts: [Post] = []
     @Published var recentComments: [RecentComment] = []
     @Published var pushNotification: Bool = false
@@ -22,13 +21,7 @@ final class HomeViewModel: ViewModel {
         bind()
     }
     
-    func bind(){
-        homeUseCase.fetchCurrentUserWithUidChanges()
-            .replaceError(with: nil)
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.currentUser, on: self)
-            .store(in: &cancellable)
-        
+    func bind(){        
         homeUseCase.fetchPost()
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
@@ -45,6 +38,7 @@ final class HomeViewModel: ViewModel {
 
 struct HomeView: View {
     @ObservedObject private var viewModel: HomeViewModel = HomeViewModel()
+    @AppStorage("User") var currentUser: User? = UserDefaults.standard.object(forKey: "User") as? User
     
     let categorySequence: [SFOMCategory] = [.map,
                                             .skin,
@@ -115,7 +109,7 @@ struct HomeView: View {
                 }
             }
             
-            if let uid = viewModel.currentUser?.uid {
+            if let uid = currentUser?.uid {
                 NavigationLink {
                     ProfileView(uid: uid)
                 } label: {

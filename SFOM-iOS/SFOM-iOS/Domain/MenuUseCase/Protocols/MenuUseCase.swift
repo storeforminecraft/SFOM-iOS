@@ -8,6 +8,5 @@
 import Combine
 
 protocol MenuUseCase {
-    func fetchCurrentUserWithUidChanges() -> AnyPublisher<User?, Error>
     func signOut() -> AnyPublisher<Bool, Error>
 }

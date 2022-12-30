@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User {
+public struct User: Codable {
     let uid: String
     let nickname: String
     let introduction: String?
@@ -23,11 +23,17 @@ struct User {
         return "\(URLStringManager.urlString(key: .imageURL))/\(profileImage)"
     }
     
-    init(uid: String, nickname: String, introduction: String?, profileImage: String?, profileBackgroundImage: String?) {
+    public init(uid: String, nickname: String, introduction: String?, profileImage: String?, profileBackgroundImage: String?) {
         self.uid = uid
         self.nickname = nickname
         self.introduction = introduction
         self.profileImage = profileImage
         self.profileBackgroundImage = profileBackgroundImage
     }
+}
+
+extension User: Equatable {
+    public static func ==(lhs: User, rhs: User) -> Bool {
+       return lhs.uid == rhs.uid
+     }
 }

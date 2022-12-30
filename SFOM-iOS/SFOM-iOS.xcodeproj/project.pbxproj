@@ -18,6 +18,7 @@
 		A523F69E295AE6B300858D8A /* LazyNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A523F69D295AE6B300858D8A /* LazyNavigationLink.swift */; };
 		A525E7B2293B38C3006246FA /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A525E7B1293B38C3006246FA /* SearchData.swift */; };
 		A525E7B6293B4F2D006246FA /* SFOMItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = A525E7B5293B4F2D006246FA /* SFOMItems.swift */; };
+		A5262613295EAB750073BEFA /* Optional+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5262612295EAB750073BEFA /* Optional+.swift */; };
 		A52A2D9C294EE64B00D6F617 /* CompactLPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2D9B294EE64B00D6F617 /* CompactLPView.swift */; };
 		A52A2D9F294EEA5F00D6F617 /* LPMetadataProvider+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2D9E294EEA5F00D6F617 /* LPMetadataProvider+.swift */; };
 		A52A2DA1294EEAFE00D6F617 /* CompactLPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2DA0294EEAFE00D6F617 /* CompactLPError.swift */; };
@@ -151,6 +152,7 @@
 		A523F69D295AE6B300858D8A /* LazyNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyNavigationLink.swift; sourceTree = "<group>"; };
 		A525E7B1293B38C3006246FA /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 		A525E7B5293B4F2D006246FA /* SFOMItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMItems.swift; sourceTree = "<group>"; };
+		A5262612295EAB750073BEFA /* Optional+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+.swift"; sourceTree = "<group>"; };
 		A52A2D9B294EE64B00D6F617 /* CompactLPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLPView.swift; sourceTree = "<group>"; };
 		A52A2D9E294EEA5F00D6F617 /* LPMetadataProvider+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LPMetadataProvider+.swift"; sourceTree = "<group>"; };
 		A52A2DA0294EEAFE00D6F617 /* CompactLPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLPError.swift; sourceTree = "<group>"; };
@@ -756,6 +758,7 @@
 				A52019FC293C8B6F00FAA9B4 /* SFOMCategory.swift */,
 				A54776F329518E4500E14D0F /* SFOMMoreMenu.swift */,
 				A5A81BA729459AA200E1A9B3 /* Extensions */,
+				A5262612295EAB750073BEFA /* Optional+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1032,6 +1035,7 @@
 				A5EF977D294DAB4400CD35FF /* ProtectedAuthUseCase.swift in Sources */,
 				A5502F0B29438A9C00A4D18A /* AuthRepository.swift in Sources */,
 				A54776FE2952246F00E14D0F /* PolicyView.swift in Sources */,
+				A5262613295EAB750073BEFA /* Optional+.swift in Sources */,
 				A5EF977C294DAB4400CD35FF /* DefaultAuthUseCase.swift in Sources */,
 				A56386CC29432B4900A8CEEA /* DefaultHomeUseCase.swift in Sources */,
 				A5502F1E2943A73E00A4D18A /* NetworkEndPoints.swift in Sources */,
