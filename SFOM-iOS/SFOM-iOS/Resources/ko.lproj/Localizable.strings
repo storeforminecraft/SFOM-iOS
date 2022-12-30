@@ -14,6 +14,8 @@
 "SignIn" = "로그인";
 "SignUp" = "회원가입";
 
+"Confirm" = "확인";
+"Cancel" = "취소";
 "Back" = "뒤로가기";
 
 "Map" = "맵";
@@ -144,3 +146,16 @@
 "ResetPassword" = "비밀번호 초기화";
 "ResetPasswordSuccess" = "이메일을 확인해주세요.";
 "ResetPasswordFail" = "비밀번호 초기화 실패";
+
+"Report" = "신고 접수하기";
+"ReportDescription" = "선택한 내용에 대해서 신고를 접수할 수 있어요.";
+"ReportSubDescription" = "신고하는 내용과 관련하여\n추가적인 내용을 더 작성 할 수 있어요.";
+
+"ReportMessageDescription" = "(선택) 신고에 대한 추가적인 내용을 작성해주세요.";
+"ReportA1" = "과도하고 반복적인 내용 작성(도배)";
+"ReportA2" = "불쾌감 혹은 혐오 등을 조장";
+"ReportA3" = "지나친 광고성 내용";
+"ReportA4" = "음란물 혹은 음란물과 관련";
+"ReportA5" = "사용자의 기기에 악영향을 줄 수 있음";
+"ReportA6" = "본인 혹은 타인의 저작권을 침해함";
+"ReportA7" = "해당하는 항목이 없거나 직접 신고를 작성";

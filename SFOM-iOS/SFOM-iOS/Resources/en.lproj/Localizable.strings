@@ -14,6 +14,8 @@
 "SignIn" = "Sign In";
 "SignUp" = "Sign Up";
 
+"Confirm" = "Confirm";
+"Cancel" = "cancel";
 "Back" = "Back";
 
 "Map" = "Map";
@@ -144,3 +146,16 @@
 "ResetPassword" = "Reset Password";
 "ResetPasswordSuccess" = "Please Check Your Email";
 "ResetPasswordFail" = "Reset Passowrd Fail";
+
+"Report" = "Report";
+"ReportDescription" = "You can file a report for the selected content.";
+"ReportSubDescription" = "You can wirte additional information related to the content you are reporting.";
+
+"ReportMessageDescription" = "(Optional) Please provide additional information about the report.";
+"ReportA1" = "Posting the same content over and over again";
+"ReportA2" = "Create discomfort or disgust";
+"ReportA3" = "Excessive advertising content";
+"ReportA4" = "Pornography or related to pornography";
+"ReportA5" = "Adversely affects the user's device";
+"ReportA6" = "Infringe on your own or someone else's copyright";
+"ReportA7" = "If there is no applicable item or write a report yourself";

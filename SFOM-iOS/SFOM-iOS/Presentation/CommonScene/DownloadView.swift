@@ -12,8 +12,15 @@ final class DownloadViewModel: ObservableObject {
 }
 
 struct DownloadView: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         VStack {
+            Button {
+                dismiss()
+            } label: {
+                Text("Dismiss")
+            }
             Text("Hellow")
         }
     }

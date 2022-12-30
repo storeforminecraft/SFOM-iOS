@@ -19,7 +19,9 @@ final class AuthViewModel: ObservableObject {
             .map{ uid -> Bool? in uid != nil }
             .replaceError(with: false)
             .receive(on: DispatchQueue.main)
-            .assign(to: \.isSignIn, on: self)
+            .sink(receiveValue: { [weak self] result in
+                self?.isSignIn = result
+            })
             .store(in: &cancellable)
     }
 }
@@ -27,21 +29,21 @@ final class AuthViewModel: ObservableObject {
 struct AuthView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject private var viewModel: AuthViewModel = AuthViewModel()
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             SFOMHeader(title: Localized.AuthView.authTitle,
                        mainTitle: Localized.AuthView.authMainTitle,
                        subTitle: Localized.AuthView.authSubTitle)
-
+            
             
             SFOMBackButton {
                 dismiss()
             }
             .padding(.top, 5)
-
+            
             Spacer()
-
+            
             VStack (alignment: .center) {
                 SFOMNavigationLink(Localized.AuthView.authSignUpButtonTitle, accent: false) {
                     PolicyView()
@@ -50,7 +52,7 @@ struct AuthView: View {
                 SFOMNavigationLink(Localized.AuthView.authSignInButtonTitle) {
                     SignInView()
                 }
-
+                
                 SFOMMarkdownText(Localized.Policy.signInPolicy)
                     .font(.caption)
                     .foregroundColor(Color(.lightGray))
@@ -58,14 +60,14 @@ struct AuthView: View {
             }
             HStack { Spacer() }
         }
-            .navigationBarHidden(true)
-            .padding(.top, 30)
-            .padding(.horizontal, 25)
-            .onReceive(viewModel.$isSignIn) { result in
-                if let result = result, result {
-                    dismiss()
-                }
+        .navigationBarHidden(true)
+        .padding(.top, 30)
+        .padding(.horizontal, 25)
+        .onReceive(viewModel.$isSignIn) { result in
+            if let result = result, result {
+                dismiss()
             }
+        }
     }
 }
 

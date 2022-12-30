@@ -14,6 +14,8 @@ public struct Localized {
     static let homeTitle: String = "HomeTitle".localized
     static let signIn: String = "SignIn".localized
 
+    static let Confirm = "Confirm".localized
+    static let Cancel = "Cancel".localized
     static let back = "Back".localized
 
     public struct Category {
@@ -180,6 +182,23 @@ public struct Localized {
         static let signOutMessage = "SignOutMessage".localized
         static let count = "Count".localized
         static let userSuffix = "UserSuffix".localized
+    }
+    
+    public struct Report {
+        private init() { }
+        
+        static let report = "Report".localized
+        static let reportDescription = "ReportDescription".localized
+        static let reportSubDescription = "ReportSubDescription".localized
+
+        static let reportMessageDescription = "ReportMessageDescription".localized
+        static let reportA1 = "ReportA1".localized
+        static let reportA2 = "ReportA2".localized
+        static let reportA3 = "ReportA3".localized
+        static let reportA4 = "ReportA4".localized
+        static let reportA5 = "ReportA5".localized
+        static let reportA6 = "ReportA6".localized
+        static let reportA7 = "ReportA7".localized
     }
     
     public struct ContentStudio {

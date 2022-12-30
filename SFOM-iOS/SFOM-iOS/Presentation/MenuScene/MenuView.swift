@@ -25,7 +25,9 @@ final class MenuViewModel: ViewModel {
         menuUseCase.fetchCurrentUserWithUidChanges()
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
-            .assign(to: \.currentUser, on: self)
+            .sink(receiveValue: { [weak self] user in
+                self?.currentUser = user
+            })
             .store(in: &cancellable)
     }
 

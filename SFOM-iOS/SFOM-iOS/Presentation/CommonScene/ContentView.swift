@@ -16,16 +16,14 @@ final class ContentViewModel: ViewModel {
     @Published var authorUserResources: [Resource] = []
     @Published var resourceComments: [UserComment] = []
     
-    @Published var comment: String = ""
-    
     private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
     
     func bind(resource: Resource){
         contentUseCase.fetchCurrentUserWithUidChanges()
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [unowned self] user in
-                self.currentUser = user
+            .sink(receiveValue: { [weak self] user in
+                self?.currentUser = user
             })
             .store(in: &cancellable)
         
@@ -34,7 +32,7 @@ final class ContentViewModel: ViewModel {
             .map{ user -> User? in user }
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [unowned self] user in
+            .sink(receiveValue: { user in
                 self.authorUser = user
             })
             .store(in: &cancellable)
@@ -48,7 +46,7 @@ final class ContentViewModel: ViewModel {
                     .sorted { $0.createdTimestamp > $1.createdTimestamp }
             }
             .replaceError(with: [])
-            .sink(receiveValue: { [unowned self] resources in
+            .sink(receiveValue: { resources in
                 self.authorUserResources = resources
             })
             .store(in: &cancellable)
@@ -57,60 +55,68 @@ final class ContentViewModel: ViewModel {
             .fetchUserComment(resourceId: resource.id)
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [unowned self] resourceComments in
+            .sink(receiveValue: { resourceComments in
                 self.resourceComments = resourceComments
             })
             .store(in: &cancellable)
     }
     
-    func addComments(){
+    func addComments(comment: String){
         
     }
 }
 
 struct ContentView: View {
-    @ObservedObject private var viewModel: ContentViewModel = ContentViewModel()
+    @StateObject private var viewModel: ContentViewModel = ContentViewModel()
     let resource: Resource
-    
     @State private var showDownload: Bool = false
+    
+    @State var comment: String = ""
+    @State var isReports: Bool = false
     
     init(resource: Resource) {
         self.resource = resource
-        viewModel.bind(resource: resource)
     }
     
     var body: some View {
-            ScrollView{
-                VStack(alignment: .leading) {
-                    imagesTabView
-                        .aspectRatio(1.7, contentMode: .fit)
-                    resourceContent
-                        .padding(.horizontal, 20)
-                    Divider()
-                        .padding(.vertical,5)
-                    comments
-                        .padding(.horizontal, 20)
-                    Divider()
-                        .padding(.vertical,5)
-                    userResources
-                }
-                .padding(.bottom, 100)
+        ScrollView{
+            VStack(alignment: .leading) {
+                imagesTabView
+                    .aspectRatio(1.7, contentMode: .fit)
+                resourceContent
+                    .padding(.horizontal, 20)
+                Divider()
+                    .padding(.vertical,5)
+                comments
+                    .padding(.horizontal, 20)
+                Divider()
+                    .padding(.vertical,5)
+                userResources
             }
-            .ignoresSafeArea()
-            .navigationBarBackButtonHidden()
-            .overlay(alignment: .bottom) {
-                SFOMDownloadButton(Localized.ContentView.download) {
-                    showDownload = true
-                }
-                .padding()
-            }
-            // .halfModal(isPresented: $showDownload) {
-            //     DownloadView()
-            // }
-            .sheet(isPresented: $showDownload) {
-                DownloadView()
-            }
+            .padding(.bottom, 100)
         }
+        .ignoresSafeArea()
+        .navigationBarBackButtonHidden()
+        .overlay(alignment: .bottom) {
+            SFOMDownloadButton(Localized.ContentView.download) {
+                showDownload = true
+            }
+            .padding()
+        }
+        .onAppear {
+            viewModel.bind(resource: resource)
+        }
+        .halfModal(isPresented: $showDownload) {
+            DownloadView()
+        }
+        // .confirmationDialog(Localized.ETC.signOutMessage,
+        //                     isPresented: $isReports,
+        //                     titleVisibility: .visible) {
+        //     Button(Localized.MoreMenu.signOut, role: .destructive) {
+        //
+        //     }
+        // }
+    }
     
     @ViewBuilder
     private var imagesTabView: some View {
@@ -131,14 +137,14 @@ struct ContentView: View {
     private var resourceContent: some View {
         VStack(alignment: .leading) {
             Text(resource.localizedName)
-                .font(.SFOMMediumFont.bold())
+                .font(.SFOMSmallFont.bold())
             Text(resource.info)
                 .foregroundColor(Color(.darkGray))
-                .font(.SFOMSmallFont)
+                .font(.SFOMExtraSmallFont)
             userInfo
                 .padding(.vertical)
             Text(resource.localizedDescs)
-                .font(.SFOMSmallFont)
+                .font(.SFOMExtraSmallFont)
                 .foregroundColor(Color(.darkGray))
         }
     }
@@ -195,14 +201,17 @@ struct ContentView: View {
             VStack(alignment: .leading) {
                 if viewModel.currentUser != nil {
                     // FIXME: - 댓글 쓰기
+                    Text(comment)
                     VStack(spacing: 0){
-                        TextField("평가를 작성해주세요", text: $viewModel.comment)
+                        TextField("평가를 작성해주세요", text: $comment)
                             .autocapitalization(.none)
                             .padding(8)
                             .padding(.horizontal, 2)
                             .font(.SFOMSmallFont)
                             .onSubmit {
-                                viewModel.addComments()
+                                print("⭐️")
+                                viewModel.addComments(comment: comment)
+                                comment = ""
                             }
                         HStack { Spacer() }
                     }

@@ -36,15 +36,16 @@ struct HalfModal<ModalView: View>: View {
     }
     
     var body: some View {
-        VStack{
+        VStack(){
             if isPresented {
                 VStack(alignment: .center) {
                     RoundedRectangle(cornerRadius: 16)
                         .frame(width: 100, height: 5)
                         .foregroundColor(Color(.lightGray))
-                        .padding(.vertical, 5)
+                        .position(y: 5)
                     modalView()
-                        .padding(.top, 15)
+                        .position(y: 15)
+                        .fixedSize()
                     Spacer()
                     HStack { Spacer() }
                 }
