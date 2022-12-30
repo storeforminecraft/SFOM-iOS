@@ -97,7 +97,7 @@ public struct SFOMBackButton: View {
         } label: {
             HStack {
                 Assets.SystemIcon.backCircle.image
-                Text(Localized.back)
+                Text(StringCollection.Default.back.localized)
             }
         }
     }

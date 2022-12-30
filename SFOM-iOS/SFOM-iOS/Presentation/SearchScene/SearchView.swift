@@ -60,11 +60,11 @@ struct SearchView: View {
         VStack (alignment: .leading) {
             VStack (alignment: .leading) {
                 if !viewModel.isSearching {
-                    Text(Localized.SearchView.searchTitle)
+                    Text(StringCollection.SearchView.searchTitle.localized)
                         .font(.SFOMTitleFont)
                 }
 
-                SFOMSearchBar(placeholder: Localized.SearchView.searchPlaceholder,
+                SFOMSearchBar(placeholder: StringCollection.SearchView.searchPlaceholder.localized,
                               text: $viewModel.searchText,
                               state: $viewModel.isSearching)
 

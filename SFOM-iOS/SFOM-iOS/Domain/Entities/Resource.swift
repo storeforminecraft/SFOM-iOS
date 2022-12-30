@@ -30,7 +30,7 @@ struct Resource {
     let version: Int
     
     var localizedName: String {
-        let location = Localized.location
+        let location = StringCollection.location
         if basedLanguage == location {
             return name
         } else {
@@ -39,7 +39,7 @@ struct Resource {
     }
     
     var localizedDescs: String {
-        let location = Localized.location
+        let location = StringCollection.location
         if basedLanguage == location {
             return desc
         } else {
@@ -48,7 +48,7 @@ struct Resource {
     }
     
     var info: String {
-        return "\(createdTimestamp.ago()) ‧ \(downloadCount)\(Localized.ETC.count)"
+        return "\(createdTimestamp.ago()) ‧ \(downloadCount)\(StringCollection.ETC.count.localized)"
     }
     
     var thumbnail: String? {

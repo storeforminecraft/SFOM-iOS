@@ -41,7 +41,7 @@ struct NoticeView: View {
             }
             .padding()
         }
-        .navigationTitle(Localized.MoreMenu.notice)
+        .navigationTitle(StringCollection.MoreMenu.notice.localized)
     }
 }
 

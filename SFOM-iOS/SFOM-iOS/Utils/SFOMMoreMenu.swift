@@ -29,11 +29,11 @@ extension SFOMMoreMenu {
     
     var localized: String {
         switch self {
-        case .download: return Localized.MoreMenu.download
-        case .notice: return Localized.MoreMenu.notice
-        case .settings: return Localized.MoreMenu.settings
-        case .myComments: return Localized.MoreMenu.myComments
-        case .signOut: return Localized.MoreMenu.signOut
+        case .download: return StringCollection.MoreMenu.download.localized
+        case .notice: return StringCollection.MoreMenu.notice.localized
+        case .settings: return StringCollection.MoreMenu.settings.localized
+        case .myComments: return StringCollection.MoreMenu.myComments.localized
+        case .signOut: return StringCollection.MoreMenu.signOut.localized
         }
     }
 }

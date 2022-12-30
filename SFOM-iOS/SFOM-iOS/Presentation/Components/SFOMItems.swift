@@ -151,7 +151,7 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
                     Group{
                         Text("\(recentComment.user.summary)")
                             .font(.SFOMExtraSmallFont.bold())
-                        Text(Localized.ETC.leftAComment)
+                        Text(StringCollection.ETC.leftAComment.localized)
                             .font(.SFOMExtraSmallFont)
                     }
                     .lineLimit(1)

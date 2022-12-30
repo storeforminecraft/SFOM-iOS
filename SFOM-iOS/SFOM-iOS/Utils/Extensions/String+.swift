@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-    var localized: String {
+    var localizedString: String {
         return NSLocalizedString(self, comment: "")
     }
     
@@ -25,5 +25,9 @@ extension String {
         let endIndex = self.index(self.startIndex, offsetBy: l == Int.max ? r+1 : min(l, self.count))
         return String(self[startIndex..<endIndex])
     }
-
+    
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + self.dropFirst()
+    }
+    
 }

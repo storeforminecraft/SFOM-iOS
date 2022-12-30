@@ -22,12 +22,12 @@ struct SearchData: Codable {
     
     var desc: String {
         guard let tempValue = _desc.first?.value else { return "" }
-        return _desc[Localized.location] ?? tempValue
+        return _desc[StringCollection.location] ?? tempValue
     }
     
     var name: String {
         guard let tempValue = _name.first?.value else { return "" }
-        return _name[Localized.location] ?? tempValue
+        return _name[StringCollection.location] ?? tempValue
     }
     
     init(authorUid: String,

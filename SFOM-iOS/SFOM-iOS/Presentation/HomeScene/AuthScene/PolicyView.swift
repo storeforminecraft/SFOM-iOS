@@ -57,6 +57,10 @@ final class PolicyViewModel: ObservableObject {
             .assign(to: \.disabled, on: self)
             .store(in: &cancellable)
     }
+    
+    deinit{
+        cancellable.removeAll()
+    }
 }
 
 struct PolicyView: View {
@@ -66,8 +70,8 @@ struct PolicyView: View {
     var body: some View {
         VStack(alignment: .leading) {
             SFOMHeader(title: "",
-                       mainTitle: Localized.PolicyView.policyMainTitle,
-                       subTitle: Localized.PolicyView.policySubTitle)
+                       mainTitle: StringCollection.PolicyView.policyMainTitle.localized,
+                       subTitle: StringCollection.PolicyView.policySubTitle.localized)
             SFOMBackButton {
                 dismiss()
             }
@@ -75,27 +79,27 @@ struct PolicyView: View {
             .padding(.bottom, 20)
             
             VStack (alignment: .center) {
-                SFOMCheckButton(content: Localized.PolicyView.agreeAll,
+                SFOMCheckButton(content: StringCollection.PolicyView.agreeAll.localized,
                                 check: $viewModel.agreeAll)
-                SFOMCheckButton(content: Localized.PolicyView.privacyPolicy,
-                                kind: Localized.PolicyView.require,
-                                urlString: Localized.Policy.privacyPolicyUrl,
+                SFOMCheckButton(content: StringCollection.PolicyView.privacyPolicy.localized,
+                                kind: StringCollection.PolicyView.require.localized,
+                                urlString: StringCollection.Policy.privacyPolicyUrl.localized,
                                 check: $viewModel.privacyPolicy)
-                SFOMCheckButton(content: Localized.PolicyView.termsOfService,
-                                kind: Localized.PolicyView.require,
-                                urlString: Localized.Policy.termsOfServiceUrl,
+                SFOMCheckButton(content: StringCollection.PolicyView.termsOfService.localized,
+                                kind: StringCollection.PolicyView.require.localized,
+                                urlString: StringCollection.Policy.termsOfServiceUrl.localized,
                                 check: $viewModel.termsOfService)
-                SFOMCheckButton(content: Localized.PolicyView.ageCheck,
-                                kind: Localized.PolicyView.require,
+                SFOMCheckButton(content: StringCollection.PolicyView.ageCheck.localized,
+                                kind: StringCollection.PolicyView.require.localized,
                                 check: $viewModel.ageCheck)
-                SFOMCheckButton(content: Localized.PolicyView.internationalTransferOfPersonalInformation,
-                                kind: Localized.PolicyView.require,
-                                urlString: Localized.Policy.internationalTransferOfPersonalInformationUrl,
+                SFOMCheckButton(content: StringCollection.PolicyView.internationalTransferOfPersonalInformation.localized,
+                                kind: StringCollection.PolicyView.require.localized,
+                                urlString: StringCollection.Policy.internationalTransferOfPersonalInformationUrl.localized,
                                 check: $viewModel.internationalTransferOfPersonalInformation)
             }
             Spacer()
             VStack (alignment: .center) {
-                SFOMNavigationLink(Localized.PolicyView.nextStep) {
+                SFOMNavigationLink(StringCollection.PolicyView.nextStep.localized) {
                     SignUpView()
                 }
                 .disabled(viewModel.disabled)

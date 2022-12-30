@@ -6,7 +6,7 @@
   
 */
 
-"location"= "en";
+"Location"= "en";
 
 "APP" = "SFOM";
 
@@ -148,6 +148,7 @@
 "ResetPasswordFail" = "Reset Passowrd Fail";
 
 "Report" = "Report";
+"ReportTitle" = "Report";
 "ReportDescription" = "You can file a report for the selected content.";
 "ReportSubDescription" = "You can wirte additional information related to the content you are reporting.";
 
@@ -159,3 +160,6 @@
 "ReportA5" = "Adversely affects the user's device";
 "ReportA6" = "Infringe on your own or someone else's copyright";
 "ReportA7" = "If there is no applicable item or write a report yourself";
+
+"PleaseLeaveAComments" = "Please, Leave a resourceComments";
+"LeaveAComments" = "Leave a Comment";

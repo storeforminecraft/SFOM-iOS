@@ -37,15 +37,15 @@ extension SFOMCategory {
     
     var localized: String {
         switch self {
-        case .addon: return Localized.Category.addon
-        case .downloads: return Localized.Category.downloads
-        case .map: return Localized.Category.map
-        case .mod: return Localized.Category.mod
-        case .script: return Localized.Category.script
-        case .seed: return Localized.Category.seed
-        case .skin: return Localized.Category.skin
-        case .texturepack: return Localized.Category.texturepack
-        case .unknown: return Localized.Category.unknown
+        case .addon: return StringCollection.Category.addon.localized
+        case .downloads: return StringCollection.Category.downloads.localized
+        case .map: return StringCollection.Category.map.localized
+        case .mod: return StringCollection.Category.mod.localized
+        case .script: return StringCollection.Category.script.localized
+        case .seed: return StringCollection.Category.seed.localized
+        case .skin: return StringCollection.Category.skin.localized
+        case .texturepack: return StringCollection.Category.texturepack.localized
+        case .unknown: return StringCollection.Category.unknown.localized
         }
     }
 }

@@ -21,6 +21,10 @@ final class SignUpViewModel: ObservableObject {
     
     private var cancellable = Set<AnyCancellable>()
     
+    deinit{
+        cancellable.removeAll()
+    }
+    
     func signOut(){
         result = nil
         authUseCase.signUp(email: email, password: password, userName: userName)
@@ -41,9 +45,9 @@ struct SignUpView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            SFOMHeader(title: Localized.SignUpView.signUpTitle,
-                       mainTitle: Localized.SignUpView.signUpMainTitle,
-                       subTitle: Localized.SignUpView.signUpSubTitle)
+            SFOMHeader(title: StringCollection.SignUpView.signUpTitle.localized,
+                       mainTitle: StringCollection.SignUpView.signUpMainTitle.localized,
+                       subTitle: StringCollection.SignUpView.signUpSubTitle.localized)
             
             SFOMBackButton {
                 dismiss()
@@ -52,14 +56,14 @@ struct SignUpView: View {
             
             Spacer()
             VStack (alignment: .center) {
-                SFOMTextField(Localized.Auth.email, text: $viewModel.email)
-                SFOMTextField(Localized.Auth.password, text: $viewModel.password, secure: true)
-                SFOMTextField(Localized.Auth.passwordConfirm, text: $viewModel.passwordConfirm, secure: true)
-                SFOMTextField(Localized.Auth.userName, text: $viewModel.userName)
+                SFOMTextField(StringCollection.Auth.email.localized, text: $viewModel.email)
+                SFOMTextField(StringCollection.Auth.password.localized, text: $viewModel.password, secure: true)
+                SFOMTextField(StringCollection.Auth.passwordConfirm.localized, text: $viewModel.passwordConfirm, secure: true)
+                SFOMTextField(StringCollection.Auth.userName.localized, text: $viewModel.userName)
             }
             Spacer()
             VStack (alignment: .center) {
-                SFOMButton(Localized.SignUpView.signUpButtonTitle) {
+                SFOMButton(StringCollection.SignUpView.signUpButtonTitle.localized) {
                     isLoading = true
                     viewModel.signOut()
                 }
@@ -86,8 +90,8 @@ struct SignUpView: View {
                duration: 2,
                tapToDismiss: true) {
             AlertToast(type: .error(.red),
-                       title: Localized.SignInView.signIn,
-                       subTitle: Localized.SignInView.signInFail)
+                       title: StringCollection.SignInView.signIn.localized,
+                       subTitle: StringCollection.SignInView.signInFail.localized)
         }
     }
 }

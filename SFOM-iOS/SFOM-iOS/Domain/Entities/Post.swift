@@ -24,7 +24,7 @@ struct Post {
     let translatedTitles: [String: String]
     
     var localizedTitle: String {
-        let location = Localized.location
+        let location = StringCollection.location
         if basedLanguage == location {
             return title
         } else {
@@ -33,7 +33,7 @@ struct Post {
     }
     
     var localizedBody: PostBody {
-        let location = Localized.location
+        let location = StringCollection.location
         if basedLanguage == location, let body = body {
             return body
         } else {

@@ -10,7 +10,7 @@ import Foundation
 extension Date {
     func toString() -> String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: Localized.location)
+        formatter.locale = Locale(identifier: StringCollection.location)
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss EEEE"
         return formatter.string(from: self)
     }
@@ -22,13 +22,13 @@ extension Date {
         
         var time = ""
         if days > 0 {
-            time = (days == 1 ? "\(Localized.Time.aDay)" : "\(days)\(Localized.Time.days)")
+            time = (days == 1 ? "\(StringCollection.Time.aDay.localized)" : "\(days)\(StringCollection.Time.days.localized)")
         } else if hours > 0 {
-            time = (hours == 1 ? "\(Localized.Time.anHour)" : "\(hours)\(Localized.Time.hours)")
+            time = (hours == 1 ? "\(StringCollection.Time.anHour.localized)" : "\(hours)\(StringCollection.Time.hours.localized)")
         } else {
-            time = (minutes == 1 ? "\(Localized.Time.aMinute)" : "\(minutes)\(Localized.Time.minutes)")
+            time = (minutes == 1 ? "\(StringCollection.Time.aMinute.localized)" : "\(minutes)\(StringCollection.Time.minutes.localized)")
         }
-        return "\(time) \(Localized.Time.ago)"
+        return "\(time) \(StringCollection.Time.ago.localized)"
     }
     
     func agoMiniutes() -> Int{

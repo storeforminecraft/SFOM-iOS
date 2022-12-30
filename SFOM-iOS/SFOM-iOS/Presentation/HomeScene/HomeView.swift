@@ -22,6 +22,10 @@ final class HomeViewModel: ViewModel {
         bind()
     }
     
+    deinit{
+        cancellable.removeAll()
+    }
+    
     func bind(){
         homeUseCase.fetchCurrentUserWithUidChanges()
             .replaceError(with: nil)
@@ -95,7 +99,7 @@ struct HomeView: View {
     
     private var homeNavigationBar: some View {
         HStack(alignment: .center) {
-            Text(Localized.homeTitle)
+            Text(StringCollection.Default.homeTitle.localized)
                 .font(.SFOMTitleFont)
             Spacer()
             
@@ -131,7 +135,7 @@ struct HomeView: View {
                 NavigationLink {
                     AuthView()
                 } label: {
-                    Text(Localized.signIn)
+                    Text(StringCollection.Default.signIn.localized)
                         .font(.SFOMSmallFont)
                         .padding(.vertical, 5)
                         .padding(.horizontal, 10)

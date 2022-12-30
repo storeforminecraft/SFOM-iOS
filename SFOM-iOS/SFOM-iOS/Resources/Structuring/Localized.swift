@@ -7,206 +7,205 @@
 
 import Foundation
 
-public struct Localized {
+protocol EnumeratedLocalized {
+    var rawValue: String { get }
+}
+
+extension EnumeratedLocalized {
+    var localized: String {
+        return self.rawValue.capitalizingFirstLetter().localizedString
+    }
+}
+
+public struct StringCollection {
     private init() { }
-    static let location: String = "location".localized
-    static let app: String = "APP".localized
-    static let homeTitle: String = "HomeTitle".localized
-    static let signIn: String = "SignIn".localized
-
-    static let Confirm = "Confirm".localized
-    static let Cancel = "Cancel".localized
-    static let back = "Back".localized
-
-    public struct Category {
-        private init() { }
-        static let map = "Map".localized
-        static let skin = "Skin".localized
-        static let script = "Script".localized
-        static let seed = "Seed".localized
-        static let texturepack = "Texturepack".localized
-        static let mod = "Mod".localized
-        static let addon = "Addon".localized
-        static let downloads = "Downloads".localized
-        static let unknown = "Unknown".localized
-    }
-
-    public struct AuthView {
-        private init() { }
-        static let authTitle = "AuthTitle".localized
-        static let authMainTitle = "AuthMainTitle".localized
-        static let authSubTitle = "AuthSubTitle".localized
-
-        static let authSignInButtonTitle = "AuthSignInButtonTitle".localized
-        static let authSignUpButtonTitle = "AuthSignUpButtonTitle".localized
+    static let location = "Location".localizedString
+    
+    public enum `Default`: String, EnumeratedLocalized {
+        case app
+        case homeTitle
+        case signIn
+        case confirm
+        case cancel
+        case back
     }
     
-    public struct PolicyView {
-        private init() { }
-        static let policyMainTitle = "PolicyMainTitle".localized
-        static let policySubTitle = "PolicySubTitle".localized
-
-        static let require = "Require".localized
-        static let agreeAll = "AgreeAll".localized
-        static let privacyPolicy = "PrivacyPolicy".localized
-        static let termsOfService = "TermsOfService".localized
-        static let ageCheck = "AgeCheck".localized
-        static let internationalTransferOfPersonalInformation = "InternationalTransferOfPersonalInformation".localized
+    enum Category: String, EnumeratedLocalized {
+        case map
+        case skin
+        case script
+        case seed
+        case texturepack
+        case mod
+        case addon
+        case downloads
+        case unknown
+    }
+    
+    enum AuthView: String, EnumeratedLocalized {
+        case authTitle
+        case authMainTitle
+        case authSubTitle
         
-        static let nextStep = "NextStep".localized
+        case authSignInButtonTitle
+        case authSignUpButtonTitle
     }
-
-    public struct SignUpView {
-        private init() { }
-        static let signUp = "SignUp".localized
-        static let signUpTitle = "SignUpTitle".localized
-        static let signUpMainTitle = "SignUpMainTitle".localized
-        static let signUpSubTitle = "SignUpSubTitle".localized
-
-        static let signUpButtonTitle = "SignUpButtonTitle".localized
+    
+    enum PolicyView: String, EnumeratedLocalized {
+        case policyMainTitle
+        case policySubTitle
         
-        static let signUpSuccess = "SignUpSuccess".localized
-        static let signUpFail = "SignUpFail".localized
-    }
-
-    public struct SignInView {
-        private init() { }
-        static let signIn = "SignIn".localized
-        static let signInTitle = "SignInTitle".localized
-        static let signInMainTitle = "SignInMainTitle".localized
-        static let signInSubTitle = "SignInSubTitle".localized
-
-        static let signInButonTitle = "SignInButonTitle".localized
-
-        static let resetEmailButtonTitle = "ResetEmailButtonTitle".localized
+        case require
+        case agreeAll
+        case privacyPolicy
+        case termsOfService
+        case ageCheck
+        case internationalTransferOfPersonalInformation
         
-        static let signInSuccess = "SignInSuccess".localized
-        static let signInFail = "SignInFail".localized
+        case nextStep
     }
     
-    public struct PasswordResetView {
-        private init() { }
-        static let resetPassword = "ResetPassword".localized
-        static let resetPasswordSuccess = "ResetPasswordSuccess".localized
-        static let resetPasswordFail = "ResetPasswordFail".localized
-    }
-    
-    public struct ContentView {
-        private init() { }
-        static let comments = "Comments".localized
-        static let more = "More".localized
-        static let signInAndWriteAComment = "LeaveACommentAfterSignIn".localized
-        static let download = "Download".localized
-    }
-
-    public struct Policy {
-        private init() { }
-        static let signInPolicy = "SignInPolicy".localized
+    enum SignUpView: String, EnumeratedLocalized {
+        case signUp
+        case signUpTitle
+        case signUpMainTitle
+        case signUpSubTitle
         
-        static let privacyPolicyUrl = "PrivacyPolicyUrl".localized
-        static let termsOfServiceUrl = "TermsOfServiceUrl".localized
-        static let internationalTransferOfPersonalInformationUrl = "InternationalTransferOfPersonalInformationUrl".localized
-    }
-
-    public struct Auth {
-        private init() { }
-        static let email = "Email".localized
-        static let password = "Password".localized
-        static let passwordConfirm = "PasswordConfrim".localized
-        static let userName = "UserName".localized
-    }
-
-    public struct SearchView {
-        private init() { }
-        static let searchTitle = "SearchTitle".localized
-        static let searchPlaceholder = "SearchPlaceholder".localized
-    }
-
-    public struct DetailCategory {
-        private init() { }
-        static let selectCategory = "SelectCategory".localized
-
-        static let all = "All".localized
-
-        static let building = "Building".localized
-        static let content = "Content".localized
-        static let escape = "Escape".localized
-        static let land = "Land".localized
-        static let pvp = "Pvp".localized
-        static let adventure = "Adventure".localized
-
-        static let boys = "Boys".localized
-        static let girls = "Girls".localized
-        static let characters = "Characters".localized
-        static let games = "Games".localized
-        static let animal = "Animal".localized
-
-        static let mountain = "Mountain".localized
-        static let cave = "Cave".localized
-        static let island = "Island".localized
-        static let plain = "Plain".localized
-
-        static let kind16x16 = "16x16".localized
-        static let kind32x32 = "32x32".localized
-        static let kind64x64 = "64x64".localized
-        static let kind128x128 = "128x128".localized
-        static let shaders = "Shaders".localized
-    }
-    
-    public struct Time {
-        private init() { }
-        static let ago = "Ago".localized
-        static let minutes = "Minutes".localized
-        static let hours = "Hours".localized
-        static let days = "Days".localized
-        static let aMinute = "AMinute".localized
-        static let anHour = "AnHour".localized
-        static let aDay = "ADay".localized
-    }
-    
-    public struct MoreMenu {
-        private init() { }
-        static let download = "Download".localized
-        static let notice = "Notice".localized
-        static let settings = "Settings".localized
-        static let myComments = "MyComments".localized
-        static let signOut = "SignOut".localized
+        case signUpButtonTitle
         
-        static let signOutSuccess = "SignOutSuccess".localized
-        static let signOutFail = "SignOutFail".localized
+        case signUpSuccess
+        case signUpFail
     }
     
-    public struct ETC {
-        private init() { }
-        static let leftAComment = "LeftAComment".localized
-        static let signOutMessage = "SignOutMessage".localized
-        static let count = "Count".localized
-        static let userSuffix = "UserSuffix".localized
-    }
-    
-    public struct Report {
-        private init() { }
+    enum SignInView: String, EnumeratedLocalized {
+        case signIn
+        case signInTitle
+        case signInMainTitle
+        case signInSubTitle
         
-        static let report = "Report".localized
-        static let reportDescription = "ReportDescription".localized
-        static let reportSubDescription = "ReportSubDescription".localized
-
-        static let reportMessageDescription = "ReportMessageDescription".localized
-        static let reportA1 = "ReportA1".localized
-        static let reportA2 = "ReportA2".localized
-        static let reportA3 = "ReportA3".localized
-        static let reportA4 = "ReportA4".localized
-        static let reportA5 = "ReportA5".localized
-        static let reportA6 = "ReportA6".localized
-        static let reportA7 = "ReportA7".localized
+        case signInButonTitle
+        
+        case resetEmailButtonTitle
+        
+        case signInSuccess
+        case signInFail
     }
     
-    public struct ContentStudio {
-        private init() { }
-        static let contentStudio = "ContentStudio".localized
-        static let upload = "Upload".localized
-        static let todayDownloads = "TodayDownloads".localized
-        static let todayLikes = "TodayLikes".localized
-        static let todayComments = "TodayComments".localized
+    enum PasswordResetView: String, EnumeratedLocalized {
+        case resetPassword
+        case resetPasswordSuccess
+        case resetPasswordFail
+    }
+    
+    enum ContentView: String, EnumeratedLocalized {
+        case comments
+        case more
+        case signInAndWriteAComment
+        case download
+        
+        case pleaseLeaveAComments
+        case leaveAComments
+    }
+    
+    enum Policy: String, EnumeratedLocalized {
+        case signInPolicy
+        
+        case privacyPolicyUrl
+        case termsOfServiceUrl
+        case internationalTransferOfPersonalInformationUrl
+    }
+    
+    enum Auth: String, EnumeratedLocalized {
+        case email
+        case password
+        case passwordConfirm
+        case userName
+    }
+    
+    enum SearchView: String, EnumeratedLocalized {
+        case searchTitle
+        case searchPlaceholder
+    }
+    
+    enum DetailCategory: String, EnumeratedLocalized {
+        case selectCategory
+        
+        case all
+        
+        case building
+        case content
+        case escape
+        case land
+        case pvp
+        case adventure
+        
+        case boys
+        case girls
+        case characters
+        case games
+        case animal
+        
+        case mountain
+        case cave
+        case island
+        case plain
+        
+        case kind16x16 = "16x16"
+        case kind32x32 = "32x32"
+        case kind64x64 = "64x64"
+        case kind128x128 = "128x128"
+        case shaders
+    }
+    
+    enum Time: String, EnumeratedLocalized {
+        case ago
+        case minutes
+        case hours
+        case days
+        case aMinute
+        case anHour
+        case aDay
+    }
+    
+    enum MoreMenu: String, EnumeratedLocalized {
+        case download
+        case notice
+        case settings
+        case myComments
+        case signOut
+        
+        case signOutSuccess
+        case signOutFail
+    }
+    
+    enum ETC: String, EnumeratedLocalized {
+        case leftAComment
+        case signOutMessage
+        case count
+        case userSuffix
+    }
+    
+    enum Report: String, EnumeratedLocalized {
+        case report
+        case reportTitle
+        case reportDescription
+        case reportSubDescription
+        
+        case reportMessageDescription
+        case reportA1
+        case reportA2
+        case reportA3
+        case reportA4
+        case reportA5
+        case reportA6
+        case reportA7
+    }
+    
+    enum ContentStudio: String, EnumeratedLocalized {
+        case contentStudio
+        case upload
+        case todayDownloads
+        case todayLikes
+        case todayComments
     }
 }

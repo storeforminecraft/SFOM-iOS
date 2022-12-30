@@ -49,7 +49,7 @@ extension DefaultAuthRepository: AuthRepository {
                 let databaseValue = DatabaseUser(handles: [.set(.email(email)),
                                                            .set(.lastSignInDeviceId(UIDevice.current.identifierForVendor!.uuidString)),
                                                            .set(.lastSignInTime(Date())),
-                                                           .set(.language(Localized.location)),
+                                                           .set(.language(StringCollection.location)),
                                                            .set(.nickname(userName)),
                                                            .set(.profileImage("")),
                                                            .set(.uid(uid))]).values

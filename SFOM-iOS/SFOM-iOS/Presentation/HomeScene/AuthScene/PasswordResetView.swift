@@ -17,6 +17,10 @@ final class PasswordResetViewModel: ViewModel {
     
     private var cancellable = Set<AnyCancellable>()
     
+    deinit{
+        cancellable.removeAll()
+    }
+    
     func resetPassword(){
         result = nil
         authUseCase.resetPassword(email: email)
@@ -37,8 +41,8 @@ struct PasswordResetView: View {
     
     var body: some View {
         VStack {
-            SFOMTextField(Localized.Auth.email, text: $viewModel.email)
-            SFOMButton(Localized.PasswordResetView.resetPassword) {
+            SFOMTextField(StringCollection.Auth.email.localized, text: $viewModel.email)
+            SFOMButton(StringCollection.PasswordResetView.resetPassword.localized) {
                 viewModel.resetPassword()
             }
             HStack { Spacer()}
@@ -57,8 +61,8 @@ struct PasswordResetView: View {
                duration: 2,
                tapToDismiss: true) {
             AlertToast(type: .complete(.accentColor),
-                       title: Localized.PasswordResetView.resetPassword,
-                       subTitle: Localized.PasswordResetView.resetPasswordSuccess)
+                       title: StringCollection.PasswordResetView.resetPassword.localized,
+                       subTitle: StringCollection.PasswordResetView.resetPasswordSuccess.localized)
         } completion: {
             dismiss()
         }
@@ -66,8 +70,8 @@ struct PasswordResetView: View {
                duration: 2,
                tapToDismiss: true) {
             AlertToast(type: .error(.red),
-                       title:  Localized.PasswordResetView.resetPassword,
-                       subTitle: Localized.PasswordResetView.resetPasswordFail)
+                       title:  StringCollection.PasswordResetView.resetPassword.localized,
+                       subTitle: StringCollection.PasswordResetView.resetPasswordFail.localized)
         }
     }
 }

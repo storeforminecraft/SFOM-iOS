@@ -13,6 +13,10 @@ final class AuthViewModel: ObservableObject {
     @Published var isSignIn: Bool? = nil
     private var cancellable = Set<AnyCancellable>()
     
+    init(){
+        bind()
+    }
+    
     func bind(){
         authUseCase
             .uidChanges()
@@ -24,6 +28,10 @@ final class AuthViewModel: ObservableObject {
             })
             .store(in: &cancellable)
     }
+    
+    deinit{
+        cancellable.removeAll()
+    }
 }
 
 struct AuthView: View {
@@ -32,9 +40,9 @@ struct AuthView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            SFOMHeader(title: Localized.AuthView.authTitle,
-                       mainTitle: Localized.AuthView.authMainTitle,
-                       subTitle: Localized.AuthView.authSubTitle)
+            SFOMHeader(title: StringCollection.AuthView.authTitle.localized,
+                       mainTitle: StringCollection.AuthView.authMainTitle.localized,
+                       subTitle: StringCollection.AuthView.authSubTitle.localized)
             
             
             SFOMBackButton {
@@ -45,15 +53,15 @@ struct AuthView: View {
             Spacer()
             
             VStack (alignment: .center) {
-                SFOMNavigationLink(Localized.AuthView.authSignUpButtonTitle, accent: false) {
+                SFOMNavigationLink(StringCollection.AuthView.authSignUpButtonTitle.localized, accent: false) {
                     PolicyView()
                 }
                 
-                SFOMNavigationLink(Localized.AuthView.authSignInButtonTitle) {
+                SFOMNavigationLink(StringCollection.AuthView.authSignInButtonTitle.localized) {
                     SignInView()
                 }
                 
-                SFOMMarkdownText(Localized.Policy.signInPolicy)
+                SFOMMarkdownText(StringCollection.Policy.signInPolicy.localized)
                     .font(.caption)
                     .foregroundColor(Color(.lightGray))
                     .multilineTextAlignment(.center)

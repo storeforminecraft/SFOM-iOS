@@ -16,7 +16,15 @@ final class ContentViewModel: ViewModel {
     @Published var authorUserResources: [Resource] = []
     @Published var resourceComments: [UserComment] = []
     
+    @Published var comment: String = ""
+    
+    private var selectedContent: String = ""
+    
     private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
+    
+    deinit{
+        cancellable.removeAll()
+    }
     
     func bind(resource: Resource){
         contentUseCase.fetchCurrentUserWithUidChanges()
@@ -40,14 +48,11 @@ final class ContentViewModel: ViewModel {
         contentUseCase
             .fetchUserResources(uid: resource.authorUid)
             .receive(on: DispatchQueue.main)
-            .map{ resources in
-                resources
-                    .filter { resource.id != $0.id }
-                    .sorted { $0.createdTimestamp > $1.createdTimestamp }
-            }
             .replaceError(with: [])
             .sink(receiveValue: { resources in
                 self.authorUserResources = resources
+                    .filter { resource.id != $0.id }
+                    .sorted { $0.createdTimestamp > $1.createdTimestamp }
             })
             .store(in: &cancellable)
         
@@ -57,11 +62,12 @@ final class ContentViewModel: ViewModel {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { resourceComments in
                 self.resourceComments = resourceComments
+                    .sorted { $0.comment.createdTimestamp > $1.comment.createdTimestamp }
             })
             .store(in: &cancellable)
     }
     
-    func addComments(comment: String){
+    func addComments(){
         
     }
 }
@@ -71,8 +77,8 @@ struct ContentView: View {
     let resource: Resource
     @State private var showDownload: Bool = false
     
-    @State var comment: String = ""
-    @State var isReports: Bool = false
+    @State var showReports: Bool = false
+
     
     init(resource: Resource) {
         self.resource = resource
@@ -99,7 +105,7 @@ struct ContentView: View {
         .ignoresSafeArea()
         .navigationBarBackButtonHidden()
         .overlay(alignment: .bottom) {
-            SFOMDownloadButton(Localized.ContentView.download) {
+            SFOMDownloadButton(StringCollection.ContentView.download.localized) {
                 showDownload = true
             }
             .padding()
@@ -110,14 +116,13 @@ struct ContentView: View {
         .sheet(isPresented: $showDownload) {
             DownloadView()
         }
-        
-        // .confirmationDialog(Localized.ETC.signOutMessage,
-        //                     isPresented: $isReports,
-        //                     titleVisibility: .visible) {
-        //     Button(Localized.MoreMenu.signOut, role: .destructive) {
-        //
-        //     }
-        // }
+        .confirmationDialog(StringCollection.Report.report.localized,
+                            isPresented: $showReports,
+                            titleVisibility: .visible) {
+            Button(StringCollection.Report.report.localized, role: .destructive) {
+                
+            }
+        }
     }
     
     @ViewBuilder
@@ -158,7 +163,6 @@ struct ContentView: View {
                     ProfileView(uid: user.uid)
                 } label: {
                     HStack (spacing: 10) {
-                        // FIXME: - SFOMImage DefaultImage
                         SFOMImage(placeholder: Assets.Default.profile.image,
                                   urlString: user.thumbnail)
                         .frame(width: 40, height: 40)
@@ -184,7 +188,7 @@ struct ContentView: View {
     private var comments: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(Localized.ContentView.comments.capitalized)
+                Text(StringCollection.ContentView.comments.localized.capitalized)
                     .font(.SFOMSmallFont.bold())
                 Spacer()
                 NavigationLink{
@@ -192,7 +196,7 @@ struct ContentView: View {
                                  userComments: viewModel.resourceComments)
                 } label: {
                     HStack(spacing: 0){
-                        Text(Localized.ContentView.more)
+                        Text(StringCollection.ContentView.more.localized)
                         Image(systemName: "chevron.forward")
                     }
                     .font(.SFOMSmallFont)
@@ -202,32 +206,20 @@ struct ContentView: View {
             
             VStack(alignment: .leading) {
                 if viewModel.currentUser != nil {
-                    // FIXME: - 댓글 쓰기
-                    Text(comment)
                     VStack(spacing: 0){
-                        TextField("평가를 작성해주세요", text: $comment)
-                            .autocapitalization(.none)
-                            .padding(8)
-                            .padding(.horizontal, 2)
-                            .font(.SFOMSmallFont)
-                            .onSubmit {
-                                print("⭐️")
-                                viewModel.addComments(comment: comment)
-                                comment = ""
-                            }
+                        SFOMSubmitField(StringCollection.ContentView.pleaseLeaveAComments.localized, text: $viewModel.comment) {
+                            viewModel.addComments()
+                        }
+                           
                         HStack { Spacer() }
                     }
-                    .background(Color.searchBarColor)
-                    .cornerRadius(24)
-                    .overlay(RoundedRectangle(cornerRadius: 24)
-                        .stroke(.black, lineWidth: 2))
                     .padding()
                 } else {
                     VStack(alignment: .center){
                         NavigationLink{
                             AuthView()
                         } label: {
-                            Text(Localized.ContentView.signInAndWriteAComment)
+                            Text(StringCollection.ContentView.signInAndWriteAComment.localized)
                                 .font(.SFOMSmallFont.bold())
                         }
                         HStack{ Spacer() }
@@ -286,7 +278,7 @@ struct ContentView: View {
                     HStack(spacing: 0) {
                         Text(authorUser.nickname.strip)
                             .font(.SFOMSmallFont.bold())
-                        Text(Localized.ETC.userSuffix)
+                        Text(StringCollection.ETC.userSuffix.localized)
                             .font(.SFOMSmallFont)
                     }
                     .foregroundColor(.black)
@@ -325,7 +317,7 @@ struct ContentView: View {
                                         Group {
                                             Text("\(resource.likeCount)")
                                                 .padding(.trailing,4)
-                                            Text("\(resource.downloadCount)\(Localized.ETC.count)")
+                                            Text("\(resource.downloadCount)\(StringCollection.ETC.count.localized)")
                                         }
                                         .font(.SFOMExtraSmallFont)
                                         .foregroundColor(Color(.lightGray))

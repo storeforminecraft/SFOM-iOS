@@ -16,6 +16,10 @@ final class SignInViewModel: ObservableObject {
     @Published var result: Bool? = nil
     private var cancellable = Set<AnyCancellable>()
     
+    deinit{
+        cancellable.removeAll()
+    }
+    
     func signIn(){
         result = nil
         authUseCase
@@ -38,9 +42,9 @@ struct SignInView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            SFOMHeader(title: Localized.SignInView.signInTitle,
-                       mainTitle: Localized.SignInView.signInMainTitle,
-                       subTitle: Localized.SignInView.signInSubTitle)
+            SFOMHeader(title: StringCollection.SignInView.signInTitle.localized,
+                       mainTitle: StringCollection.SignInView.signInMainTitle.localized,
+                       subTitle: StringCollection.SignInView.signInSubTitle.localized)
             
             SFOMBackButton {
                 dismiss()
@@ -50,9 +54,9 @@ struct SignInView: View {
             Spacer()
             
             VStack (alignment: .center) {
-                SFOMTextField(Localized.Auth.email,
+                SFOMTextField(StringCollection.Auth.email.localized,
                               text: $viewModel.email)
-                SFOMTextField(Localized.Auth.password,
+                SFOMTextField(StringCollection.Auth.password.localized,
                               text: $viewModel.password,
                               secure: true)
             }
@@ -60,7 +64,7 @@ struct SignInView: View {
             Spacer()
             
             VStack (alignment: .center, spacing: 20) {
-                SFOMButton(Localized.SignInView.signInButonTitle) {
+                SFOMButton(StringCollection.SignInView.signInButonTitle.localized) {
                     isLoading = true
                     viewModel.signIn()
                 }
@@ -68,7 +72,7 @@ struct SignInView: View {
                 Button {
                     isPresentPasswordReset = true
                 } label: {
-                    Text(Localized.SignInView.resetEmailButtonTitle)
+                    Text(StringCollection.SignInView.resetEmailButtonTitle.localized)
                         .foregroundColor(Color(.lightGray))
                 }
             }
@@ -94,8 +98,8 @@ struct SignInView: View {
                duration: 2,
                tapToDismiss: true) {
             AlertToast(type: .error(.red),
-                       title: Localized.SignInView.signIn,
-                       subTitle: Localized.SignInView.signInFail)
+                       title: StringCollection.SignInView.signIn.localized,
+                       subTitle: StringCollection.SignInView.signInFail.localized)
         }
         .sheet(isPresented: $isPresentPasswordReset) {
             PasswordResetView().frame(height: 300)

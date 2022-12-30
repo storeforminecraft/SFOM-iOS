@@ -73,10 +73,10 @@ struct MenuView: View {
                 }
             }
         }
-            .confirmationDialog(Localized.ETC.signOutMessage,
+            .confirmationDialog(StringCollection.ETC.signOutMessage.localized,
                                 isPresented: $isSignOut,
                                 titleVisibility: .visible) {
-            Button(Localized.MoreMenu.signOut, role: .destructive) {
+            Button(StringCollection.MoreMenu.signOut.localized, role: .destructive) {
                 isLoading = true
                 viewModel.signOut()
             }
@@ -85,15 +85,15 @@ struct MenuView: View {
                    duration: 2,
                    tapToDismiss: true) {
                 AlertToast(type: .complete(.accentColor),
-                           title: Localized.MoreMenu.signOut,
-                           subTitle: Localized.MoreMenu.signOutSuccess)
+                           title: StringCollection.MoreMenu.signOut.localized,
+                           subTitle: StringCollection.MoreMenu.signOutSuccess.localized)
         }
             .toast(isPresenting: $signOutFail,
                    duration: 2,
                    tapToDismiss: true) {
             AlertToast(type: .error(.red),
-                       title: Localized.MoreMenu.signOut,
-                       subTitle: Localized.MoreMenu.signOutFail)
+                       title: StringCollection.MoreMenu.signOut.localized,
+                       subTitle: StringCollection.MoreMenu.signOutFail.localized)
         }
     }
 
@@ -117,7 +117,7 @@ struct MenuView: View {
                 NavigationLink {
                     AuthView()
                 } label: {
-                    Text(Localized.signIn)
+                    Text(StringCollection.Default.signIn.localized)
                         .font(.SFOMSmallFont)
                         .padding(.vertical, 5)
                         .padding(.horizontal, 10)

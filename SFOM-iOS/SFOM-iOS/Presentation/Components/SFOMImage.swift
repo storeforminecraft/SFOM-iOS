@@ -22,6 +22,7 @@ public struct SFOMImage: View {
         KFImage.url(imageUrl)
             .placeholder{
                 Assets.Default.profileBackground.image
+                    .resizable()
             }
             .fade(duration: 0.25)
             .resizable()

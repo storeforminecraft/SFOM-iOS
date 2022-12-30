@@ -20,7 +20,7 @@ struct Notice {
     let translatedTitles: [String: String]
     
     var localizedTitle: String {
-        let location = Localized.location
+        let location = StringCollection.location
         if basedLanguage == location {
             return title
         } else {
@@ -29,7 +29,7 @@ struct Notice {
     }
     
     var localizedContent: String {
-        let location = Localized.location
+        let location = StringCollection.location
         if basedLanguage == location {
             return content
         } else {
