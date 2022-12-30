@@ -11,26 +11,31 @@ struct MainView: View {
     @State private var selectedIndex: Int = 0
     
     var body: some View {
-        NavigationView {
-            TabView(selection: $selectedIndex) {
-                Group {
+        TabView(selection: $selectedIndex) {
+            Group {
+                NavigationView {
                     HomeView()
-                        .tag(0)
-                    SearchView()
-                        .tag(1)
-                    MenuView()
-                        .tag(2)
+                        .overlay(alignment: .bottom) { tabBar }
                 }
-                .navigationBarTitle("")
-                .navigationBarHidden(true)
-                .navigationBarBackButtonHidden(true)
+                .tag(0)
+                NavigationView {
+                    SearchView()
+                        .overlay(alignment: .bottom) { tabBar }
+                }
+                .tag(1)
+                NavigationView {
+                    MenuView()
+                        .overlay(alignment: .bottom) { tabBar }
+                }
+                .tag(2)
             }
-            .overlay(alignment: .bottom) {
-                tabBar
-            }
-            
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
-        
+        .onAppear {
+            UITabBar.appearance().isHidden = true
+        }
     }
     
     var tabBar: some View {
@@ -59,18 +64,5 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-    }
-}
-
-struct SFOMActivityIndicator: View {
-    @Binding var state: Bool
-    
-    var body: some View {
-        HStack {
-            
-        }
-        VStack {
-            HStack{ Spacer() }
-        }
     }
 }

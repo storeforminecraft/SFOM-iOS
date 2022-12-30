@@ -97,8 +97,8 @@ struct SignInView: View {
                        title: Localized.SignInView.signIn,
                        subTitle: Localized.SignInView.signInFail)
         }
-        .halfModal(isPresented: $isPresentPasswordReset) {
-            PasswordResetView()
+        .sheet(isPresented: $isPresentPasswordReset) {
+            PasswordResetView().frame(height: 300)
         }
         
     }

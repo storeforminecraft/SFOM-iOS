@@ -83,14 +83,15 @@ struct ContentView: View {
             VStack(alignment: .leading) {
                 imagesTabView
                     .aspectRatio(1.7, contentMode: .fit)
+                    .padding(.bottom, 10)
                 resourceContent
                     .padding(.horizontal, 20)
                 Divider()
-                    .padding(.vertical,5)
+                    .padding(.vertical,10)
                 comments
                     .padding(.horizontal, 20)
                 Divider()
-                    .padding(.vertical,5)
+                    .padding(.vertical,10)
                 userResources
             }
             .padding(.bottom, 100)
@@ -106,9 +107,10 @@ struct ContentView: View {
         .onAppear {
             viewModel.bind(resource: resource)
         }
-        .halfModal(isPresented: $showDownload) {
+        .sheet(isPresented: $showDownload) {
             DownloadView()
         }
+        
         // .confirmationDialog(Localized.ETC.signOutMessage,
         //                     isPresented: $isReports,
         //                     titleVisibility: .visible) {

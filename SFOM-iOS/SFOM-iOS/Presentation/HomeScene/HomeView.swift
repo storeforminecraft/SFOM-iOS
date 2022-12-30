@@ -99,23 +99,24 @@ struct HomeView: View {
                 .font(.SFOMTitleFont)
             Spacer()
             
-            NavigationLink {
-                PushView()
-            } label: {
-                ZStack (alignment: .topTrailing) {
-                    Assets.MoreMenu.push.image
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .padding(.horizontal, 2)
-                        .padding(.vertical, 4)
-                    if viewModel.pushNotification {
-                        Circle()
-                            .foregroundColor(.red)
-                            .frame(width: 12, height: 12)
-                            .overlay(Circle().stroke(.white, lineWidth: 4))
-                    }
-                }
-            }
+            // TODO: - NextUpdate: Push
+            // NavigationLink {
+            //     PushView()
+            // } label: {
+            //     ZStack (alignment: .topTrailing) {
+            //         Assets.MoreMenu.push.image
+            //             .resizable()
+            //             .frame(width: 20, height: 20)
+            //             .padding(.horizontal, 2)
+            //             .padding(.vertical, 4)
+            //         if viewModel.pushNotification {
+            //             Circle()
+            //                 .foregroundColor(.red)
+            //                 .frame(width: 12, height: 12)
+            //                 .overlay(Circle().stroke(.white, lineWidth: 4))
+            //         }
+            //     }
+            // }
             
             if let uid = viewModel.currentUser?.uid {
                 NavigationLink {
