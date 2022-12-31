@@ -83,13 +83,13 @@ public struct UserInfoLink<Destination>: View where Destination: View {
     
     public var body: some View {
         NavigationLink {
-            ProfileView(uid: user.uid)
+            destination()
         } label: {
-            HStack (spacing: 10) {
+            HStack (alignment: .center, spacing: 10) {
                 SFOMImage(placeholder: Assets.Default.profile.image,
                           urlString: user.thumbnail)
-                .frame(width: 40, height: 40)
-                .cornerRadius(40)
+                .frame(width: 30, height: 30)
+                .cornerRadius(30)
                 
                 VStack(alignment: .leading, spacing: 0){
                     Text(user.nickname.strip)
@@ -101,6 +101,41 @@ public struct UserInfoLink<Destination>: View where Destination: View {
                         .foregroundColor(Color(.darkGray))
                         .lineLimit(1)
                     HStack { Spacer() }
+                }
+            }
+        }
+    }
+}
+
+
+public struct ResourceLinearLink<Destination>: View where Destination: View {
+    private let userResource: UserResource
+    @ViewBuilder private let destination:() -> Destination
+    init(userResource: UserResource, destination: @escaping () -> Destination) {
+        self.userResource = userResource
+        self.destination = destination
+    }
+    
+    public var body: some View {
+        NavigationLink {
+            destination()
+        } label: {
+            HStack (alignment: .center, spacing: 10) {
+                SFOMImage(placeholder: Assets.Default.profileBackground.image,
+                          urlString: userResource.resource.thumbnail)
+                .frame(width: 40, height: 40)
+                .cornerRadius(8)
+                VStack(alignment: .leading){
+                    Text(userResource.resource.localizedName.strip)
+                        .font(.SFOMSmallFont)
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(1)
+                    Text(userResource.user.summary)
+                        .font(.SFOMExtraSmallFont)
+                        .foregroundColor(Color(.lightGray))
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(1)
                 }
             }
         }

@@ -48,7 +48,7 @@ extension DefaultContentUseCase: ContentUseCase {
                 guard let self = self else { return Fail(error: UseCaseError.noObjectError).eraseToAnyPublisher() }
                 return comments.publisher
                     .flatMap(self.fetchUserWithComment(comment:))
-                    .map{ result -> UserComment? in UserComment(user:result.0, comment: result.1) }
+                    .map{ userComment -> UserComment? in userComment }
                     .replaceError(with: nil)
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
@@ -64,9 +64,9 @@ extension DefaultContentUseCase: ContentUseCase {
 }
 
 private extension DefaultContentUseCase {
-    func fetchUserWithComment(comment: Comment) -> AnyPublisher<(User, Comment), Error> {
+    func fetchUserWithComment(comment: Comment) -> AnyPublisher<UserComment, Error> {
         return userRepository.fetchUser(uid: comment.authorUid)
-            .map{ (user: $0, comment: comment) }
+            .map{ UserComment(user: $0, comment: comment) }
             .eraseToAnyPublisher()
     }
 }

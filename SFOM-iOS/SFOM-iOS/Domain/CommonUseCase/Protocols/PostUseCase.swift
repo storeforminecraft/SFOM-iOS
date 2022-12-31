@@ -9,7 +9,7 @@ import Combine
 
 protocol PostUseCase {
     func fetchUser(uid: String) ->  AnyPublisher<User, Error>
-    func fetchResources(resourceIds: [String]) -> AnyPublisher<[Resource], Error>
+    func fetchResources(resourceIds: [String]) -> AnyPublisher<[UserResource], Error>
 }
 
 

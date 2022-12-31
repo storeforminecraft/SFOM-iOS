@@ -12,26 +12,12 @@ struct MainView: View {
     
     var body: some View {
         TabView(selection: $selectedIndex) {
-            Group {
-                NavigationView {
-                    HomeView()
-                        .overlay(alignment: .bottom) { tabBar }
-                }
-                .tag(0)
-                NavigationView {
-                    SearchView()
-                        .overlay(alignment: .bottom) { tabBar }
-                }
-                .tag(1)
-                NavigationView {
-                    MenuView()
-                        .overlay(alignment: .bottom) { tabBar }
-                }
-                .tag(2)
-            }
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+            tabViewBuilder{ HomeView() }
+            .tag(0)
+            tabViewBuilder{ SearchView() }
+            .tag(1)
+            tabViewBuilder{ MenuView() }
+            .tag(2)
         }
         .onAppear {
             UITabBar.appearance().isHidden = true
@@ -58,6 +44,17 @@ struct MainView: View {
         .cornerRadius(24)
         .shadow(color: .init(white: 0, opacity: 0.12), radius: 8, x: 0, y: 2)
         .padding(.bottom, 20)
+    }
+    
+    @ViewBuilder
+    func tabViewBuilder<Destination: View>(destination: @escaping () -> Destination) -> some View {
+        NavigationView {
+            destination()
+                .overlay(alignment: .bottom) { tabBar }
+                .navigationBarTitle("")
+                .navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
+        }
     }
 }
 

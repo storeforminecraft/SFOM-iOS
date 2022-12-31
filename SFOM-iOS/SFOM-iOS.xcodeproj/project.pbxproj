@@ -17,6 +17,7 @@
 		A523F69C295AD80900858D8A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A523F69B295AD80900858D8A /* Kingfisher */; };
 		A5240EB0295F1D6E000443C3 /* PostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5240EAF295F1D6E000443C3 /* PostUseCase.swift */; };
 		A5240EB2295F1DF3000443C3 /* DefaultPostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5240EB1295F1DF3000443C3 /* DefaultPostUseCase.swift */; };
+		A5240EB4295F2885000443C3 /* UserResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5240EB3295F2885000443C3 /* UserResource.swift */; };
 		A525E7B2293B38C3006246FA /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A525E7B1293B38C3006246FA /* SearchData.swift */; };
 		A525E7B6293B4F2D006246FA /* SFOMItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = A525E7B5293B4F2D006246FA /* SFOMItems.swift */; };
 		A52A2DA3294EF8DD00D6F617 /* DefaultCommentEventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52A2DA2294EF8DD00D6F617 /* DefaultCommentEventRepository.swift */; };
@@ -34,6 +35,7 @@
 		A52F6CF329597CC900D9DB10 /* NoticeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CF229597CC900D9DB10 /* NoticeUseCase.swift */; };
 		A52F6CF529597CEF00D9DB10 /* DefaultNoticeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CF429597CEF00D9DB10 /* DefaultNoticeUseCase.swift */; };
 		A5332E4B295AC41200EF7378 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5332E4A295AC41200EF7378 /* UIViewController+.swift */; };
+		A539981B296000D90086FF0C /* CompactLPLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539981A296000D90086FF0C /* CompactLPLinkView.swift */; };
 		A53CF331294E1F440026A655 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CF330294E1F440026A655 /* SearchRepository.swift */; };
 		A53CF333294E23D90026A655 /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CF332294E23D90026A655 /* RepositoryError.swift */; };
 		A53CF335294E2C310026A655 /* DefaultUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CF334294E2C310026A655 /* DefaultUserRepository.swift */; };
@@ -147,6 +149,7 @@
 		A521040E295B50F700061149 /* CornerRadiusRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusRectangle.swift; sourceTree = "<group>"; };
 		A5240EAF295F1D6E000443C3 /* PostUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUseCase.swift; sourceTree = "<group>"; };
 		A5240EB1295F1DF3000443C3 /* DefaultPostUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostUseCase.swift; sourceTree = "<group>"; };
+		A5240EB3295F2885000443C3 /* UserResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResource.swift; sourceTree = "<group>"; };
 		A525E7B1293B38C3006246FA /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 		A525E7B5293B4F2D006246FA /* SFOMItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMItems.swift; sourceTree = "<group>"; };
 		A52A2DA2294EF8DD00D6F617 /* DefaultCommentEventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCommentEventRepository.swift; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 		A52F6CF229597CC900D9DB10 /* NoticeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeUseCase.swift; sourceTree = "<group>"; };
 		A52F6CF429597CEF00D9DB10 /* DefaultNoticeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNoticeUseCase.swift; sourceTree = "<group>"; };
 		A5332E4A295AC41200EF7378 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		A539981A296000D90086FF0C /* CompactLPLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLPLinkView.swift; sourceTree = "<group>"; };
 		A53CF330294E1F440026A655 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
 		A53CF332294E23D90026A655 /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
 		A53CF334294E2C310026A655 /* DefaultUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserRepository.swift; sourceTree = "<group>"; };
@@ -305,6 +309,14 @@
 				A5240EAF295F1D6E000443C3 /* PostUseCase.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A5399819295FFF510086FF0C /* CompactLPView */ = {
+			isa = PBXGroup;
+			children = (
+				A539981A296000D90086FF0C /* CompactLPLinkView.swift */,
+			);
+			path = CompactLPView;
 			sourceTree = "<group>";
 		};
 		A54776DF29517A0900E14D0F /* PostScene */ = {
@@ -524,10 +536,11 @@
 				A59132DB293B886C00D28CCA /* Resource.swift */,
 				A5971556292E7D310081E71A /* Post.swift */,
 				A5EEA02029388F240000AAB5 /* User.swift */,
-				A52A2DA6294EF94F00D6F617 /* CommentEvent.swift */,
-				A52A2DAA294EFA5000D6F617 /* Comment.swift */,
-				A5842F3B294F6508007F3116 /* RecentComment.swift */,
 				A52F6CEA29597A0800D9DB10 /* Notice.swift */,
+				A5240EB3295F2885000443C3 /* UserResource.swift */,
+				A52A2DAA294EFA5000D6F617 /* Comment.swift */,
+				A52A2DA6294EF94F00D6F617 /* CommentEvent.swift */,
+				A5842F3B294F6508007F3116 /* RecentComment.swift */,
 				A5923B2C2959948000A31194 /* UserComment.swift */,
 			);
 			path = Entities;
@@ -735,6 +748,7 @@
 		A5CFA7242927424D004C1F2B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A5399819295FFF510086FF0C /* CompactLPView */,
 				A50DE8FB292B32D800E1FD60 /* SFOMButtons.swift */,
 				A5EF977F294DBBE200CD35FF /* SFOMNavigationLinks.swift */,
 				A54776DB29516DB000E14D0F /* SFOMTexts.swift */,
@@ -932,6 +946,7 @@
 				A597154D292E6DFC0081E71A /* Font+.swift in Sources */,
 				A5502F132943909B00A4D18A /* typealias.swift in Sources */,
 				A5502F072943883300A4D18A /* NetworkService.swift in Sources */,
+				A539981B296000D90086FF0C /* CompactLPLinkView.swift in Sources */,
 				A52A2DA3294EF8DD00D6F617 /* DefaultCommentEventRepository.swift in Sources */,
 				A597154F292E6F220081E71A /* Localized.swift in Sources */,
 				A57669AD294609FD00D44CD2 /* SFOMIndicator.swift in Sources */,
@@ -998,6 +1013,7 @@
 				A5E38FE8295446E3005C4A4C /* DatabaseUser.swift in Sources */,
 				A5CFA72929274846004C1F2B /* Assets.swift in Sources */,
 				A5240EB0295F1D6E000443C3 /* PostUseCase.swift in Sources */,
+				A5240EB4295F2885000443C3 /* UserResource.swift in Sources */,
 				A5842F34294F4CFD007F3116 /* ResourceRepository.swift in Sources */,
 				A583F2FB2945009800CC4585 /* Auth+Publisher.swift in Sources */,
 				A52A2DAF294F00A400D6F617 /* AppContainer.swift in Sources */,
