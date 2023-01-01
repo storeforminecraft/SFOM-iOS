@@ -66,11 +66,15 @@ extension DefaultAuthRepository: AuthRepository {
         guard let uid = networkAuthService.uid.value else { return Fail(error: RepositoryError.noObjectError).eraseToAnyPublisher() }
         let endPoint = HTTPEndPoints.shared.withdrawal(uid: uid)
         return httpService.dataTaskPublisher(endPoint: endPoint)
+            .map{ _ in true }
+            .eraseToAnyPublisher()
     }
     
     func resetPassword(email: String) -> AnyPublisher<Bool, Error> {
         let endPoint = HTTPEndPoints.shared.resetPassword(email: email)
         return httpService.dataTaskPublisher(endPoint: endPoint)
+            .map{ _ in true }
+            .eraseToAnyPublisher()
     }
 }
 

@@ -127,7 +127,7 @@ struct ContentView: View {
     
     @ViewBuilder
     private var imagesTabView: some View {
-        if resource.category != .skin {
+        if !resource.isSkin {
             TabView{
                 ForEach(resource.imageUrls, id: \.hashValue) { image in
                     SFOMImage(placeholder: Assets.Default.profileBackground.image,
@@ -136,8 +136,9 @@ struct ContentView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
         } else {
-            SFOMSkinImage(placeholder: Assets.Default.profileBackground.image,
-                          urlString: resource.thumbnail)
+            SFOMImage(placeholder: Assets.Default.profileBackground.image,
+                          urlString: resource.thumbnail,
+                      searchSkin: false)
         }
     }
     
@@ -195,7 +196,7 @@ struct ContentView: View {
                         NavigationLink{
                             AuthView()
                         } label: {
-                            Text(StringCollection.ContentView.signInAndWriteAComment.localized)
+                            Text(StringCollection.ContentView.leaveACommentAfterSignIn.localized)
                                 .font(.SFOMSmallFont.bold())
                         }
                         HStack{ Spacer() }
@@ -276,7 +277,8 @@ struct ContentView: View {
                         } label: {
                             VStack(alignment: .leading) {
                                 SFOMImage(placeholder: Assets.Default.profileBackground.image,
-                                          urlString: resource.thumbnail)
+                                          urlString: resource.thumbnail,
+                                          searchSkin: resource.isSkin ? true : nil)
                                 .aspectRatio(1.7, contentMode: .fit)
                                 .padding(.bottom,4)
                                 VStack(alignment: .leading, spacing: 5) {

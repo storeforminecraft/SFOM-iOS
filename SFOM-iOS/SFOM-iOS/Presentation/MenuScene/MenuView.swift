@@ -154,7 +154,9 @@ struct MenuView: View {
     }
 
     var contentStudioItem: some View {
-        VStack { }
+        VStack {
+            ContentStudio()
+        }
     }
 }
 

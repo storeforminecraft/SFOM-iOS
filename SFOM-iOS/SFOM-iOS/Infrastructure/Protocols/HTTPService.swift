@@ -34,6 +34,7 @@ extension HTTPServiceError: LocalizedError {
 }
 
 protocol HTTPService {
-    func dataTaskPublisher(endPoint: HTTPEndPoint) -> AnyPublisher<Bool, Error>
+    func dataTaskPublisher(endPoint: HTTPEndPoint) -> AnyPublisher<Data, Error>
     func dataTaskPublisher<D: Decodable>(endPoint: HTTPEndPoint, type: D.Type) -> AnyPublisher<D, Error>
+    // func downloadTaskPublisher
 }

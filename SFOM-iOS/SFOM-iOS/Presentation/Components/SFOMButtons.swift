@@ -97,7 +97,10 @@ public struct SFOMBackButton: View {
         } label: {
             HStack {
                 Assets.SystemIcon.backCircle.image
+                    .resizable()
+                    .frame(width: 18, height: 18)
                 Text(StringCollection.Default.back.localized)
+                    .font(.SFOMSmallFont)
             }
         }
     }

@@ -80,9 +80,8 @@ public struct SFOMSearchItemView<Destination>: View where Destination: View {
             destination()
         } label: {
             VStack (alignment: .leading) {
-                SFOMSkinImage(placeholder: Assets.Default.profileBackground.image,
-                              urlString: resource.thumbnail,
-                              search: true)
+                SFOMImage(placeholder: Assets.Default.profileBackground.image,
+                          urlString: resource.thumbnail, searchSkin: resource.isSkin ? true : nil)
                 .frame(width: width, height: imageHeight)
                 .scaledToFill()
                 .cornerRadius(16)
@@ -131,7 +130,8 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
             VStack(alignment: .leading){
                 HStack{
                     SFOMImage(placeholder: Assets.Default.profileBackground.image,
-                              urlString: recentComment.resource.thumbnail)
+                              urlString: recentComment.resource.thumbnail,
+                              searchSkin: recentComment.resource.isSkin ? false : nil)
                     .frame(width: 30, height: 30)
                     .cornerRadius(15)
                     

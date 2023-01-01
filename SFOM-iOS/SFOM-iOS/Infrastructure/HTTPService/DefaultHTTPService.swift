@@ -13,14 +13,14 @@ final class DefaultHTTPService {
     private let session = URLSession.shared
 }
 
-extension DefaultHTTPService : HTTPService{
-    func dataTaskPublisher(endPoint: HTTPEndPoint) -> AnyPublisher<Bool, Error> {
+extension DefaultHTTPService : HTTPService {
+    func dataTaskPublisher(endPoint: HTTPEndPoint) -> AnyPublisher<Data, Error> {
         guard let urlRequest = urlRequest(endPoint: endPoint) else {
             return Fail(error: HTTPServiceError.wrongURLRequestError).eraseToAnyPublisher()
         }
         return session.dataTaskPublisher(for: urlRequest)
             .mapError{ $0 }
-            .flatMap{ (data, response) -> AnyPublisher<Bool, Error> in
+            .flatMap{ (data, response) -> AnyPublisher<Data, Error> in
                 do {
                     guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
                         throw HTTPServiceError.badResponseError
@@ -31,7 +31,7 @@ extension DefaultHTTPService : HTTPService{
                     case (500): throw HTTPServiceError.internalServerError
                     default: throw HTTPServiceError.statusCodeError
                     }
-                    return Just<Bool>(true)
+                    return Just<Data>(data)
                         .setFailureType(to: Error.self)
                         .eraseToAnyPublisher()
                 } catch {
@@ -69,6 +69,36 @@ extension DefaultHTTPService : HTTPService{
             }
             .eraseToAnyPublisher()
     }
+    
+    func downloadTaskPublisher(endPopint: HTTPEndPoint) {
+        // guard let urlRequest = urlRequest(endPoint: endPoint) else {
+        //     return Fail(error: HTTPServiceError.wrongURLRequestError).eraseToAnyPublisher()
+        // }
+        
+        // session.downloadTaskPublisher(with: url)
+        
+        // let downloadTask = URLSession.shared.downloadTask(with: url) {
+        //     urlOrNil, responseOrNil, errorOrNil in
+        //     // check for and handle errors:
+        //     // * errorOrNil should be nil
+        //     // * responseOrNil should be an HTTPURLResponse with statusCode in 200..<299
+        //
+        //     guard let fileURL = urlOrNil else { return }
+        //     do {
+        //         let documentsURL = try
+        //             FileManager.default.url(for: .documentDirectory,
+        //                                     in: .userDomainMask,
+        //                                     appropriateFor: nil,
+        //                                     create: false)
+        //         let savedURL = documentsURL.appendingPathComponent(fileURL.lastPathComponent)
+        //         try FileManager.default.moveItem(at: fileURL, to: savedURL)
+        //     } catch {
+        //         print ("file error: \(error)")
+        //     }
+        // }
+        // downloadTask.resume()
+    }
+    
 }
 
 private extension DefaultHTTPService {

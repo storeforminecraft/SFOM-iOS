@@ -65,6 +65,10 @@ struct Resource {
         }
     }
     
+    var isSkin: Bool {
+        return category == .skin
+    }
+    
     init(authorUid: String,
          basedLanguage: String,
          category: SFOMCategory,

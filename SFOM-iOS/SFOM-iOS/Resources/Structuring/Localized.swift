@@ -100,7 +100,7 @@ public struct StringCollection {
     enum ContentView: String, EnumeratedLocalized {
         case comments
         case more
-        case signInAndWriteAComment
+        case leaveACommentAfterSignIn
         case download
         
         case pleaseLeaveAComments

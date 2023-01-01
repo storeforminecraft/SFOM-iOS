@@ -7,14 +7,34 @@
 
 import SwiftUI
 
+final class DownloadListViewModel: ViewModel {
+    
+    func fetchDonwloadList() {}
+}
+
 struct DownloadListView: View {
+    @ObservedObject private var viewModel: DownloadViewModel = DownloadViewModel()
+    @State var showDownloadFileShare: Bool = false
+    @State var show: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            List{
+                Button {
+                    showDownloadFileShare.toggle()
+                } label: {
+                    Text("aaa")
+                }
+            }
+        }
+        .sheet(isPresented: $showDownloadFileShare) {
+            DownloadSheet(items: ["dddddddddd"])
+        }
     }
 }
 
-struct DownloadListView_Previews: PreviewProvider {
-    static var previews: some View {
-        DownloadListView()
-    }
-}
+// struct DownloadListView_Previews: PreviewProvider {
+//     static var previews: some View {
+//         // DownloadListView()
+//     }
+// }

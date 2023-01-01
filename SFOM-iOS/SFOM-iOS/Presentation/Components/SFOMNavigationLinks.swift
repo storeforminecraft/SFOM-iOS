@@ -122,7 +122,8 @@ public struct ResourceLinearLink<Destination>: View where Destination: View {
         } label: {
             HStack (alignment: .center, spacing: 10) {
                 SFOMImage(placeholder: Assets.Default.profileBackground.image,
-                          urlString: userResource.resource.thumbnail)
+                          urlString: userResource.resource.thumbnail,
+                          searchSkin: userResource.resource.isSkin ? true  : nil)
                 .frame(width: 40, height: 40)
                 .cornerRadius(8)
                 VStack(alignment: .leading){
