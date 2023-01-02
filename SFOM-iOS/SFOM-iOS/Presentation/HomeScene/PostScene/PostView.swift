@@ -123,10 +123,11 @@ struct PostView: View {
                         .font(.SFOMExtraSmallFont)
                         .foregroundColor(Color(.darkGray))
                 case "link":
-                    CompactLPView(urlString: content.data)
+                    // CompactLPView(urlString: content.data)
                     // Text("link: \(content.data)")
                     //     .font(.body)
-                    
+                    // FIXME: - Link 
+                    VStack { }
                 case "resource-linear-banner":
                     if let userResource = viewModel.userResources[content.data] {
                         ResourceLinearLink(userResource: userResource) {

@@ -15,7 +15,7 @@ struct User {
     let profileBackgroundImage: String?
     
     var summary: String {
-        return "\(nickname) (\(uid.prefix(6)))"
+        return "\(nickname.strip) (\(uid.prefix(6)))"
     }
     
     var thumbnail: String? {

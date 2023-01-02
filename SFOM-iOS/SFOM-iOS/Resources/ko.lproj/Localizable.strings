@@ -73,7 +73,7 @@
 
 "Email" = "이메일 주소";
 "Password" = "비밀번호";
-"PasswordConfrim" = "비밀번호 확인";
+"PasswordConfirm" = "비밀번호 확인";
 "UserName" = "사용자 이름";
 
 "SearchTitle" = "검색";

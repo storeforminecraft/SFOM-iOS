@@ -138,6 +138,7 @@ public struct ResourceLinearLink<Destination>: View where Destination: View {
                         .multilineTextAlignment(.leading)
                         .lineLimit(1)
                 }
+                Spacer()
             }
         }
     }
