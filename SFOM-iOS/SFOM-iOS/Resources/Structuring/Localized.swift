@@ -13,7 +13,7 @@ protocol EnumeratedLocalized {
 
 extension EnumeratedLocalized {
     var localized: String {
-        return self.rawValue.capitalizingFirstLetter().localizedString
+        NSLocalizedString(self.rawValue.capitalizingFirstLetter(), comment: "")
     }
 }
 

@@ -75,8 +75,8 @@ final class ContentViewModel: ViewModel {
 struct ContentView: View {
     @StateObject private var viewModel: ContentViewModel = ContentViewModel()
     let resource: Resource
-    @State private var showDownload: Bool = false
     
+    @State private var showDownload: Bool = false
     @State var showReports: Bool = false
 
     

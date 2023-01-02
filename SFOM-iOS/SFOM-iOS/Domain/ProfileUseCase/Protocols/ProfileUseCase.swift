@@ -11,4 +11,5 @@ protocol ProfileUseCase {
     func fetchCurrentUserWithUidChanges() -> AnyPublisher<User?, Error>
     func fetchUser(uid: String) ->  AnyPublisher<User, Error>
     func fetchUserResources(uid: String) -> AnyPublisher<[Resource], Error>
+    func fetchUserFavoriteResources(uid: String) -> AnyPublisher<[Resource], Error>
 }

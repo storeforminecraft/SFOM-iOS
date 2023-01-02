@@ -84,6 +84,28 @@ public struct SFOMTabButton: View {
     }
 }
 
+public struct SFOMSelectedButton: View {
+    @Binding var selectedIndex: Int
+    private let content: String
+    private let tag: Int
+    
+    public init<S>(_ content: S, tag: Int, selectedIndex: Binding<Int>) where S: StringProtocol {
+        self.content = content as? String ?? ""
+        self.tag = tag
+        self._selectedIndex = selectedIndex
+    }
+    
+    public var body: some View {
+        Button {
+            selectedIndex = tag
+        } label: {
+            Text(content)
+                .font(.SFOMSmallFont)
+                .foregroundColor(selectedIndex == tag ? .accentColor : Color(.darkGray))
+        }
+    }
+}
+
 public struct SFOMBackButton: View {
     private var backAction: () -> Void
     

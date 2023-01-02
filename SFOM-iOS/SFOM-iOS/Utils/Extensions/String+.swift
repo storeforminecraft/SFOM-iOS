@@ -9,7 +9,7 @@ import Foundation
 
 extension String {
     var localizedString: String {
-        return NSLocalizedString(self, comment: "")
+        return String(format: NSLocalizedString(self, comment: ""))
     }
     
     var lastWord: String? {

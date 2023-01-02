@@ -23,6 +23,11 @@ struct User {
         return "\(URLStringManager.urlString(key: .imageURL))/\(profileImage)"
     }
     
+    var background: String? {
+        guard let profileBackgroundImage = profileBackgroundImage else { return nil }
+        return "\(URLStringManager.urlString(key: .imageURL))/\(profileBackgroundImage)"
+    }
+    
     init(uid: String, nickname: String, introduction: String?, profileImage: String?, profileBackgroundImage: String?) {
         self.uid = uid
         self.nickname = nickname
