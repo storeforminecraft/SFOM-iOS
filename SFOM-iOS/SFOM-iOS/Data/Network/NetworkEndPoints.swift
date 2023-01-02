@@ -75,7 +75,7 @@ extension NetworkEndPoints {
         return FirestoreEndPoint(collection: collection, document: document)
     }
     
-    func favoritesResource(doc: String) -> FirestoreEndPoint? {
+    func favoritesResource(doc: String? = nil) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.favorites_resource
         let document = checkDocument(doc: doc, docIsUser: false)
         return FirestoreEndPoint(collection: collection, document: document)

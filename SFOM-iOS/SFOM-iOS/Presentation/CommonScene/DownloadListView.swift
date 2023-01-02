@@ -19,13 +19,7 @@ struct DownloadListView: View {
     
     var body: some View {
         VStack {
-            List{
-                Button {
-                    showDownloadFileShare.toggle()
-                } label: {
-                    Text("aaa")
-                }
-            }
+           
         }
         .sheet(isPresented: $showDownloadFileShare) {
             DownloadSheet(items: ["dddddddddd"])

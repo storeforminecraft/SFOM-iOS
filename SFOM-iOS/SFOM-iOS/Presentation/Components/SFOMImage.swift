@@ -12,6 +12,7 @@ import Kingfisher
 public struct SFOMImage: View {
     private var placeholder: Image
     private var imageUrl: URL? = nil
+    private var searchSkin: Bool? = nil
     private var translate: (UIImage) -> (UIImage?) = { $0 }
     
     init(placeholder: Image, urlString: String?, searchSkin: Bool? = nil){
@@ -21,30 +22,35 @@ public struct SFOMImage: View {
         }
         if let searchSkin = searchSkin {
             self.translate = searchSkin ? getUIImageToSearchImage(uiImage:) : getUIImageToSkinImage(uiImage:)
-            self.imageUrl?.cacheKey = "\(urlString)\(searchSkin)"
-            self.imageUrl?.cacheKey
         }
     }
     
     public var body: some View {
-        KFImage(imageUrl)
-            .targetCache(.default)
-            .setProcessor(SFOMImageProcessor(translate))
-            .placeholder{
-                placeholder
+            if searchSkin != nil {
+                KFImage(imageUrl, overrideCacheKey: "\(imageUrl?.absoluteString ?? ""):\(String(describing: searchSkin))")
+                    .setProcessor(SFOMImageProcessor(translate))
+                    .placeholder{
+                        placeholder
+                            .resizable()
+                    }
+                    .fade(duration: 0.25)
+                    .resizable()
+                
+            } else  {
+                KFImage(imageUrl)
+                    .placeholder{
+                        placeholder
+                            .resizable()
+                    }
+                    .fade(duration: 0.25)
                     .resizable()
             }
-            .fade(duration: 0.25)
-            .resizable()
     }
 }
 
 extension SFOMImage {
     func getUIImageToSkinImage(uiImage: UIImage) -> UIImage? {
-        guard let cgImage = uiImage.cgImage else {
-            print("cgImage")
-            return nil
-        }
+        guard let cgImage = uiImage.cgImage else { return nil }
         let secondLayerEnable = cgImage.height >= 64
         
         let head = UIImage(cgImage: cgImage.cropping(to: CGRect(x: 8, y: 8, width: 8, height: 8))!)
@@ -104,12 +110,8 @@ extension SFOMImage {
         let newSize = CGSize(width: UIScreen.main.bounds.width, height: 250 + safeAreaTop)
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
         newImage.draw(in: CGRect(x: newSize.width / 2 - 50, y: (newSize.height - safeAreaTop) / 2 + safeAreaTop - 100, width: 100, height: 200))
-        guard let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext() else {
-            print("newImage")
-            return nil
-        }
+        guard let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
         UIGraphicsEndImageContext()
-        print("reach")
         return newImage
     }
     

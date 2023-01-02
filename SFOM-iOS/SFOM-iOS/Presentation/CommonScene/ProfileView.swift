@@ -7,8 +7,13 @@
 
 import SwiftUI
 
+final class ProfileViewModel: ViewModel {
+
+}
+
 struct ProfileView: View {
     let uid: String
+    @ObservedObject private var viewModel: ProfileViewModel = ProfileViewModel()
 
     var body: some View {
         Text("\(uid) profile View")

@@ -9,12 +9,12 @@ import Combine
 
 final class DefaultPostUseCase {
     private let userRepository: UserRepository
-    private let resourceReposiotry: ResourceRepository
+    private let resourceRepository: ResourceRepository
     
     init(userRepository: UserRepository,
-         resourceReposiotry: ResourceRepository) {
+         resourceRepository: ResourceRepository) {
         self.userRepository = userRepository
-        self.resourceReposiotry = resourceReposiotry
+        self.resourceRepository = resourceRepository
     }
 }
 
@@ -28,7 +28,7 @@ extension DefaultPostUseCase: PostUseCase {
             .publisher
             .flatMap{ [weak self] resourceId -> AnyPublisher<UserResource?, Error> in
                 guard let self = self else { return Fail(error: UseCaseError.noObjectError).eraseToAnyPublisher() }
-                return self.resourceReposiotry.fetchResource(resourceId: resourceId)
+                return self.resourceRepository.fetchResource(resourceId: resourceId)
                     .flatMap(self.fetchUserWithResource(resource:))
                     .map{ userResource -> UserResource? in userResource }
                     .replaceError(with: nil)

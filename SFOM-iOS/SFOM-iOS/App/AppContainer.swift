@@ -43,5 +43,9 @@ final class AppContainer {
                                                     userRepository: userRepository)
     lazy var noticeUseCase = DefaultNoticeUseCase(noticeRepository: noticeRepository)
     lazy var postUseCase = DefaultPostUseCase(userRepository: userRepository,
-                                              resourceReposiotry: resourceRepository)
+                                              resourceRepository: resourceRepository)
+    
+    lazy var profileUseCaes = DefaultProfileUseCase(authRepository: authRepository,
+                                                    userRepository: userRepository,
+                                                    resourceRepository: resourceRepository)
 }
