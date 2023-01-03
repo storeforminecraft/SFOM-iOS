@@ -249,6 +249,7 @@ struct ContentView: View {
         }
     }
     
+    
     private var userResources: some View {
         VStack(spacing: 10){
             VStack(alignment:.leading, spacing: 5){
@@ -271,47 +272,13 @@ struct ContentView: View {
             .padding(.horizontal, 20)
             
             ScrollView(.horizontal, showsIndicators: false) {
+               
                 HStack(alignment: .top, spacing: 10){
                     ForEach(viewModel.authorUserResources, id: \.id) { resource in
-                        NavigationLink {
+                        SFOMResourceItemView(resource: resource) {
                             ContentView(resource: resource)
-                        } label: {
-                            VStack(alignment: .leading) {
-                                SFOMImage(placeholder: Assets.Default.profileBackground.image,
-                                          urlString: resource.thumbnail,
-                                          searchSkin: resource.isSkin ? true : nil)
-                                .aspectRatio(1.7, contentMode: .fit)
-                                .padding(.bottom,4)
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text(resource.localizedName)
-                                        .font(.SFOMExtraSmallFont)
-                                        .foregroundColor(.black)
-                                        .lineLimit(2)
-                                        .multilineTextAlignment(.leading)
-                                        .frame(height: 30, alignment: .top)
-                                    HStack (spacing: 0) {
-                                        Image(systemName: "hand.thumbsup.fill")
-                                            .font(.SFOMExtraSmallFont)
-                                            .foregroundColor(.accentColor)
-                                        Group {
-                                            Text("\(resource.likeCount)")
-                                                .padding(.trailing,4)
-                                            Text("\(resource.downloadCount)\(StringCollection.ETC.count.localized)")
-                                        }
-                                        .font(.SFOMExtraSmallFont)
-                                        .foregroundColor(Color(.lightGray))
-                                        .lineLimit(1)
-                                    }
-                                }
-                                .padding(.horizontal, 6)
-                                .padding(.bottom,8)
-                            }
-                            .frame(width: 150)
-                            .background(Color(.white))
-                            .cornerRadius(12)
-                            .shadow(color: Color(.lightGray),
-                                    radius: 2, x: 0, y: 2)
                         }
+                        .frame(width: 150)
                     }
                 }
                 .padding(.horizontal, 20)

@@ -131,7 +131,7 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
                 HStack{
                     SFOMImage(placeholder: Assets.Default.profileBackground.image,
                               urlString: recentComment.resource.thumbnail,
-                              searchSkin: recentComment.resource.isSkin ? false : nil)
+                              searchSkin: recentComment.resource.isSkin ? true : nil)
                     .frame(width: 30, height: 30)
                     .cornerRadius(15)
                     
@@ -276,7 +276,6 @@ public struct SFOMResourceItemView<Destination>: View where Destination: View{
     }
     
     public var body: some View {
-        //FIXME: - Width fix
         NavigationLink {
             destination()
         } label: {
