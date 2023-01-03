@@ -56,9 +56,10 @@ struct MenuView: View {
         VStack(alignment: .leading) {
             profile
             List {
-                Section {
-                    contentStudioItem
-                }
+                // FIXME: - ContentStudio
+                // Section {
+                //     contentStudioItem
+                // }
                 settingListSection
             }
                 .padding(.vertical, 10)

@@ -12,11 +12,14 @@ final class SearchViewModel: ObservableObject {
     private let searchUseCase: SearchUseCase = AppContainer.shared.searchUseCase
     
     @Published var searchText: String = ""
-    @Published var searchResources: [Resource] = []
+    @Published var searchResourcesRecently: [Resource] = []
+    @Published var searchResourcesLikes: [Resource] = []
+    @Published var searchResourcesDownloads: [Resource] = []
     @Published var isSearching: Bool = false
     @Published var page: Int = 1
     @Published var tapReturn: Void = ()
-    @Published var isLoading: Bool = false
+    @Published var isLoadingRecently: Bool = false
+    @Published var selected: Int = 0
     
     var cancellable = Set<AnyCancellable>()
     
@@ -26,26 +29,37 @@ final class SearchViewModel: ObservableObject {
     
     func bind() {
         $isSearching.sink { receive in
-            if receive { self.search() }
+            if receive { self.searchRecently() }
             else { self.reset() }
         }.store(in: &cancellable)
     }
     
     func reset() {
-        self.searchResources = []
+        self.searchResourcesRecently = []
+        self.searchResourcesLikes = []
+        self.searchResourcesDownloads = []
         self.page = 1
     }
     
-    func search() {
-        isLoading = true
+    func searchRecently() {
+        isLoadingRecently = true
         searchUseCase.search(keyword: searchText, page: page, tag: nil, sort: nil)
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
-            .sink { searchResources in
-                self.searchResources = searchResources
-                self.isLoading = false
+            .sink { searchResourcesRecently in
+                self.searchResourcesRecently = searchResourcesRecently
+                    .sorted(by: { $0.createdTimestamp > $1.createdTimestamp })
+                self.isLoadingRecently = false
             }
             .store(in: &cancellable)
+    }
+    
+    func searchLikes() {
+        
+    }
+    
+    func searchDownloads() {
+        
     }
 }
 
@@ -82,36 +96,57 @@ struct SearchView: View {
             }
             .padding(.horizontal)
             .padding(.top)
-            SFOMIndicator(state: $viewModel.isLoading)
-                .frame(height: 2)
-                .padding(.vertical,4)
-            searchContents
+            if viewModel.isSearching {
+                HStack {
+                    SFOMSelectedButton("RECENTLY",
+                                       tag: 0,
+                                       selectedIndex: $viewModel.selected)
+                    SFOMSelectedButton("LIKES",
+                                       tag: 1,
+                                       selectedIndex: $viewModel.selected)
+                    SFOMSelectedButton("DOWNLOADS",
+                                       tag: 2,
+                                       selectedIndex: $viewModel.selected)
+                }
+                .padding()
+            }
+            
+            TabView (selection: $viewModel.selected){
+                searchResourcesRecently
+                    .tag(0)
+                searchResourcesRecently
+                    .tag(1)
+                searchResourcesRecently
+                    .tag(2)
+            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
             HStack { Spacer() }
         }
         .ignoresSafeArea(edges: .bottom)
     }
     
-    var searchContents: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: spacing) {
-                ForEach(viewModel.searchResources,
-                        id: \.id) { resource in
-                    VStack {
-                        SFOMResourceItemView(resource: resource){
-                            ContentView(resource: resource)
+    var searchResourcesRecently: some View {
+        VStack(spacing: 0){
+            SFOMIndicator(state: $viewModel.isLoadingRecently)
+                .frame(height: 2)
+                .padding(.vertical,4)
+            
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: spacing) {
+                    ForEach(viewModel.searchResourcesRecently,
+                            id: \.id) { resource in
+                        VStack {
+                            SFOMResourceItemView(resource: resource){
+                                ContentView(resource: resource)
+                            }
+                            .frame(width: cellWidth)
+                            HStack { Spacer() }
                         }
-                        .frame(width: cellWidth)
-                        
-                        // SFOMSearchItemView(resource: resource,
-                        //                    width: cellWidth) {
-                        //     ContentView(resource: resource)
-                        // }
-                        HStack { Spacer() }
                     }
                 }
+                .padding(.horizontal, 5)
+                .padding(.bottom, 10)
             }
-            .padding(.horizontal, 5)
-            .padding(.bottom, 10)
         }
     }
 }
