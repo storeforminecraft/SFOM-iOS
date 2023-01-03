@@ -7,8 +7,8 @@
 
 import SwiftUI
 
+// FIXME: DownloadList
 final class DownloadListViewModel: ViewModel {
-    
     func fetchDonwloadList() {}
 }
 

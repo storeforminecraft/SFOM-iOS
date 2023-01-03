@@ -55,24 +55,6 @@ public struct SFOMNavigationLink<Destination>: View where Destination: View {
     }
 }
 
-public struct SFOMCategoryTapView<Destination>: View where Destination: View {
-    private let category: SFOMCategory
-    @ViewBuilder private let destination:() -> Destination
-    
-    init(category: SFOMCategory, destination: @escaping () -> Destination) {
-        self.category = category
-        self.destination = destination
-    }
-    
-    public var body: some View {
-        NavigationLink {
-            destination()
-        } label: {
-            VStack{ }
-        }
-    }
-}
-
 public struct UserInfoLink<Destination>: View where Destination: View {
     private let user: User
     @ViewBuilder private let destination:() -> Destination
@@ -139,6 +121,48 @@ public struct ResourceLinearLink<Destination>: View where Destination: View {
                         .lineLimit(1)
                 }
                 Spacer()
+            }
+        }
+    }
+}
+
+public struct SFOMCategoryTapView<Destination>: View where Destination: View {
+    let category: SFOMCategory
+    let frame: CGFloat
+    let imagePadding: CGFloat
+    @ViewBuilder var destination:() -> Destination
+    
+    init(category: SFOMCategory,
+         frame: CGFloat = 18,
+         imagePadding: CGFloat? = nil,
+         @ViewBuilder destination: @escaping () -> Destination) {
+        self.category = category
+        self.frame = frame
+        if let imagePadding = imagePadding {
+            self.imagePadding = imagePadding
+        } else {
+            self.imagePadding = frame / 10 * 8
+        }
+        self.destination = destination
+    }
+    
+    public var body: some View {
+        NavigationLink {
+            destination()
+        } label: {
+            VStack (alignment: .center) {
+                category.assets.image
+                    .resizable()
+                    .frame(width: self.frame, height: self.frame)
+                    .aspectRatio(contentMode: .fit)
+                    .colorMultiply(category.assets.tintColor)
+                    .padding(imagePadding)
+                    .background(category.assets.backgroundColor)
+                    .cornerRadius(self.frame + imagePadding)
+                
+                Text(category.localized)
+                    .font(.caption)
+                    .foregroundColor(.gray)
             }
         }
     }

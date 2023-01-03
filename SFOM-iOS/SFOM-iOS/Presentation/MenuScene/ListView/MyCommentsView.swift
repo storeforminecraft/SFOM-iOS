@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - Get User's Comments & sort
 struct MyCommentsView: View {
     var body: some View {
         Text("MyCommentsView")

@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 
+// FIXME: - ProfileView: When Scroll, hide backgroundImage (GeometryReader)
 final class ProfileViewModel: ViewModel {
     let profileUseCase: ProfileUseCase = AppContainer.shared.profileUseCase
     
@@ -142,7 +143,7 @@ struct ProfileView: View {
         }
     }
     
-    var selectedCase: some View {
+    private var selectedCase: some View {
         HStack{
             Spacer()
             SFOMSelectedButton("upload",
@@ -155,16 +156,16 @@ struct ProfileView: View {
         }
     }
     
-    var contents: some View {
-        ScrollView {
+    private var contents: some View {
+        ScrollView(showsIndicators: false) {
             LazyVGrid(columns: columns, spacing: spacing) {
                 ForEach(viewModel.contents,
                         id: \.id) { resource in
                     VStack {
-                        SFOMSearchItemView(resource: resource,
-                                           width: cellWidth) {
+                        SFOMResourceItemView(resource: resource) {
                             ContentView(resource: resource)
                         }
+                        .frame(width: cellWidth)
                         HStack { Spacer() }
                     }
                 }

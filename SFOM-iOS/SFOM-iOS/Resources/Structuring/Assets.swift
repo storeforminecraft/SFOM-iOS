@@ -84,7 +84,7 @@ struct Assets {
         case backCircle = "arrow.backward.circle"
         case back = "chevron.backward"
 
-        var image: Image { Image(systemName: self.rawValue).resizable() }
+        var image: Image { Image(systemName: self.rawValue) }
     }
 
 }

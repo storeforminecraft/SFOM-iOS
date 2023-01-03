@@ -34,6 +34,7 @@
 		A52F6CF329597CC900D9DB10 /* NoticeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CF229597CC900D9DB10 /* NoticeUseCase.swift */; };
 		A52F6CF529597CEF00D9DB10 /* DefaultNoticeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F6CF429597CEF00D9DB10 /* DefaultNoticeUseCase.swift */; };
 		A5332E4B295AC41200EF7378 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5332E4A295AC41200EF7378 /* UIViewController+.swift */; };
+		A535CC292963E4500013A4E8 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A535CC282963E4500013A4E8 /* ActivityIndicator.swift */; };
 		A539981B296000D90086FF0C /* CompactLPLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539981A296000D90086FF0C /* CompactLPLinkView.swift */; };
 		A539981D296001A30086FF0C /* CompactLPViewError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539981C296001A30086FF0C /* CompactLPViewError.swift */; };
 		A539981F296001C10086FF0C /* LPMetadataProvider+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539981E296001C10086FF0C /* LPMetadataProvider+.swift */; };
@@ -176,6 +177,7 @@
 		A52F6CF229597CC900D9DB10 /* NoticeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeUseCase.swift; sourceTree = "<group>"; };
 		A52F6CF429597CEF00D9DB10 /* DefaultNoticeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNoticeUseCase.swift; sourceTree = "<group>"; };
 		A5332E4A295AC41200EF7378 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		A535CC282963E4500013A4E8 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		A539981A296000D90086FF0C /* CompactLPLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLPLinkView.swift; sourceTree = "<group>"; };
 		A539981C296001A30086FF0C /* CompactLPViewError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLPViewError.swift; sourceTree = "<group>"; };
 		A539981E296001C10086FF0C /* LPMetadataProvider+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LPMetadataProvider+.swift"; sourceTree = "<group>"; };
@@ -804,6 +806,7 @@
 				A57669AC294609FD00D44CD2 /* SFOMIndicator.swift */,
 				A57669AE29461BF900D44CD2 /* SFOMImage.swift */,
 				A5399822296019D50086FF0C /* DownloadSheet.swift */,
+				A535CC282963E4500013A4E8 /* ActivityIndicator.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1087,6 +1090,7 @@
 				A50DE8FE292B379100E1FD60 /* HomeView.swift in Sources */,
 				A54776F029518C5C00E14D0F /* SettingsView.swift in Sources */,
 				A53CF333294E23D90026A655 /* RepositoryError.swift in Sources */,
+				A535CC292963E4500013A4E8 /* ActivityIndicator.swift in Sources */,
 				A5E38FDF29543FC1005C4A4C /* DatabaseEndPoints.swift in Sources */,
 				A5A94C97295B3A4600A114E0 /* DownloadListView.swift in Sources */,
 				A5EEA026293892DF0000AAB5 /* ProfileView.swift in Sources */,
@@ -1276,7 +1280,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thymedesk.SFOMAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1313,7 +1317,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thymedesk.SFOMAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

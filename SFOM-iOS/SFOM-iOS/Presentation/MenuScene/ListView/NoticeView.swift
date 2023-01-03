@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 
+// MARK: - NoticeView
 final class NoticeViewModel: ViewModel {
     private let noticeUseCase: NoticeUseCase = AppContainer.shared.noticeUseCase
     

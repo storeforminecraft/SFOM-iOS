@@ -15,6 +15,7 @@ final class HomeViewModel: ViewModel {
     @Published var posts: [Post] = []
     @Published var recentComments: [RecentComment] = []
     @Published var pushNotification: Bool = false
+    @Published var isCommentLoading: Bool = false
     
     private var cancellable = Set<AnyCancellable>()
     
@@ -41,10 +42,16 @@ final class HomeViewModel: ViewModel {
             .assign(to: \.posts, on: self)
             .store(in: &cancellable)
         
+        isCommentLoading = true
         homeUseCase.fetchRecentComment()
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
-            .assign(to: \.recentComments, on: self)
+            .sink(receiveValue: { recentComments in
+                withAnimation {
+                    self.isCommentLoading = false
+                }
+                self.recentComments = recentComments
+            })
             .store(in: &cancellable)
     }
 }
@@ -83,7 +90,7 @@ struct HomeView: View {
                 HStack {
                     Spacer()
                     ForEach(0..<4) { column in
-                        SFOMCategoryTapTempView(category: categorySequence[4 * row + column]) {
+                        SFOMCategoryTapView(category: categorySequence[4 * row + column]) {
                             if categorySequence[4 * row + column] != .downloads {
                                 CategoryView(category: categorySequence[4 * row + column])
                             } else {
@@ -162,10 +169,14 @@ struct HomeView: View {
     
     private var recentsCommentsView: some View {
         VStack {
+            if viewModel.isCommentLoading {
+                ActivityIndicator(isAnimating: $viewModel.isCommentLoading, style: .medium)
+            } else {
             ForEach(viewModel.recentComments,id: \.comment.id) { recentComment in
                 SFOMRecentCommentItemView(recentComment: recentComment) {
                     ContentView(resource: recentComment.resource)
                 }
+            }
             }
         }
     }
@@ -178,48 +189,6 @@ struct HomeView_Previews: PreviewProvider {
                 .environment(\.locale, .init(identifier: "ko"))
             HomeView()
                 .environment(\.locale, .init(identifier: "en"))
-        }
-    }
-}
-
-public struct SFOMCategoryTapTempView<Destination>: View where Destination: View {
-    let category: SFOMCategory
-    let frame: CGFloat
-    let imagePadding: CGFloat
-    @ViewBuilder var destination:() -> Destination
-    
-    init(category: SFOMCategory,
-         frame: CGFloat = 18,
-         imagePadding: CGFloat? = nil,
-         @ViewBuilder destination: @escaping () -> Destination) {
-        self.category = category
-        self.frame = frame
-        if let imagePadding = imagePadding {
-            self.imagePadding = imagePadding
-        } else {
-            self.imagePadding = frame / 10 * 8
-        }
-        self.destination = destination
-    }
-    
-    public var body: some View {
-        NavigationLink {
-            destination()
-        } label: {
-            VStack (alignment: .center) {
-                category.assets.image
-                    .resizable()
-                    .frame(width: self.frame, height: self.frame)
-                    .aspectRatio(contentMode: .fit)
-                    .colorMultiply(category.assets.tintColor)
-                    .padding(imagePadding)
-                    .background(category.assets.backgroundColor)
-                    .cornerRadius(self.frame + imagePadding)
-                
-                Text(category.localized)
-                    .font(.caption)
-                    .foregroundColor(.gray)
-            }
         }
     }
 }

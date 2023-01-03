@@ -16,7 +16,7 @@ final class DefaultSearchUseCase {
 }
 
 extension DefaultSearchUseCase: SearchUseCase {
-    func search(keyword: String, page: Int, tag: String?, sort: String?) -> AnyPublisher<[SearchData], Error> {
+    func search(keyword: String, page: Int, tag: String?, sort: String?) -> AnyPublisher<[Resource], Error> {
         return searchRepository.search(keyword: keyword, page: page, tag: tag, sort: sort)
     }
 }

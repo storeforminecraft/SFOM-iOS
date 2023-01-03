@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 
+// FIXME: showing Comments & Comment's Reply
 final class CommentsViewModel: ViewModel {
     private let contentUseCase: ContentUseCase = AppContainer.shared.contentUseCase
     private var resource: Resource? = nil

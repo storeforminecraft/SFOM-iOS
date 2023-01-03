@@ -62,7 +62,7 @@ extension HTTPEndPoint {
         
         var prevPath: String {
             switch self {
-            case .resource: return "v1/Resource"
+            case .resource: return "v1/Resources"
             case .userProfile: return "v1/profiles"
             case .increaseResourcesDownloads: return "v1/resources"
             case .resetPassword: return "v1/users"

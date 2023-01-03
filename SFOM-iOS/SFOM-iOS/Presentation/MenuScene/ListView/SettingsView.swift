@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// FIXME: - Opensource
 struct SettingsView: View {
     var body: some View {
         Text("SettingsView")

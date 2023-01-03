@@ -16,12 +16,12 @@ final class SFOMIndicatorConfigure {
     let backgroundColor: Color
     let cornerRadius: CGFloat
     
-    init(  width: CGFloat,
-           height: CGFloat,
-           color: Color = .accentColor,
-           lastColor: Color = .clear,
-           backgroundColor: Color = .clear,
-           cornerRadius: CGFloat = 0) {
+    init( width: CGFloat,
+          height: CGFloat,
+          color: Color = .accentColor,
+          lastColor: Color = .clear,
+          backgroundColor: Color = .clear,
+          cornerRadius: CGFloat = 0) {
         self.width = width
         self.height = height
         self.color = color
@@ -47,7 +47,7 @@ struct SFOMIndicator: View {
     }
     
     init(state: Binding<Bool>) {
-        self.configure = SFOMIndicatorConfigure(width: 400, height: 10)
+        self.configure = SFOMIndicatorConfigure(width: 400, height: 4)
         self._state = state
     }
     

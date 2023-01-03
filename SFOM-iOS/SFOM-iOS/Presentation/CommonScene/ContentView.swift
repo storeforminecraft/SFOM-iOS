@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 
+// FIXME: - update comment
 final class ContentViewModel: ViewModel {
     private let contentUseCase: ContentUseCase = AppContainer.shared.contentUseCase
     

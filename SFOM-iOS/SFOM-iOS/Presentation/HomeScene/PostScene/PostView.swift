@@ -24,9 +24,6 @@ final class PostViewModel: ViewModel {
         postUseCase
             .fetchUser(uid: post.authorUid)
             .map{ user -> User? in user }
-            .handleEvents(receiveCompletion: { e in
-                print(post.title, e)
-            })
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { user in
@@ -102,7 +99,6 @@ struct PostView: View {
     private var authorInfo: some View {
         VStack(alignment: .leading){
             if let user = viewModel.authorUser {
-                Text("aaaaaa")
                 UserInfoLink(user: user) {
                     ProfileView(uid: user.uid)
                 }

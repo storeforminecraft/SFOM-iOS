@@ -9,38 +9,49 @@ import SwiftUI
 import Combine
 
 final class SearchViewModel: ObservableObject {
+    private let searchUseCase: SearchUseCase = AppContainer.shared.searchUseCase
+    
     @Published var searchText: String = ""
-    @Published var searchData: [Resource] = []
+    @Published var searchResources: [Resource] = []
     @Published var isSearching: Bool = false
-    @Published var pagenation: Int = 1
+    @Published var page: Int = 1
     @Published var tapReturn: Void = ()
-
-    var cancelBag = Set<AnyCancellable>()
-
+    @Published var isLoading: Bool = false
+    
+    var cancellable = Set<AnyCancellable>()
+    
     init() {
         self.bind()
     }
-
+    
     func bind() {
         $isSearching.sink { receive in
             if receive { self.search() }
             else { self.reset() }
-        }.store(in: &cancelBag)
+        }.store(in: &cancellable)
     }
-
+    
     func reset() {
-        self.searchData = []
-        self.pagenation = 1
+        self.searchResources = []
+        self.page = 1
     }
-
+    
     func search() {
-
+        isLoading = true
+        searchUseCase.search(keyword: searchText, page: page, tag: nil, sort: nil)
+            .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
+            .sink { searchResources in
+                self.searchResources = searchResources
+                self.isLoading = false
+            }
+            .store(in: &cancellable)
     }
 }
 
 struct SearchView: View {
     @ObservedObject private var viewModel: SearchViewModel = SearchViewModel()
-
+    
     let screenWidth: CGFloat = UIScreen.main.bounds.width
     let GridItemCount = 2
     let spacing: CGFloat = 10
@@ -53,65 +64,55 @@ struct SearchView: View {
             GridItem(.fixed(cellWidth))
         }
     }
-
+    
     @State private var scrollViewHeight: CGFloat = .zero
-
+    
     var body: some View {
-        VStack (alignment: .leading) {
+        VStack (alignment: .leading, spacing: 0) {
             VStack (alignment: .leading) {
                 if !viewModel.isSearching {
                     Text(StringCollection.SearchView.searchTitle.localized)
                         .font(.SFOMTitleFont)
                 }
-
+                
                 SFOMSearchBar(placeholder: StringCollection.SearchView.searchPlaceholder.localized,
                               text: $viewModel.searchText,
                               state: $viewModel.isSearching)
-
+                
             }
-                .padding()
+            .padding(.horizontal)
+            .padding(.top)
+            SFOMIndicator(state: $viewModel.isLoading)
+                .frame(height: 2)
+                .padding(.vertical,4)
             searchContents
             HStack { Spacer() }
         }
-            .ignoresSafeArea(edges: .bottom)
+        .ignoresSafeArea(edges: .bottom)
     }
-
+    
     var searchContents: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: spacing) {
-                ForEach(viewModel.searchData,
-                        id: \.id) { data in
+                ForEach(viewModel.searchResources,
+                        id: \.id) { resource in
                     VStack {
-                        SFOMSearchItemView(resource: data,
-                                           width: cellWidth) {
-                            ContentView(resource: data)
+                        SFOMResourceItemView(resource: resource){
+                            ContentView(resource: resource)
                         }
+                        .frame(width: cellWidth)
+                        
+                        // SFOMSearchItemView(resource: resource,
+                        //                    width: cellWidth) {
+                        //     ContentView(resource: resource)
+                        // }
                         HStack { Spacer() }
                     }
                 }
             }
-                .padding(.horizontal, 5)
-                .padding(.bottom, 10)
-            GeometryReader { proxy in
-                let offset = proxy.frame(in: .named("scroll")).minY
-                Color.clear
-                    .preference(key: ScrollViewOffsetPreferenceKey.self, value: offset)
-            }
+            .padding(.horizontal, 5)
+            .padding(.bottom, 10)
         }
-            .background(GeometryReader { proxy in
-            Color.clear.onAppear { scrollViewHeight = proxy.size.height }
-        })
-            .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { value in
-
-        }
-    }
-}
-
-struct ScrollViewOffsetPreferenceKey: PreferenceKey {
-    typealias Value = CGFloat
-    static var defaultValue = CGFloat.zero
-    static func reduce(value: inout Value, nextValue: () -> Value) {
-        value += nextValue()
     }
 }
 

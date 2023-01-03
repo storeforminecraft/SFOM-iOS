@@ -265,3 +265,55 @@ public struct SFOMNoticeItemView: View {
         }
     }
 }
+
+public struct SFOMResourceItemView<Destination>: View where Destination: View{
+    private let resource: Resource
+    @ViewBuilder private var destination: () -> Destination
+    
+    init(resource: Resource, @ViewBuilder destination: @escaping () -> Destination) {
+        self.resource = resource
+        self.destination = destination
+    }
+    
+    public var body: some View {
+        //FIXME: - Width fix
+        NavigationLink {
+            destination()
+        } label: {
+            VStack(alignment: .leading) {
+                SFOMImage(placeholder: Assets.Default.profileBackground.image,
+                          urlString: resource.thumbnail,
+                          searchSkin: resource.isSkin ? true : nil)
+                .aspectRatio(1.7, contentMode: .fit)
+                .padding(.bottom,4)
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(resource.localizedName)
+                        .font(.SFOMExtraSmallFont)
+                        .foregroundColor(.black)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.leading)
+                        .frame(height: 30, alignment: .top)
+                    HStack (spacing: 0) {
+                        Image(systemName: "hand.thumbsup.fill")
+                            .font(.SFOMExtraSmallFont)
+                            .foregroundColor(.accentColor)
+                        Group {
+                            Text("\(resource.likeCount)")
+                                .padding(.trailing,4)
+                            Text("\(resource.downloadCount)\(StringCollection.ETC.count.localized)")
+                        }
+                        .font(.SFOMExtraSmallFont)
+                        .foregroundColor(Color(.lightGray))
+                        .lineLimit(1)
+                    }
+                }
+                .padding(.horizontal, 6)
+                .padding(.bottom,8)
+            }
+            .background(Color(.white))
+            .cornerRadius(12)
+            .shadow(color: Color(.lightGray),
+                    radius: 2, x: 0, y: 2)
+        }
+    }
+}
