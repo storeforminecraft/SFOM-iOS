@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct MainView: View {
     @State private var selectedIndex: Int = 0

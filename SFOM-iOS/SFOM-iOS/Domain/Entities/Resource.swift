@@ -9,9 +9,9 @@ import Foundation
 
 struct Resource {
     let authorUid: String
-    let basedLanguage: String
+    // let basedLanguage: String
     let category: SFOMCategory
-    let chidCommentsCount: Int?
+    // let chidCommentsCount: Int?
     let createdTimestamp: Date
     let desc: String
     let downloadCount: Int
@@ -22,29 +22,31 @@ struct Resource {
     let likeCount: Int
     let name: String
     let modifiedTimestamp: Date
-    let state: String
-    let tags: [String]
-    let translatedDescs: [String: String]
-    let translatedNames: [String: String]
-    let translationSource: String
+    // let state: String
+    // let tags: [String]
+    // let translatedDescs: [String: String]
+    // let translatedNames: [String: String]
+    // let translationSource: String
     let version: Int
     
     var localizedName: String {
-        let location = StringCollection.location
-        if basedLanguage == location {
-            return name
-        } else {
-            return translatedNames[location] ?? name
-        }
+        return name
+        // let location = StringCollection.location
+        // if basedLanguage == location {
+        //     return name
+        // } else {
+        //     return translatedNames[location] ?? name
+        // }
     }
     
     var localizedDescs: String {
-        let location = StringCollection.location
-        if basedLanguage == location {
-            return desc
-        } else {
-            return  translatedDescs[location] ?? desc
-        }
+        return desc
+        // let location = StringCollection.location
+        // if basedLanguage == location {
+        //     return desc
+        // } else {
+        //     return  translatedDescs[location] ?? desc
+        // }
     }
     
     var info: String {
@@ -94,24 +96,35 @@ struct Resource {
          translationSource: String,
          version: Int) {
         self.authorUid = authorUid
-        self.basedLanguage = basedLanguage
+        // self.basedLanguage = basedLanguage
         self.category = category
-        self.chidCommentsCount = chidCommentsCount
+        // self.chidCommentsCount = chidCommentsCount
         self.createdTimestamp = createdTimestamp
-        self.desc = desc
+        // self.name = name
+        // self.desc = desc
         self.downloadCount = downloadCount
         self.fileExt = fileExt
         self.fileHash = fileHash
         self.id = id
         self.images = images
         self.likeCount = likeCount
-        self.name = name
+
         self.modifiedTimestamp = modifiedTimestamp
-        self.state = state
-        self.tags = tags
-        self.translatedDescs = translatedDescs
-        self.translatedNames = translatedNames
-        self.translationSource = translationSource
+        // self.state = state
+        // self.tags = tags
+        
+        let location = StringCollection.location
+        if basedLanguage == location {
+            self.name = name
+            self.desc = desc
+        } else {
+            self.name = translatedNames[location] ?? name
+            self.desc = translatedDescs[location] ?? desc
+        }
+        
+        // self.translatedDescs = translatedDescs
+        // self.translatedNames = translatedNames
+        // self.translationSource = translationSource
         self.version = version
     }
 }

@@ -7,30 +7,52 @@
 
 import SwiftUI
 
-// FIXME: - 
+final class CategoryViewModel: ViewModel {
+    
+}
+
 struct CategoryView: View {
+    @Environment(\.dismiss) var dismiss
     let category: SFOMCategory
-    @State var show: Bool = false
+    @State var selectedIndex: Int = 0
     
     var body: some View {
-        VStack{
-            Button {
-                show.toggle()
-            } label: {
-                Text("toggle")
+        VStack (alignment: .leading){
+            HStack(alignment: .center) {
+                SFOMSelectedButton("최신순", tag: 0, selectedIndex: $selectedIndex)
+                SFOMSelectedButton("주간", tag: 1, selectedIndex: $selectedIndex)
+                SFOMSelectedButton("월간", tag: 2, selectedIndex: $selectedIndex)
+                Spacer()
             }
-            ScrollView {
-                if show {
-                    VStack{
-                    Text("aa")
-                    Text("aa")
-                    Text("aa")
-                    Text("aa")
-                    Text("aa")
-                    Text("aa")
+            .padding()
+            Spacer()
+        }
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button{
+                    dismiss()
+                } label: {
+                    HStack(spacing: 2){
+                        Group {
+                            Image(systemName: "chevron.backward")
+                                .font(.SFOMSmallFont.bold())
+                            Text(self.category.localized)
+                                .font(.SFOMMediumFont.bold())
+                        }
+                        .foregroundColor(.black)
+                        
                     }
                 }
-            }.background(.blue)
+            }
+            
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    
+                } label: {
+                    Text("all")
+                }
+            }
         }
     }
 }

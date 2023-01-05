@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Combine
+import Kingfisher
+import AlertToast
 
 final class SearchViewModel: ObservableObject {
     private let searchUseCase: SearchUseCase = AppContainer.shared.searchUseCase
@@ -28,8 +30,6 @@ final class SearchViewModel: ObservableObject {
     @Published var isSearching: Bool = false
     @Published var tapReturn: Void = ()
     
-    @Published var selected: Int = 0
-    
     var cancellable = Set<AnyCancellable>()
     
     init() {
@@ -50,6 +50,8 @@ final class SearchViewModel: ObservableObject {
         self.searchResourcesLikeCount = []
         self.pageDownloads = 1
         self.searchResourcesDownloads = []
+        let cache = ImageCache.default
+        cache.clearMemoryCache()
     }
     
     func searchRecently() {
@@ -66,6 +68,7 @@ final class SearchViewModel: ObservableObject {
                 .sorted(by: { $0.modifiedTimestamp > $1.modifiedTimestamp }))
             self.isLoadingRecently = false
             self.pageRecently += 1
+            print(self.searchResourcesRecently.count)
         }
         .store(in: &cancellable)
     }
@@ -110,11 +113,16 @@ final class SearchViewModel: ObservableObject {
 struct SearchView: View {
     @ObservedObject private var viewModel: SearchViewModel = SearchViewModel()
     let spacing: CGFloat = 10
+    @State var selected: Int = 0
     
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
             searchBar
-            searchContents
+            if viewModel.isSearching {
+                searchContents
+            } else {
+                Spacer()
+            }
             HStack { Spacer() }
         }
         .ignoresSafeArea(edges: .bottom)
@@ -135,13 +143,13 @@ struct SearchView: View {
                 HStack(alignment: .center) {
                     SFOMSelectedButton("RECENTLY",
                                        tag: 0,
-                                       selectedIndex: $viewModel.selected)
+                                       selectedIndex: $selected)
                     SFOMSelectedButton("LIKES",
                                        tag: 1,
-                                       selectedIndex: $viewModel.selected)
+                                       selectedIndex: $selected)
                     SFOMSelectedButton("DOWNLOADS",
                                        tag: 2,
-                                       selectedIndex: $viewModel.selected)
+                                       selectedIndex: $selected)
                 }
                 .frame(height: 20)
                 .padding()
@@ -152,10 +160,10 @@ struct SearchView: View {
     }
     
     private var searchContents: some View {
-        TabView (selection: $viewModel.selected){
+        TabView (selection: $selected){
             searchResourcesRecently
                 .tag(0)
-            searchResourcesLikes
+            searchResourcesLikeCount
                 .tag(1)
             searchResourcesDownloads
                 .tag(2)
@@ -169,6 +177,7 @@ struct SearchView: View {
     
     private var searchResourcesRecently: some View {
         VStack(spacing: 0){
+            SFOMIndicator(state: $viewModel.isLoadingRecently)
             ObservingScrollView (showIndicators: true){
                 LazyVGrid(columns: [.init(.flexible()),.init(.flexible())], spacing: spacing) {
                     ForEach(viewModel.searchResourcesRecently,
@@ -187,8 +196,9 @@ struct SearchView: View {
         }
     }
     
-    private var searchResourcesLikes: some View {
+    private var searchResourcesLikeCount: some View {
         VStack(spacing: 0){
+            SFOMIndicator(state: $viewModel.isLoadingLikeCount)
             ObservingScrollView {
                 LazyVGrid(columns: [.init(.flexible()),.init(.flexible())], spacing: spacing) {
                     ForEach(viewModel.searchResourcesLikeCount,
@@ -209,6 +219,7 @@ struct SearchView: View {
     
     private var searchResourcesDownloads: some View {
         VStack(spacing: 0){
+            SFOMIndicator(state: $viewModel.isLoadingDownloads)
             ObservingScrollView {
                 LazyVGrid(columns: [.init(.flexible()),.init(.flexible())], spacing: spacing) {
                     ForEach(viewModel.searchResourcesDownloads,
