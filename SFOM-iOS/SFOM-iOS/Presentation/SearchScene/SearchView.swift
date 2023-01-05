@@ -28,7 +28,6 @@ final class SearchViewModel: ObservableObject {
     @Published var searchResourcesDownloads: [Resource] = []
     
     @Published var isSearching: Bool = false
-    @Published var tapReturn: Void = ()
     
     var cancellable = Set<AnyCancellable>()
     
@@ -68,7 +67,6 @@ final class SearchViewModel: ObservableObject {
                 .sorted(by: { $0.modifiedTimestamp > $1.modifiedTimestamp }))
             self.isLoadingRecently = false
             self.pageRecently += 1
-            print(self.searchResourcesRecently.count)
         }
         .store(in: &cancellable)
     }
@@ -171,9 +169,6 @@ struct SearchView: View {
         .tabViewStyle(.page(indexDisplayMode: .never))
         .padding(.top, -10)
     }
-    
-    @State private var offset: CGFloat = .zero
-    @State private var viewHeight: CGFloat = .zero
     
     private var searchResourcesRecently: some View {
         VStack(spacing: 0){

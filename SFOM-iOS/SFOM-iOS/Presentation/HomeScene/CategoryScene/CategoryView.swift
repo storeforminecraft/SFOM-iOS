@@ -6,52 +6,125 @@
 //
 
 import SwiftUI
+import Combine
 
 final class CategoryViewModel: ViewModel {
+    // private let categoryUseCase:
     
+    @Published var searchText: String = ""
+    
+    private var pageNewest: Int = 1
+    @Published var isLoadingNewest: Bool = false
+    @Published var searchResourcesNewest: [Resource] = []
+    
+    private var pageDaily: Int = 1
+    @Published var isLoadingDaily: Bool = false
+    @Published var searchResourcesDaily: [Resource] = []
+    
+    private var pageMonthly: Int = 1
+    @Published var isLoadingMonthly: Bool = false
+    @Published var searchResourcesMonthly: [Resource] = []
+    
+    @Published var isSearching: Bool = false
+    
+    @Published var tapReturn: Void = ()
+    
+    var cancellable = Set<AnyCancellable>()
 }
 
 struct CategoryView: View {
     @Environment(\.dismiss) var dismiss
-    let category: SFOMCategory
-    @State var selectedIndex: Int = 0
+    @ObservedObject private var viewModel: CategoryViewModel = CategoryViewModel()
+    @State var selected: Int = 0
+    
+    private let category: SFOMCategory
+    private let detailCategories: [SFOMDetailCategory]
+    @State var selectedDetailCategory: SFOMDetailCategory = .all
+    
+    init(category: SFOMCategory) {
+        self.category = category
+        let detailCategories = category.detailCategories
+        self.detailCategories = detailCategories
+        self.selectedDetailCategory = detailCategories.first ?? .all
+    }
     
     var body: some View {
-        VStack (alignment: .leading){
-            HStack(alignment: .center) {
-                SFOMSelectedButton("최신순", tag: 0, selectedIndex: $selectedIndex)
-                SFOMSelectedButton("주간", tag: 1, selectedIndex: $selectedIndex)
-                SFOMSelectedButton("월간", tag: 2, selectedIndex: $selectedIndex)
-                Spacer()
-            }
-            .padding()
-            Spacer()
+        VStack (alignment: .leading, spacing: 0){
+            selectBar
+            categoryResourcesNewest
         }
         .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button{
-                    dismiss()
-                } label: {
-                    HStack(spacing: 2){
-                        Group {
-                            Image(systemName: "chevron.backward")
-                                .font(.SFOMSmallFont.bold())
-                            Text(self.category.localized)
-                                .font(.SFOMMediumFont.bold())
+                HStack (alignment: .center, spacing: 4){
+                    Button{
+                        dismiss()
+                    } label: {
+                        HStack(spacing: 2){
+                            Group {
+                                Image(systemName: "chevron.backward")
+                                    .font(.SFOMSmallFont.bold())
+                                Text(self.category.localized)
+                                    .font(.SFOMMediumFont.bold())
+                            }
+                            .foregroundColor(.black)
                         }
-                        .foregroundColor(.black)
+                    }
+                    
+                    Button {
                         
+                    } label: {
+                        Text(selectedDetailCategory.localized.uppercased())
+                            .font(.SFOMExtraSmallFont.bold())
+                            .foregroundColor(.black)
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 6)
+                            .overlay (RoundedRectangle(cornerRadius: 6)
+                                .stroke(lineWidth: 1)
+                                .foregroundColor(Color(.lightGray).opacity(0.4)))
                     }
                 }
             }
-            
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink {
+                    // FIXME: - Search View
                 } label: {
-                    Text("all")
+                    Image(systemName: "magnifyingglass")
                 }
+            }
+        }
+    }
+    
+    private var selectBar: some View {
+        HStack(alignment: .center) {
+            SFOMSelectedButton("최신순", tag: 0, selectedIndex: $selected)
+            SFOMSelectedButton("주간", tag: 1, selectedIndex: $selected)
+            SFOMSelectedButton("월간", tag: 2, selectedIndex: $selected)
+            Spacer()
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 4)
+    }
+    
+    private var categoryContents: some View {
+        TabView (selection: $selected){
+            categoryResourcesNewest
+                .tag(0)
+            categoryResourcesNewest
+                .tag(1)
+            categoryResourcesNewest
+                .tag(2)
+            
+        }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .padding(.top, -10)
+    }
+    
+    private var categoryResourcesNewest: some View {
+        VStack(spacing: 0){
+            SFOMIndicator(state: $viewModel.isLoadingNewest)
+            ObservingScrollView (showIndicators: false){
+                
             }
         }
     }
@@ -60,57 +133,5 @@ struct CategoryView: View {
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
         CategoryView(category: .addon)
-    }
-}
-
-
-public struct SFOMCategoryItemView: View{
-    private let i: Int
-    
-    init(i: Int) {
-        self.i = i
-    }
-    
-    public var body: some View {
-        NavigationLink {
-            
-        } label: {
-            VStack(alignment: .leading) {
-                SFOMImage(placeholder: Assets.Default.profileBackground.image,
-                          urlString: nil)
-                .aspectRatio(1.7, contentMode: .fit)
-                .padding(.bottom,4)
-                .frame(height: 100)
-                
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("\(i)번째 데이터")
-                        .font(.SFOMExtraSmallFont)
-                        .foregroundColor(.black)
-                        .lineLimit(2)
-                        .multilineTextAlignment(.leading)
-                        .frame(height: 30, alignment: .top)
-                    
-                    HStack (spacing: 0) {
-                        Image(systemName: "hand.thumbsup.fill")
-                            .font(.SFOMExtraSmallFont)
-                            .foregroundColor(.accentColor)
-                        Group {
-                            Text("\(10)")
-                                .padding(.trailing,4)
-                            Text("\(20)\(StringCollection.ETC.count.localized)")
-                        }
-                        .font(.SFOMExtraSmallFont)
-                        .foregroundColor(Color(.lightGray))
-                        .lineLimit(1)
-                    }
-                }
-                .padding(.horizontal, 6)
-                .padding(.bottom,8)
-            }
-            .background(Color(.white))
-            .cornerRadius(12)
-            .shadow(color: Color(.lightGray),
-                    radius: 2, x: 0, y: 2)
-        }
     }
 }

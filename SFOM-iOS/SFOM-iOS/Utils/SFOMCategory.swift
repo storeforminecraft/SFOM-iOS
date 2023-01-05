@@ -17,7 +17,6 @@ enum SFOMCategory: String {
     case skin
     case texturepack
     case unknown
-    
 }
 
 extension SFOMCategory {
@@ -49,3 +48,19 @@ extension SFOMCategory {
         }
     }
 }
+
+extension SFOMCategory {
+    var detailCategories: [SFOMDetailCategory] {
+        switch self {
+        case .addon: return [.all]
+        case .map: return  [.all, .building, .content, .escape, .land, .pvp, .adventure]
+        case .mod: return [.all]
+        case .script: return [.all]
+        case .seed: return [.all, .mountain, .cave, .island, .plain]
+        case .skin: return [.all, .boys, .girls, .characters, .games, .animal]
+        case .texturepack: return [.all, .kind16x16, .kind32x32, .kind64x64, .kind128x128, .shaders]
+        default: return []
+        }
+    }
+}
+
