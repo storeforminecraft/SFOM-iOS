@@ -23,31 +23,40 @@
                                     <constraint firstAttribute="width" secondItem="4bS-px-JJp" secondAttribute="height" multiplier="75:80" id="ezF-Al-zbj"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_bottom" translatesAutoresizingMaskIntoConstraints="NO" id="aC9-6h-EzT">
-                                <rect key="frame" x="171.66666666666666" y="767" width="50" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="aC9-6h-EzT" secondAttribute="height" multiplier="50:21" id="0Mf-xe-vdY"/>
-                                    <constraint firstAttribute="width" constant="50" id="thZ-zJ-r0s"/>
-                                </constraints>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frT-Qv-5Rh">
+                                <rect key="frame" x="149.66666666666666" y="766.33333333333337" width="93.666666666666657" height="21.666666666666629"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thyme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScO-4I-1mQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="54.666666666666664" height="21.666666666666668"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="desk." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vee-FH-l1X">
+                                        <rect key="frame" x="54.666666666666686" y="0.0" width="39" height="21.666666666666668"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="aC9-6h-EzT" secondAttribute="bottom" constant="30" id="51e-lo-3Gc"/>
+                            <constraint firstItem="frT-Qv-5Rh" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4Lc-bh-imI"/>
                             <constraint firstItem="4bS-px-JJp" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="5fz-Fk-0JL"/>
                             <constraint firstItem="4bS-px-JJp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9Gb-J8-1f2"/>
-                            <constraint firstItem="aC9-6h-EzT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="N4r-i2-0jf"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="frT-Qv-5Rh" secondAttribute="bottom" constant="30" id="QZ4-pe-GQU"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
         </scene>
     </scenes>
     <resources>
-        <image name="launch_bottom" width="50" height="21"/>
         <image name="sfom_symbol_default" width="75" height="81"/>
     </resources>
 </document>

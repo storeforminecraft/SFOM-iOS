@@ -48,7 +48,11 @@ struct Resource {
     }
     
     var info: String {
-        return "\(createdTimestamp.ago()) ‧ \(downloadCount)\(StringCollection.ETC.count.localized)"
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let formattedNumber = numberFormatter.string(from: NSNumber(value:downloadCount)) ?? "\(downloadCount)"
+        
+        return "\(createdTimestamp.ago()) ‧ \(formattedNumber)\(StringCollection.ETC.count.localized)"
     }
     
     var thumbnail: String? {

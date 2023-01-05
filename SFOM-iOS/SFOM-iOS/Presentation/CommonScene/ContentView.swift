@@ -95,7 +95,7 @@ struct ContentView: View {
                     .padding(.horizontal, 20)
                 Divider()
                     .padding(.vertical,10)
-                comments
+                commentsList
                     .padding(.horizontal, 20)
                 Divider()
                     .padding(.vertical,10)
@@ -163,7 +163,7 @@ struct ContentView: View {
         }
     }
     
-    private var comments: some View {
+    private var commentsList: some View {
         VStack(alignment: .leading) {
             HStack {
                 Text(StringCollection.ContentView.comments.localized.capitalized)

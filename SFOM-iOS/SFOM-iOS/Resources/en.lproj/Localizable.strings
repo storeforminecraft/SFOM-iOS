@@ -111,9 +111,11 @@
 "Minutes" = "minutes";
 "Hours" = "hours";
 "Days" = "days";
+"Years" = "years";
 "AMinute" = "a minute";
 "AnHour" = "an hour";
 "ADay" = "a day";
+"AYear" = "a year";
 
 "Download" = "Download";
 "Notice" = "Notice";

@@ -1,5 +1,5 @@
 //
-//  Localized.swift
+//  StringCollection.swift
 //  SFOM-iOS
 //
 //  Created by 이전희 on 2022/11/24.
@@ -162,9 +162,11 @@ public struct StringCollection {
         case minutes
         case hours
         case days
+        case years
         case aMinute
         case anHour
         case aDay
+        case aYear
     }
     
     enum MoreMenu: String, EnumeratedLocalized {

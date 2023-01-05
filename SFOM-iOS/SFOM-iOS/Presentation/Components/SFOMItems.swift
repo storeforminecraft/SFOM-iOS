@@ -263,6 +263,7 @@ public struct SFOMNoticeItemView: View {
             .cornerRadius(12)
             .shadow(color: .init(white: 0, opacity: 0.12), radius: 8, x: 0, y: 2)
         }
+        .buttonStyle(NoAnimationButtonStyle())
     }
 }
 
@@ -285,6 +286,7 @@ public struct SFOMResourceItemView<Destination>: View where Destination: View{
                           searchSkin: resource.isSkin ? true : nil)
                 .aspectRatio(1.7, contentMode: .fit)
                 .padding(.bottom,4)
+                
                 VStack(alignment: .leading, spacing: 5) {
                     Text(resource.localizedName)
                         .font(.SFOMExtraSmallFont)

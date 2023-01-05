@@ -111,9 +111,11 @@
 "Minutes" = "분";
 "Hours" = "시간";
 "Days" = "일";
+"Years" = "년";
 "AMinute" = "1분";
 "AnHour" = "1시간";
 "ADay" = "1일";
+"AYear" = "1년";
 
 "Download" = "다운로드 내역";
 "Notice" = "공지사항";
