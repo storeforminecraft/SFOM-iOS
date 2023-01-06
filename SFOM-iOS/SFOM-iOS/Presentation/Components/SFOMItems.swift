@@ -245,7 +245,7 @@ public struct SFOMNoticeItemView: View {
                     Spacer()
                     Image(systemName: showingContent ? "chevron.up" : "chevron.down")
                 }
-                Text(notice.createdTimestamp.toString())
+                Text(notice.modifiedTimestamp.toString())
                     .foregroundColor(Color(.lightGray))
                     .font(.SFOMExtraSmallFont)
                     .multilineTextAlignment(.leading)

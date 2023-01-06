@@ -53,7 +53,7 @@ final class ContentViewModel: ViewModel {
             .sink(receiveValue: { resources in
                 self.authorUserResources = resources
                     .filter { resource.id != $0.id }
-                    .sorted { $0.createdTimestamp > $1.createdTimestamp }
+                    .sorted { $0.modifiedTimestamp > $1.modifiedTimestamp }
             })
             .store(in: &cancellable)
         
@@ -63,7 +63,7 @@ final class ContentViewModel: ViewModel {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { resourceComments in
                 self.resourceComments = resourceComments
-                    .sorted { $0.comment.createdTimestamp > $1.comment.createdTimestamp }
+                    .sorted { $0.comment.modifiedTimestamp > $1.comment.modifiedTimestamp }
             })
             .store(in: &cancellable)
     }
@@ -86,10 +86,10 @@ struct ContentView: View {
     }
     
     var body: some View {
-        ScrollView{
+        ScrollView (showsIndicators: false){
             VStack(alignment: .leading) {
                 imagesTabView
-                    .aspectRatio(1.7, contentMode: .fit)
+                    .aspectRatio(contentMode: .fit)
                     .padding(.bottom, 10)
                 resourceContent
                     .padding(.horizontal, 20)
@@ -103,6 +103,8 @@ struct ContentView: View {
             }
             .padding(.bottom, 100)
         }
+        // .gesture(magnificationGesture)
+        .gesture(MagnificationGesture())
         .ignoresSafeArea()
         .navigationBarBackButtonHidden()
         .overlay(alignment: .bottom) {

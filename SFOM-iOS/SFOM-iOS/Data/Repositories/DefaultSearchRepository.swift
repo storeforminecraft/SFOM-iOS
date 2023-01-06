@@ -19,8 +19,19 @@ final class DefaultSearchRepository {
 }
 
 extension DefaultSearchRepository: SearchRepository {
-    func search(keyword: String, page: Int, tag: String?, sort: String?) -> AnyPublisher<[Resource],Error>{
+    func search(keyword: String, page: Int, tag: String?, sort: String?) -> AnyPublisher<[Resource],Error> {
         let endPoint = HTTPEndPoints.shared.search(keyword: keyword, page: page, tag: tag, sort: sort)
+        return searchResource(endPoint: endPoint)
+    }
+    
+    func searchCategory(category: String, keyword: String, page: Int, tag: String?, sort: String?) -> AnyPublisher<[Resource],Error> {
+        let endPoint = HTTPEndPoints.shared.searchCategory(category: category, keyword: keyword, page: page, tag: tag, sort: sort)
+        return searchResource(endPoint: endPoint)
+    }
+}
+
+private extension DefaultSearchRepository {
+    func searchResource(endPoint: HTTPEndPoint) -> AnyPublisher<[Resource],Error>{
         return self.httpService.dataTaskPublisher(endPoint: endPoint, type: [SearchDataDTO].self)
             .flatMap{ [weak self] searchDataList -> AnyPublisher<[Resource], Error> in
                 guard let self = self else { return Fail(error: UseCaseError.noObjectError).eraseToAnyPublisher() }

@@ -59,6 +59,7 @@ extension HTTPEndPoint {
         case increaseResourcesDownloads
         case resetPassword
         case withdrawal
+        case resourceCategory
         
         var prevPath: String {
             switch self {
@@ -67,16 +68,15 @@ extension HTTPEndPoint {
             case .increaseResourcesDownloads: return "v1/resources"
             case .resetPassword: return "v1/users"
             case .withdrawal: return "v1/users"
+            case .resourceCategory: return "v1/resources/categories"
             }
         }
         
         var nextPath: String? {
             switch self {
-            case .resource: return nil
-            case .userProfile: return nil
             case .increaseResourcesDownloads: return "count/download"
             case .resetPassword: return  "reset_password"
-            case .withdrawal: return  nil
+            default: return nil
             }
         }
     }

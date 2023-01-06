@@ -9,4 +9,5 @@ import Combine
 
 protocol SearchRepository {
     func search(keyword: String, page: Int, tag: String?, sort: String?) -> AnyPublisher<[Resource],Error>
+    func searchCategory(category: String, keyword: String, page: Int, tag: String?, sort: String?) -> AnyPublisher<[Resource],Error> 
 }

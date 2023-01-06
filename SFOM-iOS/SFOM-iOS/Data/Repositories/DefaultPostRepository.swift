@@ -24,7 +24,7 @@ extension DefaultPostRepository: PostRepository {
         return networkService.readAllWithFilter(endPoint: endPoint,
                                                 type: PostDTO.self,
                                                 whereFields: whereFields,
-                                                order: .descending("createdTimestamp"),
+                                                order: .descending("modifiedTimestamp"),
                                                 limit: nil)
             .map { $0.compactMap { $0.toDomain() } }
             .eraseToAnyPublisher()

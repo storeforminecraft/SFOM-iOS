@@ -32,7 +32,7 @@ extension DefaultResourceRepository: ResourceRepository {
         return networkService.readAllWithFilter(endPoint: endPoint,
                                                 type: CommentDTO.self,
                                                 whereFields: [.isEqualTo("state", value: "published")],
-                                                order: .descending("createdTimestamp"),
+                                                order: .descending("modifiedTimestamp"),
                                                 limit: nil)
         .map { $0.map{ $0.toDomain() } }
         .eraseToAnyPublisher()
@@ -45,7 +45,7 @@ extension DefaultResourceRepository: ResourceRepository {
         return networkService.readAllWithFilter(endPoint: endPoint,
                                                 type: ResourceDTO.self,
                                                 whereFields: [.isEqualTo("authorUid", value: uid)],
-                                                order: .descending("createdTimestamp"),
+                                                order: .descending("modifiedTimestamp"),
                                                 limit: limit)
         .map{ $0.map{ $0.toDomain() } }
         .eraseToAnyPublisher()

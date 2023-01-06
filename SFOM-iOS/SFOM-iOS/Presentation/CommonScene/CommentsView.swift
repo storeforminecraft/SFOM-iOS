@@ -42,7 +42,7 @@ final class CommentsViewModel: ViewModel {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { resourceComments in
                 self.resourceComments = resourceComments
-                    .sorted { $0.comment.createdTimestamp > $1.comment.createdTimestamp }
+                    .sorted { $0.comment.modifiedTimestamp > $1.comment.modifiedTimestamp }
             })
             .store(in: &cancellable)
     }
