@@ -65,8 +65,8 @@ final class SearchViewModel: ObservableObject {
         .sink { searchResourcesRecently in
             self.searchResourcesRecently.append(contentsOf: searchResourcesRecently
                 .sorted(by: { $0.modifiedTimestamp > $1.modifiedTimestamp }))
-            self.isLoadingRecently = false
             self.pageRecently += 1
+            self.isLoadingRecently = false
         }
         .store(in: &cancellable)
     }
@@ -83,8 +83,8 @@ final class SearchViewModel: ObservableObject {
         .sink { searchResourcesLikeCount in
             self.searchResourcesLikeCount.append(contentsOf: searchResourcesLikeCount
                 .sorted(by: { $0.likeCount > $1.likeCount }))
-            self.isLoadingLikeCount = false
             self.pageLikeCount += 1
+            self.isLoadingLikeCount = false
         }
         .store(in: &cancellable)
     }
@@ -101,8 +101,8 @@ final class SearchViewModel: ObservableObject {
         .sink { searchResourcesDownloads in
             self.searchResourcesDownloads.append(contentsOf: searchResourcesDownloads
                 .sorted(by: { $0.downloadCount > $1.downloadCount }))
-            self.isLoadingDownloads = false
             self.pageDownloads += 1
+            self.isLoadingDownloads = false
         }
         .store(in: &cancellable)
     }

@@ -81,7 +81,7 @@ extension FirestoreEndPoint {
     }
 
     enum Ranks_mothly: String, SubCollection {
-        case rankdatas
+        case rankdatas = "resourceranks"
         var parent: MainCollection { FirestoreEndPoint.SFOMCollection.ranks_monthly }
         var path: String { self.rawValue }
     }

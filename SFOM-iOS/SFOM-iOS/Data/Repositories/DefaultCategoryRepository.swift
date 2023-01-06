@@ -18,7 +18,7 @@ final class DefaultCategoryRepository {
 
 extension DefaultCategoryRepository: CategoryRepository {
     func fetchCategory(category: String, order: SFOMOrderItem, page: Int, limit: Int) -> AnyPublisher<[Resource], Error> {
-        let start = (page - 1 > 0 ? page - 1 : 0) * limit
+        let start = (page - 1 > 0 ? page - 1 : -1) * limit
         switch order {
         case .newest:
             guard let endPoint = NetworkEndPoints.shared.resources(doc: nil) else {

@@ -37,40 +37,47 @@ final class CategoryViewModel: ViewModel {
     }
     
     func fetchNewest(){
+        if isLoadingNewest { return }
+        isLoadingNewest = true
         categoryUseCase.fetchCategory(category: category, order: .newest, page: pageNewest, limit: 20)
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
             .sink { fetchResourcesNewest in
                 self.fetchResourcesNewest.append(contentsOf: fetchResourcesNewest
                     .sorted(by: { $0.modifiedTimestamp > $1.modifiedTimestamp }))
-                self.isLoadingNewest = false
                 self.pageNewest += 1
+                self.isLoadingNewest = false
             }
             .store(in: &cancellable)
     }
     
     func fetchDaily(){
+        if isLoadingDaily { return }
+        isLoadingDaily = true
         categoryUseCase.fetchCategory(category: category, order: .daily, page: pageDaily, limit: 20)
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
             .sink { fetchResourcesDaily in
                 self.fetchResourcesDaily.append(contentsOf: fetchResourcesDaily
                     .sorted(by: { $0.modifiedTimestamp > $1.modifiedTimestamp }))
-                self.isLoadingDaily = false
                 self.pageDaily += 1
+                self.isLoadingDaily = false
             }
             .store(in: &cancellable)
     }
     
     func fetchMonthly(){
+        if isLoadingMonthly { return }
+        isLoadingMonthly = true
+        print("fetchMonthly", Date().yearToMonthString)
         categoryUseCase.fetchCategory(category: category, order: .monthly, page: pageMonthly, limit: 20)
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
             .sink { fetchResourcesMonthly in
                 self.fetchResourcesMonthly.append(contentsOf: fetchResourcesMonthly
                     .sorted(by: { $0.modifiedTimestamp > $1.modifiedTimestamp }))
-                self.isLoadingMonthly = false
                 self.pageMonthly += 1
+                self.isLoadingMonthly = false
             }
             .store(in: &cancellable)
     }
@@ -96,7 +103,7 @@ struct CategoryView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 0){
             selectBar
-            categoryResourcesNewest
+            categoryContents
         }
         .navigationBarBackButtonHidden()
         .toolbar {
@@ -135,6 +142,7 @@ struct CategoryView: View {
                     // FIXME: - Search View
                 } label: {
                     Image(systemName: "magnifyingglass")
+                        .foregroundColor(.black)
                 }
             }
         }
@@ -155,14 +163,13 @@ struct CategoryView: View {
         TabView (selection: $selected){
             categoryResourcesNewest
                 .tag(0)
-            categoryResourcesNewest
+            categoryResourcesDaily
                 .tag(1)
-            categoryResourcesNewest
+            categoryResourcesMonthly
                 .tag(2)
             
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
-        .padding(.top, -10)
     }
     
     private var categoryResourcesNewest: some View {

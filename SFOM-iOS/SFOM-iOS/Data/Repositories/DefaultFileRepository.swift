@@ -20,6 +20,6 @@ final class DefaultFileRepository {
 
 extension DefaultFileRepository {
     func download(urlString: String) {
-        // self.httpService
+
     }
 }
