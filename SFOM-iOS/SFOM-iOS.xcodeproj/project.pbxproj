@@ -39,6 +39,7 @@
 		A534EE672967F86F00066E9B /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE662967F86F00066E9B /* CategoryRepository.swift */; };
 		A534EE692967F9FE00066E9B /* DefaultCategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE682967F9FE00066E9B /* DefaultCategoryRepository.swift */; };
 		A534EE6B2968005300066E9B /* SFOMOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE6A2968005300066E9B /* SFOMOrder.swift */; };
+		A534EE6D29681D7500066E9B /* RankDataDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE6C29681D7500066E9B /* RankDataDTO+Mapping.swift */; };
 		A535CC292963E4500013A4E8 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A535CC282963E4500013A4E8 /* ActivityIndicator.swift */; };
 		A537198329668E9F003C1226 /* ObservingScrollViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537198229668E9F003C1226 /* ObservingScrollViewConfiguration.swift */; };
 		A537198729668FB4003C1226 /* ObservingPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537198629668FB4003C1226 /* ObservingPreferenceKey.swift */; };
@@ -192,6 +193,7 @@
 		A534EE662967F86F00066E9B /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
 		A534EE682967F9FE00066E9B /* DefaultCategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCategoryRepository.swift; sourceTree = "<group>"; };
 		A534EE6A2968005300066E9B /* SFOMOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMOrder.swift; sourceTree = "<group>"; };
+		A534EE6C29681D7500066E9B /* RankDataDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RankDataDTO+Mapping.swift"; sourceTree = "<group>"; };
 		A535CC282963E4500013A4E8 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		A537198229668E9F003C1226 /* ObservingScrollViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservingScrollViewConfiguration.swift; sourceTree = "<group>"; };
 		A537198629668FB4003C1226 /* ObservingPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservingPreferenceKey.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				A52A2DA8294EF9B400D6F617 /* CommentEventDTO+Mapping.swift */,
 				A52A2DAC294EFABC00D6F617 /* CommentDTO+Mapping.swift */,
 				A52F6CEC29597AE200D9DB10 /* NoticeDTO+Mapping.swift */,
+				A534EE6C29681D7500066E9B /* RankDataDTO+Mapping.swift */,
 				A58810C82962B8AA0072FEE0 /* FavoriteResourceDTO.swift */,
 			);
 			path = DataMapping;
@@ -1043,6 +1046,7 @@
 				A53CF335294E2C310026A655 /* DefaultUserRepository.swift in Sources */,
 				A5CD4571294ADDE2009F47C1 /* HTTPEndPoint.swift in Sources */,
 				A5CFA7092927322E004C1F2B /* CoreDataStorage.xcdatamodeld in Sources */,
+				A534EE6D29681D7500066E9B /* RankDataDTO+Mapping.swift in Sources */,
 				A5A783472930640E008B9A62 /* FirebaseService.swift in Sources */,
 				A54776FA295218EE00E14D0F /* ContentUseCase.swift in Sources */,
 				A5971554292E7CE90081E71A /* SignInView.swift in Sources */,

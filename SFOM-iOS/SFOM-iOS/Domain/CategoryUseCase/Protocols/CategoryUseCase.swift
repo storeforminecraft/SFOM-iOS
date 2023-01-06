@@ -8,5 +8,5 @@
 import Combine
 
 protocol CategoryUseCase {
-    
+    func fetchCategory(category: SFOMCategory, order: SFOMOrderItem, page: Int, limit: Int) -> AnyPublisher<[Resource], Error>
 }

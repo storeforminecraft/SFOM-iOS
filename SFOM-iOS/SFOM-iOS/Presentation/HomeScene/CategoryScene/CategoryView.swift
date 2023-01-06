@@ -9,27 +9,71 @@ import SwiftUI
 import Combine
 
 final class CategoryViewModel: ViewModel {
-    // private let categoryUseCase:
+    private let categoryUseCase: CategoryUseCase = AppContainer.shared.categoryUseCase
+    private var category: SFOMCategory!
     
     @Published var searchText: String = ""
     
     private var pageNewest: Int = 1
     @Published var isLoadingNewest: Bool = false
-    @Published var searchResourcesNewest: [Resource] = []
+    @Published var fetchResourcesNewest: [Resource] = []
     
     private var pageDaily: Int = 1
     @Published var isLoadingDaily: Bool = false
-    @Published var searchResourcesDaily: [Resource] = []
+    @Published var fetchResourcesDaily: [Resource] = []
     
     private var pageMonthly: Int = 1
     @Published var isLoadingMonthly: Bool = false
-    @Published var searchResourcesMonthly: [Resource] = []
-    
-    @Published var isSearching: Bool = false
-    
-    @Published var tapReturn: Void = ()
+    @Published var fetchResourcesMonthly: [Resource] = []
     
     var cancellable = Set<AnyCancellable>()
+    
+    deinit{
+        print("\(Date()) \(category.rawValue) 🍎categoryView deinit")
+    }
+    
+    func set(category: SFOMCategory) {
+        self.category = category
+    }
+    
+    func fetchNewest(){
+        categoryUseCase.fetchCategory(category: category, order: .newest, page: pageNewest, limit: 20)
+            .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
+            .sink { fetchResourcesNewest in
+                self.fetchResourcesNewest.append(contentsOf: fetchResourcesNewest
+                    .sorted(by: { $0.modifiedTimestamp > $1.modifiedTimestamp }))
+                self.isLoadingNewest = false
+                self.pageNewest += 1
+            }
+            .store(in: &cancellable)
+    }
+    
+    func fetchDaily(){
+        categoryUseCase.fetchCategory(category: category, order: .daily, page: pageDaily, limit: 20)
+            .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
+            .sink { fetchResourcesDaily in
+                self.fetchResourcesDaily.append(contentsOf: fetchResourcesDaily
+                    .sorted(by: { $0.modifiedTimestamp > $1.modifiedTimestamp }))
+                self.isLoadingDaily = false
+                self.pageDaily += 1
+            }
+            .store(in: &cancellable)
+    }
+    
+    func fetchMonthly(){
+        categoryUseCase.fetchCategory(category: category, order: .monthly, page: pageMonthly, limit: 20)
+            .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
+            .sink { fetchResourcesMonthly in
+                self.fetchResourcesMonthly.append(contentsOf: fetchResourcesMonthly
+                    .sorted(by: { $0.modifiedTimestamp > $1.modifiedTimestamp }))
+                self.isLoadingMonthly = false
+                self.pageMonthly += 1
+            }
+            .store(in: &cancellable)
+    }
 }
 
 struct CategoryView: View {
@@ -46,6 +90,7 @@ struct CategoryView: View {
         let detailCategories = category.detailCategories
         self.detailCategories = detailCategories
         self.selectedDetailCategory = detailCategories.first ?? .all
+        viewModel.set(category: category)
     }
     
     var body: some View {
@@ -123,8 +168,59 @@ struct CategoryView: View {
     private var categoryResourcesNewest: some View {
         VStack(spacing: 0){
             SFOMIndicator(state: $viewModel.isLoadingNewest)
-            ObservingScrollView (showIndicators: false){
-                
+            ObservingScrollView {
+                LazyVGrid(columns: [.init(.flexible())]) {
+                    ForEach(viewModel.fetchResourcesNewest,
+                            id: \.id) { resource in
+                        SFOMResourceItemView(resource: resource){
+                            ContentView(resource: resource)
+                        }
+                    }
+                }
+                .padding(.horizontal)
+            }
+            .bottom { value in
+                viewModel.fetchNewest()
+            }
+        }
+    }
+    
+    private var categoryResourcesDaily: some View {
+        VStack(spacing: 0){
+            SFOMIndicator(state: $viewModel.isLoadingDaily)
+            ObservingScrollView {
+                LazyVGrid(columns: [.init(.flexible())]) {
+                    ForEach(viewModel.fetchResourcesNewest,
+                            id: \.id) { resource in
+                        SFOMResourceItemView(resource: resource){
+                            ContentView(resource: resource)
+                        }
+                    }
+                }
+                .padding(.horizontal)
+            }
+            .bottom { value in
+                viewModel.fetchDaily()
+            }
+        }
+    }
+    
+    private var categoryResourcesMonthly: some View {
+        VStack(spacing: 0){
+            SFOMIndicator(state: $viewModel.isLoadingMonthly)
+            ObservingScrollView {
+                LazyVGrid(columns: [.init(.flexible())]) {
+                    ForEach(viewModel.fetchResourcesMonthly,
+                            id: \.id) { resource in
+                        SFOMResourceItemView(resource: resource){
+                            ContentView(resource: resource)
+                        }
+                    }
+                }
+                .padding(.horizontal)
+            }
+            .bottom { value in
+                viewModel.fetchMonthly()
             }
         }
     }
