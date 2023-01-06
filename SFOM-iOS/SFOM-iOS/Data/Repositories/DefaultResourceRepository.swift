@@ -32,8 +32,7 @@ extension DefaultResourceRepository: ResourceRepository {
         return networkService.readAllWithFilter(endPoint: endPoint,
                                                 type: CommentDTO.self,
                                                 whereFields: [.isEqualTo("state", value: "published")],
-                                                order: .descending("modifiedTimestamp"),
-                                                limit: nil)
+                                                order: .descending("modifiedTimestamp"))
         .map { $0.map{ $0.toDomain() } }
         .eraseToAnyPublisher()
     }
@@ -57,9 +56,7 @@ extension DefaultResourceRepository: ResourceRepository {
         }
         return networkService.readAllWithFilter(endPoint: endPoint,
                                                 type: FavoriteResourceDTO.self,
-                                                whereFields: [.isEqualTo("pusherId", value: uid)],
-                                                order: nil,
-                                                limit: nil)
+                                                whereFields: [.isEqualTo("pusherId", value: uid)])
         .flatMap { [weak self] favoriteResourceDTOs -> AnyPublisher<[ResourceDTO], Error> in
             guard let self = self else { return Fail(error: RepositoryError.noObjectError).eraseToAnyPublisher() }
             return favoriteResourceDTOs.publisher

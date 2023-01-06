@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+// MARK: - HTTPServiceError
 public enum HTTPServiceError {
     case wrongURLRequestError
     case notFoundError
@@ -16,6 +17,7 @@ public enum HTTPServiceError {
     case statusCodeError
 }
 
+// MARK: - HTTPServiceError: LocalizedError
 extension HTTPServiceError: LocalizedError {
     public var errorDescription: String? {
         switch self {
@@ -33,8 +35,8 @@ extension HTTPServiceError: LocalizedError {
     }
 }
 
+// MARK: - HTTPService
 protocol HTTPService {
     func dataTaskPublisher(endPoint: HTTPEndPoint) -> AnyPublisher<Data, Error>
     func dataTaskPublisher<D: Decodable>(endPoint: HTTPEndPoint, type: D.Type) -> AnyPublisher<D, Error>
-    // func downloadTaskPublisher
 }

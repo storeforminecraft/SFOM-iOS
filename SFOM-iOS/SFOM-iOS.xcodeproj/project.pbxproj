@@ -36,6 +36,8 @@
 		A5332E4B295AC41200EF7378 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5332E4A295AC41200EF7378 /* UIViewController+.swift */; };
 		A534EE5E2967E29F00066E9B /* DefaultCategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE5D2967E29F00066E9B /* DefaultCategoryUseCase.swift */; };
 		A534EE612967E2B000066E9B /* CategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE602967E2B000066E9B /* CategoryUseCase.swift */; };
+		A534EE672967F86F00066E9B /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE662967F86F00066E9B /* CategoryRepository.swift */; };
+		A534EE692967F9FE00066E9B /* DefaultCategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE682967F9FE00066E9B /* DefaultCategoryRepository.swift */; };
 		A535CC292963E4500013A4E8 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A535CC282963E4500013A4E8 /* ActivityIndicator.swift */; };
 		A537198329668E9F003C1226 /* ObservingScrollViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537198229668E9F003C1226 /* ObservingScrollViewConfiguration.swift */; };
 		A537198729668FB4003C1226 /* ObservingPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537198629668FB4003C1226 /* ObservingPreferenceKey.swift */; };
@@ -186,6 +188,8 @@
 		A5332E4A295AC41200EF7378 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		A534EE5D2967E29F00066E9B /* DefaultCategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCategoryUseCase.swift; sourceTree = "<group>"; };
 		A534EE602967E2B000066E9B /* CategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUseCase.swift; sourceTree = "<group>"; };
+		A534EE662967F86F00066E9B /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
+		A534EE682967F9FE00066E9B /* DefaultCategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCategoryRepository.swift; sourceTree = "<group>"; };
 		A535CC282963E4500013A4E8 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		A537198229668E9F003C1226 /* ObservingScrollViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservingScrollViewConfiguration.swift; sourceTree = "<group>"; };
 		A537198629668FB4003C1226 /* ObservingPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservingPreferenceKey.swift; sourceTree = "<group>"; };
@@ -498,6 +502,7 @@
 				A52A2DA4294EF91900D6F617 /* CommentEventRepository.swift */,
 				A53CF332294E23D90026A655 /* RepositoryError.swift */,
 				A52F6CF029597C0600D9DB10 /* NoticeRepository.swift */,
+				A534EE662967F86F00066E9B /* CategoryRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -881,6 +886,7 @@
 				A52A2DA2294EF8DD00D6F617 /* DefaultCommentEventRepository.swift */,
 				A52F6CEE29597BE200D9DB10 /* DefaultNoticeRepository.swift */,
 				A5F085A02961555B006C041D /* DefaultFileRepository.swift */,
+				A534EE682967F9FE00066E9B /* DefaultCategoryRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1066,6 +1072,7 @@
 				A534EE5E2967E29F00066E9B /* DefaultCategoryUseCase.swift in Sources */,
 				A5EEA01E29388CBC0000AAB5 /* AuthView.swift in Sources */,
 				A5842F36294F4D09007F3116 /* UserRepository.swift in Sources */,
+				A534EE692967F9FE00066E9B /* DefaultCategoryRepository.swift in Sources */,
 				A525E7B2293B38C3006246FA /* SearchData.swift in Sources */,
 				A5502F282943CCDD00A4D18A /* DatabaseReference+Publisher.swift in Sources */,
 				A5EEA02129388F240000AAB5 /* User.swift in Sources */,
@@ -1145,6 +1152,7 @@
 				A537198329668E9F003C1226 /* ObservingScrollViewConfiguration.swift in Sources */,
 				A5A94C97295B3A4600A114E0 /* DownloadListView.swift in Sources */,
 				A5EEA026293892DF0000AAB5 /* ProfileView.swift in Sources */,
+				A534EE672967F86F00066E9B /* CategoryRepository.swift in Sources */,
 				A52F6CF329597CC900D9DB10 /* NoticeUseCase.swift in Sources */,
 				A52F6CEB29597A0800D9DB10 /* Notice.swift in Sources */,
 				A5C3A0E1294BE9C200CC1940 /* HTTPService.swift in Sources */,

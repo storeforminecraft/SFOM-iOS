@@ -8,9 +8,9 @@
 import Foundation
 
 final class DefaultCategoryUseCase {
-    // private let categoryRepository: CategoryRepository
+    private let categoryRepository: CategoryRepository
     
-    // init(categoryRepository: CategoryRepository) {
-    //     self.categoryRepository = categoryRepository
-    // }
+    init(categoryRepository: CategoryRepository) {
+        self.categoryRepository = categoryRepository
+    }
 }

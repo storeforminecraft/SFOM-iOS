@@ -23,9 +23,7 @@ extension DefaultNoticeRepository: NoticeRepository {
         }
         return networkService.readAllWithFilter(endPoint: endPoint,
                                                 type: NoticeDTO.self,
-                                                whereFields: nil,
-                                                order: .descending("modifiedTimestamp"),
-                                                limit: nil)
+                                                order: .descending("modifiedTimestamp"))
         .map { $0.map{ $0.toDomain() } }
         .eraseToAnyPublisher()
     }
