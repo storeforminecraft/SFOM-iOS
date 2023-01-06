@@ -54,7 +54,7 @@ struct Resource {
         numberFormatter.numberStyle = .decimal
         let formattedNumber = numberFormatter.string(from: NSNumber(value:downloadCount)) ?? "\(downloadCount)"
         
-        return "\(modifiedTimestamp.ago()) ‧ \(formattedNumber)\(StringCollection.ETC.count.localized)"
+        return "\(modifiedTimestamp.ago) ‧ \(formattedNumber)\(StringCollection.ETC.count.localized)"
     }
     
     var thumbnail: String? {

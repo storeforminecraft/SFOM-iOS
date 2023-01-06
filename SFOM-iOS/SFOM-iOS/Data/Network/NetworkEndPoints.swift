@@ -45,31 +45,31 @@ extension NetworkEndPoints {
         return FirestoreEndPoint(collection: collection, document: nil)
     }
     
-    func resources(doc: String?) -> FirestoreEndPoint? {
+    func resources(doc: String? = nil) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.resources
         let document = checkDocument(doc: doc, docIsUser: false)
         return FirestoreEndPoint(collection: collection, document: document)
     }
     
-    func playlists(doc: String?) -> FirestoreEndPoint? {
+    func playlists(doc: String? = nil) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.playlists
         let document = checkDocument(doc: doc, docIsUser: false)
         return FirestoreEndPoint(collection: collection, document: document)
     }
     
-    func ranksDaily(doc: String?) -> FirestoreEndPoint? {
+    func ranksDaily(doc: String? = nil) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.ranks_daily
         let document = checkDocument(doc: doc, docIsUser: false)
         return FirestoreEndPoint(collection: collection, document: document)
     }
     
-    func ranksMonthly(doc: String?) -> FirestoreEndPoint? {
+    func ranksMonthly(doc: String? = nil) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.ranks_monthly
         let document = checkDocument(doc: doc, docIsUser: false)
         return FirestoreEndPoint(collection: collection, document: document)
     }
     
-    func favorites(doc: String, docIsUser: Bool?) -> FirestoreEndPoint? {
+    func favorites(doc: String, docIsUser: Bool? = nil) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.favorites
         let document = checkDocument(doc: doc, docIsUser: docIsUser)
         return FirestoreEndPoint(collection: collection, document: document)
@@ -81,7 +81,7 @@ extension NetworkEndPoints {
         return FirestoreEndPoint(collection: collection, document: document)
     }
     
-    func reports(doc: String?) -> FirestoreEndPoint? {
+    func reports(doc: String? = nil) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.reports
         let document = checkDocument(doc: doc, docIsUser: false)
         return FirestoreEndPoint(collection: collection, document: document)
@@ -93,7 +93,7 @@ extension NetworkEndPoints {
     }
     
     //MARK: - SubCollection
-    func resourcesComments(doc: String, subDoc: String?) -> FirestoreEndPoint? {
+    func resourcesComments(doc: String, subDoc: String? = nil) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.resources
         guard let document = checkDocument(doc: doc, docIsUser: false) else { return nil }
         let subCollection = FirestoreEndPoint.Resources.comments
@@ -104,7 +104,7 @@ extension NetworkEndPoints {
                             subDocument: subDocument)
     }
     
-    func resourcesPlaylist(doc: String, docIsUser: Bool?, subDoc: String?, subDocIsUser: Bool?) -> FirestoreEndPoint? {
+    func resourcesPlaylist(doc: String, docIsUser: Bool? = nil, subDoc: String? = nil, subDocIsUser: Bool? = nil) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.playlists
         guard let document = checkDocument(doc: doc, docIsUser: docIsUser) else { return nil }
         let subCollection = FirestoreEndPoint.Playlists.resources_playlist
@@ -115,7 +115,7 @@ extension NetworkEndPoints {
                             subDocument: subDocument)
     }
     
-    func favoritesPlaylist(doc: String, docIsUser: Bool?, subDoc: String?, subDocIsUser: Bool?) -> FirestoreEndPoint? {
+    func favoritesPlaylist(doc: String, docIsUser: Bool? = nil, subDoc: String? = nil, subDocIsUser: Bool? = nil) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.favorites
         guard let document = checkDocument(doc: doc, docIsUser: docIsUser) else { return nil }
         let subCollection = FirestoreEndPoint.Favorites.favorites_playlist
@@ -126,7 +126,7 @@ extension NetworkEndPoints {
                             subDocument: subDocument)
     }
     
-    func dailyRankdatas(doc: String, docIsUser: Bool?, subDoc: String?, subDocIsUser: Bool?) -> FirestoreEndPoint? {
+    func dailyRankdatas(doc: String, docIsUser: Bool? = nil, subDoc: String? = nil, subDocIsUser: Bool? = nil) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.ranks_daily
         guard let document = checkDocument(doc: doc, docIsUser: docIsUser) else { return nil }
         let subCollection = FirestoreEndPoint.Ranks_daily.rankdatas
@@ -137,7 +137,7 @@ extension NetworkEndPoints {
                             subDocument: subDocument)
     }
     
-    func monthlyRankdatas(doc: String, docIsUser: Bool?, subDoc: String?, subDocIsUser: Bool?) -> FirestoreEndPoint? {
+    func monthlyRankdatas(doc: String, docIsUser: Bool? = nil, subDoc: String? = nil, subDocIsUser: Bool? = nil) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.ranks_monthly
         guard let document = checkDocument(doc: doc, docIsUser: docIsUser) else { return nil }
         let subCollection = FirestoreEndPoint.Ranks_mothly.rankdatas

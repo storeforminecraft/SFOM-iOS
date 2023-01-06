@@ -8,5 +8,5 @@
 import Combine
 
 protocol CategoryRepository {
-    func fetchCategory(category: String, order: String, page: Int, limit: Int) -> AnyPublisher<[Resource], Error>
+    func fetchCategory(category: String, order: SFOMOrderItem, page: Int, limit: Int) -> AnyPublisher<[Resource], Error>
 }

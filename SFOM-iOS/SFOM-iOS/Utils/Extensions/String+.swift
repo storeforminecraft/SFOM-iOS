@@ -20,14 +20,13 @@ extension String {
         return self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
+    var capitalizingFirstLetter: String {
+        return prefix(1).uppercased() + self.dropFirst()
+    }
+    
     public subscript(r: Int, l: Int = Int.max) -> String {
         let startIndex = self.index(self.startIndex, offsetBy: r)
         let endIndex = self.index(self.startIndex, offsetBy: l == Int.max ? r+1 : min(l, self.count))
         return String(self[startIndex..<endIndex])
     }
-    
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).uppercased() + self.dropFirst()
-    }
-    
 }

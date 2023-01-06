@@ -38,6 +38,7 @@
 		A534EE612967E2B000066E9B /* CategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE602967E2B000066E9B /* CategoryUseCase.swift */; };
 		A534EE672967F86F00066E9B /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE662967F86F00066E9B /* CategoryRepository.swift */; };
 		A534EE692967F9FE00066E9B /* DefaultCategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE682967F9FE00066E9B /* DefaultCategoryRepository.swift */; };
+		A534EE6B2968005300066E9B /* SFOMOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE6A2968005300066E9B /* SFOMOrder.swift */; };
 		A535CC292963E4500013A4E8 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A535CC282963E4500013A4E8 /* ActivityIndicator.swift */; };
 		A537198329668E9F003C1226 /* ObservingScrollViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537198229668E9F003C1226 /* ObservingScrollViewConfiguration.swift */; };
 		A537198729668FB4003C1226 /* ObservingPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537198629668FB4003C1226 /* ObservingPreferenceKey.swift */; };
@@ -190,6 +191,7 @@
 		A534EE602967E2B000066E9B /* CategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUseCase.swift; sourceTree = "<group>"; };
 		A534EE662967F86F00066E9B /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
 		A534EE682967F9FE00066E9B /* DefaultCategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCategoryRepository.swift; sourceTree = "<group>"; };
+		A534EE6A2968005300066E9B /* SFOMOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMOrder.swift; sourceTree = "<group>"; };
 		A535CC282963E4500013A4E8 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		A537198229668E9F003C1226 /* ObservingScrollViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservingScrollViewConfiguration.swift; sourceTree = "<group>"; };
 		A537198629668FB4003C1226 /* ObservingPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservingPreferenceKey.swift; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 			isa = PBXGroup;
 			children = (
 				A5502F122943909B00A4D18A /* typealias.swift */,
+				A534EE6A2968005300066E9B /* SFOMOrder.swift */,
 				A52019FC293C8B6F00FAA9B4 /* SFOMCategory.swift */,
 				A546F518296709DC00C3B115 /* SFOMDetailCategory.swift */,
 				A54776F329518E4500E14D0F /* SFOMMoreMenu.swift */,
@@ -1171,6 +1174,7 @@
 				A54776FE2952246F00E14D0F /* PolicyView.swift in Sources */,
 				A5EF977C294DAB4400CD35FF /* DefaultAuthUseCase.swift in Sources */,
 				A56386CC29432B4900A8CEEA /* DefaultHomeUseCase.swift in Sources */,
+				A534EE6B2968005300066E9B /* SFOMOrder.swift in Sources */,
 				A5502F1E2943A73E00A4D18A /* NetworkEndPoints.swift in Sources */,
 				A52F6CF529597CEF00D9DB10 /* DefaultNoticeUseCase.swift in Sources */,
 			);

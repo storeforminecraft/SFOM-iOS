@@ -13,7 +13,7 @@ protocol EnumeratedLocalized {
 
 extension EnumeratedLocalized {
     var localized: String {
-        NSLocalizedString(self.rawValue.capitalizingFirstLetter(), comment: "")
+        NSLocalizedString(self.rawValue.capitalizingFirstLetter, comment: "")
     }
 }
 
@@ -209,5 +209,11 @@ public struct StringCollection {
         case todayDownloads
         case todayLikes
         case todayComments
+    }
+    
+    enum Order: String, EnumeratedLocalized {
+        case newest
+        case daily
+        case monthly
     }
 }

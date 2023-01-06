@@ -8,15 +8,27 @@
 import Foundation
 
 extension Date {
-    func toString() -> String {
+    var toString: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: StringCollection.location)
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss EEEE"
         return formatter.string(from: self)
     }
     
-    func ago() -> String {
-        let minutes = self.agoMiniutes()
+    var yearToMonthString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMM"
+        return formatter.string(from: self)
+    }
+    
+    var yearToDayString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        return formatter.string(from: self)
+    }
+    
+    var ago: String {
+        let minutes = self.agoMiniutes
         let hours = minutes / 60
         let days = hours / 24
         let years = days / 365
@@ -34,8 +46,10 @@ extension Date {
         return "\(time) \(StringCollection.Time.ago.localized)"
     }
     
-    func agoMiniutes() -> Int{
+    var agoMiniutes: Int{
         let miniutes = Int(Date().timeIntervalSince(self) / 60)
         return miniutes
     }
+    
+    
 }

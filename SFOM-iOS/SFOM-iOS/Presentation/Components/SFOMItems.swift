@@ -166,7 +166,7 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
                     .foregroundColor(.black)
                 
                 VStack(alignment: .trailing){
-                    Text(recentComment.createdTime.ago())
+                    Text(recentComment.createdTime.ago)
                         .font(.SFOMExtraSmallFont)
                         .lineLimit(1)
                         .foregroundColor(Color(.lightGray))
@@ -245,7 +245,7 @@ public struct SFOMNoticeItemView: View {
                     Spacer()
                     Image(systemName: showingContent ? "chevron.up" : "chevron.down")
                 }
-                Text(notice.modifiedTimestamp.toString())
+                Text(notice.modifiedTimestamp.toString)
                     .foregroundColor(Color(.lightGray))
                     .font(.SFOMExtraSmallFont)
                     .multilineTextAlignment(.leading)
