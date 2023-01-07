@@ -12,6 +12,7 @@ extension Color  {
     static let borderColor: Color = Color("BorderColor")
     static let textColor: Color = Color("PastelColor")
     static let searchBarColor: Color = Color("SearchBarColor")
+    static let textPrimaryColor: Color = Color("TextColor")
 }
 
 

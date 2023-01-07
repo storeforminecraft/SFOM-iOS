@@ -28,10 +28,6 @@ final class CategoryViewModel: ViewModel {
     
     var cancellable = Set<AnyCancellable>()
     
-    deinit{
-        print("\(Date()) \(category.rawValue) 🍎categoryView deinit")
-    }
-    
     func set(category: SFOMCategory) {
         self.category = category
     }

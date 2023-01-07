@@ -19,10 +19,14 @@ final class SFOMImageProcessor: ImageProcessor {
     func process(item: ImageProcessItem, options: KingfisherParsedOptionsInfo) -> KFCrossPlatformImage? {
         switch item {
         case let .image(image):
-            return translate(image)
+            return DispatchQueue.main.sync {
+                return translate(image)
+            }
         case let .data(data):
             guard let image = UIImage(data: data) else { return nil }
-            return translate(image)
+            return DispatchQueue.main.sync {
+                translate(image)
+            }
         }
     }
 }

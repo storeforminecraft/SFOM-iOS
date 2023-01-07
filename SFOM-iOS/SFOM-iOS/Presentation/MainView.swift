@@ -37,13 +37,13 @@ struct MainView: View {
                               tag: 2,
                               selectedIndex: $selectedIndex)
             }
-            .frame(width: 28, height: 28)
+            .frame(width: 24, height: 24)
             .padding(20)
         }
         .background(Color(.white))
         .cornerRadius(24)
         .shadow(color: .init(white: 0, opacity: 0.12), radius: 8, x: 0, y: 2)
-        .padding(.bottom, 20)
+        .padding(.bottom, 24)
     }
     
     @ViewBuilder

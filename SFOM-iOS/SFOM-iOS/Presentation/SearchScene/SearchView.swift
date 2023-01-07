@@ -116,6 +116,7 @@ struct SearchView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
             searchBar
+            
             if viewModel.isSearching {
                 searchContents
             } else {
@@ -130,9 +131,9 @@ struct SearchView: View {
         VStack (alignment: .leading, spacing: 0) {
             if !viewModel.isSearching {
                 Text(StringCollection.SearchView.searchTitle.localized)
-                    .font(.SFOMTitleFont)
-                    .frame(height: 20)
-                    .padding(.vertical)
+                    .font(.SFOMFont18.bold())
+                    .frame(height: 32)
+                    .padding(.bottom, 12)
             }
             SFOMSearchBar(placeholder: StringCollection.SearchView.searchPlaceholder.localized,
                           text: $viewModel.searchText,
@@ -153,8 +154,7 @@ struct SearchView: View {
                 .padding()
             }
         }
-        .padding(.horizontal)
-        .padding(.top)
+        .padding(.horizontal, 32)
     }
     
     private var searchContents: some View {

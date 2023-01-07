@@ -105,7 +105,7 @@ public struct ResourceLinearLink<Destination>: View where Destination: View {
             HStack (alignment: .center, spacing: 10) {
                 SFOMImage(placeholder: Assets.Default.profileBackground.image,
                           urlString: userResource.resource.thumbnail,
-                          searchSkin: userResource.resource.isSkin ? true  : nil)
+                          isSkin: userResource.resource.isSkin)
                 .frame(width: 40, height: 40)
                 .cornerRadius(8)
                 VStack(alignment: .leading){
@@ -127,16 +127,19 @@ public struct ResourceLinearLink<Destination>: View where Destination: View {
 }
 
 public struct SFOMCategoryTapView<Destination>: View where Destination: View {
-    let category: SFOMCategory
-    let frame: CGFloat
-    let imagePadding: CGFloat
-    @ViewBuilder var destination:() -> Destination
+    private let category: SFOMCategory
+    private let imageFrame: CGFloat
+    private let frame: CGFloat
+    private let imagePadding: CGFloat
+    @ViewBuilder private var destination:() -> Destination
     
     init(category: SFOMCategory,
-         frame: CGFloat = 18,
-         imagePadding: CGFloat? = nil,
+         imageFrame: CGFloat = 18,
+         frame: CGFloat = 48,
+         imagePadding: CGFloat? = 15,
          @ViewBuilder destination: @escaping () -> Destination) {
         self.category = category
+        self.imageFrame = imageFrame
         self.frame = frame
         if let imagePadding = imagePadding {
             self.imagePadding = imagePadding
@@ -150,20 +153,82 @@ public struct SFOMCategoryTapView<Destination>: View where Destination: View {
         NavigationLink {
             destination()
         } label: {
-            VStack (alignment: .center) {
+            VStack (alignment: .center, spacing: 10) {
                 category.assets.image
                     .resizable()
-                    .frame(width: self.frame, height: self.frame)
+                    .frame(width: self.imageFrame, height: self.imageFrame)
                     .aspectRatio(contentMode: .fit)
                     .colorMultiply(category.assets.tintColor)
                     .padding(imagePadding)
                     .background(category.assets.backgroundColor)
-                    .cornerRadius(self.frame + imagePadding)
-                
+                    .frame(width: self.frame, height: self.frame)
+                    .cornerRadius(self.frame)
                 Text(category.localized)
-                    .font(.caption)
+                    .font(.SFOMFont12)
                     .foregroundColor(.gray)
             }
         }
+    }
+}
+
+public struct SFOMSignInLink<Destination, SubDestination>: View
+where Destination: View, SubDestination: View {
+    @Binding private var user: User?
+    private let circle: CGFloat
+    private let showNickname: Bool
+    @ViewBuilder private var authDestination: () -> Destination
+    @ViewBuilder private var noAuthDestination:() -> SubDestination
+    
+    init(user: Binding<User?>,
+         circle: CGFloat = 32,
+         showNickname: Bool = false,
+         @ViewBuilder auth authDestination: @escaping () -> Destination,
+         @ViewBuilder noAuth noAuthDestination: @escaping () -> SubDestination) {
+        self._user = user
+        self.circle = circle
+        self.showNickname = showNickname
+        self.authDestination = authDestination
+        self.noAuthDestination = noAuthDestination
+    }
+    
+    public var body: some View {
+        HStack (alignment: .center){
+            if let user = user {
+                NavigationLink {
+                    authDestination()
+                } label: {
+                    Assets.Default.profile.image
+                        .resizable()
+                        .frame(width: circle, height: circle)
+                        .cornerRadius(circle / 2)
+                    if showNickname {
+                        Text(user.nickname)
+                            .font(.SFOMFont18.bold())
+                            .foregroundColor(.textPrimaryColor)
+                            .padding(.leading, 8)
+                        if StringCollection.location == "ko" {
+                            Text("님")
+                                .font(.SFOMFont18)
+                                .foregroundColor(.textPrimaryColor)
+                                .padding(.leading, 3)
+                        }
+                    }
+                }
+            } else {
+                NavigationLink {
+                    noAuthDestination()
+                } label: {
+                    Text(StringCollection.Default.signIn.localized)
+                        .font(.SFOMFont10.bold())
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 12)
+                        .frame(width: 52, height: 24)
+                        .foregroundColor(.white)
+                        .background(Color.accentColor)
+                        .cornerRadius(12)
+                }
+            }
+        }
+        .frame(height: 32)
     }
 }

@@ -141,7 +141,9 @@ struct ContentView: View {
         } else {
             SFOMImage(placeholder: Assets.Default.profileBackground.image,
                           urlString: resource.thumbnail,
-                      searchSkin: false)
+                      isSkin: true)
+            .padding(.top, 30)
+            .background(Assets.Default.gradientBackground.image)
         }
     }
     

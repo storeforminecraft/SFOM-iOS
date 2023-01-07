@@ -8,6 +8,8 @@
 import SwiftUI
 import Combine
 
+import Kingfisher
+
 final class HomeViewModel: ViewModel {
     private let homeUseCase: HomeUseCase = AppContainer.shared.homeUseCase
     
@@ -58,6 +60,7 @@ final class HomeViewModel: ViewModel {
 
 struct HomeView: View {
     @ObservedObject private var viewModel: HomeViewModel = HomeViewModel()
+    private let imageCache: ImageCache = ImageCache.default
     
     let categorySequence: [SFOMCategory] = [.map,
                                             .skin,
@@ -69,10 +72,13 @@ struct HomeView: View {
                                             .downloads]
     
     var body: some View {
-        VStack (alignment: .leading) {
+        VStack (alignment: .leading, spacing: 0) {
             homeNavigationBar
+                .padding(.bottom, 14)
+            
             ScrollView(.vertical, showsIndicators: false) {
                 categoryTabButtons
+                    .padding(.top, 14)
                 ScrollView(.horizontal, showsIndicators: false) {
                     postItemsView
                 }
@@ -81,10 +87,14 @@ struct HomeView: View {
                 Spacer()
             }
         }
+        .onAppear {
+            print("🍎 cacheClear")
+            self.imageCache.clearMemoryCache()
+        }
     }
     
     private var categoryTabButtons: some View {
-        VStack (spacing: 10) {
+        VStack (spacing: 18) {
             ForEach((0..<(self.categorySequence.count / 4)),
                     id: \.hashValue) { row in
                 HStack {
@@ -129,31 +139,13 @@ struct HomeView: View {
             //     }
             // }
             
-            if let uid = viewModel.currentUser?.uid {
-                NavigationLink {
-                    ProfileView(uid: uid)
-                } label: {
-                    Assets.Default.profile.image
-                        .resizable()
-                        .frame(width: 36, height: 36)
-                        .cornerRadius(18)
-                }
-            } else {
-                NavigationLink {
-                    AuthView()
-                } label: {
-                    Text(StringCollection.Default.signIn.localized)
-                        .font(.SFOMSmallFont)
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, 10)
-                        .foregroundColor(.white)
-                        .background(Color.accentColor)
-                        .cornerRadius(16)
-                        .frame(height: 24)
-                }
+            SFOMSignInLink(user: $viewModel.currentUser) {
+                ProfileView(uid: viewModel.currentUser?.uid ?? "")
+            } noAuth: {
+                AuthView()
             }
         }
-        .padding()
+        .padding(.horizontal, 32)
     }
     
     private var postItemsView: some View {

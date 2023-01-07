@@ -9,17 +9,17 @@ import SwiftUI
 
 public struct SFOMSearchBar: View {
     private let cornerRadius: CGFloat = 24
-
+    
     private var placeholder: String
     @Binding private var text: String
     @Binding private var state: Bool
-
+    
     init(placeholder: String, text: Binding<String>, state: Binding<Bool>) {
         self.placeholder = placeholder
         self._text = text
         self._state = state
     }
-
+    
     public var body: some View {
         HStack (alignment: .center) {
             if state {
@@ -27,23 +27,26 @@ public struct SFOMSearchBar: View {
                     state = false
                 } label: {
                     Assets.SystemIcon.back.image
-                        .font(.SFOMMediumFont)
+                        .font(.SFOMFont14)
                         .padding(.leading)
                 }
             }
             TextField(placeholder, text: $text)
                 .autocapitalization(.none)
-                .padding()
+                .font(.SFOMFont14)
                 .onSubmit {
-                if state {
-                    state = false
+                    if state { state = false }
+                    state = (text != "")
                 }
-                state = (text != "")
-            }
+            
         }
-            .background(Color.searchBarColor)
-            .cornerRadius(cornerRadius)
-            .overlay(RoundedRectangle(cornerRadius: cornerRadius).stroke(.black, lineWidth: 1))
-            .foregroundColor(.black)
+        .padding(.horizontal, 24)
+        .padding(.vertical, 12)
+        .frame(height: 50)
+        .background(Color.searchBarColor)
+        .cornerRadius(cornerRadius)
+        .foregroundColor(.textPrimaryColor)
+        .overlay(RoundedRectangle(cornerRadius: cornerRadius)
+            .stroke(Color.textPrimaryColor, lineWidth: 2))
     }
 }

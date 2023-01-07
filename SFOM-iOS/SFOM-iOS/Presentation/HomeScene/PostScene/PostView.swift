@@ -64,7 +64,7 @@ struct PostView: View {
             VStack {
                 SFOMImage(placeholder: Assets.Default.profileBackground.image,
                           urlString: post.coverImage)
-                .aspectRatio(1, contentMode: .fill)
+                .aspectRatio(1, contentMode: .fit)
                 VStack(alignment: .leading, spacing: 10) {
                     postInfo
                     authorInfo

@@ -9,15 +9,18 @@ import SwiftUI
 
 public struct SFOMPostItemView<Destination>: View where Destination: View {
     private let post: Post
+    private let width: CGFloat
     private let height: CGFloat
     private let aspectRatio: CGFloat
     @ViewBuilder private var destination:() -> Destination
     
     init(post: Post,
-         height: CGFloat = 200,
-         aspectRatio:CGFloat = 1.7,
+         width: CGFloat = 312,
+         height: CGFloat = 150,
+         aspectRatio:CGFloat = 3,
          @ViewBuilder destination: @escaping () -> Destination) {
         self.post = post
+        self.width = width
         self.height = height
         self.aspectRatio = aspectRatio
         self.destination = destination
@@ -29,6 +32,8 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
         } label: {
             ZStack(alignment: .topLeading) {
                 SFOMImage(placeholder: Assets.Default.profileBackground.image, urlString: post.coverImage)
+                    .aspectRatio(1, contentMode: .fill)
+                    .frame(width: width, height: height)
                     .cornerRadius(14)
                     .overlay(RoundedRectangle(cornerRadius: 14)
                         .foregroundColor(.black)
@@ -53,10 +58,8 @@ public struct SFOMPostItemView<Destination>: View where Destination: View {
                 .padding(.vertical, 5)
                 .padding(.horizontal, 15)
             }
-            .frame(height: height)
-            .aspectRatio(aspectRatio, contentMode: .fit)
+            .frame(width: width, height: height)
         }
-        
     }
 }
 
@@ -81,7 +84,7 @@ public struct SFOMSearchItemView<Destination>: View where Destination: View {
         } label: {
             VStack (alignment: .leading) {
                 SFOMImage(placeholder: Assets.Default.profileBackground.image,
-                          urlString: resource.thumbnail, searchSkin: resource.isSkin ? true : nil)
+                          urlString: resource.thumbnail, isSkin: resource.isSkin)
                 .frame(width: width, height: imageHeight)
                 .scaledToFill()
                 .cornerRadius(16)
@@ -131,7 +134,7 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
                 HStack{
                     SFOMImage(placeholder: Assets.Default.profileBackground.image,
                               urlString: recentComment.resource.thumbnail,
-                              searchSkin: recentComment.resource.isSkin ? true : nil)
+                              isSkin: recentComment.resource.isSkin)
                     .frame(width: 30, height: 30)
                     .cornerRadius(15)
                     
@@ -193,11 +196,15 @@ public struct SFOMListItemLinkView<Destination>: View where Destination: View  {
         NavigationLink{
             destination()
         } label: {
-            HStack {
+            HStack (spacing: 0){
                 moreMenu.assets.image
+                    .resizable()
+                    .frame(width: 20,height: 20)
                 Text(moreMenu.localized)
-                    .font(.SFOMSmallFont.bold())
+                    .font(.SFOMFont14.bold())
+                    .padding(.leading, 24)
             }
+            .padding(.horizontal, 12)
         }
     }
 }
@@ -215,11 +222,16 @@ public struct SFOMListItemView: View {
         Button {
             completion()
         } label: {
-            HStack {
+            HStack (spacing: 0){
                 moreMenu.assets.image
+                    .resizable()
+                    .frame(width: 20, height: 20)
                 Text(moreMenu.localized)
-                    .font(.SFOMSmallFont.bold())
+                    .font(.SFOMFont14.bold())
+                    .padding(.leading, 24)
+                Spacer()
             }
+            .padding(.horizontal, 12)
         }
     }
 }
@@ -283,10 +295,10 @@ public struct SFOMResourceItemView<Destination>: View where Destination: View{
             VStack(alignment: .leading) {
                 SFOMImage(placeholder: Assets.Default.profileBackground.image,
                           urlString: resource.thumbnail,
-                          searchSkin: resource.isSkin ? true : nil)
+                          isSkin: resource.isSkin)
                 .aspectRatio(1.7, contentMode: .fit)
-                .padding(.bottom,4)
-                
+                .padding(.bottom, 4)
+                // FIXME: - Skin 처리
                 VStack(alignment: .leading, spacing: 5) {
                     Text(resource.localizedName)
                         .font(.SFOMExtraSmallFont)
@@ -335,7 +347,7 @@ public struct SFOMCategoryItemView<Destination>: View where Destination: View{
             VStack(alignment: .leading) {
                 SFOMImage(placeholder: Assets.Default.profileBackground.image,
                           urlString: resource.thumbnail,
-                          searchSkin: resource.isSkin ? true : nil)
+                          isSkin: resource.isSkin)
                 .aspectRatio(1.7, contentMode: .fit)
                 .padding(.bottom,4)
                 

@@ -40,6 +40,8 @@
 		A534EE692967F9FE00066E9B /* DefaultCategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE682967F9FE00066E9B /* DefaultCategoryRepository.swift */; };
 		A534EE6B2968005300066E9B /* SFOMOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE6A2968005300066E9B /* SFOMOrder.swift */; };
 		A534EE6D29681D7500066E9B /* RankDataDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534EE6C29681D7500066E9B /* RankDataDTO+Mapping.swift */; };
+		A5350DFC29694779004E86AE /* CategorySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5350DFB29694779004E86AE /* CategorySearchView.swift */; };
+		A5350DFE296949E9004E86AE /* TempCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5350DFD296949E9004E86AE /* TempCodes.swift */; };
 		A535CC292963E4500013A4E8 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A535CC282963E4500013A4E8 /* ActivityIndicator.swift */; };
 		A537198329668E9F003C1226 /* ObservingScrollViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537198229668E9F003C1226 /* ObservingScrollViewConfiguration.swift */; };
 		A537198729668FB4003C1226 /* ObservingPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537198629668FB4003C1226 /* ObservingPreferenceKey.swift */; };
@@ -194,6 +196,8 @@
 		A534EE682967F9FE00066E9B /* DefaultCategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCategoryRepository.swift; sourceTree = "<group>"; };
 		A534EE6A2968005300066E9B /* SFOMOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMOrder.swift; sourceTree = "<group>"; };
 		A534EE6C29681D7500066E9B /* RankDataDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RankDataDTO+Mapping.swift"; sourceTree = "<group>"; };
+		A5350DFB29694779004E86AE /* CategorySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySearchView.swift; sourceTree = "<group>"; };
+		A5350DFD296949E9004E86AE /* TempCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCodes.swift; sourceTree = "<group>"; };
 		A535CC282963E4500013A4E8 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		A537198229668E9F003C1226 /* ObservingScrollViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservingScrollViewConfiguration.swift; sourceTree = "<group>"; };
 		A537198629668FB4003C1226 /* ObservingPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservingPreferenceKey.swift; sourceTree = "<group>"; };
@@ -375,6 +379,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		A5350DFA29694769004E86AE /* CategorySearchScene */ = {
+			isa = PBXGroup;
+			children = (
+				A5350DFB29694779004E86AE /* CategorySearchView.swift */,
+			);
+			path = CategorySearchScene;
+			sourceTree = "<group>";
+		};
 		A537198129668E7F003C1226 /* ObservingScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				A54776E429517AF100E14D0F /* CategoryView.swift */,
+				A5350DFA29694769004E86AE /* CategorySearchScene */,
 			);
 			path = CategoryScene;
 			sourceTree = "<group>";
@@ -862,6 +875,7 @@
 				A5399822296019D50086FF0C /* DownloadSheet.swift */,
 				A535CC282963E4500013A4E8 /* ActivityIndicator.swift */,
 				A57F5CA1296558BB00692CBA /* ButtonStyle.swift */,
+				A5350DFD296949E9004E86AE /* TempCodes.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1069,6 +1083,7 @@
 				A52A2DAD294EFABC00D6F617 /* CommentDTO+Mapping.swift in Sources */,
 				A571386F2950418A00731F1B /* Date+.swift in Sources */,
 				A525E7B6293B4F2D006246FA /* SFOMItems.swift in Sources */,
+				A5350DFC29694779004E86AE /* CategorySearchView.swift in Sources */,
 				A5D285CF294635DB001F9343 /* PostRepository.swift in Sources */,
 				A52A2DA5294EF91900D6F617 /* CommentEventRepository.swift in Sources */,
 				A58810C32962AD3C0072FEE0 /* DefaultProfileUseCase.swift in Sources */,
@@ -1132,6 +1147,7 @@
 				A54776E529517AF100E14D0F /* CategoryView.swift in Sources */,
 				A50DE904292B37BD00E1FD60 /* MenuView.swift in Sources */,
 				A52F6CF129597C0600D9DB10 /* NoticeRepository.swift in Sources */,
+				A5350DFE296949E9004E86AE /* TempCodes.swift in Sources */,
 				A52019FD293C8B6F00FAA9B4 /* SFOMCategory.swift in Sources */,
 				A5EF9774294DA9EF00CD35FF /* SearchUseCase.swift in Sources */,
 				A5E38FE8295446E3005C4A4C /* DatabaseUser.swift in Sources */,
@@ -1348,7 +1364,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.5;
+				MARKETING_VERSION = 0.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thymedesk.SFOMAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1385,7 +1401,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.5;
+				MARKETING_VERSION = 0.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thymedesk.SFOMAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
