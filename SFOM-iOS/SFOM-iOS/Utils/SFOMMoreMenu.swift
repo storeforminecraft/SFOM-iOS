@@ -11,7 +11,7 @@ enum SFOMMoreMenu: String {
     case download
     case notice
     case settings
-    case myComments
+    case activity
     case signOut
     
 }
@@ -22,7 +22,7 @@ extension SFOMMoreMenu {
         case .download: return .download
         case .notice: return .notice
         case .settings: return .settings
-        case .myComments: return .myComments
+        case .activity: return .activity
         case .signOut: return .signOut
         }
     }
@@ -32,7 +32,7 @@ extension SFOMMoreMenu {
         case .download: return StringCollection.MoreMenu.download.localized
         case .notice: return StringCollection.MoreMenu.notice.localized
         case .settings: return StringCollection.MoreMenu.settings.localized
-        case .myComments: return StringCollection.MoreMenu.myComments.localized
+        case .activity: return StringCollection.MoreMenu.activity.localized
         case .signOut: return StringCollection.MoreMenu.signOut.localized
         }
     }

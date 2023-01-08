@@ -120,8 +120,13 @@
 "Download" = "다운로드 내역";
 "Notice" = "공지사항";
 "Settings" = "애플리케이션 설정";
-"MyComments" = "작성한 댓글";
+"Activity" = "내 활동 관리";
 "SignOut" = "로그아웃";
+
+"MyActivity" = "내 활동 기록";
+"MyActivityComment" = "댓글";
+"MyActivityLike" = "좋아요";
+"MyActivityReport" = "신고 내역";
 
 "SignOutMessage" = "정말로 로그아웃할까요?";
 

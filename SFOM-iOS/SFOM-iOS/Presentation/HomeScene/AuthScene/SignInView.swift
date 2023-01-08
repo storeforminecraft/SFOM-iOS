@@ -64,7 +64,7 @@ struct SignInView: View {
             Spacer()
             
             VStack (alignment: .center, spacing: 20) {
-                SFOMButton(StringCollection.SignInView.signInButonTitle.localized) {
+                SFOMAuthButton(StringCollection.SignInView.signInButonTitle.localized) {
                     isLoading = true
                     viewModel.signIn()
                 }
@@ -102,7 +102,7 @@ struct SignInView: View {
                        subTitle: StringCollection.SignInView.signInFail.localized)
         }
         .sheet(isPresented: $isPresentPasswordReset) {
-            PasswordResetView().frame(height: 300)
+            PasswordResetView()
         }
         
     }

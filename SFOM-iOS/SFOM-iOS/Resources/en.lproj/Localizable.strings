@@ -120,8 +120,13 @@
 "Download" = "Download";
 "Notice" = "Notice";
 "Settings" = "Settings";
-"MyComments" = "My Comments";
+"Activity" = "Manage My Activities";
 "SignOut" = "Sign out";
+
+"MyActivity" = "My Activities";
+"MyActivityComment" = "comments";
+"MyActivityLike" = "likes";
+"MyActivityReport" = "reports";
 
 "SignOutMessage" = "Do you really want to sign out?";
 

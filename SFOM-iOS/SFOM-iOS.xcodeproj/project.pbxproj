@@ -61,7 +61,7 @@
 		A54776EB29518AC500E14D0F /* DefaultMenuUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776EA29518AC500E14D0F /* DefaultMenuUseCase.swift */; };
 		A54776EE29518C5200E14D0F /* NoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776ED29518C5200E14D0F /* NoticeView.swift */; };
 		A54776F029518C5C00E14D0F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776EF29518C5C00E14D0F /* SettingsView.swift */; };
-		A54776F229518C7900E14D0F /* MyCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776F129518C7900E14D0F /* MyCommentsView.swift */; };
+		A54776F229518C7900E14D0F /* MyActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776F129518C7900E14D0F /* MyActivityView.swift */; };
 		A54776F429518E4500E14D0F /* SFOMMoreMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776F329518E4500E14D0F /* SFOMMoreMenu.swift */; };
 		A54776F62951A6B500E14D0F /* TestResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776F52951A6B500E14D0F /* TestResource.swift */; };
 		A54776FA295218EE00E14D0F /* ContentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54776F9295218EE00E14D0F /* ContentUseCase.swift */; };
@@ -217,7 +217,7 @@
 		A54776EA29518AC500E14D0F /* DefaultMenuUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMenuUseCase.swift; sourceTree = "<group>"; };
 		A54776ED29518C5200E14D0F /* NoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeView.swift; sourceTree = "<group>"; };
 		A54776EF29518C5C00E14D0F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		A54776F129518C7900E14D0F /* MyCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommentsView.swift; sourceTree = "<group>"; };
+		A54776F129518C7900E14D0F /* MyActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyActivityView.swift; sourceTree = "<group>"; };
 		A54776F329518E4500E14D0F /* SFOMMoreMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFOMMoreMenu.swift; sourceTree = "<group>"; };
 		A54776F52951A6B500E14D0F /* TestResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResource.swift; sourceTree = "<group>"; };
 		A54776F9295218EE00E14D0F /* ContentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUseCase.swift; sourceTree = "<group>"; };
@@ -457,7 +457,7 @@
 			children = (
 				A54776ED29518C5200E14D0F /* NoticeView.swift */,
 				A54776EF29518C5C00E14D0F /* SettingsView.swift */,
-				A54776F129518C7900E14D0F /* MyCommentsView.swift */,
+				A54776F129518C7900E14D0F /* MyActivityView.swift */,
 			);
 			path = ListView;
 			sourceTree = "<group>";
@@ -1135,7 +1135,7 @@
 				A5F4CD4A2945235700789813 /* CollectionReference+Publisher.swift in Sources */,
 				A54776EB29518AC500E14D0F /* DefaultMenuUseCase.swift in Sources */,
 				A52A2DA7294EF94F00D6F617 /* CommentEvent.swift in Sources */,
-				A54776F229518C7900E14D0F /* MyCommentsView.swift in Sources */,
+				A54776F229518C7900E14D0F /* MyActivityView.swift in Sources */,
 				A5E38FDD29543E32005C4A4C /* DatabaseEndPoint.swift in Sources */,
 				A539981F296001C10086FF0C /* LPMetadataProvider+.swift in Sources */,
 				A50DE8FC292B32D800E1FD60 /* SFOMButtons.swift in Sources */,

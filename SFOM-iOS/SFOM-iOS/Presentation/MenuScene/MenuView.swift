@@ -83,25 +83,25 @@ struct MenuView: View {
                 viewModel.signOut()
             }
         }
-                            .toast(isPresenting: $signOutSuccess,
-                                   duration: 2,
-                                   tapToDismiss: true) {
-                                AlertToast(type: .complete(.accentColor),
-                                           title: StringCollection.MoreMenu.signOut.localized,
-                                           subTitle: StringCollection.MoreMenu.signOutSuccess.localized)
-                            }
-                                   .toast(isPresenting: $signOutFail,
-                                          duration: 2,
-                                          tapToDismiss: true) {
-                                       AlertToast(type: .error(.red),
-                                                  title: StringCollection.MoreMenu.signOut.localized,
-                                                  subTitle: StringCollection.MoreMenu.signOutFail.localized)
-                                   }
+        .toast(isPresenting: $signOutSuccess,
+               duration: 2,
+               tapToDismiss: true) {
+            AlertToast(type: .complete(.accentColor),
+                       title: StringCollection.MoreMenu.signOut.localized,
+                       subTitle: StringCollection.MoreMenu.signOutSuccess.localized)
+        }
+        .toast(isPresenting: $signOutFail,
+               duration: 2,
+               tapToDismiss: true) {
+            AlertToast(type: .error(.red),
+                       title: StringCollection.MoreMenu.signOut.localized,
+                       subTitle: StringCollection.MoreMenu.signOutFail.localized)
+        }
     }
     
     private var profile: some View {
         VStack (alignment: .leading) {
-            SFOMSignInLink(user: $viewModel.currentUser, circle: 20) {
+            SFOMSignInLink(user: $viewModel.currentUser, circle: 20, showNickname: true) {
                 ProfileView(uid: viewModel.currentUser?.uid ?? "")
             } noAuth: {
                 AuthView()
@@ -122,8 +122,8 @@ struct MenuView: View {
                 SettingsView()
             }
             if let _ = viewModel.currentUser {
-                SFOMListItemLinkView(moreMenu: .myComments) {
-                    MyCommentsView()
+                SFOMListItemLinkView(moreMenu: .activity) {
+                    MyActivityView()
                 }
                 SFOMListItemView(moreMenu: .signOut) {
                     isSignOut = true

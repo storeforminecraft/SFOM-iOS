@@ -116,6 +116,7 @@ struct SearchView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
             searchBar
+                .padding(.top, 10)
             
             if viewModel.isSearching {
                 searchContents

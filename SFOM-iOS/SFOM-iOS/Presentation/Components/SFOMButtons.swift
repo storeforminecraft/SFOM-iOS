@@ -9,7 +9,77 @@ import SwiftUI
 
 public struct SFOMButton: View {
     private let content: String
-    private let accent: Bool
+    private let foregroundColor: Color
+    private let backgroundColor: Color
+    private let spacer: Bool
+    private let font: Font
+    private let action: () -> Void
+    
+
+    
+    public init<S>(_ content: S,
+                   foregroundColor: Color = Color.white,
+                   backgroundColor: Color = Color.accentColor,
+                   spacer: Bool = true,
+                   font: Font = .body.bold(),
+                   action: @escaping () -> Void
+    ) where S: StringProtocol {
+        self.content = content as? String ?? ""
+        self.foregroundColor = foregroundColor
+        self.backgroundColor = backgroundColor
+        self.spacer = spacer
+        self.font = font
+        self.action = action
+    }
+    
+    
+    public init<S>(_ content: S,
+                   accent: Bool = true,
+                   spacer: Bool = true,
+                   font: Font = .body.bold(),
+                   action: @escaping () -> Void
+    ) where S: StringProtocol {
+        self.content = content as? String ?? ""
+        self.foregroundColor = accent ? Color.white : Color.accentColor
+        self.backgroundColor = accent ? Color.accentColor : Color.accentColor.opacity(0.2)
+        self.spacer = spacer
+        self.font = font
+        self.action = action
+    }
+    
+    public var body: some View {
+        Button {
+            action()
+        } label: {
+            if spacer {
+                HStack {
+                    Spacer()
+                    Text(content)
+                        .font(font)
+                    Spacer()
+                }
+                .padding(.vertical, 10)
+                .background(backgroundColor)
+                .foregroundColor(foregroundColor)
+                .cornerRadius(24)
+            } else {
+                Text(content)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 22)
+                    .font(font)
+                    .foregroundColor(foregroundColor)
+                    .background(backgroundColor)
+                    .cornerRadius(24)
+            }
+        }
+    }
+}
+
+
+public struct SFOMAuthButton: View {
+    private let content: String
+    private let foregroundColor: Color
+    private let backgroundColor: Color
     private let spacer: Bool
     private let font: Font
     private let action: () -> Void
@@ -21,7 +91,8 @@ public struct SFOMButton: View {
                    action: @escaping () -> Void
     ) where S: StringProtocol {
         self.content = content as? String ?? ""
-        self.accent = accent
+        self.foregroundColor = accent ? Color.white : Color.accentColor
+        self.backgroundColor = accent ? Color.accentColor : Color.accentColor.opacity(0.2)
         self.spacer = spacer
         self.font = font
         self.action = action
@@ -39,16 +110,16 @@ public struct SFOMButton: View {
                     Spacer()
                 }
                 .padding()
-                .background(accent ? Color.accentColor : Color.accentColor.opacity(0.2))
-                .foregroundColor(accent ? Color.white : Color.accentColor)
+                .background(backgroundColor)
+                .foregroundColor(foregroundColor)
                 .cornerRadius(12)
             } else {
                 Text(content)
                     .padding(.vertical, 4)
                     .padding(.horizontal)
                     .font(font)
-                    .background(accent ? Color.accentColor : Color.accentColor.opacity(0.2))
-                    .foregroundColor(accent ? Color.white : Color.accentColor)
+                    .foregroundColor(foregroundColor)
+                    .background(backgroundColor)
                     .cornerRadius(12)
             }
         }

@@ -134,9 +134,9 @@ public struct SFOMCategoryTapView<Destination>: View where Destination: View {
     @ViewBuilder private var destination:() -> Destination
     
     init(category: SFOMCategory,
-         imageFrame: CGFloat = 18,
+         imageFrame: CGFloat = 30,
          frame: CGFloat = 48,
-         imagePadding: CGFloat? = 15,
+         imagePadding: CGFloat? = 9,
          @ViewBuilder destination: @escaping () -> Destination) {
         self.category = category
         self.imageFrame = imageFrame

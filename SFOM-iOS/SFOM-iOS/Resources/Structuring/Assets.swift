@@ -67,15 +67,12 @@ struct Assets {
         case download
         case notice
         case settings
-        case myComments
+        case activity
         case signOut
         case push
 
         var image: Image {
-            switch self {
-            case .settings,.myComments: return Image("ic_moremenu_preference")
-            default: return Image("ic_moremenu_\(self.rawValue.lowercased())")
-            }
+            Image("ic_moremenu_\(self.rawValue.lowercased())")
         }
 
     }

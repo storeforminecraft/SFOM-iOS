@@ -75,6 +75,7 @@ struct HomeView: View {
         VStack (alignment: .leading, spacing: 0) {
             homeNavigationBar
                 .padding(.bottom, 14)
+                .padding(.top, 10)
             
             ScrollView(.vertical, showsIndicators: false) {
                 categoryTabButtons

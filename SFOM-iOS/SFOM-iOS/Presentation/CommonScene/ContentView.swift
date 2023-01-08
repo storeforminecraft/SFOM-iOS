@@ -117,7 +117,7 @@ struct ContentView: View {
             viewModel.bind(resource: resource)
         }
         .sheet(isPresented: $showDownload) {
-            DownloadView()
+            DownloadView(resource: resource)
         }
         .confirmationDialog(StringCollection.Report.report.localized,
                             isPresented: $showReports,

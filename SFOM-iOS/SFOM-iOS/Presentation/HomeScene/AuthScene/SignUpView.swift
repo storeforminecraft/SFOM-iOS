@@ -63,7 +63,7 @@ struct SignUpView: View {
             }
             Spacer()
             VStack (alignment: .center) {
-                SFOMButton(StringCollection.SignUpView.signUpButtonTitle.localized) {
+                SFOMAuthButton(StringCollection.SignUpView.signUpButtonTitle.localized) {
                     isLoading = true
                     viewModel.signOut()
                 }

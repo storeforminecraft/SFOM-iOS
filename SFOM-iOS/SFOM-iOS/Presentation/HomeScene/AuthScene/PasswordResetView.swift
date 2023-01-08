@@ -42,7 +42,7 @@ struct PasswordResetView: View {
     var body: some View {
         VStack {
             SFOMTextField(StringCollection.Auth.email.localized, text: $viewModel.email)
-            SFOMButton(StringCollection.PasswordResetView.resetPassword.localized) {
+            SFOMAuthButton(StringCollection.PasswordResetView.resetPassword.localized) {
                 viewModel.resetPassword()
             }
             HStack { Spacer()}

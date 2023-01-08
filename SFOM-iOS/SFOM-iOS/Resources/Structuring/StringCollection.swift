@@ -173,7 +173,7 @@ public struct StringCollection {
         case download
         case notice
         case settings
-        case myComments
+        case activity
         case signOut
         
         case signOutSuccess
