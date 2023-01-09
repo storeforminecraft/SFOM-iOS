@@ -171,8 +171,12 @@ public struct SFOMSelectedButton: View {
             selectedIndex = tag
         } label: {
             Text(content)
-                .font(.SFOMSmallFont)
-                .foregroundColor(selectedIndex == tag ? .accentColor : Color(.darkGray))
+                .font(.SFOMFont10.bold())
+                .foregroundColor(selectedIndex == tag ? .white : .textPrimaryColor)
+                .padding(.vertical, 6)
+                .padding(.horizontal, 6)
+                .background(selectedIndex == tag ? Color.textPrimaryColor : Color.clear)
+                .cornerRadius(12)
         }
     }
 }

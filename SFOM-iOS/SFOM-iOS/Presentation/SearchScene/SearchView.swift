@@ -152,7 +152,8 @@ struct SearchView: View {
                                        selectedIndex: $selected)
                 }
                 .frame(height: 20)
-                .padding()
+                .padding(.vertical)
+                .padding(.bottom, 4)
             }
         }
         .padding(.horizontal, 32)

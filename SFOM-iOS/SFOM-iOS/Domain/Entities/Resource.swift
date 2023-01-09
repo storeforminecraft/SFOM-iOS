@@ -71,6 +71,14 @@ struct Resource {
         }
     }
     
+    var downloadURL: URL? {
+        if category == .skin {
+            return URL(string: "\(URLStringManager.urlString(key: .imageURL))/\(fileHash)")
+        } else {
+            return URL(string: "\(URLStringManager.urlString(key: .resourceURL))/\(fileHash)")
+        }
+    }
+    
     var isSkin: Bool {
         return category == .skin
     }

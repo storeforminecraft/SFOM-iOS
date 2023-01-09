@@ -27,8 +27,7 @@ public struct SFOMSearchBar: View {
                     state = false
                 } label: {
                     Assets.SystemIcon.back.image
-                        .font(.SFOMFont14)
-                        .padding(.leading)
+                        .font(.SFOMFont14.bold())
                 }
             }
             TextField(placeholder, text: $text)

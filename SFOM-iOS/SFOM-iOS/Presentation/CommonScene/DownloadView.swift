@@ -10,44 +10,38 @@ import SwiftUI
 // FIXME: - fetch DownloadFile & Save File
 final class DownloadViewModel: ViewModel {
     private let fileManager = FileManager.default
-    // private let documentsURL:
+    private let documentsURL: URL?
     @Published var remainStorageSizeString: String = "- MB"
+    @Published var errorMessage: String = ""
     
     
     init(){
-        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        if let documentsURL = fileManager
+            .urls(for: .documentDirectory, in: .userDomainMask)
+            .first?
+            .appendingPathComponent("downloads") {
+            self.documentsURL = documentsURL
+        } else {
+            self.documentsURL = nil
+            self.errorMessage = "couldn't found documnet URL"
+        }
         calcRemainStorageSizeString()
     }
     
-    func saveFile(){
-        // let directoryURL = documentsURL.appendingPathComponent("ㅇ재ㅜ")
-        //
-        //
-        // do {
-        //     // 3-1. 폴더 생성
-        //     try fileManager.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: false, attributes: nil)
-        // } catch let e {
-        //     // 3-2. 오류 처리
-        //     print(e.localizedDescription)
-        // }
-        //
-        // // 4. 저장할 파일 이름 (확장자 필수)
-        // let helloPath = directoryURL.appendingPathComponent("Hello.txt")
-        // // 파일에 들어갈 string
-        // let text = "Hello Test Folder"
-        //
-        // do {
-        //     // 4-1. 파일 생성
-        //     try text.write(to: helloPath, atomically: false, encoding: .utf8)
-        // }catch let error as NSError {
-        //     print("Error creating File : \(error.localizedDescription)")
-        // }
+    func downloads(resource: Resource){
+        guard let destinationURL = documentsURL?.appendingPathComponent("\(resource.id).\(resource.fileExt)") else { return }
+        if let downloadURL = resource.downloadURL {
+            let urlRequest = URLRequest(url: downloadURL)
+            URLSession.shared.downloadTask(with: urlRequest) { fileUrl, urlResponse, error in
+             
+            }.resume()
+        }
     }
     
     func calcRemainStorageSizeString() {
         let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let attributes = try? FileManager.default.attributesOfFileSystem(forPath: documentDirectoryPath.last! as String)
-        guard var freeSize: Double = (attributes?[FileAttributeKey.systemFreeSize] as? NSNumber) as? Double else { return }
+        guard let freeSize: Double = (attributes?[FileAttributeKey.systemFreeSize] as? NSNumber) as? Double else { return }
         
         let remainByte = freeSize
         let remainKB = remainByte / 1024
@@ -81,12 +75,12 @@ struct DownloadView: View {
                 .font(.SFOMFont14.bold())
             
             VStack (alignment: .leading, spacing: 8) {
-            Group {
-                Text("\(resource.localizedName)")
-                Text("\(viewModel.remainStorageSizeString) total remaining device")
-            }
-            .font(.SFOMFont12)
-            .foregroundColor(Color(.darkGray))
+                Group {
+                    Text("\(resource.localizedName)")
+                    // Text("\(viewModel.remainStorageSizeString) total remaining device")
+                }
+                .font(.SFOMFont12)
+                .foregroundColor(Color(.darkGray))
             }
             
             HStack (alignment: .center, spacing: 10){
@@ -99,6 +93,7 @@ struct DownloadView: View {
                 }
                 SFOMButton("다운로드",
                            font: .SFOMFont14.bold()) {
+                    self.viewModel.downloads(resource: resource)
                 }
             }
             
