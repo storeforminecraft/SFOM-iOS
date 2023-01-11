@@ -201,20 +201,21 @@ where Destination: View, SubDestination: View {
                 NavigationLink {
                     authDestination()
                 } label: {
-                    Assets.Default.profile.image
-                        .resizable()
-                        .frame(width: circle, height: circle)
-                        .cornerRadius(circle / 2)
-                    if showNickname {
-                        Text(user.nickname)
-                            .font(.SFOMFont18.bold())
-                            .foregroundColor(.textPrimaryColor)
-                            .padding(.leading, 8)
-                        if StringCollection.location == "ko" {
-                            Text("님")
-                                .font(.SFOMFont18)
+                    HStack (spacing: 0) {
+                        SFOMImage(placeholder:  Assets.Default.profile.image, urlString: user.thumbnail)
+                            .frame(width: circle, height: circle)
+                            .cornerRadius(circle / 2)
+                        if showNickname {
+                            Text(user.nickname)
+                                .font(.SFOMFont18.bold())
                                 .foregroundColor(.textPrimaryColor)
-                                .padding(.leading, 3)
+                                .padding(.leading, 8)
+                            if StringCollection.location == "ko" {
+                                Text("님")
+                                    .font(.SFOMFont18)
+                                    .foregroundColor(.textPrimaryColor)
+                                    .padding(.leading, 3)
+                            }
                         }
                     }
                 }

@@ -33,7 +33,17 @@ final class DownloadViewModel: ViewModel {
         if let downloadURL = resource.downloadURL {
             let urlRequest = URLRequest(url: downloadURL)
             URLSession.shared.downloadTask(with: urlRequest) { fileUrl, urlResponse, error in
-             
+                if let fileUrl = fileUrl {
+                    do {
+                        if self.fileManager.fileExists(atPath: destinationURL.absoluteString){
+                            try self.fileManager.removeItem(at: destinationURL)
+                        }
+                        try self.fileManager.moveItem(at: fileUrl, to: destinationURL)
+                        print("\(fileUrl) \(destinationURL)파일 이동 성공🍎")
+                    } catch {
+                        print(error)
+                    }
+                }
             }.resume()
         }
     }

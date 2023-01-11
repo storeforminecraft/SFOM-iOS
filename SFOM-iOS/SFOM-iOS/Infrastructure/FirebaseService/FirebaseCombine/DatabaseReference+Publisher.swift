@@ -12,13 +12,13 @@ extension DatabaseReference {
     typealias DatabaseValue = [String: Any?]
     
     // MARK: - CREATE, UPDATE, DELETE
-    func setValuePublisher(value: DatabaseValue) -> AnyPublisher<Bool, Error> {
+    func updateChildValuesPublisher(value: DatabaseValue) -> AnyPublisher<Bool, Error> {
         return Future<Bool, Error> { [weak self] promise in
             guard let self = self else {
                 promise(.failure(FirebaseCombineError.objectError))
                 return
             }
-            self.setValue(value) { error, databaseReference in
+            self.updateChildValues(value as [AnyHashable : Any]) { error, databaseReference in
                 do {
                     if let error = error { throw error }
                     promise(.success(true))

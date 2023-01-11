@@ -74,8 +74,8 @@ struct HomeView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
             homeNavigationBar
-                .padding(.bottom, 14)
                 .padding(.top, 10)
+                .padding(.bottom, 14)
             
             ScrollView(.vertical, showsIndicators: false) {
                 categoryTabButtons
@@ -89,7 +89,6 @@ struct HomeView: View {
             }
         }
         .onAppear {
-            print("🍎 cacheClear")
             self.imageCache.clearMemoryCache()
         }
     }

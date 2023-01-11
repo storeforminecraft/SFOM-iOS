@@ -49,7 +49,7 @@ extension DatabaseUser {
             case .lastSignInDeviceId: return "lastSignInDeviceId"
             case .lastSignInTime: return "lastSignInTime"
             case .nickname: return "nickname"
-            case .profileImage: return "profileImag"
+            case .profileImage: return "profileImage"
             case .uid: return "uid"
             }
         }

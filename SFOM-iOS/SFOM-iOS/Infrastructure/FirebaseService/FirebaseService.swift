@@ -190,8 +190,8 @@ private extension FirebaseService {
 
 // MARK: - DatabaseService
 extension FirebaseService: DatabaseService {
-    func setValue(endPoint: DatabaseEndPoint, value: [String: Any?]) -> AnyPublisher<Bool, Error> {
-        databaseReference(endPoint: endPoint).setValuePublisher(value: value)
+    func updateChildValues(endPoint: DatabaseEndPoint, value: [String: Any?]) -> AnyPublisher<Bool, Error> {
+        databaseReference(endPoint: endPoint).updateChildValuesPublisher(value: value)
     }
     
     func getData(endPoint: DatabaseEndPoint) -> AnyPublisher<[String: Any?]?, Error> {

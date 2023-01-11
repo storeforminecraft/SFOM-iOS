@@ -65,7 +65,6 @@ final class CategoryViewModel: ViewModel {
     func fetchMonthly(){
         if isLoadingMonthly { return }
         isLoadingMonthly = true
-        print("fetchMonthly", Date().yearToMonthString)
         categoryUseCase.fetchCategory(category: category, order: .monthly, page: pageMonthly, limit: 20)
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
@@ -111,9 +110,9 @@ struct CategoryView: View {
                         HStack(spacing: 2){
                             Group {
                                 Image(systemName: "chevron.backward")
-                                    .font(.SFOMSmallFont.bold())
+                                    .font(.SFOMFont14.bold())
                                 Text(self.category.localized)
-                                    .font(.SFOMMediumFont.bold())
+                                    .font(.SFOMFont18.bold())
                             }
                             .foregroundColor(.black)
                         }
@@ -123,7 +122,7 @@ struct CategoryView: View {
                         
                     } label: {
                         Text(selectedDetailCategory.localized.uppercased())
-                            .font(.SFOMExtraSmallFont.bold())
+                            .font(.SFOMFont12.bold())
                             .foregroundColor(.black)
                             .padding(.vertical, 4)
                             .padding(.horizontal, 6)

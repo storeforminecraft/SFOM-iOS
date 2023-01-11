@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol DatabaseService {
-    func setValue(endPoint: DatabaseEndPoint, value: [String: Any?]) -> AnyPublisher<Bool, Error>
+    func updateChildValues(endPoint: DatabaseEndPoint, value: [String: Any?]) -> AnyPublisher<Bool, Error>
     func getData(endPoint: DatabaseEndPoint) -> AnyPublisher<[String: Any?]?, Error>
     func observeSingleEvent(endPoint: DatabaseEndPoint) -> AnyPublisher<[String: Any?]?, Error>
 }

@@ -32,11 +32,19 @@ extension DefaultAuthRepository: AuthRepository {
                 guard let uid = uid else { return Fail(error: RepositoryError.noAuthError).eraseToAnyPublisher() }
                 let endPoint = DatabaseEndPoints.shared.user(uid: uid)
                 let databaseValue = DatabaseUser(handles: [.set(.lastSignInDeviceId(UIDevice.current.identifierForVendor!.uuidString)),
-                                                           .set(.lastSignInTime(Date())),
-                                                           // .delete(.language())
-                ]).values
-                return self.databaseService.setValue(endPoint: endPoint, value: databaseValue)
+                                                           .set(.lastSignInTime(Date()))
+                                                           
+                                                           // .set(.email(email)),
+                                                           // .set(.lastSignInDeviceId(UIDevice.current.identifierForVendor!.uuidString)),
+                                                           // .set(.lastSignInTime(Date())),
+                                                           // .set(.language(StringCollection.location)),
+                                                           // .set(.nickname("Jeonhui")),
+                                                           // .set(.profileImage("")),
+                                                           // .set(.uid(uid))
+                                                 ]).values
+                return self.databaseService.updateChildValues(endPoint: endPoint, value: databaseValue)
             }
+            .timeout(.seconds(3), scheduler: DispatchQueue.global())
             .eraseToAnyPublisher()
     }
     
@@ -53,8 +61,9 @@ extension DefaultAuthRepository: AuthRepository {
                                                            .set(.nickname(userName)),
                                                            .set(.profileImage("")),
                                                            .set(.uid(uid))]).values
-                return self.databaseService.setValue(endPoint: endPoint, value: databaseValue)
+                return self.databaseService.updateChildValues(endPoint: endPoint, value: databaseValue)
             }
+            .timeout(.seconds(3), scheduler: DispatchQueue.global())
             .eraseToAnyPublisher()
     }
     
