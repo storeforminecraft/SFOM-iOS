@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AlertToast
 
 // FIXME: - update comment
 final class ContentViewModel: ViewModel {
@@ -18,6 +19,8 @@ final class ContentViewModel: ViewModel {
     @Published var resourceComments: [UserComment] = []
     
     @Published var comment: String = ""
+    
+    var selectedComments: UserComment? = nil
     
     private var selectedContent: String = ""
     
@@ -42,7 +45,9 @@ final class ContentViewModel: ViewModel {
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { user in
-                self.authorUser = user
+                withAnimation {
+                    self.authorUser = user
+                }
             })
             .store(in: &cancellable)
         
@@ -51,9 +56,11 @@ final class ContentViewModel: ViewModel {
             .receive(on: DispatchQueue.main)
             .replaceError(with: [])
             .sink(receiveValue: { resources in
-                self.authorUserResources = resources
-                    .filter { resource.id != $0.id }
-                    .sorted { $0.modifiedTimestamp > $1.modifiedTimestamp }
+                withAnimation {
+                    self.authorUserResources = resources
+                        .filter { resource.id != $0.id }
+                        .sorted { $0.modifiedTimestamp > $1.modifiedTimestamp }
+                }
             })
             .store(in: &cancellable)
         
@@ -62,8 +69,10 @@ final class ContentViewModel: ViewModel {
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { resourceComments in
-                self.resourceComments = resourceComments
-                    .sorted { $0.comment.modifiedTimestamp > $1.comment.modifiedTimestamp }
+                withAnimation {
+                    self.resourceComments = resourceComments
+                        .sorted { $0.comment.modifiedTimestamp > $1.comment.modifiedTimestamp }
+                }
             })
             .store(in: &cancellable)
     }
@@ -78,7 +87,9 @@ struct ContentView: View {
     let resource: Resource
     
     @State private var showDownload: Bool = false
+    @State var showCommentMenu: Bool = false
     @State var showReports: Bool = false
+    @State var showNeedAuth: Bool = false
 
     
     init(resource: Resource) {
@@ -103,7 +114,6 @@ struct ContentView: View {
             }
             .padding(.bottom, 100)
         }
-        // .gesture(magnificationGesture)
         .gesture(MagnificationGesture())
         .ignoresSafeArea()
         .navigationBarBackButtonHidden()
@@ -116,16 +126,30 @@ struct ContentView: View {
         .onAppear {
             viewModel.bind(resource: resource)
         }
+        .confirmationDialog(StringCollection.Report.report.localized,
+                            isPresented: $showCommentMenu,
+                            titleVisibility: .hidden) {
+            Button(StringCollection.Report.report.localized, role: .destructive) {
+                if viewModel.currentUser != nil {
+                    showReports.toggle()
+                } else {
+                    showNeedAuth.toggle()
+                }
+            }
+        }
         .sheet(isPresented: $showDownload) {
             DownloadView(resource: resource)
         }
-        .confirmationDialog(StringCollection.Report.report.localized,
-                            isPresented: $showReports,
-                            titleVisibility: .visible) {
-            Button(StringCollection.Report.report.localized, role: .destructive) {
-                
-            }
+        .sheet(isPresented: $showReports) {
+            ReportView(isComment: true)
         }
+        .toast(isPresenting: $showNeedAuth,
+                duration: 2,
+                tapToDismiss: true) {
+             AlertToast(type: .error(.red),
+                        title: StringCollection.NeedAuth.needAuthTitle.localized,
+                        subTitle: StringCollection.NeedAuth.needAuthDescription.localized)
+         }
     }
     
     @ViewBuilder
@@ -154,13 +178,16 @@ struct ContentView: View {
             Text(resource.info)
                 .foregroundColor(Color(.darkGray))
                 .font(.SFOMExtraSmallFont)
-            if let user = viewModel.authorUser {
-                UserInfoLink(user: user) {
-                    ProfileView(uid: user.uid)
+            VStack {
+                if let user = viewModel.authorUser {
+                    UserInfoLink(user: user) {
+                        ProfileView(uid: user.uid)
+                    }
                 }
-                .padding(.vertical)
             }
-                
+            .frame(height: 40)
+            .padding(.vertical)
+            
             Text(resource.localizedDescs)
                 .font(.SFOMExtraSmallFont)
                 .foregroundColor(Color(.darkGray))
@@ -232,7 +259,8 @@ struct ContentView: View {
                                 }
                                 Spacer()
                                 Button {
-                                    // FIXME: - 신고
+                                    viewModel.selectedComments = userComment
+                                    showCommentMenu.toggle()
                                 } label: {
                                     Image(systemName: "ellipsis")
                                         .font(.SFOMExtraSmallFont)

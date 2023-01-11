@@ -191,6 +191,7 @@ public struct StringCollection {
         case report
         case reportTitle
         case reportDescription
+        case reportCommentDescription
         case reportSubDescription
         
         case reportMessageDescription
@@ -201,6 +202,11 @@ public struct StringCollection {
         case reportA5
         case reportA6
         case reportA7
+    }
+    
+    enum NeedAuth: String, EnumeratedLocalized {
+        case needAuthTitle
+        case needAuthDescription
     }
     
     enum ContentStudio: String, EnumeratedLocalized {

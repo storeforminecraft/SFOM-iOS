@@ -157,6 +157,7 @@
 "Report" = "Report";
 "ReportTitle" = "Report";
 "ReportDescription" = "You can file a report for the selected content.";
+"ReportCommentDescription" = "You can create a report for that comment.";
 "ReportSubDescription" = "You can wirte additional information related to the content you are reporting.";
 
 "ReportMessageDescription" = "(Optional) Please provide additional information about the report.";
@@ -170,3 +171,6 @@
 
 "PleaseLeaveAComments" = "Please, Leave a resourceComments";
 "LeaveAComments" = "Leave a Comment";
+
+"NeedAuthTitle" = "Membership required";
+"NeedAuthDescription" = "Only members of the STORE for Minecraft can use the exclusive features.";

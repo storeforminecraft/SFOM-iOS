@@ -34,14 +34,20 @@ final class HomeViewModel: ViewModel {
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] user in
-                self?.currentUser = user
+                withAnimation {
+                    self?.currentUser = user
+                }
             })
             .store(in: &cancellable)
         
         homeUseCase.fetchPost()
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
-            .assign(to: \.posts, on: self)
+            .sink(receiveValue: { posts in
+                withAnimation {
+                    self.posts = posts
+                }
+            })
             .store(in: &cancellable)
         
         isCommentLoading = true
@@ -51,8 +57,8 @@ final class HomeViewModel: ViewModel {
             .sink(receiveValue: { recentComments in
                 withAnimation {
                     self.isCommentLoading = false
+                    self.recentComments = recentComments
                 }
-                self.recentComments = recentComments
             })
             .store(in: &cancellable)
     }
@@ -118,26 +124,8 @@ struct HomeView: View {
         HStack(alignment: .center) {
             Text(StringCollection.Default.homeTitle.localized)
                 .font(.SFOMTitleFont)
-            Spacer()
             
-            // TODO: - NextUpdate: Push
-            // NavigationLink {
-            //     PushView()
-            // } label: {
-            //     ZStack (alignment: .topTrailing) {
-            //         Assets.MoreMenu.push.image
-            //             .resizable()
-            //             .frame(width: 20, height: 20)
-            //             .padding(.horizontal, 2)
-            //             .padding(.vertical, 4)
-            //         if viewModel.pushNotification {
-            //             Circle()
-            //                 .foregroundColor(.red)
-            //                 .frame(width: 12, height: 12)
-            //                 .overlay(Circle().stroke(.white, lineWidth: 4))
-            //         }
-            //     }
-            // }
+            Spacer()
             
             SFOMSignInLink(user: $viewModel.currentUser) {
                 ProfileView(uid: viewModel.currentUser?.uid ?? "")
@@ -156,6 +144,7 @@ struct HomeView: View {
                 }
             }
         }
+        .frame(height: 150)
         .padding()
     }
     
