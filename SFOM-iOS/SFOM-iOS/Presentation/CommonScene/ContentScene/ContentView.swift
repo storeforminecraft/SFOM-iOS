@@ -148,7 +148,8 @@ struct ContentView: View {
         ScrollView (showsIndicators: false){
             VStack(alignment: .leading) {
                 imagesTabView
-                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 240)
+                    .aspectRatio(contentMode: resource.isSkin ? .fit : .fill)
                     .padding(.bottom, 10)
                 resourceContent
                     .padding(.horizontal, 20)
@@ -214,8 +215,8 @@ struct ContentView: View {
             SFOMImage(placeholder: Assets.Default.profileBackground.image,
                       urlString: resource.thumbnail,
                       isSkin: true)
-            .padding(.top, 30)
-            .background(Assets.Default.gradientBackground.image)
+            .padding(.top, 24)
+            .background(Assets.Default.gradientBackground.image.resizable())
         }
     }
     
@@ -302,25 +303,29 @@ struct ContentView: View {
     
     private var userResources: some View {
         VStack(spacing: 10){
-            VStack(alignment:.leading, spacing: 5){
-                if let authorUser = viewModel.authorUser {
-                    HStack(spacing: 0) {
-                        Text(authorUser.nickname.strip)
-                            .font(.SFOMFont16.bold())
-                        Text(StringCollection.ETC.userSuffix.localized)
-                            .font(.SFOMFont16)
+            NavigationLink {
+                ProfileView(uid: viewModel.authorUser?.uid ?? "")
+            } label: {
+                VStack(alignment:.leading, spacing: 5){
+                    if let authorUser = viewModel.authorUser {
+                        HStack(spacing: 0) {
+                            Text(authorUser.nickname.strip)
+                                .font(.SFOMFont16.bold())
+                            Text(StringCollection.ETC.userSuffix.localized)
+                                .font(.SFOMFont16)
+                        }
+                        .foregroundColor(.black)
+                        if let introduction = authorUser.introduction{
+                            Text(introduction)
+                                .font(.SFOMFont12)
+                                .foregroundColor(Color(.darkGray))
+                        }
                     }
-                    .foregroundColor(.black)
-                    if let introduction = authorUser.introduction{
-                        Text(introduction)
-                            .font(.SFOMFont12)
-                            .foregroundColor(Color(.lightGray))
-                    }
+                    HStack { Spacer() }
                 }
-                HStack { Spacer() }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 10)
             }
-            .padding(.horizontal, 20)
-            .padding(.bottom, 10)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 10){

@@ -44,14 +44,16 @@ final class ProfileViewModel: ViewModel {
             .store(in: &cancellable)
         
         $selected.sink { [weak self] contentCase in
-            self?.isLoading = true
-            switch contentCase {
-            case 0:
-                self?.uploadResources()
-            case 1:
-                self?.favoriteResources()
-            default:
-                self?.contents = []
+            withAnimation {
+                self?.isLoading = true
+                switch contentCase {
+                case 0:
+                    self?.uploadResources()
+                case 1:
+                    self?.favoriteResources()
+                default:
+                    self?.contents = []
+                }
             }
         }
         .store(in: &cancellable)
@@ -82,6 +84,7 @@ final class ProfileViewModel: ViewModel {
 
 struct ProfileView: View {
     @ObservedObject private var viewModel: ProfileViewModel = ProfileViewModel()
+    @State var showContent: Bool = false
     
     private let uid: String
     
@@ -105,12 +108,25 @@ struct ProfileView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0){
-            profile
-            selectedCase
-            SFOMIndicator(state: $viewModel.isLoading)
-            contents
+        
+        ObservingScrollView(showIndicators: false) {
+            ZStack {
+                Color.red.frame(height: 10)
+                    .padding(.top, 426)
+            VStack(spacing: 0){
+                if !showContent {
+                    profile
+                }
+                selectedCase
+                SFOMIndicator(state: $viewModel.isLoading)
+                contents
+            }
+            }
         }
+        .top{ value in
+            print(value)
+        }
+        .background(.blue)
         .ignoresSafeArea()
         .navigationBarHidden(true)
     }
@@ -119,15 +135,18 @@ struct ProfileView: View {
         VStack{
             SFOMImage(placeholder: Assets.Default.profileBackground.image,
                       urlString: viewModel.user?.background)
-            .aspectRatio(2, contentMode: .fit)
+            .aspectRatio(contentMode: .fill)
+            .frame(width: UIScreen.main.bounds.width, height: 180)
+            .clipped()
+            
             SFOMImage(placeholder: Assets.Default.profile.image,
                       urlString: viewModel.user?.thumbnail)
-            .frame(width: 105, height: 105)
-            .cornerRadius(50)
+            .frame(width: 68, height: 68)
+            .cornerRadius(34)
             .overlay(Circle()
-                .stroke(lineWidth: 5)
+                .stroke(lineWidth: 4)
                 .foregroundColor(.white))
-            .padding(.top, -52.5)
+            .padding(.top, -35)
             
             Text("\(viewModel.user?.nickname ?? "")")
                 .font(.SFOMFont16)
@@ -137,7 +156,9 @@ struct ProfileView: View {
             // FIXME: - Localization
             Text("\(viewModel.user?.introduction ?? "아직 한 줄 소개가 입력되지 않았습니다.")")
                 .font(.SFOMFont12)
-                .foregroundColor(Color(.darkGray))
+                .lineLimit(nil)
+                .multilineTextAlignment(.center)
+                .foregroundColor(Color(.lightGray))
                 .padding(.horizontal)
                 .padding(.bottom, 15)
         }
@@ -154,25 +175,24 @@ struct ProfileView: View {
                                selectedIndex: $viewModel.selected)
             Spacer()
         }
+        .padding(.bottom, 8)
     }
     
     private var contents: some View {
-        ScrollView(showsIndicators: false) {
-            LazyVGrid(columns: columns, spacing: spacing) {
-                ForEach(viewModel.contents,
-                        id: \.id) { resource in
-                    VStack {
-                        SFOMResourceItemView(resource: resource) {
-                            ContentView(resource: resource)
-                        }
-                        .frame(width: cellWidth)
-                        HStack { Spacer() }
+        LazyVGrid(columns: columns, spacing: spacing) {
+            ForEach(viewModel.contents,
+                    id: \.id) { resource in
+                VStack {
+                    SFOMResourceItemView(resource: resource) {
+                        ContentView(resource: resource)
                     }
+                    .frame(width: cellWidth)
+                    HStack { Spacer() }
                 }
             }
-            .padding(.horizontal, 5)
-            .padding(.bottom, 10)
         }
+        .padding(.horizontal, 5)
+        .padding(.bottom, 10)
     }
 }
 
