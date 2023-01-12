@@ -10,4 +10,11 @@ import Foundation
 struct UserComment {
     let user: User
     let comment: Comment
+    let childComment: [UserComment]
+    
+    init(user: User, comment: Comment, childComment: [UserComment] = []) {
+        self.user = user
+        self.comment = comment
+        self.childComment = childComment
+    }
 }

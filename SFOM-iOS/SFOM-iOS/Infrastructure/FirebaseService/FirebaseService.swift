@@ -152,39 +152,61 @@ extension FirebaseService: NetworkService {
 private extension FirebaseService {
     func documentReference<E: FIREndPoint>(endPoint: E) -> DocumentReference? {
         let collectionPath = endPoint.reference.collection.path
-        guard let documet = endPoint.reference.document,
-              let documnetPath = (documet.isCurrentUser ? uid.value : documet.path) else { return nil }
+        guard let document = endPoint.reference.document,
+              let documentPath = (document.isCurrentUser ? uid.value : document.path) else { return nil }
         
         guard let subCollectionPath = endPoint.reference.subCollection?.path else {
             return firestore
                 .collection(collectionPath)
-                .document(documnetPath)
+                .document(documentPath)
         }
-        guard let subDocumet = endPoint.reference.subDocument,
-              let subDocumnetPath = (documet.isCurrentUser ? uid.value : subDocumet.path) else { return nil }
+        
+        guard let subDocument = endPoint.reference.subDocument,
+              let subDocumentPath = (subDocument.isCurrentUser ? uid.value : subDocument.path) else { return nil }
+        
+        guard let subCollection2Path = endPoint.reference.subCollection2?.path else {
+            return firestore
+                .collection(collectionPath)
+                .document(documentPath)
+                .collection(subCollectionPath)
+                .document(subDocumentPath)
+        }
+        
+        guard let subDocument2 = endPoint.reference.subDocument2,
+              let subDocument2Path = (subDocument2.isCurrentUser ? uid.value : subDocument2.path) else { return nil }
         
         return firestore
             .collection(collectionPath)
-            .document(documnetPath)
+            .document(documentPath)
             .collection(subCollectionPath)
-            .document(subDocumnetPath)
+            .document(subDocumentPath)
+            .collection(subCollection2Path)
+            .document(subDocument2Path)
     }
     
     func collectionReference<E: FIREndPoint>(endPoint: E) -> CollectionReference? {
         let collectionPath = endPoint.reference.collection.path
-        guard let documet = endPoint.reference.document,
-              let documnetPath = (documet.isCurrentUser ? uid.value : documet.path) else { return
-            firestore.collection(collectionPath)
+        guard let document = endPoint.reference.document,
+              let documnetPath = (document.isCurrentUser ? uid.value : document.path),
+              let subCollectionPath = endPoint.reference.subCollection?.path else {
+            return firestore.collection(collectionPath)
         }
         
-        guard let subCollectionPath = endPoint.reference.subCollection?.path else {
-            return firestore.collection(collectionPath)
+        guard let subDocument = endPoint.reference.subDocument,
+              let subDocumentPath = (subDocument.isCurrentUser ? uid.value : subDocument.path),
+              let subCollection2Path = endPoint.reference.subCollection2?.path else {
+            return firestore
+                .collection(collectionPath)
+                .document(documnetPath)
+                .collection(subCollectionPath)
         }
         
         return firestore
             .collection(collectionPath)
             .document(documnetPath)
             .collection(subCollectionPath)
+            .document(subDocumentPath)
+            .collection(subCollection2Path)
     }
 }
 

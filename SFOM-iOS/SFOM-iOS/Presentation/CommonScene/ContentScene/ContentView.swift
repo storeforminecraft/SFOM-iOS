@@ -12,6 +12,7 @@ import AlertToast
 // FIXME: - update comment
 final class ContentViewModel: ViewModel {
     private let contentUseCase: ContentUseCase = AppContainer.shared.contentUseCase
+    private var resource: Resource? = nil
     
     @Published var currentUser: User? = nil
     @Published var authorUser: User? = nil
@@ -20,7 +21,7 @@ final class ContentViewModel: ViewModel {
     
     @Published var comment: String = ""
     
-    var selectedComments: UserComment? = nil
+    var selectedTargetPath: String? = nil
     
     private var selectedContent: String = ""
     
@@ -31,6 +32,7 @@ final class ContentViewModel: ViewModel {
     }
     
     func bind(resource: Resource){
+        self.resource = resource
         contentUseCase.fetchCurrentUserWithUidChanges()
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
@@ -63,9 +65,14 @@ final class ContentViewModel: ViewModel {
                 }
             })
             .store(in: &cancellable)
-        
+
+       fetchComment()
+    }
+    
+    func fetchComment(){
+        guard let resource = resource else { return }
         contentUseCase
-            .fetchUserComment(resourceId: resource.id)
+            .fetchUserComment(resourceId: resource.id, limit: 5)
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { resourceComments in
@@ -77,14 +84,15 @@ final class ContentViewModel: ViewModel {
             .store(in: &cancellable)
     }
     
-    func addComments(){
+    func leaveComment(){
         
     }
 }
 
 struct ContentView: View {
     @StateObject private var viewModel: ContentViewModel = ContentViewModel()
-    let resource: Resource
+    private let resource: Resource
+    private let resourcePath: String
     
     @State private var showDownload: Bool = false
     @State var showCommentMenu: Bool = false
@@ -94,6 +102,7 @@ struct ContentView: View {
     
     init(resource: Resource) {
         self.resource = resource
+        self.resourcePath = "resources/\(resource.id)"
     }
     
     var body: some View {
@@ -114,7 +123,6 @@ struct ContentView: View {
             }
             .padding(.bottom, 100)
         }
-        .gesture(MagnificationGesture())
         .ignoresSafeArea()
         .navigationBarBackButtonHidden()
         .overlay(alignment: .bottom) {
@@ -141,7 +149,7 @@ struct ContentView: View {
             DownloadView(resource: resource)
         }
         .sheet(isPresented: $showReports) {
-            ReportView(isComment: true)
+            ReportView(viewModel.selectedTargetPath ?? "", isComment: true)
         }
         .toast(isPresenting: $showNeedAuth,
                 duration: 2,
@@ -195,9 +203,9 @@ struct ContentView: View {
     }
     
     private var commentsList: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Text(StringCollection.ContentView.comments.localized.capitalized)
+                Text(StringCollection.ContentView.comments.localized)
                     .font(.SFOMSmallFont.bold())
                 Spacer()
                 NavigationLink{
@@ -211,15 +219,13 @@ struct ContentView: View {
                     .font(.SFOMSmallFont)
                 }
             }
-            .padding(.bottom, 5)
-            
+
             VStack(alignment: .leading) {
                 if viewModel.currentUser != nil {
                     VStack(spacing: 0){
                         SFOMSubmitField(StringCollection.ContentView.pleaseLeaveAComments.localized, text: $viewModel.comment) {
-                            viewModel.addComments()
+                            viewModel.leaveComment()
                         }
-                           
                         HStack { Spacer() }
                     }
                     .padding()
@@ -232,49 +238,17 @@ struct ContentView: View {
                                 .font(.SFOMSmallFont.bold())
                         }
                         HStack{ Spacer() }
-                    }.padding()
-                    
+                    }
+                    .padding()
                 }
                 
                 ForEach(viewModel.resourceComments[0..<min(viewModel.resourceComments.count, 3)],
                         id: \.comment.id) { userComment in
-                    HStack (alignment: .top){
-                        NavigationLink {
-                            ProfileView(uid: userComment.user.uid)
-                        } label: {
-                            SFOMImage(placeholder: Assets.Default.profile.image,
-                                      urlString: userComment.user.thumbnail)
-                            .frame(width: 28, height: 28)
-                            .cornerRadius(28)
-                        }
-                        
-                        VStack (alignment: .leading, spacing: 4){
-                            HStack(alignment: .center){
-                                NavigationLink {
-                                    ProfileView(uid: userComment.user.uid)
-                                } label: {
-                                    Text(userComment.user.summary)
-                                        .font(.SFOMExtraSmallFont.bold())
-                                        .foregroundColor(.black)
-                                }
-                                Spacer()
-                                Button {
-                                    viewModel.selectedComments = userComment
-                                    showCommentMenu.toggle()
-                                } label: {
-                                    Image(systemName: "ellipsis")
-                                        .font(.SFOMExtraSmallFont)
-                                        .foregroundColor(Color(.lightGray))
-                                }
-                            }
-                            Text(userComment.comment.content)
-                                .font(.SFOMExtraSmallFont)
-                                .foregroundColor(Color(.darkGray))
-                            HStack{ Spacer() }
-                        }
-                        .padding()
-                        .background(Color(.lightGray).opacity(0.08))
-                        .cornerRadius(12)
+                    userCommentView(path: resourcePath, userComment: userComment) { targetPath in
+                        viewModel.selectedTargetPath = targetPath
+                        showCommentMenu.toggle()
+                    } destination: {
+                        ProfileView(uid: userComment.user.uid)
                     }
                 }
             }
@@ -302,9 +276,9 @@ struct ContentView: View {
                 HStack { Spacer() }
             }
             .padding(.horizontal, 20)
+            .padding(.bottom, 10)
             
             ScrollView(.horizontal, showsIndicators: false) {
-               
                 HStack(alignment: .top, spacing: 10){
                     ForEach(viewModel.authorUserResources, id: \.id) { resource in
                         SFOMResourceItemView(resource: resource) {

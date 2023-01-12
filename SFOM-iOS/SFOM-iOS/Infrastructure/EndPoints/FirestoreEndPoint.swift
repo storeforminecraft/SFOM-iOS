@@ -12,11 +12,15 @@ public struct FirestoreEndPoint: FIREndPoint {
     private var document: Document?
     private var subCollection: SubCollection?
     private var subDocument: Document?
+    private var subCollection2: SubCollection?
+    private var subDocument2: Document?
 
     init?(collection: MainCollection,
           document: Document?,
           subCollection: (any SubCollection)? = nil,
-          subDocument: Document? = nil) {
+          subDocument: Document? = nil,
+          subCollection2: (any SubCollection)? = nil,
+          subDocument2: Document? = nil) {
         guard let collection = collection as? FirestoreEndPoint.SFOMCollection else { return nil }
         if let subCollectionParent = subCollection?.parent {
             guard document != nil else { return nil }
@@ -28,13 +32,17 @@ public struct FirestoreEndPoint: FIREndPoint {
         self.document = document
         self.subCollection = subCollection
         self.subDocument = subDocument
+        self.subCollection2 = subCollection2
+        self.subDocument2 = subDocument2
     }
     
     var reference: (collection: MainCollection,
                     document: Document?,
                     subCollection: SubCollection?,
-                    subDocument: Document?) {
-        return (collection, document, subCollection, subDocument)
+                    subDocument: Document?,
+                    subCollection2: SubCollection?,
+                    subDocument2: Document?) {
+        return (collection, document, subCollection, subDocument, subCollection2, subDocument2)
     }
 }
 
@@ -83,6 +91,12 @@ extension FirestoreEndPoint {
     enum Ranks_mothly: String, SubCollection {
         case rankdatas = "resourceranks"
         var parent: MainCollection { FirestoreEndPoint.SFOMCollection.ranks_monthly }
+        var path: String { self.rawValue }
+    }
+    
+    enum Comments: String, SubCollection {
+        case comments
+        var parent: MainCollection { FirestoreEndPoint.SFOMCollection.resources }
         var path: String { self.rawValue }
     }
 

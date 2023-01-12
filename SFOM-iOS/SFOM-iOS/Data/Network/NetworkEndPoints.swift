@@ -147,4 +147,19 @@ extension NetworkEndPoints {
                             subCollection: subCollection,
                             subDocument: subDocument)
     }
+    
+    func resourcesCommentsChildComment(doc: String, subDoc: String, subDoc2: String? = nil) -> FirestoreEndPoint? {
+        let collection = FirestoreEndPoint.SFOMCollection.resources
+        guard let document = checkDocument(doc: doc, docIsUser: false) else { return nil }
+        let subCollection = FirestoreEndPoint.Resources.comments
+        let subDocument = checkDocument(doc: subDoc, docIsUser: false)
+        let subCollection2 = FirestoreEndPoint.Comments.comments
+        let subDocument2 = checkDocument(doc: subDoc2, docIsUser: false)
+        return FirestoreEndPoint(collection: collection,
+                            document: document,
+                            subCollection: subCollection,
+                            subDocument: subDocument,
+                            subCollection2: subCollection2,
+                            subDocument2: subDocument2)
+    }
 }

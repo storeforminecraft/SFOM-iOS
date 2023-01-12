@@ -201,7 +201,7 @@ public struct SFOMListItemLinkView<Destination>: View where Destination: View  {
                     .resizable()
                     .frame(width: 20,height: 20)
                 Text(moreMenu.localized)
-                    .font(.SFOMFont14.bold())
+                    .font(.SFOMFont14)
                     .padding(.leading, 24)
             }
             .padding(.horizontal, 12)
@@ -227,7 +227,7 @@ public struct SFOMListItemView: View {
                     .resizable()
                     .frame(width: 20, height: 20)
                 Text(moreMenu.localized)
-                    .font(.SFOMFont14.bold())
+                    .font(.SFOMFont14)
                     .padding(.leading, 24)
                 Spacer()
             }

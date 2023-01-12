@@ -10,6 +10,12 @@ import Combine
 protocol ContentUseCase {
     func fetchCurrentUserWithUidChanges() -> AnyPublisher<User?, Error> 
     func fetchUser(uid: String) -> AnyPublisher<User, Error>
-    func fetchUserComment(resourceId: String) -> AnyPublisher<[UserComment], Error>
+    func fetchUserComment(resourceId: String, limit: Int?) -> AnyPublisher<[UserComment], Error>
     func fetchUserResources(uid: String) -> AnyPublisher<[Resource], Error>
+}
+
+extension ContentUseCase {
+    func fetchUserComment(resourceId: String, limit: Int? = nil) -> AnyPublisher<[UserComment], Error> {
+        fetchUserComment(resourceId: resourceId, limit: limit)
+    }
 }

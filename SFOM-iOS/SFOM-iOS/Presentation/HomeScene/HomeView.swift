@@ -96,6 +96,8 @@ struct HomeView: View {
         }
         .onAppear {
             self.imageCache.clearMemoryCache()
+            self.imageCache.memoryStorage.config.totalCostLimit = 300 * 1024 * 1024
+            self.imageCache.memoryStorage.config.countLimit = 100
         }
     }
     

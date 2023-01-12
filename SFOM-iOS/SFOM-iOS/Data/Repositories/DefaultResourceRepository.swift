@@ -25,15 +25,27 @@ extension DefaultResourceRepository: ResourceRepository {
             .eraseToAnyPublisher()
     }
     
-    func fetchResourceComments(resourceId: String) -> AnyPublisher<[Comment], Error> {
+    func fetchResourceComments(resourceId: String, limit: Int?) -> AnyPublisher<[Comment], Error> {
         guard let endPoint = NetworkEndPoints.shared.resourcesComments(doc: resourceId, subDoc: nil) else {
             return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
         }
         return networkService.readAllWithFilter(endPoint: endPoint,
                                                 type: CommentDTO.self,
                                                 whereFields: [.isEqualTo("state", value: "published")],
-                                                order: .descending("modifiedTimestamp"))
+                                                order: .descending("modifiedTimestamp"),
+                                                limit: limit)
         .map { $0.map{ $0.toDomain() } }
+        .eraseToAnyPublisher()
+    }
+    
+    func fetchResourceChildComment(resourceId: String, commentId: String) -> AnyPublisher<[Comment], Error> {
+        guard let endPoint = NetworkEndPoints.shared.resourcesCommentsChildComment(doc: resourceId, subDoc: commentId) else {
+            return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
+        }
+        return networkService.readAllWithFilter(endPoint: endPoint,
+                                                type: CommentDTO.self,
+                                                whereFields: [.isEqualTo("state", value: "published")])
+        .map { $0.map{ $0.toDomain() }.sorted { $0.modifiedTimestamp > $1.modifiedTimestamp } }
         .eraseToAnyPublisher()
     }
     

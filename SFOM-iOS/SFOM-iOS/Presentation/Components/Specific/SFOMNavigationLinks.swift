@@ -173,11 +173,7 @@ public struct SFOMCategoryTapView<Destination>: View where Destination: View {
 
 public struct SFOMSignInLink<Destination, SubDestination>: View
 where Destination: View, SubDestination: View {
-    @Binding private var user: User? {
-        didSet {
-            print(user)
-        }
-    }
+    @Binding private var user: User?
     private let circle: CGFloat
     private let showNickname: Bool
     @ViewBuilder private var authDestination: () -> Destination

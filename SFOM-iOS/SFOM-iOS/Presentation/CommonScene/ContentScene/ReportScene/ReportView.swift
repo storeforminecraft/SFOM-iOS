@@ -11,12 +11,14 @@ struct ReportView: View {
     @Environment(\.dismiss) var dismiss
     private let reportContent: [SFOMReports] = SFOMReports.list
     
-    @State var selected: Int = 0
+    private let targetPath: String
     private let isComment: Bool
+    @State var selected: Int = 0
     
     @State private var showDetailReport: Bool = false
     
-    init(_ selected: Int = 0, isComment: Bool = false){
+    init(_ targetPath: String, isComment: Bool = false, selected: Int = 0){
+        self.targetPath = targetPath
         self.isComment = isComment
         self.selected = selected
     }
@@ -37,6 +39,8 @@ struct ReportView: View {
                         .font(.SFOMFont14)
                         .foregroundColor(Color(.darkGray))
                 }
+                
+                Text(targetPath)
             }
             
             VStack(alignment: .leading) {
@@ -69,6 +73,6 @@ struct ReportView: View {
 
 struct ReportView_Previews: PreviewProvider {
     static var previews: some View {
-        ReportView()
+        ReportView("", isComment: false)
     }
 }

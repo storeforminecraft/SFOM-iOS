@@ -23,7 +23,9 @@ protocol Document {
 
 protocol FIREndPoint {
     var reference: (collection: MainCollection,
-              document: Document?,
-              subCollection: SubCollection?,
-              subDocument: Document?) { get }
+                    document: Document?,
+                    subCollection: SubCollection?,
+                    subDocument: Document?,
+                    subCollection2: SubCollection?,
+                    subDocument2: Document?) { get }
 }

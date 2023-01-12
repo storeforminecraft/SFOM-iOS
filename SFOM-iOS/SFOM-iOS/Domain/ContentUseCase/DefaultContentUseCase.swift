@@ -42,12 +42,13 @@ extension DefaultContentUseCase: ContentUseCase {
         userRepository.fetchUser(uid: uid)
     }
     
-    func fetchUserComment(resourceId: String) -> AnyPublisher<[UserComment], Error> {
-        resourceReposiotry.fetchResourceComments(resourceId: resourceId)
+    func fetchUserComment(resourceId: String, limit: Int?) -> AnyPublisher<[UserComment], Error> {
+        resourceReposiotry.fetchResourceComments(resourceId: resourceId, limit: 5)
             .flatMap { [weak self] comments -> AnyPublisher<UserComment?, Error> in
                 guard let self = self else { return Fail(error: UseCaseError.noObjectError).eraseToAnyPublisher() }
                 return comments.publisher
-                    .flatMap(self.fetchUserWithComment(comment:))
+                    .map { (resourceId, $0) }
+                    .flatMap(self.fetchUserWithComment(resourceId:comment:))
                     .map{ userComment -> UserComment? in userComment }
                     .replaceError(with: nil)
                     .setFailureType(to: Error.self)
@@ -64,9 +65,28 @@ extension DefaultContentUseCase: ContentUseCase {
 }
 
 private extension DefaultContentUseCase {
-    func fetchUserWithComment(comment: Comment) -> AnyPublisher<UserComment, Error> {
-        return userRepository.fetchUser(uid: comment.authorUid)
-            .map{ UserComment(user: $0, comment: comment) }
+    func fetchUserWithComment(resourceId: String, comment: Comment) -> AnyPublisher<UserComment, Error> {
+        return resourceReposiotry.fetchResourceChildComment(resourceId: resourceId, commentId: comment.id)
+            .flatMap(self.fetchChildCommentUser(childComments:))
+            .flatMap { [weak self] childComment -> AnyPublisher<UserComment, Error> in
+                guard let self = self else { return Fail(error: UseCaseError.noObjectError).eraseToAnyPublisher() }
+                return self.userRepository.fetchUser(uid: comment.authorUid)
+                    .map{ UserComment(user: $0, comment: comment, childComment: childComment) }
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    func fetchChildCommentUser(childComments: [Comment]) -> AnyPublisher<[UserComment], Error>{
+        return childComments.publisher
+            .flatMap { [weak self] comment -> AnyPublisher<UserComment?, Error> in
+                guard let self = self else { return Fail(error: UseCaseError.noObjectError).eraseToAnyPublisher() }
+                return self.userRepository.fetchUser(uid: comment.authorUid)
+                    .map{ UserComment(user: $0, comment: comment) }
+                    .eraseToAnyPublisher()
+            }
+            .compactMap { $0 }
+            .collect()
             .eraseToAnyPublisher()
     }
 }

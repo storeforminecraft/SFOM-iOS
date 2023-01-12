@@ -9,7 +9,8 @@ import Combine
 
 protocol ResourceRepository {
     func fetchResource(resourceId: String) -> AnyPublisher<Resource, Error>
-    func fetchResourceComments(resourceId: String) -> AnyPublisher<[Comment], Error>
+    func fetchResourceComments(resourceId: String, limit: Int?) -> AnyPublisher<[Comment], Error>
+    func fetchResourceChildComment(resourceId: String, commentId: String) -> AnyPublisher<[Comment], Error>
     func fetchUserResources(uid: String, limit: Int?) -> AnyPublisher<[Resource], Error>
     func fetchUserFavoriteResources(uid: String) -> AnyPublisher<[Resource], Error>
 }
