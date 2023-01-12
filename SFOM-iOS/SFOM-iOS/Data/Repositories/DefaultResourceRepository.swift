@@ -93,20 +93,19 @@ extension DefaultResourceRepository: ResourceRepository {
         .eraseToAnyPublisher()
     }
     
-    func fetchThumb(resourceId: String) -> AnyPublisher<Bool, Error> {
-        guard let endPoint = NetworkEndPoints.shared.favoritesResource(doc: resourceId) else {
+    func fetchThumb(resourceId: String) -> AnyPublisher<ResourceThumb, Error> {
+        guard let uid = networkAuthService.uid.value else {
+            return Fail(error: RepositoryError.noAuthError).eraseToAnyPublisher()
+        }
+        guard let endPoint = NetworkEndPoints.shared.favoritesResource() else {
             return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
         }
-        return networkService.read(endPoint: endPoint,
-                                   type: FavoriteResourceDTO.self)
-        .map { _ -> Bool in true }
-        .catch{ error -> AnyPublisher<Bool, Error> in
-            switch error {
-            case FirebaseCombineError.noDataError:
-                return Just<Bool>(false).setFailureType(to: Error.self).eraseToAnyPublisher()
-            default:
-                return Fail(error: error).eraseToAnyPublisher()
-            }
+        return networkService.readAllWithFilter(endPoint: endPoint,
+                                                type: FavoriteResourceDTO.self,
+                                                whereFields: [.isEqualTo("resourceId", value: resourceId)])
+        .map { resources -> ResourceThumb in
+            let isThumb = (resources.first(where: {$0.pusherId == uid}) != nil)
+            return ResourceThumb(thumbCount: resources.count, isThumb: isThumb)
         }
         .eraseToAnyPublisher()
     }
@@ -118,8 +117,10 @@ extension DefaultResourceRepository: ResourceRepository {
         guard let endPoint = NetworkEndPoints.shared.favoritesResource(doc: resourceId) else {
             return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
         }
+        let createdTimestamp = Date()
         let dto = FavoriteResourceDTO(category: category,
-                                      createdTime: Int(Date().timeIntervalSince1970),
+                                      createdTime: Int(createdTimestamp.timeIntervalSince1970 * 1000),
+                                      createdTimestamp: createdTimestamp,
                                       id: "\(uid)-\(resourceId)",
                                       pusherId: uid,
                                       resourceId: resourceId)

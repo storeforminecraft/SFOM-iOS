@@ -14,7 +14,7 @@ final class ContentViewModel: ViewModel {
     private let contentUseCase: ContentUseCase = AppContainer.shared.contentUseCase
     private var resource: Resource? = nil
     
-    @Published var isThumb: Bool = false
+    @Published var thumb: ResourceThumb = ResourceThumb.empty
     
     @Published var currentUser: User? = nil
     @Published var authorUser: User? = nil
@@ -69,10 +69,12 @@ final class ContentViewModel: ViewModel {
             .store(in: &cancellable)
         
         contentUseCase.fetchThumb(resourceId: resource.id)
-            .replaceError(with: false)
+            .replaceError(with: ResourceThumb.empty)
             .receive(on: DispatchQueue.main)
-            .sink { thumb in
-                self.isThumb = thumb
+            .sink { [weak self] thumb in
+                withAnimation {
+                    self?.thumb = thumb
+                }
             }
             .store(in: &cancellable)
         
@@ -94,23 +96,28 @@ final class ContentViewModel: ViewModel {
             .store(in: &cancellable)
     }
     
-    func thumb(){
+    func pushThumb(){
         guard let resource = resource else { return }
-        self.isThumb.toggle()
-        if !isThumb {
+        if !thumb.isThumb {
+            self.thumb = ResourceThumb(thumbCount: self.thumb.thumbCount + 1, isThumb: !self.thumb.isThumb)
             contentUseCase.pushThumb(category: resource.category.rawValue, resourceId: resource.id)
-                .replaceError(with: false)
+                .replaceError(with: ResourceThumb.empty)
                 .receive(on: DispatchQueue.main)
-                .sink { thumb in
-                    self.isThumb = thumb
+                .sink { [weak self] thumb in
+                    withAnimation{
+                        self?.thumb = thumb
+                    }
                 }
                 .store(in: &cancellable)
         } else {
+            self.thumb = ResourceThumb(thumbCount: self.thumb.thumbCount - 1, isThumb: !self.thumb.isThumb)
             contentUseCase.deleteThumb(resourceId: resource.id)
-                .replaceError(with: false)
+                .replaceError(with: ResourceThumb.empty)
                 .receive(on: DispatchQueue.main)
-                .sink { thumb in
-                    self.isThumb = thumb
+                .sink { [weak self] thumb in
+                    withAnimation{
+                        self?.thumb = thumb
+                    }
                 }
                 .store(in: &cancellable)
         }
@@ -222,6 +229,8 @@ struct ContentView: View {
                 .font(.SFOMFont12)
                 .padding(.top, 4)
             
+            resourceButtons
+            
             VStack {
                 if let user = viewModel.authorUser {
                     UserInfoLink(user: user) {
@@ -291,7 +300,6 @@ struct ContentView: View {
         }
     }
     
-    
     private var userResources: some View {
         VStack(spacing: 10){
             VStack(alignment:.leading, spacing: 5){
@@ -328,6 +336,23 @@ struct ContentView: View {
             }
             HStack { Spacer() }
         }
+    }
+    
+    private var resourceButtons: some View {
+        // HStack(alignment: .center, spacing: 10){
+        //     Button {
+        //         viewModel.pushThumb()
+        //     } label: {
+        //         HStack(alignment: .center){
+        //             Assets.Content.thumb.image
+        //                 .blendMode(.colorBurn)
+        //                 .frame(width: 14, height: 14)
+        //
+        //                 // .colorMultiply(.accentColor)
+        //         }
+        //     }
+        // }
+        VStack {}
     }
 }
 

@@ -24,7 +24,8 @@ final class AppContainer {
     lazy var searchRepository: SearchRepository = DefaultSearchRepository(networkService: networkService, httpService: httpService)
     lazy var userRepository: UserRepository = DefaultUserRepository(networkAuthService: networkAuthService,
                                                                     httpService: httpService)
-    lazy var resourceRepository: ResourceRepository = DefaultResourceRepository(networkService: networkService)
+    lazy var resourceRepository: ResourceRepository = DefaultResourceRepository(networkAuthService: networkAuthService,
+                                                                                networkService: networkService)
     lazy var commentEventRepository: CommentEventRepository = DefaultCommentEventRepository(networkService: networkService)
     lazy var noticeRepository: NoticeRepository = DefaultNoticeRepository(networkService: networkService)
     lazy var categoryRepository: CategoryRepository = DefaultCategoryRepository(networkService: networkService)

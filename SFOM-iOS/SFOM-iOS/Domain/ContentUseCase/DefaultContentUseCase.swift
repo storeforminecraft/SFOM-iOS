@@ -63,17 +63,17 @@ extension DefaultContentUseCase: ContentUseCase {
         resourceReposiotry.fetchUserResources(uid: uid, limit: 5)
     }
     
-    func fetchThumb(resourceId: String) -> AnyPublisher<Bool, Error> {
+    func fetchThumb(resourceId: String) -> AnyPublisher<ResourceThumb, Error> {
         resourceReposiotry.fetchThumb(resourceId: resourceId)
     }
     
-    func pushThumb(category: String, resourceId: String) -> AnyPublisher<Bool, Error> {
+    func pushThumb(category: String, resourceId: String) -> AnyPublisher<ResourceThumb, Error> {
         return resourceReposiotry.pushThumb(category: category, resourceId: resourceId)
             .flatMap { _ in self.fetchThumb(resourceId: resourceId) }
             .eraseToAnyPublisher()
     }
     
-    func deleteThumb(resourceId: String) -> AnyPublisher<Bool, Error> {
+    func deleteThumb(resourceId: String) -> AnyPublisher<ResourceThumb, Error> {
         return resourceReposiotry.deleteThumb(resourceId: resourceId)
             .flatMap { _ in self.fetchThumb(resourceId: resourceId) }
             .eraseToAnyPublisher()

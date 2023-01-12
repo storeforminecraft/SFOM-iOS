@@ -12,9 +12,9 @@ protocol ContentUseCase {
     func fetchUser(uid: String) -> AnyPublisher<User, Error>
     func fetchUserComment(resourceId: String, limit: Int?) -> AnyPublisher<[UserComment], Error>
     func fetchUserResources(uid: String) -> AnyPublisher<[Resource], Error>
-    func fetchThumb(resourceId: String) -> AnyPublisher<Bool, Error>
-    func pushThumb(category: String, resourceId: String) -> AnyPublisher<Bool, Error>
-    func deleteThumb(resourceId: String) -> AnyPublisher<Bool, Error>
+    func fetchThumb(resourceId: String) -> AnyPublisher<ResourceThumb, Error>
+    func pushThumb(category: String, resourceId: String) -> AnyPublisher<ResourceThumb, Error>
+    func deleteThumb(resourceId: String) -> AnyPublisher<ResourceThumb, Error>
 }
 
 extension ContentUseCase {
