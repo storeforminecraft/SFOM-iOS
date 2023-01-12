@@ -13,4 +13,7 @@ protocol ResourceRepository {
     func fetchResourceChildComment(resourceId: String, commentId: String) -> AnyPublisher<[Comment], Error>
     func fetchUserResources(uid: String, limit: Int?) -> AnyPublisher<[Resource], Error>
     func fetchUserFavoriteResources(uid: String) -> AnyPublisher<[Resource], Error>
+    func fetchThumb(resourceId: String) -> AnyPublisher<Bool, Error>
+    func pushThumb(category: String, resourceId: String) -> AnyPublisher<Bool, Error>
+    func deleteThumb(resourceId: String) -> AnyPublisher<Bool, Error>
 }

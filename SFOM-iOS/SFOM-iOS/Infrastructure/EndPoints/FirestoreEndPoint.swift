@@ -103,15 +103,21 @@ extension FirestoreEndPoint {
     enum SFOMDocument: Document {
         case currentUser
         case another(_ documentPath: String)
-
-        var isCurrentUser: Bool {
-            if case .currentUser = self { return true }
-            return false
+        case combineUser(_ documentPath: String, _ combineString: String, prev: Bool = true)
+        
+        var needUid: Bool {
+            switch self {
+            case .currentUser: return true
+            case .combineUser: return true
+            case .another: return false
+            }
         }
 
-        var path: String {
+        func path(uid: String?) -> String {
             switch self {
-            case .currentUser: return ""
+            case .currentUser: return "\(uid ?? "")"
+            case let .combineUser(doc, combine, prev):
+                return prev ? "\(uid ?? "")\(combine)\(doc)" : "\(doc)\(combine)\(uid ?? "")"
             case let .another(path): return path
             }
         }

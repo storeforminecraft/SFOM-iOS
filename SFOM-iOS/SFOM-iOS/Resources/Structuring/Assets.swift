@@ -11,19 +11,27 @@ struct Assets {
     public enum Symbol: String {
         case `default`
         case white
-
+        
         var image: Image { Image("sfom_symbol_\(self.rawValue)") }
     }
-
+    
     public enum `Default`: String {
         case profile
         case profileBackground
         case gradientBackground
-
+        
         var image: Image { Image("defaultImage_\(self.rawValue)") }
         // var image: Image { Image(systemName: "circle") }
     }
-
+    
+    public enum Content: String {
+        case thumb
+        case share
+        case report
+        
+        var image: Image { Image("ic_content_\(self.rawValue)") }
+    }
+    
     public enum Category: String {
         case addon
         case downloads

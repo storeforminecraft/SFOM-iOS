@@ -9,7 +9,7 @@ import Foundation
 
 struct FavoriteResourceDTO: Codable {
     let category: String
-    let createdTime: Date
+    let createdTime: Int
     let id: String
     let pusherId: String
     let resourceId: String

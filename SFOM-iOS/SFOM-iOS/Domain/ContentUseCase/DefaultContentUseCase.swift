@@ -62,6 +62,22 @@ extension DefaultContentUseCase: ContentUseCase {
     func fetchUserResources(uid: String) -> AnyPublisher<[Resource], Error> {
         resourceReposiotry.fetchUserResources(uid: uid, limit: 5)
     }
+    
+    func fetchThumb(resourceId: String) -> AnyPublisher<Bool, Error> {
+        resourceReposiotry.fetchThumb(resourceId: resourceId)
+    }
+    
+    func pushThumb(category: String, resourceId: String) -> AnyPublisher<Bool, Error> {
+        return resourceReposiotry.pushThumb(category: category, resourceId: resourceId)
+            .flatMap { _ in self.fetchThumb(resourceId: resourceId) }
+            .eraseToAnyPublisher()
+    }
+    
+    func deleteThumb(resourceId: String) -> AnyPublisher<Bool, Error> {
+        return resourceReposiotry.deleteThumb(resourceId: resourceId)
+            .flatMap { _ in self.fetchThumb(resourceId: resourceId) }
+            .eraseToAnyPublisher()
+    }
 }
 
 private extension DefaultContentUseCase {
@@ -90,5 +106,3 @@ private extension DefaultContentUseCase {
             .eraseToAnyPublisher()
     }
 }
-
-

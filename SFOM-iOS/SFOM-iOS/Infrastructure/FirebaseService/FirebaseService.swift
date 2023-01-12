@@ -115,13 +115,11 @@ extension FirebaseService: NetworkService {
         return documentReference.setDataPulisher(data: dto, merge: true)
     }
     
-    func delete<T: Encodable>(endPoint: FIREndPoint, dto: T) -> AnyPublisher<T, Error> {
+    func delete(endPoint: FIREndPoint) -> AnyPublisher<Bool, Error> {
         guard let documentReference = documentReference(endPoint: endPoint) else {
             return Fail(error: FirebaseCombineError.wrongAccessError).eraseToAnyPublisher()
         }
         return documentReference.deletePublisher()
-            .map{ _ in dto }
-            .eraseToAnyPublisher()
     }
     
     func readAll<T: Decodable>(endPoint: FIREndPoint, type: T.Type) -> AnyPublisher<[T], Error> {
@@ -151,9 +149,12 @@ extension FirebaseService: NetworkService {
 // MARK: - Reference
 private extension FirebaseService {
     func documentReference<E: FIREndPoint>(endPoint: E) -> DocumentReference? {
+        let uid = uid.value
         let collectionPath = endPoint.reference.collection.path
         guard let document = endPoint.reference.document,
-              let documentPath = (document.isCurrentUser ? uid.value : document.path) else { return nil }
+              (document.needUid && uid != nil) || !document.needUid else { return nil }
+        
+        let documentPath = document.path(uid: uid)
         
         guard let subCollectionPath = endPoint.reference.subCollection?.path else {
             return firestore
@@ -162,7 +163,8 @@ private extension FirebaseService {
         }
         
         guard let subDocument = endPoint.reference.subDocument,
-              let subDocumentPath = (subDocument.isCurrentUser ? uid.value : subDocument.path) else { return nil }
+              (subDocument.needUid && uid != nil) || !subDocument.needUid else { return nil }
+        let subDocumentPath = subDocument.path(uid: uid)
         
         guard let subCollection2Path = endPoint.reference.subCollection2?.path else {
             return firestore
@@ -173,7 +175,8 @@ private extension FirebaseService {
         }
         
         guard let subDocument2 = endPoint.reference.subDocument2,
-              let subDocument2Path = (subDocument2.isCurrentUser ? uid.value : subDocument2.path) else { return nil }
+              (subDocument2.needUid && uid != nil) || !subDocument2.needUid else { return nil }
+        let subDocument2Path = subDocument2.path(uid: uid)
         
         return firestore
             .collection(collectionPath)
@@ -185,21 +188,26 @@ private extension FirebaseService {
     }
     
     func collectionReference<E: FIREndPoint>(endPoint: E) -> CollectionReference? {
+        let uid = uid.value
         let collectionPath = endPoint.reference.collection.path
         guard let document = endPoint.reference.document,
-              let documnetPath = (document.isCurrentUser ? uid.value : document.path),
+              (document.needUid && uid != nil) || !document.needUid,
               let subCollectionPath = endPoint.reference.subCollection?.path else {
             return firestore.collection(collectionPath)
         }
         
+        let documnetPath = document.path(uid: uid)
+        
         guard let subDocument = endPoint.reference.subDocument,
-              let subDocumentPath = (subDocument.isCurrentUser ? uid.value : subDocument.path),
+              (subDocument.needUid && uid != nil) || !subDocument.needUid,
               let subCollection2Path = endPoint.reference.subCollection2?.path else {
             return firestore
                 .collection(collectionPath)
                 .document(documnetPath)
                 .collection(subCollectionPath)
         }
+        
+        let subDocumentPath = subDocument.path(uid: uid)
         
         return firestore
             .collection(collectionPath)

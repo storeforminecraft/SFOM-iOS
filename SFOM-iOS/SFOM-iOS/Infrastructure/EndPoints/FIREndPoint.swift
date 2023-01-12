@@ -17,8 +17,8 @@ protocol SubCollection {
 }
 
 protocol Document {
-    var isCurrentUser: Bool { get }
-    var path: String { get }
+    var needUid: Bool { get }
+    func path(uid: String?) -> String
 }
 
 protocol FIREndPoint {

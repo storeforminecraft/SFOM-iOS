@@ -5,12 +5,15 @@
 //  Created by 이전희 on 2022/12/18.
 //
 
+import Foundation
 import Combine
 
 final class DefaultResourceRepository {
+    private let networkAuthService: NetworkAuthService
     private let networkService: NetworkService
     
-    init(networkService: NetworkService) {
+    init(networkAuthService: NetworkAuthService, networkService: NetworkService) {
+        self.networkAuthService = networkAuthService
         self.networkService = networkService
     }
 }
@@ -88,5 +91,47 @@ extension DefaultResourceRepository: ResourceRepository {
         }
         .map{ $0.map{ $0.toDomain() } }
         .eraseToAnyPublisher()
+    }
+    
+    func fetchThumb(resourceId: String) -> AnyPublisher<Bool, Error> {
+        guard let endPoint = NetworkEndPoints.shared.favoritesResource(doc: resourceId) else {
+            return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
+        }
+        return networkService.read(endPoint: endPoint,
+                                   type: FavoriteResourceDTO.self)
+        .map { _ -> Bool in true }
+        .catch{ error -> AnyPublisher<Bool, Error> in
+            switch error {
+            case FirebaseCombineError.noDataError:
+                return Just<Bool>(false).setFailureType(to: Error.self).eraseToAnyPublisher()
+            default:
+                return Fail(error: error).eraseToAnyPublisher()
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func pushThumb(category: String, resourceId: String) -> AnyPublisher<Bool, Error> {
+        guard let uid = networkAuthService.uid.value else {
+            return Fail(error: RepositoryError.noAuthError).eraseToAnyPublisher()
+        }
+        guard let endPoint = NetworkEndPoints.shared.favoritesResource(doc: resourceId) else {
+            return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
+        }
+        let dto = FavoriteResourceDTO(category: category,
+                                      createdTime: Int(Date().timeIntervalSince1970),
+                                      id: "\(uid)-\(resourceId)",
+                                      pusherId: uid,
+                                      resourceId: resourceId)
+        return networkService.create(endPoint: endPoint, dto: dto)
+            .map { _ -> Bool in true}
+            .eraseToAnyPublisher()
+    }
+    
+    func deleteThumb(resourceId: String) -> AnyPublisher<Bool, Error> {
+        guard let endPoint = NetworkEndPoints.shared.favoritesResource(doc: resourceId) else {
+            return Fail(error: NetworkEndPointError.wrongEndPointError).eraseToAnyPublisher()
+        }
+        return networkService.delete(endPoint: endPoint)
     }
 }

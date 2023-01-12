@@ -12,7 +12,7 @@ protocol NetworkService {
     func create<T: Encodable>(endPoint: FIREndPoint, dto: T) -> AnyPublisher<T, Error>
     func read<T: Decodable>(endPoint: FIREndPoint, type: T.Type) -> AnyPublisher<T, Error>
     func update<T: Encodable>(endPoint: FIREndPoint, dto: T) -> AnyPublisher<T, Error>
-    func delete<T: Encodable>(endPoint: FIREndPoint, dto: T) -> AnyPublisher<T, Error>
+    func delete(endPoint: FIREndPoint) -> AnyPublisher<Bool, Error>
     
     func readAll<T: Decodable>(endPoint: FIREndPoint, type: T.Type) -> AnyPublisher<[T], Error>
     func readAllWithFilter<T: Decodable>(endPoint: FIREndPoint,

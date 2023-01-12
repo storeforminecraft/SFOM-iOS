@@ -14,6 +14,8 @@ final class ContentViewModel: ViewModel {
     private let contentUseCase: ContentUseCase = AppContainer.shared.contentUseCase
     private var resource: Resource? = nil
     
+    @Published var isThumb: Bool = false
+    
     @Published var currentUser: User? = nil
     @Published var authorUser: User? = nil
     @Published var authorUserResources: [Resource] = []
@@ -65,8 +67,16 @@ final class ContentViewModel: ViewModel {
                 }
             })
             .store(in: &cancellable)
-
-       fetchComment()
+        
+        contentUseCase.fetchThumb(resourceId: resource.id)
+            .replaceError(with: false)
+            .receive(on: DispatchQueue.main)
+            .sink { thumb in
+                self.isThumb = thumb
+            }
+            .store(in: &cancellable)
+        
+        fetchComment()
     }
     
     func fetchComment(){
@@ -84,6 +94,28 @@ final class ContentViewModel: ViewModel {
             .store(in: &cancellable)
     }
     
+    func thumb(){
+        guard let resource = resource else { return }
+        self.isThumb.toggle()
+        if !isThumb {
+            contentUseCase.pushThumb(category: resource.category.rawValue, resourceId: resource.id)
+                .replaceError(with: false)
+                .receive(on: DispatchQueue.main)
+                .sink { thumb in
+                    self.isThumb = thumb
+                }
+                .store(in: &cancellable)
+        } else {
+            contentUseCase.deleteThumb(resourceId: resource.id)
+                .replaceError(with: false)
+                .receive(on: DispatchQueue.main)
+                .sink { thumb in
+                    self.isThumb = thumb
+                }
+                .store(in: &cancellable)
+        }
+    }
+    
     func leaveComment(){
         
     }
@@ -98,7 +130,7 @@ struct ContentView: View {
     @State var showCommentMenu: Bool = false
     @State var showReports: Bool = false
     @State var showNeedAuth: Bool = false
-
+    
     
     init(resource: Resource) {
         self.resource = resource
@@ -153,12 +185,12 @@ struct ContentView: View {
             ReportView(viewModel.selectedTargetPath ?? "", isComment: true)
         }
         .toast(isPresenting: $showNeedAuth,
-                duration: 2,
-                tapToDismiss: true) {
-             AlertToast(type: .error(.red),
-                        title: StringCollection.NeedAuth.needAuthTitle.localized,
-                        subTitle: StringCollection.NeedAuth.needAuthDescription.localized)
-         }
+               duration: 2,
+               tapToDismiss: true) {
+            AlertToast(type: .error(.red),
+                       title: StringCollection.NeedAuth.needAuthTitle.localized,
+                       subTitle: StringCollection.NeedAuth.needAuthDescription.localized)
+        }
     }
     
     @ViewBuilder
@@ -173,7 +205,7 @@ struct ContentView: View {
             .tabViewStyle(.page(indexDisplayMode: .always))
         } else {
             SFOMImage(placeholder: Assets.Default.profileBackground.image,
-                          urlString: resource.thumbnail,
+                      urlString: resource.thumbnail,
                       isSkin: true)
             .padding(.top, 30)
             .background(Assets.Default.gradientBackground.image)
@@ -223,7 +255,7 @@ struct ContentView: View {
                     .font(.SFOMFont16)
                 }
             }
-
+            
             VStack(alignment: .leading) {
                 if viewModel.currentUser != nil {
                     VStack(spacing: 0){

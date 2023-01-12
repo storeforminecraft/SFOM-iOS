@@ -27,7 +27,13 @@ final class NetworkEndPoints {
 
 private extension NetworkEndPoints {
     func checkDocument(doc: String?, docIsUser: Bool?) -> Document? {
-        if let doc = doc { return FirestoreEndPoint.SFOMDocument.another(doc) }
+        if let doc = doc {
+            if let docIsUser = docIsUser, docIsUser {
+                return FirestoreEndPoint.SFOMDocument.combineUser(doc, "-")
+            } else {
+                return FirestoreEndPoint.SFOMDocument.another(doc)
+            }
+        }
         if let docIsUser = docIsUser, docIsUser { return FirestoreEndPoint.SFOMDocument.currentUser }
         return nil
     }
@@ -77,7 +83,7 @@ extension NetworkEndPoints {
     
     func favoritesResource(doc: String? = nil) -> FirestoreEndPoint? {
         let collection = FirestoreEndPoint.SFOMCollection.favorites_resource
-        let document = checkDocument(doc: doc, docIsUser: false)
+        let document = checkDocument(doc: doc, docIsUser: true)
         return FirestoreEndPoint(collection: collection, document: document)
     }
     
