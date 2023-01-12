@@ -25,7 +25,7 @@ public struct SFOMHeader: View {
             Text(mainTitle)
                 .font(.SFOMLargeTitleFont)
             Text(subTitle)
-                .font(.SFOMSmallFont)
+                .font(.SFOMFont16)
             
         }
     }
@@ -115,7 +115,7 @@ public struct SFOMSubmitField: View {
                 }
                 .padding(.horizontal)
                 .autocapitalization(.none)
-                .font(.SFOMSmallFont)
+                .font(.SFOMFont16)
                 .cornerRadius(cornerRadius)
                 .foregroundColor(.black)
             }

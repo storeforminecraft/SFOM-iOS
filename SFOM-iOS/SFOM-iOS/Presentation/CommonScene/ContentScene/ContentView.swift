@@ -113,12 +113,13 @@ struct ContentView: View {
                     .padding(.bottom, 10)
                 resourceContent
                     .padding(.horizontal, 20)
+                    .padding(.top, 10)
                 Divider()
-                    .padding(.vertical,10)
+                    .padding(.vertical, 14)
                 commentsList
                     .padding(.horizontal, 20)
                 Divider()
-                    .padding(.vertical,10)
+                    .padding(.vertical, 14)
                 userResources
             }
             .padding(.bottom, 100)
@@ -180,12 +181,15 @@ struct ContentView: View {
     }
     
     private var resourceContent: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             Text(resource.localizedName)
-                .font(.SFOMSmallFont.bold())
+                .font(.SFOMFont16.bold())
+            
             Text(resource.info)
                 .foregroundColor(Color(.darkGray))
-                .font(.SFOMExtraSmallFont)
+                .font(.SFOMFont12)
+                .padding(.top, 4)
+            
             VStack {
                 if let user = viewModel.authorUser {
                     UserInfoLink(user: user) {
@@ -193,11 +197,11 @@ struct ContentView: View {
                     }
                 }
             }
-            .frame(height: 40)
+            .frame(height: 30)
             .padding(.vertical)
             
             Text(resource.localizedDescs)
-                .font(.SFOMExtraSmallFont)
+                .font(.SFOMFont12)
                 .foregroundColor(Color(.darkGray))
         }
     }
@@ -206,7 +210,7 @@ struct ContentView: View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
                 Text(StringCollection.ContentView.comments.localized)
-                    .font(.SFOMSmallFont.bold())
+                    .font(.SFOMFont16.bold())
                 Spacer()
                 NavigationLink{
                     CommentsView(resource: resource,
@@ -216,7 +220,7 @@ struct ContentView: View {
                         Text(StringCollection.ContentView.more.localized)
                         Image(systemName: "chevron.forward")
                     }
-                    .font(.SFOMSmallFont)
+                    .font(.SFOMFont16)
                 }
             }
 
@@ -235,7 +239,7 @@ struct ContentView: View {
                             AuthView()
                         } label: {
                             Text(StringCollection.ContentView.leaveACommentAfterSignIn.localized)
-                                .font(.SFOMSmallFont.bold())
+                                .font(.SFOMFont16.bold())
                         }
                         HStack{ Spacer() }
                     }
@@ -262,14 +266,14 @@ struct ContentView: View {
                 if let authorUser = viewModel.authorUser {
                     HStack(spacing: 0) {
                         Text(authorUser.nickname.strip)
-                            .font(.SFOMSmallFont.bold())
+                            .font(.SFOMFont16.bold())
                         Text(StringCollection.ETC.userSuffix.localized)
-                            .font(.SFOMSmallFont)
+                            .font(.SFOMFont16)
                     }
                     .foregroundColor(.black)
                     if let introduction = authorUser.introduction{
                         Text(introduction)
-                            .font(.SFOMExtraSmallFont)
+                            .font(.SFOMFont12)
                             .foregroundColor(Color(.lightGray))
                     }
                 }

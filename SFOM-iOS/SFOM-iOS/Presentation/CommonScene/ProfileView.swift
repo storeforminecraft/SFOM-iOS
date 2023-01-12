@@ -130,13 +130,13 @@ struct ProfileView: View {
             .padding(.top, -52.5)
             
             Text("\(viewModel.user?.nickname ?? "")")
-                .font(.SFOMSmallFont)
+                .font(.SFOMFont16)
                 .foregroundColor(.black)
                 .padding(.vertical, 5)
             
             // FIXME: - Localization
             Text("\(viewModel.user?.introduction ?? "아직 한 줄 소개가 입력되지 않았습니다.")")
-                .font(.SFOMExtraSmallFont)
+                .font(.SFOMFont12)
                 .foregroundColor(Color(.darkGray))
                 .padding(.horizontal)
                 .padding(.bottom, 15)

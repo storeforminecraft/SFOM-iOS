@@ -75,11 +75,11 @@ public struct UserInfoLink<Destination>: View where Destination: View {
                 
                 VStack(alignment: .leading, spacing: 0){
                     Text(user.nickname.strip)
-                        .font(.SFOMExtraSmallFont.bold())
+                        .font(.SFOMFont12.bold())
                         .foregroundColor(.black)
                         .lineLimit(1)
                     Text(user.uid.prefix(6))
-                        .font(.SFOMExtraSmallFont)
+                        .font(.SFOMFont12)
                         .foregroundColor(Color(.darkGray))
                         .lineLimit(1)
                     HStack { Spacer() }
@@ -110,12 +110,12 @@ public struct ResourceLinearLink<Destination>: View where Destination: View {
                 .cornerRadius(8)
                 VStack(alignment: .leading){
                     Text(userResource.resource.localizedName.strip)
-                        .font(.SFOMSmallFont)
+                        .font(.SFOMFont16)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.leading)
                         .lineLimit(1)
                     Text(userResource.user.summary)
-                        .font(.SFOMExtraSmallFont)
+                        .font(.SFOMFont12)
                         .foregroundColor(Color(.lightGray))
                         .multilineTextAlignment(.leading)
                         .lineLimit(1)

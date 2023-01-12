@@ -197,7 +197,7 @@ public struct SFOMBackButton: View {
                     .resizable()
                     .frame(width: 18, height: 18)
                 Text(StringCollection.Default.back.localized)
-                    .font(.SFOMSmallFont)
+                    .font(.SFOMFont16)
             }
         }
     }
@@ -225,13 +225,13 @@ public struct SFOMCheckButton: View {
             HStack {
                 if let kind = kind {
                     Text(kind)
-                        .font(.SFOMSmallFont.bold())
+                        .font(.SFOMFont16.bold())
                         .foregroundColor(.red)
                 }
                 
                 HStack (spacing: 2){
                     Text(content)
-                        .font(.SFOMExtraSmallFont.bold())
+                        .font(.SFOMFont12.bold())
                         .foregroundColor(.black)
                     
                     if let urlString = urlString, let url = URL(string: urlString) {
@@ -239,7 +239,7 @@ public struct SFOMCheckButton: View {
                             openURL(url)
                         } label: {
                             Image(systemName: "chevron.right")
-                                .font(.SFOMExtraSmallFont.bold())
+                                .font(.SFOMFont12.bold())
                                 .foregroundColor(Color(.lightGray))
                         }
                     }
@@ -249,11 +249,11 @@ public struct SFOMCheckButton: View {
                 
                 if check {
                     Image(systemName: "checkmark.circle.fill")
-                        .font(.SFOMSmallFont)
+                        .font(.SFOMFont16)
                         .foregroundColor(.accentColor)
                 } else {
                     Image(systemName: "checkmark.circle")
-                        .font(.SFOMSmallFont)
+                        .font(.SFOMFont16)
                         .foregroundColor(Color(.darkGray))
                 }
             }

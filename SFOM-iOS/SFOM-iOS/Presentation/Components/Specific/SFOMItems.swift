@@ -92,7 +92,7 @@ public struct SFOMSearchItemView<Destination>: View where Destination: View {
                 VStack(alignment: .leading) {
                     Text(resource.name)
                         .lineLimit(2)
-                        .font(.SFOMSmallFont)
+                        .font(.SFOMFont16)
                         .multilineTextAlignment(.leading)
                         .foregroundColor(.black)
                         .frame(height: 45)
@@ -106,7 +106,7 @@ public struct SFOMSearchItemView<Destination>: View where Destination: View {
                             }
                             Text("\(resource.downloadCount) hits")
                         }
-                        .font(.SFOMExtraSmallFont)
+                        .font(.SFOMFont12)
                         .foregroundColor(.gray)
                         .frame(height: 20)
                     }
@@ -139,7 +139,7 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
                     .cornerRadius(15)
                     
                     Text(recentComment.resource.localizedName)
-                        .font(.SFOMSmallFont.bold())
+                        .font(.SFOMFont14.bold())
                         .lineLimit(1)
                         .foregroundColor(.black)
                 }
@@ -153,9 +153,9 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
                     
                     Group{
                         Text("\(recentComment.user.summary)")
-                            .font(.SFOMExtraSmallFont.bold())
+                            .font(.SFOMFont12.bold())
                         Text(StringCollection.ETC.leftAComment.localized)
-                            .font(.SFOMExtraSmallFont)
+                            .font(.SFOMFont12)
                     }
                     .lineLimit(1)
                     .foregroundColor(Color(.darkGray))
@@ -163,14 +163,14 @@ public struct SFOMRecentCommentItemView<Destination>: View where Destination: Vi
                 }
                 
                 Text("\"\(recentComment.comment.content)\"")
-                    .font(.SFOMExtraSmallFont.bold())
+                    .font(.SFOMFont12)
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.black)
                 
                 VStack(alignment: .trailing){
                     Text(recentComment.createdTime.ago)
-                        .font(.SFOMExtraSmallFont)
+                        .font(.SFOMFont12)
                         .lineLimit(1)
                         .foregroundColor(Color(.lightGray))
                         .padding(5)
@@ -252,20 +252,20 @@ public struct SFOMNoticeItemView: View {
                 HStack (alignment: .center) {
                     Text(notice.localizedTitle)
                         .foregroundColor(Color(.lightGray))
-                        .font(.SFOMSmallFont)
+                        .font(.SFOMFont16)
                         .multilineTextAlignment(.leading)
                     Spacer()
                     Image(systemName: showingContent ? "chevron.up" : "chevron.down")
                 }
                 Text(notice.modifiedTimestamp.toString)
                     .foregroundColor(Color(.lightGray))
-                    .font(.SFOMExtraSmallFont)
+                    .font(.SFOMFont12)
                     .multilineTextAlignment(.leading)
                 
                 if showingContent {
                     Text(notice.localizedContent)
                         .foregroundColor(Color(.lightGray))
-                        .font(.SFOMExtraSmallFont)
+                        .font(.SFOMFont12)
                         .multilineTextAlignment(.leading)
                 }
                 HStack { Spacer() }
@@ -301,21 +301,21 @@ public struct SFOMResourceItemView<Destination>: View where Destination: View{
                 // FIXME: - Skin 처리
                 VStack(alignment: .leading, spacing: 5) {
                     Text(resource.localizedName)
-                        .font(.SFOMExtraSmallFont)
+                        .font(.SFOMFont12)
                         .foregroundColor(.black)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
                         .frame(height: 30, alignment: .top)
                     HStack (spacing: 0) {
                         Image(systemName: "hand.thumbsup.fill")
-                            .font(.SFOMExtraSmallFont)
+                            .font(.SFOMFont12)
                             .foregroundColor(.accentColor)
                         Group {
                             Text("\(resource.likeCount)")
                                 .padding(.trailing,4)
                             Text("\(resource.downloadCount)\(StringCollection.ETC.count.localized)")
                         }
-                        .font(.SFOMExtraSmallFont)
+                        .font(.SFOMFont12)
                         .foregroundColor(Color(.lightGray))
                         .lineLimit(1)
                     }
@@ -353,21 +353,21 @@ public struct SFOMCategoryItemView<Destination>: View where Destination: View{
                 
                 VStack(alignment: .leading, spacing: 5) {
                     Text(resource.localizedName)
-                        .font(.SFOMExtraSmallFont)
+                        .font(.SFOMFont12)
                         .foregroundColor(.black)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
                         .frame(height: 30, alignment: .top)
                     HStack (spacing: 0) {
                         Image(systemName: "hand.thumbsup.fill")
-                            .font(.SFOMExtraSmallFont)
+                            .font(.SFOMFont12)
                             .foregroundColor(.accentColor)
                         Group {
                             Text("\(resource.likeCount)")
                                 .padding(.trailing,4)
                             Text("\(resource.downloadCount)\(StringCollection.ETC.count.localized)")
                         }
-                        .font(.SFOMExtraSmallFont)
+                        .font(.SFOMFont12)
                         .foregroundColor(Color(.lightGray))
                         .lineLimit(1)
                     }

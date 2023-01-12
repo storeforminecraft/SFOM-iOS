@@ -155,11 +155,11 @@ struct HomeView: View {
             if viewModel.isCommentLoading {
                 ActivityIndicator(isAnimating: $viewModel.isCommentLoading, style: .medium)
             } else {
-            ForEach(viewModel.recentComments,id: \.comment.id) { recentComment in
-                SFOMRecentCommentItemView(recentComment: recentComment) {
-                    ContentView(resource: recentComment.resource)
+                ForEach(viewModel.recentComments,id: \.comment.id) { recentComment in
+                    SFOMRecentCommentItemView(recentComment: recentComment) {
+                        ContentView(resource: recentComment.resource)
+                    }
                 }
-            }
             }
         }
     }

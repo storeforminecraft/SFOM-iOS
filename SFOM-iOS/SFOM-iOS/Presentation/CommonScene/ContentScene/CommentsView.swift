@@ -54,12 +54,29 @@ final class CommentsViewModel: ViewModel {
 }
 
 struct CommentsView: View {
+    @Environment(\.dismiss) private var dismiss
     @ObservedObject private var commentsViewModel: CommentsViewModel = CommentsViewModel()
     let resource: Resource
     let userComments: [UserComment]
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading){
+            HStack {
+                Text(StringCollection.ContentView.comments.localized)
+                    .font(.SFOMFont16)
+                    .foregroundColor(.black)
+                Spacer()
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                         .font(.SFOMFont16)
+                         .foregroundColor(.black)
+                }
+            }
+            Spacer()
+        }
+        .navigationBarBackButtonHidden()
     }
 }
 

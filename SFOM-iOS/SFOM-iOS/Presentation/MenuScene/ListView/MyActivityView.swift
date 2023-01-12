@@ -24,7 +24,7 @@ struct MyActivityView: View {
                     HStack(alignment: .center,spacing: 2){
                         Group {
                             Image(systemName: "chevron.backward")
-                                .font(.SFOMSmallFont.bold())
+                                .font(.SFOMFont16.bold())
                             Text("")
                                 .font(.SFOMMediumFont.bold())
                         }

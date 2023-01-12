@@ -27,13 +27,15 @@ final class PostViewModel: ViewModel {
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { user in
-                self.authorUser = user
+                withAnimation {
+                    self.authorUser = user
+                }
             })
             .store(in: &cancellable)
         
         let resourceIds = (post.body?.body ?? [])
             .compactMap{ content in
-            return content.type == "resource-linear-banner" ? content.data : nil
+                return content.type == "resource-linear-banner" ? content.data : nil
             }
         
         postUseCase.fetchResources(resourceIds: resourceIds)
@@ -44,7 +46,11 @@ final class PostViewModel: ViewModel {
             }
             .replaceError(with: [:])
             .receive(on: DispatchQueue.main)
-            .assign(to: \.userResources, on: self)
+            .sink(receiveValue: { userResources in
+                withAnimation {
+                    self.userResources = userResources
+                }
+            })
             .store(in: &cancellable)
     }
 }
@@ -88,7 +94,7 @@ struct PostView: View {
                     .frame(width: 12,height: 12)
                     .colorMultiply(.black)
                 Text("#\(post.boardId)")
-                    .font(.SFOMExtraSmallFont.bold())
+                    .font(.SFOMFont12.bold())
             }
             Text(post.title)
                 .font(.SFOMTitleFont)
@@ -116,17 +122,17 @@ struct PostView: View {
                         .foregroundColor(.black)
                 case "h2":
                     Text(content.data)
-                        .font(.SFOMSmallFont.bold())
+                        .font(.SFOMFont16.bold())
                         .foregroundColor(.black)
                 case "text":
                     Text(content.data)
-                        .font(.SFOMExtraSmallFont)
+                        .font(.SFOMFont12)
                         .foregroundColor(Color(.darkGray))
                 case "link":
                     // CompactLPView(urlString: content.data)
                     // Text("link: \(content.data)")
                     //     .font(.body)
-                    // FIXME: - Link 
+                    // FIXME: - Link
                     VStack { }
                 case "resource-linear-banner":
                     if let userResource = viewModel.userResources[content.data] {
@@ -135,7 +141,7 @@ struct PostView: View {
                         }
                     } else {
                         Text("resource: \(content.data)")
-                            .font(.SFOMExtraSmallFont)
+                            .font(.SFOMFont12)
                             .foregroundColor(Color(.lightGray))
                     }
                 default:
