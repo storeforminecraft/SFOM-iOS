@@ -16,12 +16,11 @@ struct Assets {
     }
     
     public enum `Default`: String {
-        case profile
-        case profileBackground
-        case gradientBackground
+        case profile = "defaultImage_profile"
+        case profileBackground = "defaultImage_profileBackground"
+        case gradientBackground = "defaultImage_gradientBackground"
         
-        var image: Image { Image("defaultImage_\(self.rawValue)") }
-        // var image: Image { Image(systemName: "circle") }
+        var image: Image { Image(self.rawValue) }
     }
     
     public enum Content: String {
